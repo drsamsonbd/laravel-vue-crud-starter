@@ -16,13 +16,13 @@
                       <div class="col">
                       <input type="text" class="form-control" id="ICnumber"
                         placeholder="Sila isi nombor kad pengenalan tanpa '-'"  v-model="form.ic">
-                        <small class="text-danger" v-if="errors.ic">{{errors.ic[0]}}</small>
+                       
                     </div>
                     </div>
                     <div class="form-group">
                       <div class="col">
                       <input type="password" class="form-control" id="exampleInputPassword" placeholder="Kata laluan"  v-model="form.password">
-                    <small class="text-danger" v-if="errors.password">{{errors.password[0]}}</small>
+                   
                     </div>
                   </div>
                     <div class="form-group">
