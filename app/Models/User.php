@@ -3,15 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens;
-use App\Models\Role;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illumminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable // implements MustVerifyEmail
+class User extends Authenticatable implements JWTSubject 
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use Notifiable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +21,12 @@ class User extends Authenticatable // implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'type'
+        'name',
+        'email',
+        'ic',
+        'password', 
+        'roles',    
+     
     ];
 
     /**
@@ -28,7 +35,10 @@ class User extends Authenticatable // implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
@@ -40,38 +50,43 @@ class User extends Authenticatable // implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-     /**
-     * Get the profile photo URL attribute.
+    /**
+     * The accessors to append to the model's array form.
      *
-     * @return string
+     * @var array
      */
-    public function getPhotoAttribute()
-    {
-        return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '.jpg?s=200&d=mm';
-    }
+    //protected $appends = [
+    //    'profile_photo_url',
+    //];
 
-    public function roles()
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->getKey();
     }
 
     /**
-     * Assigning User role
+     * Return a key value array, containing any custom claims to be added to the JWT.
      *
-     * @param \App\Models\Role $role
+     * @return array
      */
-    public function assignRole(Role $role)
+    public function getJWTCustomClaims()
     {
-        return $this->roles()->save($role);
+        return [
+         
+            'name' => $this->name,
+            'user_id' => $this->id,
+            'ic' => $this->ic,
+            'roles' => $this->roles,
+            'current_team_id' => $this->current_team_id,  
+        ];
     }
-
-    public function isAdmin()
-    {
-        return $this->roles()->where('name', 'Admin')->exists();
-    }
-
-    public function isUser()
-    {
-        return $this->roles()->where('name', 'User')->exists();
-    }
+    
+  
 }
+
+

@@ -51,6 +51,7 @@ class UserController extends BaseController
     {
         $user = User::create([
             'name' => $request['name'],
+            'ic' => $request['ic'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'type' => $request['type'],

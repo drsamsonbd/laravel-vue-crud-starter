@@ -1,5 +1,16 @@
 <template>
+<div>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">   
+                   <b-breadcrumb :items="itemize"></b-breadcrumb>     
+        </div><!-- /.row --> 
+      </div><!-- /.container-fluid -->
+   
+    <!-- /.content-header -->
     <section class="content">
+        
+
         <div class="container-fluid">
             <div class="row ">
                 <div class="col-12 col-sm-6 col-md-3">
@@ -201,12 +212,25 @@
             <!-- /.row -->
         </div><!--/. container-fluid -->
     </section>
+    </div>
 </template>
 
 <script>
     export default {
         mounted() {
             console.log('Component mounted.')
+        },
+        data(){
+            return{
+      itemize: [
+          {
+            text: 'Utama',
+            href: true
+          },
+         
+        ],
+}
         }
     }
+
 </script>
