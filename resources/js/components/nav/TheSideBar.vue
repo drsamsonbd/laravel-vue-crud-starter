@@ -10,7 +10,7 @@
         </router-link>
       </li>
 
-      <li  class="nav-item has-treeview"   v-if="roles=='admin'">
+      <li  class="nav-item has-treeview"   v-if="roles==='admin'">
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-user-cog"></i>
           <p>Pentadbir
@@ -39,7 +39,7 @@
         </ul>
       </li>
      
-      <li class="nav-item has-treeview"    v-if="roles=='admin'">
+      <li class="nav-item has-treeview"    v-if="roles==='admin'">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-cog green"></i>
           <p>
@@ -103,7 +103,7 @@ export default {
 
     userRoles() {
         let self = this;
-        axios.post('/api/auth/me/' + '?token='+ localStorage.getItem('token'))
+        axios.get('/api/auth/me/roles/'+ '?token='+ localStorage.getItem('token'))
         .then(({data}) => (self.roles = data.roles)).catch(function (error) {
         console.log(error); 
 
