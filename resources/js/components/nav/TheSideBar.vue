@@ -10,7 +10,7 @@
         </router-link>
       </li>
 
-      <li  class="nav-item has-treeview"   v-if="roles==='admin'">
+      <li  class="nav-item has-treeview"   v-if="roles=='admin'">
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-user-cog"></i>
           <p>Pentadbir
