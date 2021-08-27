@@ -382,7 +382,7 @@
         self.departments = response.data;
       }).catch(function (error) {
         console.log(error);
-        self.$router.push({ path: '/login' });
+          alert('code error')
       });
     },
 
@@ -394,7 +394,7 @@
         self.items = response.data;
       }).catch(function (error) {
         console.log(error);
-        self.$router.push({ path: '/login' });
+       alert('code error')
       });
     }
     ,
