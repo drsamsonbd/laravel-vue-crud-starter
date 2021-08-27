@@ -86,9 +86,7 @@ data(){
   }
 
 
-
 </script>
-
 <style type="text/css">
 #form {
     display: flex;
