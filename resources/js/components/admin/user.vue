@@ -217,7 +217,7 @@
       stacked="md"
       show-empty
       small
-      @filtered="onFiltered"
+ 
     >
      <template #cell(index)="data">
         {{ data.index + 1 }}
