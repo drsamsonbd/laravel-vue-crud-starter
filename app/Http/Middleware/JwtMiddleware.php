@@ -8,8 +8,7 @@ use Tymon\JWTAuth\facades\JWTAuth;
 use Exception;
 use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 
-class JwtMiddleware extends BaseMiddleware
-
+class JwtMiddleware 
 {
     /**
      * Handle an incoming request.
