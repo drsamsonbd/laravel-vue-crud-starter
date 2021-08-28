@@ -40,7 +40,7 @@
         </ul>
       </li>
 
-        <li  class="nav-item has-treeview"  v-if="roles=='admin'||'hospital'">
+        <li  class="nav-item has-treeview"  v-if="roles =='admin' && roles =='hospital'">
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-scroll "></i>
           <p>Laporan
@@ -67,8 +67,8 @@
             </router-link>
           </li>
         </ul>
-      </li>
-      <li class="nav-item has-treeview"  v-if="roles=='hospital'||'admin'" >
+      </li> 
+      <li class="nav-item has-treeview"  v-if="roles=='hospital' && roles =='admin'" >
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-cog green"></i>
           <p>
