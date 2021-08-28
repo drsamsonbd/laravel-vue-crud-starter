@@ -40,7 +40,7 @@
         </ul>
       </li>
 
-        <li  class="nav-item has-treeview">
+        <li  class="nav-item has-treeview"  v-if="roles=='admin'||'user'">
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-scroll "></i>
           <p>Laporan
@@ -68,7 +68,7 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item has-treeview" >
+      <li class="nav-item has-treeview"  v-if="roles=='user'" >
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-cog green"></i>
           <p>
