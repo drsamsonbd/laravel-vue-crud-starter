@@ -96,6 +96,8 @@ $NursingReport -> pui_new = $request ->    pui_new;
 $NursingReport -> pui_discharged = $request ->    pui_discharged;
 $NursingReport -> pui_death = $request ->    pui_death;
 $NursingReport -> covid_death = $request ->    covid_death;
+$NursingReport -> covid_step_up = $request ->    covid_step_up;
+$NursingReport -> covid_step_down = $request ->    covid_step_down;
 $NursingReport -> notes = $request ->    notes; 
 
         $NursingReport->save();
@@ -190,6 +192,8 @@ $data ['pui_new'] = $request ->     pui_new;
 $data ['pui_discharged'] = $request ->     pui_discharged;
 $data ['pui_death'] = $request ->     pui_death;
 $data ['covid_death'] = $request ->     covid_death;
+$data ['covid_step_up'] = $request ->     covid_step_up;
+$data ['covid_step_down'] = $request ->     covid_step_down;
 $data ['notes'] = $request ->     notes;
 
         DB::table('nursing_reports')->where('id',$id)->update($data);

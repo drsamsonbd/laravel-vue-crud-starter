@@ -74,7 +74,9 @@ class CreateNursingReportsTable extends Migration
             $table->string('pui_discharged')->nullable();
             $table->string('covid_discharged')->nullable();
             $table->string('pui_death')->nullable();
-            $table->string('covid_death')->nullable();  
+            $table->string('covid_death')->nullable(); 
+            $table->string('covid_step_up')->nullable(); 
+            $table->string('covid_step_down')->nullable(); 
             $table->string('notes')->nullable();  
             $table->timestamps();
         });

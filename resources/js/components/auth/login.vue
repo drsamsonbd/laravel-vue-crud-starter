@@ -74,13 +74,12 @@ data(){
             this.$router.push({name:'home'})            
               window.location.reload() 
             })
-          .catch(error=> this.errors = error.response.data.errors)
-          .catch(
+           .catch(()=>{
             Toast.fire({
               icon: 'warning',
               title: 'Invalid email or password!'
-            })
-          )
+            });
+           })
         }
       }
   }

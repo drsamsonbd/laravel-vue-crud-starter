@@ -65,6 +65,8 @@ class NursingReport extends Model
     'covid_paeds_female',
     'covid_local',
     'covid_non_local',
+    'covid_step_up',
+    'covid_step_down'
 
     ];
 }

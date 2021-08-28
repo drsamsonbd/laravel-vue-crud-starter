@@ -1,7 +1,7 @@
   
 
 <template v-for="table">
-  
+  <section class="content"> 
   <div>
  <b-breadcrumb :items="itemize"></b-breadcrumb>
  <hr>
@@ -217,6 +217,18 @@
     <div class="col-sm-1">
       <input type="number" class="form-control form-control-sm" id="female" v-model="form.covid_non_local" >
       
+    </div>
+         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Step Up </b></label>
+    <div class="col-sm-1">
+      <input type="number" class="form-control form-control-sm" id="female" v-model="form.covid_step_up" >
+      
+                         <small class="text-danger" v-if="errors.covid_step_up">{{errors.covid_step_up[0]}}</small>
+    </div>
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Step Down </b></label>
+    <div class="col-sm-1">
+      <input type="number" class="form-control form-control-sm" id="female" v-model="form.covid_step_down" >
+      
+                         <small class="text-danger" v-if="errors.covid_step_down">{{errors.covid_step_down[0]}}</small>
     </div>
 </div>
 
@@ -638,6 +650,18 @@
       <input type="number" class="form-control form-control-sm" id="female" v-model="forms.covid_non_local" >
       
                          <small class="text-danger" v-if="errors.covid_non_local">{{errors.covid_non_local[0]}}</small>
+    </div>
+         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Step Up </b></label>
+    <div class="col-sm-1">
+      <input type="number" class="form-control form-control-sm" id="female" v-model="forms.covid_step_up" >
+      
+                         <small class="text-danger" v-if="errors.covid_step_up">{{errors.covid_step_up[0]}}</small>
+    </div>
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Step Down </b></label>
+    <div class="col-sm-1">
+      <input type="number" class="form-control form-control-sm" id="female" v-model="forms.covid_step_down"  >
+      
+                         <small class="text-danger" v-if="errors.covid_step_down">{{errors.covid_step_down[0]}}</small>
     </div>
 
 </div>
@@ -1064,6 +1088,18 @@
       
                          <small class="text-danger" v-if="errors.covid_non_local">{{errors.covid_non_local[0]}}</small>
     </div>
+        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Step Up </b></label>
+    <div class="col-sm-1">
+      <input type="number" class="form-control form-control-sm" id="female" v-model="views.covid_step_up" disabled>
+      
+                         <small class="text-danger" v-if="errors.covid_step_up">{{errors.covid_step_up[0]}}</small>
+    </div>
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Step Down </b></label>
+    <div class="col-sm-1">
+      <input type="number" class="form-control form-control-sm" id="female" v-model="views.covid_step_down" disabled>
+      
+                         <small class="text-danger" v-if="errors.covid_step_down">{{errors.covid_step_down[0]}}</small>
+    </div>
 
 </div>
 
@@ -1280,10 +1316,10 @@
                   <h6 class="m-0 font-weight-bold text-primary">Laporan Harian Kejururawatan</h6>
                 </div>
 
-
-<b-row>
-   <b-col sm="1" class="my-1" align="right">
-           <b-button pill size="sm" variant="outline-secondary" id="show-btn" @click="showModal"> <i class="fas fa-plus"></i>&nbsp;Tambah</b-button>
+ 
+    <b-row >
+      <b-col sm="1" class="my-1" align="right">
+           <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal"> <i class="fas fa-plus"></i></b-button>
         </b-col>
         <b-col sm="6" class="my-1">
         <b-form-group
@@ -1343,7 +1379,6 @@
       stacked="md"
       show-empty
       small
-     
       flex 
       striped 
       hover
@@ -1390,10 +1425,11 @@
                     ></b-pagination>
                 </div>
               </div>
+            
             </div>
           </div>
           <!--Row-->
-
+  </section>
 
 </template>
 
@@ -1402,28 +1438,8 @@
 <script type="text/javascript">
  
   export default {
-
-      created(){
-      if (!User.loggedIn()) {
-        this.$router.push({name: '/'})
-
-    
-      }
-  
-      let token = localStorage.getItem('token');
-    if(!token){
-      this.$router.push({name: '/'})
-      }
-    },
       
      mounted(){
-     let roles = localStorage.getItem('roles');
-      if(roles.includes("user")-1){
-      this.$router.push({name: 'home'})
-      Notification.unauthorized()
-    }
- 
-
         this.allPatient();
         this.race();
         this.area(),
@@ -1495,6 +1511,8 @@ pui_new: null,
 pui_discharged: null,
 pui_death: null,
 covid_death: null,
+covid_step_up: null,
+covid_step_down: null,
 notes: null,
           
         },
@@ -1556,6 +1574,8 @@ pui_new: null,
 pui_discharged: null,
 pui_death: null,
 covid_death: null,
+covid_step_up: null,
+covid_step_down: null,
 notes: null,
       
         },
@@ -1722,16 +1742,18 @@ notes: null,
        register(){
           axios.post('/api/nursingreports'+ '?token='+ localStorage.getItem('token'), this.form)
           .then(() => {
-        window.location.reload()
-        Notification.success()
+            this.$refs['my-modal'].hide()
+              Toast.fire({
+              icon: 'success',
+              title: 'Laporan telah dihantar!'
+                  })
          })
-          .catch(error=> this.errors = error.response.data.errors)
-          .catch(
+        .catch(()=>{
             Toast.fire({
               icon: 'warning',
-              title: 'Invalid data entry'
-            })
-          )
+              title: 'Pastikan tarikh dan masa telah diisi!'
+            });
+              })
         },
       patientUpdate(){
        let id = this.forms.id
@@ -1743,11 +1765,14 @@ notes: null,
         self.items = response.data;
         })
          this.$refs['edit-modal'].hide(); 
-        Notification.success();
+          Toast.fire(
+                      'Berjaya!',
+                      'Telah dikemaskini.',
+                      'success'
+                    )
     
        })
-       .catch(error =>this.errors = error.response.data.errors)
-       
+    
      },
 
          viewModal(record) {
