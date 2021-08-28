@@ -24,16 +24,15 @@
 
           <li class="nav-item">
             <router-link to="/user" class="nav-link">
-              <i class="nav-icon fas fa-list-ol white"></i>
-              <p>
+            
+              <p id="submenu">
                 Pengguna
               </p>
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/department" class="nav-link">
-              <i class="nav-icon fas fa-tags white"></i>
-              <p>
+         <router-link to="/department" class="nav-link">
+              <p id="submenu">
                 Jabatan
               </p>
             </router-link>
@@ -54,7 +53,7 @@
           <li class="nav-item">
             <router-link to="/nursingreport" class="nav-link">
              
-              <p>
+              <p id="submenu">
                 Nursing
               </p>
             </router-link>
@@ -62,7 +61,7 @@
           <li class="nav-item">
             <router-link to="/dailyreport" class="nav-link">
            
-              <p>
+              <p id="submenu">
                 PKRC
               </p>
             </router-link>
@@ -73,37 +72,78 @@
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-cog green"></i>
           <p>
-            Settings
+            Tetapan
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
         <ul class="nav nav-treeview">
 
           <li class="nav-item">
-            <router-link to="/product/category" class="nav-link">
-              <i class="nav-icon fas fa-list-ol green"></i>
-              <p>
-                Category
+            <router-link to="/race" class="nav-link">
+              <p id="submenu">
+                Bangsa
               </p>
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/product/tag" class="nav-link">
-              <i class="nav-icon fas fa-tags green"></i>
-              <p>
-                Tags
+            <router-link to="/area" class="nav-link">
+              <p id="submenu">
+                Mukim
               </p>
             </router-link>
           </li>
           
             <li class="nav-item">
-              <router-link to="/developer" class="nav-link">
-                  <i class="nav-icon fas fa-cogs white"></i>
-                  <p>
-                      Developer
+              <router-link to="/district" class="nav-link">
+                  
+                  <p id="submenu">
+                   Daerah
                   </p>
               </router-link>
             </li>
+              <li class="nav-item">
+              <router-link to="/nationality" class="nav-link">
+                 
+                  <p id="submenu">
+                   Warganegara
+                  </p>
+              </router-link>
+            </li>
+                 <li class="nav-item">
+              <router-link to="/locality" class="nav-link">
+                  
+                  <p id="submenu">
+                     Lokaliti
+                  </p>
+              </router-link>
+            </li>
+
+                 
+            <li class="nav-item">
+              <router-link to="/hospital" class="nav-link">
+                 
+                  <p id="submenu">
+                      Hospital
+                  </p>
+              </router-link>
+            </li>
+       
+            <li class="nav-item">
+              <router-link to="/pkrc" class="nav-link">
+                  
+                  <p id="submenu">
+                   PKRC
+                  </p>
+              </router-link>
+            </li>
+               <li class="nav-item">
+              <router-link to="/vaccine" class="nav-link">
+                
+                  <p id="submenu">
+                   Vaksin
+                  </p>
+              </router-link>
+            </li>          
         </ul>
       </li>
 
@@ -155,3 +195,11 @@ export default {
 
 }
 </script>
+<style>
+#submenu{
+  margin-left: 40px;
+  color: rgb(168, 208, 218);
+   font-style: italic;
+
+}
+</style>
