@@ -1743,6 +1743,7 @@ notes: null,
           axios.post('/api/nursingreports'+ '?token='+ localStorage.getItem('token'), this.form)
           .then(() => {
             this.$refs['my-modal'].hide()
+               this.allPatient();
               Toast.fire({
               icon: 'success',
               title: 'Laporan telah dihantar!'
@@ -1765,6 +1766,7 @@ notes: null,
         self.items = response.data;
         })
          this.$refs['edit-modal'].hide(); 
+            this.allPatient();
           Toast.fire(
                       'Berjaya!',
                       'Telah dikemaskini.',

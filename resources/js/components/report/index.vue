@@ -972,14 +972,14 @@ notes: null,
           { key: 'female', label: 'Perempuan', sortable: true, sortDirection: 'desc' },
           { key: 'paeds_male', label: 'Kanak-kanak Lelaki', sortable: true, sortDirection: 'desc' },
           { key: 'paeds_female', label: 'Kanak-kanak Perempuan', sortable: true, sortDirection: 'desc' },
-          { key: 'carer', label: 'Penjaga', sortable: true, sortDirection: 'desc' },
-          { key: 'local', label: 'Warganegara', sortable: true, sortDirection: 'desc' },
-          { key: 'non_local', label: 'BWN', sortable: true, sortDirection: 'desc' },
-          { key: 'bor', label: 'BOR', sortable: true, sortDirection: 'desc' },
-         { key: 'stage_1', label: 'Stage 1', sortable: true, sortDirection: 'desc' },
-        { key: 'stage_2', label: 'Stage 2', sortable: true, sortDirection: 'desc' },
-        { key: 'staff', label: 'Staf Bertugas', sortable: true, sortDirection: 'desc' },
-        { key: 'notes', label: 'Nota', sortable: true, sortDirection: 'desc' },
+         // { key: 'carer', label: 'Penjaga', sortable: true, sortDirection: 'desc' },
+        //  { key: 'local', label: 'Warganegara', sortable: true, sortDirection: 'desc' },
+        //  { key: 'non_local', label: 'BWN', sortable: true, sortDirection: 'desc' },
+          //{ key: 'bor', label: 'BOR', sortable: true, sortDirection: 'desc' },
+         //{ key: 'stage_1', label: 'Stage 1', sortable: true, sortDirection: 'desc' },
+       // { key: 'stage_2', label: 'Stage 2', sortable: true, sortDirection: 'desc' },
+       // { key: 'staff', label: 'Staf Bertugas', sortable: true, sortDirection: 'desc' },
+      //  { key: 'notes', label: 'Nota', sortable: true, sortDirection: 'desc' },
         { key: 'actions', label: 'Actions' },
 
         ],
@@ -1095,16 +1095,19 @@ notes: null,
        register(){
           axios.post('/api/reports'+ '?token='+ localStorage.getItem('token'), this.form)
           .then(() => {
-        window.location.reload()
-        Notification.success()
+            this.$refs['my-modal'].hide()
+            this.allPatient();
+              Toast.fire({
+              icon: 'success',
+              title: 'Laporan telah dihantar!'
+                  })
          })
-          .catch(error=> this.errors = error.response.data.errors)
-          .catch(
+        .catch(()=>{
             Toast.fire({
               icon: 'warning',
-              title: 'Invalid data entry'
-            })
-          )
+              title: 'Pastikan tarikh dan masa telah diisi!'
+            });
+              })
         },
       patientUpdate(){
        let id = this.forms.id
@@ -1115,12 +1118,16 @@ notes: null,
        .then(function (response) {
         self.items = response.data;
         })
-         this.$refs['edit-modal'].hide(); 
-        Notification.success();
+            this.$refs['edit-modal'].hide(); 
+            this.allPatient();
+          Toast.fire(
+                      'Berjaya!',
+                      'Telah dikemaskini.',
+                      'success'
+                    )
     
        })
-       .catch(error =>this.errors = error.response.data.errors)
-       
+    
      },
 
          viewModal(record) {
