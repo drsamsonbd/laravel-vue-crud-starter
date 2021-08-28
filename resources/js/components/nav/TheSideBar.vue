@@ -41,7 +41,7 @@
         </ul>
       </li>
 
-        <li  class="nav-item has-treeview"   v-if="roles=='admin'">
+        <li  class="nav-item has-treeview">
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-scroll "></i>
           <p>Laporan
@@ -53,7 +53,7 @@
 
           <li class="nav-item">
             <router-link to="/nursingreport" class="nav-link">
-          
+              <i class="nav-icon fas fa-list-ol white"></i>
               <p>
                 Nursing
               </p>
@@ -61,7 +61,7 @@
           </li>
           <li class="nav-item">
             <router-link to="/department" class="nav-link">
-            
+              <i class="nav-icon fas fa-tags white"></i>
               <p>
                 PKRC
               </p>
