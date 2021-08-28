@@ -10,9 +10,11 @@
         </router-link>
       </li>
 
+       
+     
       <li  class="nav-item has-treeview"   v-if="roles=='admin'">
         <a class="nav-link" href="#">
-          <i class="nav-icon fas fa-user-cog"></i>
+          <i class="nav-icon fas fa-user-cog yellow"></i>
           <p>Pentadbir
            <i class="right fas fa-angle-left"></i>
            </p>
@@ -22,7 +24,7 @@
 
           <li class="nav-item">
             <router-link to="/user" class="nav-link">
-              <i class="nav-icon fas fa-list-ol green"></i>
+              <i class="nav-icon fas fa-list-ol white"></i>
               <p>
                 Pengguna
               </p>
@@ -30,7 +32,7 @@
           </li>
           <li class="nav-item">
             <router-link to="/department" class="nav-link">
-              <i class="nav-icon fas fa-tags green"></i>
+              <i class="nav-icon fas fa-tags white"></i>
               <p>
                 Jabatan
               </p>
@@ -38,7 +40,35 @@
           </li>
         </ul>
       </li>
-     
+
+        <li  class="nav-item has-treeview"   v-if="roles=='admin'">
+        <a class="nav-link" href="#">
+          <i class="nav-icon fas fa-scroll "></i>
+          <p>Laporan
+           <i class="right fas fa-angle-left"></i>
+           </p>
+        </a>
+    
+           <ul class="nav nav-treeview">
+
+          <li class="nav-item">
+            <router-link to="/nursingreport" class="nav-link">
+          
+              <p>
+                Nursing
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/department" class="nav-link">
+            
+              <p>
+                PKRC
+              </p>
+            </router-link>
+          </li>
+        </ul>
+      </li>
       <li class="nav-item has-treeview"    v-if="roles==='admin'">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-cog green"></i>

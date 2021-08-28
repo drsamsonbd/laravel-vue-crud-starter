@@ -382,7 +382,7 @@
         self.departments = response.data;
       }).catch(function (error) {
         console.log(error);
-          alert('code error')
+       Notification.unauthorized() 
       });
     },
 
