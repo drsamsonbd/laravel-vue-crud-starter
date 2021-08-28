@@ -68,7 +68,7 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item has-treeview"  v-if="roles=='user'" >
+      <li class="nav-item has-treeview"  v-if="roles=='user'||'admin'" >
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-cog green"></i>
           <p>
