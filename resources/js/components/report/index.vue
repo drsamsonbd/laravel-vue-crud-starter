@@ -702,7 +702,7 @@
 
 <b-row>
    <b-col sm="1" class="my-1" align="right">
-           <b-button pill size="sm" variant="outline-secondary" id="show-btn" @click="showModal"> <i class="fas fa-plus"></i>&nbsp;Tambah</b-button>
+           <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal"> <i class="fas fa-plus"></i></b-button>
         </b-col>
         <b-col sm="6" class="my-1">
         <b-form-group
@@ -835,12 +835,7 @@
     },
       
      mounted(){
-     let roles = localStorage.getItem('roles');
-      if(roles.includes("user")-1){
-      this.$router.push({name: 'home'})
-      Notification.unauthorized()
-    }
- 
+
 
         this.allPatient();
         this.race();
