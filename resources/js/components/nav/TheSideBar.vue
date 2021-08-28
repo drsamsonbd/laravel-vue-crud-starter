@@ -53,15 +53,15 @@
 
           <li class="nav-item">
             <router-link to="/nursingreport" class="nav-link">
-              <i class="nav-icon fas fa-list-ol white"></i>
+             
               <p>
                 Nursing
               </p>
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/department" class="nav-link">
-              <i class="nav-icon fas fa-tags white"></i>
+            <router-link to="/dailyreport" class="nav-link">
+           
               <p>
                 PKRC
               </p>
