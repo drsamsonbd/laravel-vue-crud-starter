@@ -39,9 +39,9 @@ let vital= require('./components/pkrc/vital.vue').default;
 
 
 //report component
-let dailyreport = require('./components/reports/index.vue').default;
-let nursingreport = require('./components/reports/nursing.vue').default;
-let vaccinationreport = require('./components/reports/vaccination.vue').default;
+let dailyreport = require('./components/report/index.vue').default;
+let nursingreport = require('./components/report/nursing.vue').default;
+let vaccinationreport = require('./components/report/vaccination.vue').default;
 
 //profile component
 let profile = require('./components/user/Profile.vue').default;
@@ -90,7 +90,7 @@ export const routes = [
     { path: '/admissionform', component: admissionform, name:'admissionform' },
 
 
-     //reports routes
+     //report routes
      { path: '/dailyreport', component: dailyreport, name:'dailyreport' },
      { path: '/nursingreport', component: nursingreport, name:'nursingreport' },
      { path: '/vaccinationreport', component: vaccinationreport, name:'vaccinationreport' },
