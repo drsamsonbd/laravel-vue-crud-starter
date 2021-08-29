@@ -458,13 +458,13 @@
         window.location.reload()
         Notification.success()
          })
-          .catch(error=> this.errors = error.response.data.errors)
-          .catch(
+          .catch(()=> {
+        
             Toast.fire({
               icon: 'warning',
               title: 'Invalid data entry'
-            })
-          )
+            });
+          })
         },
       userUpdate(){
        let id = this.forms.id
@@ -475,11 +475,15 @@
        .then(function (response) {
         self.items = response.data;
         })
-         this.$refs['edit-modal'].hide(); 
-        Notification.success();
+        this.$refs['edit-modal'].hide(); 
+            this.allUser();
+          Toast.fire(
+                      'Berjaya!',
+                      'Telah dikemaskini.',
+                      'success'
+                    )
     
        })
-       .catch(error =>this.errors = error.response.data.errors)
        
      },
        ResetUser(){
