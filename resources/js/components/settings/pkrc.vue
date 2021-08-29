@@ -229,13 +229,6 @@
    mounted(){ 
     this.allCategory();
 
-   
-    let $LoggedRoles = localStorage.getItem('roles');
-   
-    if($LoggedRoles.toLowerCase().indexOf("user")===-1){
-      this.$router.push({name: 'home'})
-      Notification.unauthorized()
-      }
   
     },
   
@@ -310,7 +303,7 @@
  //all   
     allCategory(){
     let self = this;
-     axios.get('/api/pkrc/')
+     axios.get('/api/pkrc/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.categoryitems = response.data;
       }).catch(function (error) {
@@ -335,7 +328,7 @@
                   confirmButtonText: 'Teruskan'
                }).then((result) => {
               if (result.value) {
-                axios.delete('/api/pkrc/'+id)
+                axios.delete('/api/pkrc/'+id+ '?token='+ localStorage.getItem('token'))
                .then(() => {
                 this.allCategory();
                       
@@ -367,7 +360,7 @@
       },
  // show update modal
        toggleModal(id) {
-         axios.get('/api/pkrc/'+id)
+         axios.get('/api/pkrc/'+id+ '?token='+ localStorage.getItem('token'))
   	    .then(({data}) => (this.forms = data))
         this.$refs['update-modal'].toggle('#toggle-btn')       
       },
@@ -376,7 +369,7 @@
   	    
  //insert  
        categoryInsert(){
-       axios.post('/api/pkrc',this.form)
+       axios.post('/api/pkrc'+ '?token='+ localStorage.getItem('token'),this.form)
        .then(() => { 
        this.$refs['category-insert-modal'].hide('#insert-btn')  
          this.allCategory();
@@ -390,7 +383,7 @@
  //update       
      categoryUpdate(){
   	  let id = this.forms.id
-       axios.patch('/api/pkrc/'+id,this.forms)
+       axios.patch('/api/pkrc/'+id+ '?token='+ localStorage.getItem('token'),this.forms)
        .then(() => { 
          this.$refs['update-modal'].hide('#update-btn')
          this.allCategory();
