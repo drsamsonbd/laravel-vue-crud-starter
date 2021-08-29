@@ -39,7 +39,45 @@
           </li>
         </ul>
       </li>
+      <!--PKRC-->
+        <li  class="nav-item has-treeview"  v-if="roles =='admin' || roles =='hospital'">
+        <a class="nav-link" href="#">
+          <i class="nav-icon fas fa-school "></i>
+          <p>PKRC
+           <i class="right fas fa-angle-left"></i>
+           </p>
+        </a>
+    
+           <ul class="nav nav-treeview">
 
+          <li class="nav-item">
+            <router-link to="/active" class="nav-link">
+             
+              <p id="submenu">
+                Aktif
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/dailyreport" class="nav-link">
+           
+              <p id="submenu">
+                Daftar Baru
+              </p>
+            </router-link>
+          </li>
+              <li class="nav-item">
+            <router-link to="/dailyreport" class="nav-link">
+           
+              <p id="submenu">
+                Carian
+              </p>
+            </router-link>
+          </li>
+        </ul>
+      </li> 
+
+     <!--LAPORAN-->
         <li  class="nav-item has-treeview"  v-if="roles =='admin' || roles =='hospital'">
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-scroll "></i>
@@ -68,6 +106,8 @@
           </li>
         </ul>
       </li> 
+
+      <!-- TETAPAN -->
       <li class="nav-item has-treeview"  v-if="roles=='hospital' || roles =='admin'" >
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-cog green"></i>

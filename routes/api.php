@@ -52,6 +52,7 @@ Route::get('/items/view/{id}', 'Api\ItemsController@view');
 Route::get('/optimum/view/{id}', 'Api\OptimumlevelController@view');
 Route::get('/stock/out/{id}', 'Api\OptimumlevelController@showbydept');
 Route::get('/items/out/{id}', 'Api\PosController@GetItem');
+Route::get('activepkrc', 'Api\PKRCActiveController@showbyPKRC')->name('showbyPKRC');
 
 
 });
