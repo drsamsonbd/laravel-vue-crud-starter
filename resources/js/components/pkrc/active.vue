@@ -706,8 +706,7 @@
         
     <b-form-select v-model="selectedpkrc"
          placeholder="Sila pilih fasiliti"        
-             
-                >
+         >
                      <option v-for="pkrc in options" v-bind:key="pkrc.pkrc" >{{pkrc.pkrc }} </option> 
                 </b-form-select>     <button size="sm" variant="outline-primary" @click="allPatient()">Pilih fasiliti</button> <br>
     
@@ -722,9 +721,9 @@
   </b-row>
 
 <b-row   v-if="!isHidden">
-   <b-col sm="2" class="my-1" align="right">
+ <!-- <b-col sm="2" class="my-1" align="right">
            <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal">Kemasukan Baru</b-button>
-        </b-col>
+        </b-col>-->
         <b-col sm="6" class="my-1">
         <b-form-group
           label=""
@@ -768,7 +767,7 @@
       </b-col>
 
    
-    </b-row>
+    </b-row> <br>
 
       <b-table  responsive 
       :items="items"

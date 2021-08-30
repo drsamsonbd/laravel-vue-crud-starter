@@ -59,7 +59,7 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/dailyreport" class="nav-link">
+            <router-link to="/admission" class="nav-link">
            
               <p id="submenu">
                 Daftar Baru

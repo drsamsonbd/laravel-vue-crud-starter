@@ -371,20 +371,11 @@
 
     
       }
-  
-      let token = localStorage.getItem('token');
-    if(!token){
-      this.$router.push({name: '/'})
-      }
+ 
     },
       
      mounted(){
-     let roles = localStorage.getItem('roles');
-      if(roles.includes("user")-1){
-      this.$router.push({name: 'home'})
-      Notification.unauthorized()
-    }
- 
+  
         this.allPatient();
         this.allCases();
         this.pkrc();
@@ -495,7 +486,7 @@
   methods:{
       allPatient(){
     let self = this;
-     axios.get('/api/patient/')
+     axios.get('/api/patient/' + '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.patients = response.data;
       }).catch(function (error) {
@@ -505,7 +496,7 @@
     },
       allCases(){
     let self = this;
-     axios.get('/api/admissions/')
+     axios.get('/api/admissions/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.items = response.data;
       }).catch(function (error) {
@@ -516,7 +507,7 @@
 
     district(){
     let self = this;
-     axios.get('/api/district/')
+     axios.get('/api/district/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.districts = response.data;
       }).catch(function (error) {
@@ -526,7 +517,7 @@
     },
    pkrc(){
     let self = this;
-     axios.get('/api/pkrc/')
+     axios.get('/api/pkrc/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.pkrcs = response.data;
       }).catch(function (error) {
@@ -536,7 +527,7 @@
     },
      hospital(){
     let self = this;
-     axios.get('/api/hospital/')
+     axios.get('/api/hospital/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.hospitals = response.data;
       }).catch(function (error) {
@@ -555,7 +546,7 @@
                   confirmButtonText: 'Teruskan'
                 }).then((result) => {
                   if (result.value) {
-                    axios.delete('/api/admission/'+id)
+                    axios.delete('/api/admission/'+id+ '?token='+ localStorage.getItem('token'))
                   .then(() => {
                     window.location.reload()
                    
@@ -582,14 +573,14 @@
        
       },
        toggleModal(id) {
-         axios.get('/api/admission/'+id)
+         axios.get('/api/admission/'+id+ '?token='+ localStorage.getItem('token'))
   	    .then(({data}) => (this.forms = data))
         this.$refs['edit-modal'].toggle('#toggle-btn')
        
       },
     
        register(){
-          axios.post('/api/admission', this.form)
+          axios.post('/api/admission'+ '?token='+ localStorage.getItem('token'), this.form)
           .then(() => {
              window.location.reload()
         Notification.success()
@@ -604,7 +595,7 @@
         },
       patientUpdate(){
        let id = this.forms.id
-       axios.patch('/api/admission/'+id, this.forms)
+       axios.patch('/api/admission/'+id+ '?token='+ localStorage.getItem('token'), this.forms)
        .then(() => {    
          let self = this;
         axios.get('/api/admission/')
@@ -622,7 +613,7 @@
 
          viewModal(record) {
          let self = this;
-        axios.get('/api/cases/'+record.id)
+        axios.get('/api/cases/'+record.id+ '?token='+ localStorage.getItem('token'))
   	    .then(function (response) {
         self.views = response.data;
         })
