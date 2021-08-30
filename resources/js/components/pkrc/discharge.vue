@@ -283,7 +283,7 @@
            { key: 'reg_number', label: 'RN', sortable: true, sortDirection: 'desc' },
           { key: 'name', label: 'Nama', sortable: true, sortDirection: 'asc' },
           { key: 'kp_passport', label: 'No. Kad Pengenalan/Passport', sortable: true, sortDirection: 'desc' },
-          { key: 'date', label: 'Tarikh Disaj', sortable: true, sortDirection: 'desc' },
+          { key: 'date_dc', label: 'Tarikh Disaj', sortable: true, sortDirection: 'desc' },
           { key: 'duration', label: 'Bilangan Hari', sortable: true, sortDirection: 'desc' },
           { key: 'type_dc', label: 'Jenis Discharges', sortable: true, sortDirection: 'desc' },
           { key: 'notes', label: 'Catatan', sortable: true, sortDirection: 'desc' },

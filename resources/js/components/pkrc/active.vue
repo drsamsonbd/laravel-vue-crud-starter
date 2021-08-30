@@ -148,9 +148,10 @@
     </div>
 </b-col>
 </b-row>
-<b-row>
+<b-row > 
 <b-col>
-  <h5 class="mt-3"  align="left"  v-if="!isHidden" style="color:blue" > <b>Jumlah Pesakit Sekarang:  {{ items.length }}</b></h5>
+  
+  <h5 class="mt-3" v-if="!isHidden" style="color:blue" id="jumlah" > <b>Jumlah Pesakit:  {{ items.length }}</b></h5>
   </b-col>
   </b-row>
 
@@ -202,7 +203,7 @@
 
    
     </b-row> <br>
-
+<div class="container-fluid">
       <b-table  responsive 
       :items="items"
       :fields="fields"
@@ -251,7 +252,7 @@
                        
 
                     
-                </div>
+              
                <div class="card-footer" v-if="!isHidden" >
                    <p class="mt-3"  align="center">Current Page: {{ currentPage }}</p>
                       <b-pagination  align="center"
@@ -264,6 +265,8 @@
                     ></b-pagination>
                 </div>
               </div>
+            </div>
+          </div>
             </div>
           </div>
           <!--Row-->
@@ -590,4 +593,9 @@
     height: 40px;
     width: 40px;
   }
+  #jumlah{
+    margin-left: 20px;
+
+  }
+
 </style>

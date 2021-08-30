@@ -1,194 +1,281 @@
   
 <template>
 <section class="content"> 
-  <div>
+
  <b-breadcrumb :items="itemize"></b-breadcrumb>
  <hr>
- <div class="row">
-   <div class="col-lg-12 ">
-   
-
-    <header>Review {{currentDate()}} </header>    
-          <form class="user" @submit.prevent="review"   > 
-                    <div class="form-group" >
-                     
-                    </div>  
-                 
-                      <b-row>
+ <div class="container-fluid">
+ <div class=" row shadow-sm- p-4 mb-4 bg-white">
+   <div class="col-lg-12 "> 
+       <header> <b> BIODATA </b></header>    
+                    <b-row sm="8"   ref="edit-modal" title="Kemaskini Pengguna">
                         <b-col>
                       <label>Nama</label>
-                      <input type="text" class="form-control" id="Name" v-model="admission.name" 
-                      disabled>
+                      <p>{{admissions.name}} </p>
                      </b-col>
-                        <b-col>
-                      <label>RN</label>
-                      <input type="text" class="form-control" id="ICnumber" v-model="admission.reg_number" disabled>
-                       <input type="text" class="form-control" id="ICnumber"  v-model="form.reg_number" disabled hidden>
-                    </b-col>
-                    <b-col>
+                      <b-col>
                       <label>Nombor K/P atau Passport</label>
-                      <input type="text" class="form-control" id="ICnumber" v-model="admission.kp_passport" disabled >
-                      <input type="text" class="form-control" id="ICnumber" v-model="form.kp_passport" disabled hidden >
-                     
+                       <p>{{admissions.kp_passport}} </p> 
                   </b-col>
-                      </b-row>
-                      <b-row>
-                            <b-col>
-                      <label>Tarikh </label>
-                      <input type="date" class="form-control" id="date" v-model="form.date_review" >
-                         <small class="text-danger" v-if="errors.date_review">{{errors.date_review[0]}}</small>
-                   </b-col>
-                     <b-col>
-                        <label>Masa </label>
-                      <input type="time" class="form-control" id="time" v-model="form.time_review">
-                         <small class="text-danger" v-if="errors.time-review">{{errors.time_review[0]}}</small>
-                   </b-col>
-                      </b-row>
-                      <b-row>
-                        <b-col>
-                      <label>Diagnosis</label>
-                      <input type="text" class="form-control" id="diagnosis" v-model="form.diagnosis">
-                         <small class="text-danger" v-if="errors.diagnosis">{{errors.diagnosis[0]}}</small>
-                   </b-col>
-
-                      </b-row>
-                      <b-row>
                    <b-col>
-                      <label>Warning Signs</label>
-                        <select class="form-control" id="typedc" v-model="select" @change="selected">                  
-                        <option v-for="option in options" v-bind:key="option.value" :value="option.value" > {{ option.text }}</option>
-                                       
-                        </select>
+                      <label>Jantina</label>
+                <p> {{ admissions.gender}}    </p>  
+
+                </b-col>      
+                 </b-row>  
+                <b-row>
+                     <b-col>
+                      <label>Umur</label>
+                     <p> {{admissions.age}} </p>
                     </b-col>
-                    </b-row> <br>
-                    <b-row>
+                      <b-col>
+                      <label>Bangsa</label>
+               <p> {{admissions.race}} </p>                      
+                  </b-col>
                   <b-col>
-               
-                   <template v-if="select === 'No'">    
-                       <div id="checkboxesno" disabled style="display: none">
-                      
-                      <label for="dyspnea">Exertional dyspnoea</label>
-                      <input type="checkbox" id="dyspnea" value="Exertional dyspnoea" v-model="form.warning_sign" disabled>  
-                     <label for="fever">Persistent or new onset fever</label>
-                      <input type="checkbox" id="fever" value="Persistent or new onset fever" v-model="form.warning_sign" disabled>
-                        <label for="symptoms">Persistent symptoms - cough/lethargy/anorexia</label>
-                      <input type="checkbox" id="sypmtoms" value="Persistent symptoms - cough/lethargy/anorexia" v-model="form.warning_sign" disabled>
-                     <label for="spo2">SPO2 under RA less 95% </label>
-                       <input type="checkbox" id="spo2" value="SPO2 under RA <95%" v-model="form.warning_sign" disabled>
-                             
-                      
-                      <label for="resp">Respirtory rate more 25</label>
-                       <input type="checkbox" id="resp" value="Respirtory rate > 25" v-model="form.warning_sign" disabled>                       
-                        <label for="crp">A rising CPR value or single CRP > 5mg/dl</label>
-                      <input type="checkbox" id="crp" value="A rising CPR value or single CRP > 5mg/dl" v-model="form.warning_sign" disabled>                       
-                      <label for="alc">Dropping ALC</label>
-                      <input type="checkbox" id="alc" value="Dropping ALC" v-model="form.warning_sign" disabled>                       
-                      
-
-                                        
-                      </div>
-                   
-                   </template>
-                     <template v-else> 
-                     <div id="checkboxes" style="display: none" >
-                      
-                      <label for="dyspnea">Exertional dyspnoea</label>
-                      <input type="checkbox" id="dyspnea" value="Exertional dyspnoea" v-model="form.warning_sign">  
-                     <label for="fever">Persistent or new onset fever</label>
-                      <input type="checkbox" id="fever" value="Persistent or new onset fever" v-model="form.warning_sign">
-                        <label for="symptoms">Persistent symptoms - cough/lethargy/anorexia</label>
-                      <input type="checkbox" id="sypmtoms" value="Persistent symptoms - cough/lethargy/anorexia" v-model="form.warning_sign">
-                     <label for="spo2">SPO2 under RA less 95% </label>
-                       <input type="checkbox" id="spo2" value="SPO2 under RA <95%" v-model="form.warning_sign">
-                             
-                      
-                      <label for="resp">Respirtory rate more 25</label>
-                       <input type="checkbox" id="resp" value="Respirtory rate > 25" v-model="form.warning_sign">                       
-                        <label for="crp">A rising CPR value or single CRP > 5mg/dl</label>
-                      <input type="checkbox" id="crp" value="A rising CPR value or single CRP > 5mg/dl" v-model="form.warning_sign">                       
-                      <label for="alc">Dropping ALC</label>
-                      <input type="checkbox" id="alc" value="Dropping ALC" v-model="form.warning_sign">                       
-                      
-
-                                        
-                      </div>
-                     </template>
-                     </b-col>
-                    </b-row> <br>
-                  <b-row>
-                     <b-col>
-                      <label>Temperature</label>
-                      <input type="text" class="form-control" id="temp" v-model="form.temp">
-                         <small class="text-danger" v-if="errors.temp">{{errors.temp[0]}}</small>
-                   </b-col>
-                        <b-col>
-                      <label>BP</label>
-                      <input type="text" class="form-control" id="pulse" v-model="form.bp">
-                         <small class="text-danger" v-if="errors.bp">{{errors.bp[0]}}</small>
-                   </b-col>
-                    <b-col>
-                      <label>Pulse</label>
-                      <input type="text" class="form-control" id="pulse" v-model="form.pulse">
-                         <small class="text-danger" v-if="errors.pulse">{{errors.pulse[0]}}</small>
-                   </b-col>
-                    <b-col>
-                      <label>Resp. rate</label>
-                      <input type="text" class="form-control" id="diagnosis" v-model="form.resp">
-                         <small class="text-danger" v-if="errors.resp">{{errors.resp[0]}}</small>
-                   </b-col>
-                
-                         
-                     <b-col>
-                      <label>Spo2</label>
-                      <input type="text" class="form-control" id="spo2" v-model="form.spo2">
-                         <small class="text-danger" v-if="errors.spo2">{{errors.spo2[0]}}</small>
-                   </b-col>
+                      <label>Warganegara</label>
+                   <p> {{admissions.nationality}} </p>
+                    
+                  </b-col>
+                    </b-row>
+                <b-row>
+                     <b-col cols="4">
+                      <label>Mukim</label>
+                     <p> {{admissions.area}} </p>
+                    </b-col>
+                    
+                  <b-col cols="8" >
+                      <label>Alamat</label>
+                   <p> {{admissions.address}} </p>
+                    
+                  </b-col>
+                    </b-row>
+                   <b-row>
                        <b-col>
-                      <label>Pre EDT Spo2</label>
-                      <input type="text" class="form-control" id="prespo2" v-model="form.pre_spo2">
-                         <small class="text-danger" v-if="errors.pre_spo2">{{errors.pre_spo2[0]}}</small>
-                   </b-col>
-                      <b-col>
-                      <label>Post EDTSpo2</label>
-                      <input type="text" class="form-control" id="postspo2" v-model="form.post_spo2">
-                         <small class="text-danger" v-if="errors.post_spo2">{{errors.post_spo2[0]}}</small>
-                   </b-col>
-                  </b-row>
-                      <b-row>
+                      <label>Pekerjaan</label>
+               <p> {{admissions.job}} </p>                      
+                  </b-col>
                      <b-col>
-                      <label>Review Notes</label>
-                      <textarea type="text" class="form-control" id="notes" v-model="form.reviewnotes"></textarea>
-                   </b-col>
-                 
+                      <label>Alamat Kerja</label>
+                     <p> {{admissions.workplace}} </p>
+                    </b-col>
+                    
+                  <b-col>
+                      <label>Catatan</label>
+                   <p> {{admissions.notes}} </p>
+                    
+                  </b-col>
                     </b-row>
-                      <b-row>
-                     <b-col>
-                      <label>Plan</label>
-                      <textarea type="text" class="form-control" id="notes" v-model="form.plan"></textarea>
-                   </b-col>
-                 
-                    </b-row>
-                    <b-row>
-                      <b-col>
-                        <label >Reviewing MO</label>                        
-                      <input type="text" class="form-control" id="mo" v-model="form.reviewing_mo" disabled>
-                      </b-col>
+                <b-row>
+                  <b-col>
+                    <router-link :to="{name: 'dischargeform', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> Kemaskini </router-link>
+                  </b-col>
+                </b-row>
 
-                    </b-row>
-               
-                    <br>
-                    <div class="form-group">
-                      <button type="submit" id="myBtn" class="btn btn-primary btn-block" >Submit</button>
-               
-                    </div>
-               
-                  </form> 
-
-          </div>
 
               </div>
             </div>
+</div>
+
+      <div class=" row shadow-sm- p-4 mb-4 bg-white">
+   <div class="col-lg-12 "> 
+       <header> <b> REKOD KLINIKAL </b></header>    <br>
+  
+              <!-- Admission Tables --> 
+              <div class="card">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Daftar Kemasukan</h6>
+                </div>
+
+      <b-table  
+      responsive 
       
+      :items="items"
+      :fields="fields"
+      stacked="md"
+      show-empty
+      small
+     
+      flex 
+      striped 
+      hover
+     
+    >
+     <template #cell(index)="data">
+        {{ data.index + 1 }}
+      </template>
+      <template #cell(item)="row">
+        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
+      </template>
+
+      <template #cell(actions)="row">
+        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
+         <i class="fas fa-edit"></i>
+        </b-button>
+        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
+         <i class="fas fa-trash"></i>
+        </b-button>
+      </template>
+
+
+    </b-table>
+ <!-- Case Reporting Table -->
+           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Daftar Kes</h6>
+                </div>       
+                       <b-table  responsive 
+                     
+      :items="caseitems"
+      :fields="casefields"
+      stacked="md"
+      show-empty
+      small
+     
+      flex 
+      striped 
+      hover
+    >
+     <template #cell(index)="data">
+        {{ data.index + 1 }}
+      </template>
+      <template #cell(item)="row">
+        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
+      </template>
+
+      <template #cell(actions)="row">
+        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
+         <i class="fas fa-edit"></i>
+        </b-button>
+        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
+         <i class="fas fa-trash"></i>
+        </b-button>
+      </template>
+
+      <template #row-details="row">
+        <b-card>
+          <ul>
+            <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
+          </ul>
+        </b-card>
+      </template>
+    </b-table>
+
+    <!-- Case Samplings Table -->
+           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Sampling</h6>
+                </div>       
+                       <b-table  responsive 
+                     
+      :items="samplingitems"
+      :fields="samplingfields"
+      stacked="md"
+      show-empty
+      small
+     
+      flex 
+      striped 
+      hover
+    >
+     <template #cell(index)="data">
+        {{ data.index + 1 }}
+      </template>
+      <template #cell(item)="row">
+        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
+      </template>
+
+      <template #cell(actions)="row">
+        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
+         <i class="fas fa-edit"></i>
+        </b-button>
+        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
+         <i class="fas fa-trash"></i>
+        </b-button>
+      </template>
+
+      <template #row-details="row">
+        <b-card>
+          <ul>
+            <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
+          </ul>
+        </b-card>
+      </template>
+    </b-table>
+
+        <!-- Vaccine Table -->
+           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Vaksin</h6>
+                </div>       
+                       <b-table  responsive 
+                     
+      :items="vaccineitems"
+      :fields="vaccinefields"
+      stacked="md"
+      show-empty
+      small
+     
+      flex 
+      striped 
+      hover
+    >
+     <template #cell(index)="data">
+        {{ data.index + 1 }}
+      </template>
+      <template #cell(item)="row">
+        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
+      </template>
+
+      <template #cell(actions)="row">
+        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
+         <i class="fas fa-edit"></i>
+        </b-button>
+        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
+         <i class="fas fa-trash"></i>
+        </b-button>
+      </template>
+    </b-table>
+          
+              <!-- DischargeTable -->
+           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Disaj</h6>
+                </div>       
+                       <b-table  responsive 
+                     
+      :items="dischargeitems"
+      :fields="dischargefields"
+      stacked="md"
+      show-empty
+      small
+     
+      flex 
+      striped 
+      hover
+    >
+     <template #cell(index)="data">
+        {{ data.index + 1 }}
+      </template>
+      <template #cell(item)="row">
+        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
+      </template>
+
+      <template #cell(actions)="row">
+        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
+         <i class="fas fa-edit"></i>
+        </b-button>
+        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
+         <i class="fas fa-trash"></i>
+        </b-button>
+      </template>
+    </b-table>          
+                
+
+            
+               
+              
+
+
+              </div>
+            </div> 
+</div>
           <!--Row-->
 
 </section>
@@ -204,96 +291,97 @@
    
        methods:{
          cases(){      
-        axios.get('/api/admissions/'+this.$route.params.id+ '?token='+ localStorage.getItem('token'))
-       .then(({data}) => (this.admission = data[0] , this.form.reg_number = data[0].reg_number, this.form.kp_passport = data[0].kp_passport))
- 
+        axios.get('/api/admissions/'+this.$route.params.id+ '/?token='+ localStorage.getItem('token'))
+       .then(({data}) => (this.admissions = data[0])) 
       },
-           review(){
-          axios.post('/api/review'+ '?token='+ localStorage.getItem('token'), this.form)
-          .then(() => {
-       
-        Notification.success()
-        this.$router.push({ path : '/pkrclist' });
-         })
-          .catch(error=> this.errors = error.response.data.errors)
-          .catch(
-            Toast.fire({
-              icon: 'warning',
-              title: 'Invalid data entry'
-            })
-          )
-        }, 
-      currentDate() {
-      const current = new Date();
-      const date = current.getDate()+'/'+(current.getMonth()+1)+'/'+current.getFullYear();
-      return date;
-    },
-    selected: function(){
-      $("#checkboxes").css("display","");  
-       $("#checkboxesno").css("display",""); 
-    },
 
-    user(){
-      let loggeduser = localStorage.getItem('user')
-      this.form.reviewing_mo = loggeduser;
-    }, 
-      dated(){
-      let reviewdate= new Date().toISOString().substr(0, 10);
-      this.form.date = reviewdate
-      ;
-    }, 
-        timed(){
-      let reviewtime= new Date().toJSON().slice(0,10).replace(/-/g,'/');
-      this.form.time = reviewtime;
-    }, 
+     admissionrecord(){
+    let self = this;
+     axios.get('/api/admissions/'+ this.$route.params.id+'?token='+ localStorage.getItem('token'))
+      .then(function (response) {
+        self.items = response.data;        
+        self.caseitems = response.data;
+        self.samplingitems = response.data;
+        self.vaccineitems = response.data;
+        self.dischargeitems = response.data;
+      }).catch(function (error) {
+        console.log(error);
+        self.$router.push({ path: '/login' });
+      });
+    },
+         
+ 
        },
   
 
-   
-
-
-      
      data(){
       return{
-          admission:[],
-          select: null,
-           options: [
-            { text: 'Yes', value: 'Yes' },
-            { text: 'No', value: 'No' },
-          ],
-          form:{
-          reg_number : null,
-          kp_passport : null,
-          date_review : null,
-          time_review : null,
-          diagnosis : null,
-          warning_sign : [],
-          temp : null,
-          pulse : null,
-          resp : null,
-          bp : null,
-          spo2 : null,
-          pre_spo2 : null,
-          post_spo2 : null,
-          reviewnotes: null,
-          plan : null,
-          reviewing_mo : null,
-          },
-              
-       
-        errors:{},     
-        
+        admissions:[],         
         itemize: [
           {
             text: 'PKRC',
-            href: '#/pkrclist'
+            href: '/active'
           },
           {
-            text: 'Review',
+            text: 'Details',
             active: true
           },
         ],
+
+        items: [],
+        fields: [
+          { key: 'pkrc', label: 'PKRC', sortable: true, sortDirection: 'desc' },
+          { key: 'reg_number', label: 'RN', sortable: true, sortDirection: 'desc' },
+         // { key: 'name', label: 'Nama', sortable: true, sortDirection: 'asc' },
+        //  { key: 'kp_passport', label: 'No. Kad Pengenalan/Passport', sortable: true, sortDirection: 'desc' },
+         // { key: 'marriage', label: 'Taraf Kahwin', sortable: true, sortDirection: 'desc' },
+          { key: 'date', label: 'Tarikh', sortable: true, sortDirection: 'desc' },
+          { key: 'time', label: 'Masa', sortable: true, sortDirection: 'desc' },
+      //   { key: 'religion', label: 'Agama', sortable: true, sortDirection: 'desc' },
+      //    { key: 'phone', label: 'No. Tel', sortable: true, sortDirection: 'desc' },
+      //    { key: 'note', label: 'Nota', sortable: true, sortDirection: 'desc' },
+          { key: 'actions', label: '' },
+           ],
       
+        caseitems: [],
+        casefields: [
+          { key: 'year', label: 'Tahun', sortable: true, sortDirection: 'desc' },
+          { key: 'epid_week', label: 'Minggu Epid', sortable: true, sortDirection: 'desc' },
+          { key: 'cumulative', label: 'Bil', sortable: true, sortDirection: 'desc' },
+          { key: 'date_report_KKM', label: 'Tarikh Daftar KKM', sortable: true, sortDirection: 'desc' },
+          { key: 'district', label: 'Daerah Daftar', sortable: true, sortDirection: 'desc' },
+          { key: 'locality', label: 'Lokaliti', sortable: true, sortDirection: 'desc' },
+          { key: 'treating_hospital', label: 'Hospital Merawat', sortable: true, sortDirection: 'desc' },
+          { key: 'actions', label: '' },
+        ],
+       samplingitems: [],
+        samplingfields: [
+        { key: 'symptomatic', label: 'Simptomatik', sortable: true, sortDirection: 'desc' },
+          { key: 'onset', label: 'Onset', sortable: true, sortDirection: 'desc' },
+          { key: 'screening_type', label: 'Jenis Saringan', sortable: true, sortDirection: 'desc' },
+          { key: 'exposure_type', label: 'Jenis Exposure', sortable: true, sortDirection: 'desc' },
+          { key: 'date_sample', label: 'Tarikh Sample', sortable: true, sortDirection: 'desc' },
+          { key: 'type_sample', label: 'Jenis', sortable: true, sortDirection: 'desc' },
+          { key: 'grading', label: 'Grading', sortable: true, sortDirection: 'desc' },
+          { key: 'date_result', label: 'Tarikh Keputusan', sortable: true, sortDirection: 'desc' }, 
+          { key: 'notes', label: 'Status Saringan/ Kontak', sortable: true, sortDirection: 'desc' },
+          { key: 'actions', label: '' },
+        ],
+         vaccineitems: [],
+       vaccinefields: [     
+          { key: 'vaccine_type', label: 'Jenis Vaksin', sortable: true, sortDirection: 'desc' },
+          { key: 'first_dose_date', label: '1st Dose', sortable: true, sortDirection: 'desc' },
+          { key: 'second_dose_date', label: '2nd Dose', sortable: true, sortDirection: 'desc' },
+          { key: 'actions', label: '' },
+        ],
+               dischargeitems: [],
+       dischargefields: [     
+          { key: 'date_dc', label: 'Tarikh Disaj', sortable: true, sortDirection: 'desc' },
+          { key: 'duration', label: 'Bilangan Hari', sortable: true, sortDirection: 'desc' },
+          { key: 'type_dc', label: 'Jenis Discharges', sortable: true, sortDirection: 'desc' },
+          { key: 'notes', label: 'Catatan', sortable: true, sortDirection: 'desc' },
+          { key: 'actions', label: '' },
+        ],
       }
  
 
@@ -301,9 +389,9 @@
     },
     mounted: function(){
       this.cases();
-      this.user();
-      this.dated();
-      this.timed();
+      this.admissionrecord();
+
+   
      
     }, 
    
@@ -314,22 +402,5 @@
 
 
 <style type="text/css">
-  #em_photo{
-    height: 40px;
-    width: 40px;
-  }
-  #checkboxes input {
-    display: inline-block;
-    margin-right: 20px;
-  }
-  #checboxes label{
-    display: inline-block;
-  }
-  #checkboxesno input {
-    display: inline-block;
-    margin-right: 20px;
-  }
-  #checboxesno label{
-    display: inline-flex;
-  }
+
 </style>
