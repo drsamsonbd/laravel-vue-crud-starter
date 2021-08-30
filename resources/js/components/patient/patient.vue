@@ -415,25 +415,13 @@
   export default {
       created(){
       if (!User.loggedIn()) {
-        this.$router.push({name: '/'})
-
-    
+        this.$router.push({name: '/'})    
       }
   
-      let token = localStorage.getItem('token');
-    if(!token){
-      this.$router.push({name: '/'})
-      }
+
     },
       
      mounted(){
-     let roles = localStorage.getItem('roles');
-      if(roles.includes("user")-1){
-      this.$router.push({name: 'home'})
-      Notification.unauthorized()
-    }
- 
-
         this.allPatient();
         this.race();
         this.area(),
@@ -540,7 +528,7 @@
   methods:{
       allPatient(){
     let self = this;
-     axios.get('/api/patient/')
+     axios.get('/api/patient/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.items = response.data;
       }).catch(function (error) {
@@ -550,7 +538,7 @@
     },
      race(){
     let self = this;
-     axios.get('/api/race/')
+     axios.get('/api/race/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.races = response.data;
       }).catch(function (error) {
@@ -560,7 +548,7 @@
     },
        area(){
     let self = this;
-     axios.get('/api/area/')
+     axios.get('/api/area/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.areas = response.data;
       }).catch(function (error) {
@@ -570,7 +558,7 @@
     },
        nationality(){
     let self = this;
-     axios.get('/api/nationality/')
+     axios.get('/api/nationality/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.nationalities = response.data;
       }).catch(function (error) {
@@ -590,7 +578,7 @@
                   confirmButtonText: 'Teruskan'
                 }).then((result) => {
                   if (result.value) {
-                    axios.delete('/api/patient/'+id)
+                    axios.delete('/api/patient/'+id+ '?token='+ localStorage.getItem('token'))
                   .then(() => {
                     window.location.reload()
                 
@@ -619,20 +607,20 @@
         
       },
        toggleModal(id) {
-         axios.get('/api/patient/'+id)
+         axios.get('/api/patient/'+id+ '?token='+ localStorage.getItem('token'))
   	    .then(({data}) => (this.forms = data))
         this.$refs['edit-modal'].toggle('#toggle-btn')
        
       },
       toggleModal2(id) {
-         axios.get('/api/patient/'+id)
+         axios.get('/api/patient/'+id+ '?token='+ localStorage.getItem('token'))
   	    .then(({data}) => (this.formr = data))
         this.$refs['reset-modal'].toggle('#toggle-btnreset')
        
       },
    
        register(){
-          axios.post('/api/patient', this.form)
+          axios.post('/api/patient'+ '?token='+ localStorage.getItem('token'), this.form)
           .then(() => {
         window.location.reload()
         Notification.success()
@@ -647,7 +635,7 @@
         },
       patientUpdate(){
        let id = this.forms.id
-       axios.patch('/api/patient/'+id, this.forms)
+       axios.patch('/api/patient/'+id+ '?token='+ localStorage.getItem('token'), this.forms)
        .then(() => {    
          let self = this;
         axios.get('/api/patient/')
@@ -664,7 +652,7 @@
 
          viewModal(record) {
           let self = this;
-            axios.get('/api/patient/'+record.id)
+            axios.get('/api/patient/'+record.id+ '?token='+ localStorage.getItem('token'))
   	     .then(function (response) {
         self.views = response.data;
         })
