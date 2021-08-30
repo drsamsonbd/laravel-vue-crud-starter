@@ -246,7 +246,7 @@
 
 <b-row>
    <b-col sm="1" class="my-1" align="right">
-           <b-button pill size="sm" variant="outline-secondary" id="show-btn" @click="showModal"> <i class="fas fa-plus"></i>&nbsp;Tambah</b-button>
+           <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal"> <i class="fas fa-plus"></i></b-button>
         </b-col>
         <b-col sm="6" class="my-1">
         <b-form-group
@@ -459,9 +459,9 @@
           { key: 'marriage', label: 'Taraf Kahwin', sortable: true, sortDirection: 'desc' },
           { key: 'date', label: 'Tarikh', sortable: true, sortDirection: 'desc' },
           { key: 'time', label: 'Masa', sortable: true, sortDirection: 'desc' },
-          { key: 'religion', label: 'Agama', sortable: true, sortDirection: 'desc' },
-          { key: 'phone', label: 'No. Tel', sortable: true, sortDirection: 'desc' },
-          { key: 'note', label: 'Nota', sortable: true, sortDirection: 'desc' },
+      //   { key: 'religion', label: 'Agama', sortable: true, sortDirection: 'desc' },
+      //    { key: 'phone', label: 'No. Tel', sortable: true, sortDirection: 'desc' },
+      //    { key: 'note', label: 'Nota', sortable: true, sortDirection: 'desc' },
           { key: 'actions', label: 'Actions' },
            ],
         table:'',
