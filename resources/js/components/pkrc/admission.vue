@@ -604,10 +604,20 @@
         })
        this.$refs['edit-modal'].hide(); 
        this.allCases();
-        Notification.success();
+                  Toast.fire(
+                      'Berjaya!',
+                      'Telah dikemaskini.',
+                      'success'
+                    )
     
        })
-       .catch(error =>this.errors = error.response.data.errors)
+          .catch(error=> this.errors = error.response.data.errors)
+          .catch(
+            Toast.fire({
+              icon: 'warning',
+              title: 'Invalid data entry'
+            })
+          )
        
      },
 

@@ -54,7 +54,7 @@
             <router-link to="/active" class="nav-link">
              
               <p id="submenu">
-                Aktif
+                Bed Manager
               </p>
             </router-link>
           </li>
@@ -62,7 +62,7 @@
             <router-link to="/admission" class="nav-link">
            
               <p id="submenu">
-                Daftar Baru
+                Senarai 
               </p>
             </router-link>
           </li>

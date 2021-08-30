@@ -1,6 +1,7 @@
   
 
 <template v-for="table">
+ <section class="content"> 
   
   <div>
  <b-breadcrumb :items="itemize"></b-breadcrumb>
@@ -86,7 +87,7 @@
       
           <!--Row-->
 
-
+ </section>
 </template>
 
 
