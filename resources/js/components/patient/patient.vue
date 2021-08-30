@@ -622,16 +622,22 @@
        register(){
           axios.post('/api/patient'+ '?token='+ localStorage.getItem('token'), this.form)
           .then(() => {
-        window.location.reload()
-        Notification.success()
+            this.$refs['my-modal'].hide();   
+             this.allPatient();
+             Toast.fire(
+                      'Berjaya!',
+                      'Telah didaftarkan.',
+                      'success'
+                    )
+    
          })
-          .catch(error=> this.errors = error.response.data.errors)
-          .catch(
+          
+          .catch(()=> {
             Toast.fire({
               icon: 'warning',
-              title: 'Invalid data entry'
-            })
-          )
+              title: 'Invalid data entry or duplicated ID!'
+            });
+          })
         },
       patientUpdate(){
        let id = this.forms.id
@@ -643,7 +649,12 @@
         self.items = response.data;
         })
          this.$refs['edit-modal'].hide(); 
-        Notification.success();
+           this.allPatient();
+             Toast.fire(
+                      'Berjaya!',
+                      'Telah didaftarkan.',
+                      'success'
+                    )
     
        })
        .catch(error =>this.errors = error.response.data.errors)

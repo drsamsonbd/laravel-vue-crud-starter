@@ -314,7 +314,7 @@
           hospitals:[],
           views:[], 
           races: [],
-           options:[],
+          options:[],
           areas:[], 
           selectedpkrc: null,
 
@@ -333,6 +333,7 @@
           time: null,
           weight: null,
           note: null
+
         },
          
         errors:{},     
@@ -576,7 +577,7 @@
      },
 
          viewPatient(record) {
-        this.$router.push({name: 'review', params: { id: record } })
+        this.$router.push({name: 'details', params: { id: record.id } })
    
   },
 

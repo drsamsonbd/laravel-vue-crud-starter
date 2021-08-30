@@ -36,7 +36,7 @@ let dischargeupdate= require('./components/pkrc/dischargeupdate.vue').default;
 let review= require('./components/pkrc/review.vue').default;
 let vital= require('./components/pkrc/vital.vue').default;
 let active= require('./components/pkrc/active.vue').default;
-
+let details= require('./components/pkrc/Details.vue').default;
 
 //report component
 let dailyreport = require('./components/report/index.vue').default;
@@ -89,6 +89,7 @@ export const routes = [
     { path: '/vital', component: vital, name:'vital' },
     { path: '/admissionform', component: admissionform, name:'admissionform' },
     { path: '/active', component: active, name:'active' },
+    { path: '/details', component: details, name:'details' },
 
 
      //report routes
