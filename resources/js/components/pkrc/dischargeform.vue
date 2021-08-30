@@ -99,15 +99,20 @@
          cases(){
       
     
-        axios.get('/api/admissions/'+this.$route.params.id)
+        axios.get('/api/admissions/'+this.$route.params.id+ '?token='+ localStorage.getItem('token'))
         .then(({data}) => (this.admission = data[0], this.form.reg_number = data[0].reg_number, this.form.kp_passport = data[0].kp_passport))
       },
            discaj(){
-          axios.post('/api/discharge', this.form)
+          axios.post('/api/discharge'+ '?token='+ localStorage.getItem('token'), this.form)
           .then(() => {
        
-        Notification.success()
-        this.$router.push({ path : '/pkrclist' });
+   
+        this.$router.push({ path : '/discharge' });
+              Toast.fire(
+                      'Berjaya!',
+                      'Telah direkodkan.',
+                      'success'
+                    )
          })
           .catch(error=> this.errors = error.response.data.errors)
           .catch(
@@ -122,11 +127,6 @@
 
    
      mounted(){
-     let roles = localStorage.getItem('roles');
-      if(roles.includes("user")-1){
-      this.$router.push({name: 'home'})
-      Notification.unauthorized()
-    }
 
 
       },
@@ -154,7 +154,7 @@
         itemize: [
           {
             text: 'PKRC',
-            href: '/'
+            href: '/active'
           },
           {
             text: 'Discaj',

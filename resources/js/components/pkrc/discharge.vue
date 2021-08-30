@@ -6,122 +6,72 @@
  <b-breadcrumb :items="itemize"></b-breadcrumb>
  <hr>
  <div class="row">
-   <div class="col-lg-12 ">
-   
-
-    <b-modal ref="my-modal" size="xl" hide-footer title="Discaj">
-    
-           <form class="user" @submit.prevent="register">
-                  
-                      <b-row>
-                        <b-col>
-                      <label>Sila masukkan RN pesakit</label>
-                       <select class="form-control" id="getrn" v-model="selectedRN" >
-                        <option v-for="patient in patients" v-bind:key="patient.id" :value="patient.id"> {{patient.reg_number }} | {{patient.name }} | {{patient.kp_passport }}</option>
-                        
-                        </select>
-                     </b-col>    
-             
-                     </b-row>               
-                    <br>
-                    <div class="form-group">
-                      <button type="submit"  class="btn btn-primary btn-block">Seterusnya</button>
-                    </div>
-                    <hr>
-                 
-                  </form>            
-               
-          
-      </b-modal>
-
+   <div class="col-lg-12 ">   
   
-  <!--viewModal-->
+  <!--UpdateModal-->
   <div>
-  <b-modal ref="view-modal" size="xl" hide-footer title="Data Pesakit">     
-          <form class="patient" > 
+  <b-modal ref="edit-modal" size="xl" hide-footer title="Data Pesakit">     
+          <form class="patient"  @submit.prevent="patientUpdate" > 
                     <div class="form-group" hidden>
                       <label>User ID:</label>
-                      <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="views.id">
+                      <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="forms.id">
                      
                     </div>  
                  
                       
                       <b-row>
-                   <b-col>
+                              <b-col>
+                      <label>RN</label>
+                        <input type="text" class="form-control" id="ICnumber" v-model="forms.reg_number" disabled>
+                  </b-col>
+                    <b-col>
                       <label>Nombor K/P atau Passport</label>
-                      <input type="text" class="form-control" id="ICnumber" v-model="views.kp_passport" disabled>
-                       
+                       <input type="text" class="form-control" id="ICnumber" v-model="forms.kp_passport" disabled >
                   </b-col>
                       </b-row>
                       <b-row>
-                   <b-col>
-                      <label>Simptomatik</label>
-                       <input type="text" class="form-control" id="symptomatic" v-model="views.symptomatic" disabled>
-                    </b-col>
-
+                            <b-col>
+                      <label>Tarikh Keluar Ward</label>
+                      <input type="date" class="form-control" id="datedc" v-model="forms.date_dc">
+                         <small class="text-danger" v-if="errors.date_dc">{{errors.date_dc[0]}}</small>
+                   </b-col>
                      <b-col>
-                      <label>Onset</label>
-                      <input type="date" class="form-control" id="epid" v-model="views.onset" disabled>
+                       <label>Masa Tinggal (Hari)</label>
+                      <input type="number" class="form-control" id="duration" v-model="forms.duration">
+                         <small class="text-danger" v-if="errors.duration">{{errors.duration[0]}}</small>
+                   </b-col>
+                   <b-col>
+                      <label>Jenis Discaj</label>
+                        <select class="form-control" id="type dc" v-model="forms.type_dc">                  
+                        <option >Balik ke Rumah</option>
+                        <option >Ditukar ke Hospital Lain</option>
+                        <option >Mati</option>
+                        <option >Keluar Hospital dengan Risiko Sendiri</option>
+                        <option >Keluar Hospital Tanpa Kebenaran</option>
+                        </select>
                     </b-col>
-                    </b-row>
                   
-                  <b-row>
-                  <b-col>
-                      <label>Jenis Saringan</label>
-             <input type="text" class="form-control" id="screening" v-model="views.screening_type" disabled>
-                   </b-col>
-                   <b-col>
-                        <label>Jenis Exposure</label>
-                     <input type="text" class="form-control" id="exposure" v-model="views.exposure_type" disabled>
-                   </b-col>
-                  <b-col>
-                      <label>Reinfection?</label>
-                     <input type="text" class="form-control" id="reinfection" v-model="views.reinfection" disabled>
-                  </b-col>
-                  </b-row>
-
-                  <b-row>
-                     <b-col>
-                      <label>Tarikh Sampel</label>
-                  <input type="text" class="form-control" id="datesample" v-model="views.date_sample" disabled>
-                   </b-col>
-                     <b-col>
-                      <label>Jenis Sampel</label>
-                   <input type="text" class="form-control" id="type" v-model="views.type_sample" disabled>
-                  </b-col>
-                      <b-col>
-                      <label>Tarikh Sampel di MKA</label>
-                      <input type="text" class="form-control" id="mka" v-model="views.date_mka" disabled>
-                   </b-col>
                     </b-row>
+                  <b-row>
+                     <b-col>
+                      <label>Diagnosis</label>
+                      <input type="text" class="form-control" id="diagnosis" v-model="forms.diagnosis">
+                         <small class="text-danger" v-if="errors.diagnosis">{{errors.diagnosis[0]}}</small>
+                   </b-col>
+                  </b-row>
                       <b-row>
                      <b-col>
-                      <label>Grading</label>
-                       <input type="text" class="form-control" id="grading" v-model="views.grading" disabled>
+                      <label>Nota</label>
+                      <textarea type="text" class="form-control" id="notes" v-model="forms.notes"></textarea>
                    </b-col>
-                    <b-col>
-                      <label>Tarikh Keputusan</label>
-                       <input type="text" class="form-control" id="result" v-model="views.date_result" disabled>
-                    </b-col>
+                 
                     </b-row>
-                            <b-row>
-             
-                    <b-col>
-                      <label>Tarikh 1st Dose</label>
-                     <input type="date" class="form-control" id="1stdose" v-model="views.first_dose_date" disabled>
-                    </b-col>
-                     <b-col>
-                      <label>Tarikh 2nd Dose</label>
-                     <input type="date" class="form-control" id="2nddose" v-model="views.second_dose_date" disabled>
-                    </b-col>
-                    </b-row>
+               
                     <br>
                     <div class="form-group">
-                      <button type="submit" id="myBtn" class="btn btn-primary btn-block" @click="patientUpdate(patient.id)">Kemaskini</button>
+                      <button type="submit" id="myBtn" class="btn btn-primary btn-block" >Kemasikini</button>
                
                     </div>
-                    
-                
                
                   </form> 
    </b-modal>
@@ -137,14 +87,14 @@
               <!-- Simple Tables -->
               <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Senarai Pesakit</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Senarai Pesakit Discaj</h6>
                 </div>
 
 
 <b-row>
-   <b-col sm="1" class="my-1" align="right">
+<!--   <b-col sm="1" class="my-1" align="right">
            <b-button pill size="sm" variant="outline-secondary" id="show-btn" @click="showModal"> <i class="fas fa-plus"></i>&nbsp;Tambah</b-button>
-        </b-col>
+        </b-col>-->
         <b-col sm="6" class="my-1">
         <b-form-group
           label=""
@@ -264,24 +214,15 @@
   export default {
       created(){
       if (!User.loggedIn()) {
-        this.$router.push({name: '/'})
+        this.$router.push({name: '/login'})
 
     
       }
   
-      let token = localStorage.getItem('token');
-    if(!token){
-      this.$router.push({name: '/'})
-      }
     },
       
      mounted(){
-     let roles = localStorage.getItem('roles');
-      if(roles.includes("user")-1){
-      this.$router.push({name: 'home'})
-      Notification.unauthorized()
-    }
- 
+
 
         this.allPatient();
         this.allCases();
@@ -299,29 +240,18 @@
           districts:[],
           localities:[],
           hospitals:[],
-        
+       
 
           views:[],  
-          form:{         
-          reg_number: null,
-        
-        },
+       
           forms:{
-          kp_passport: null,
-          sypmtomatic: null,
-          onset: null,
-          screening_type: null,
-          exposure_type: null,
-          reinfection: null,
-          date_sample: null,
-          type_sample: null,
-          date_mka: null,
-          grading: null,
-          date_result: null,
-          vaccine_type: null,
-          first_dose_date:null,
-          second_dose_date: null,
-          notes: null,
+            kp_passport:null,
+           reg_number: null,
+           date_dc:null ,
+           duration: null,
+           diagnosis: null,
+           type_dc: null,
+           notes: null,
       
         },
       
@@ -331,7 +261,7 @@
         itemize: [
           {
             text: 'PKRC',
-            href: '/'
+            href: '/active'
           },
           {
             text: 'Discaj',
@@ -383,7 +313,7 @@
   methods:{
       allPatient(){
     let self = this;
-     axios.get('/api/admissions/')
+     axios.get('/api/admissions/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.patients = response.data;
       }).catch(function (error) {
@@ -394,9 +324,9 @@
     getRecord(){
       let self = this;
     let id = this.selectedRN;
-    axios.get('api/admissions/' + id)
+    axios.get('api/admissions/' + id+ '?token='+ localStorage.getItem('token'))
         .then(function (response) {
-        self.form = response.data;
+        self.forms = response.data;
         })
       this.$refs['my-modal']
         // ensure response data match the keys in the component's data.form property
@@ -404,7 +334,7 @@
 },
       allCases(){
     let self = this;
-     axios.get('/api/discharges/')
+     axios.get('/api/discharges/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.items = response.data;
       }).catch(function (error) {
@@ -415,7 +345,7 @@
 
     district(){
     let self = this;
-     axios.get('/api/district/')
+     axios.get('/api/district/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.districts = response.data;
       }).catch(function (error) {
@@ -426,7 +356,7 @@
 
      hospital(){
     let self = this;
-     axios.get('/api/hospital/')
+     axios.get('/api/hospital/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.hospitals = response.data;
       }).catch(function (error) {
@@ -446,7 +376,7 @@
                   confirmButtonText: 'Teruskan'
                 }).then((result) => {
                   if (result.value) {
-                    axios.delete('/api/sampling/'+id)
+                    axios.delete('/api/sampling/'+id+ '?token='+ localStorage.getItem('token'))
                   .then(() => {
                     window.location.reload()
                     this.users = this.users.filter(user => {
@@ -477,7 +407,7 @@
         
       },
        toggleModal(id) {
-         axios.get('/api/discharge/'+id)
+         axios.get('/api/discharge/'+id+ '?token='+ localStorage.getItem('token'))
   	    .then(({data}) => (this.forms = data))
         this.$refs['edit-modal'].toggle('#toggle-btn')
        
@@ -490,24 +420,34 @@
         },
       patientUpdate(){
        let id = this.forms.id
-       axios.patch('/api/discharge/'+id, this.forms)
+       axios.patch('/api/discharge/'+id+ '?token='+ localStorage.getItem('token'), this.forms)
        .then(() => {    
          let self = this;
-        axios.get('/api/discharges/')
+        axios.get('/api/discharges/'+ '?token='+ localStorage.getItem('token'))
        .then(function (response) {
         self.items = response.data;
         })
          this.$refs['edit-modal'].hide(); 
-        Notification.success();
+            this.allPatient();
+          Toast.fire(
+                      'Berjaya!',
+                      'Telah dikemaskini.',
+                      'success'
+                    )
     
        })
-       .catch(error =>this.errors = error.response.data.errors)
+         .catch(()=>{
+            Toast.fire({
+              icon: 'warning',
+              title: 'Invalid data entry!'
+            });
+           })
        
      },
 
          viewModal(record) {
           let self = this;
-            axios.get('/api/discharge/'+record.id)
+            axios.get('/api/discharge/'+record.id+ '?token='+ localStorage.getItem('token'))
   	     .then(function (response) {
         self.views = response.data;
         })

@@ -797,13 +797,12 @@
         {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
       </template>
 
-      <template #cell(actions)="row">
-        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
-         <i class="fas fa-user-edit"></i>
-        </b-button>
-        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
-         <i class="fas fa-user-times"></i>
-        </b-button>
+       <template #cell(discharge)="row">
+       <router-link :to="{name: 'dischargeform', params:{id:row.item.id}}" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></router-link> <br>
+        
+         
+       
+    
       </template>
 
       <template #row-details="row">
@@ -1001,7 +1000,7 @@ notes: null,
           { key: 'gender', label: 'Jantina', sortable: true, sortDirection: 'desc' },
           { key: 'pkrc', label: 'PKRC', sortable: true, sortDirection: 'desc' },
          //   { key: 'view', label: 'View' },
-         // { key: 'discharge', label: 'Discaj' },
+         { key: 'discharge', label: 'Discaj' },
         ],
         table:'',
       }

@@ -66,6 +66,14 @@
               </p>
             </router-link>
           </li>
+                <li class="nav-item">
+            <router-link to="/discharge" class="nav-link">
+           
+              <p id="submenu">
+                Discaj
+              </p>
+            </router-link>
+          </li>
               <li class="nav-item">
             <router-link to="/dailyreport" class="nav-link">
            
