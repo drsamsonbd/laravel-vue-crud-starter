@@ -268,6 +268,137 @@
             </div>
           </div>
             </div>
+
+         <!-- Table not hidden -->
+
+            <div class="row" v-if="isHidden">
+            <div class="col-lg-12 mb-4">
+              <!-- Simple Tables -->
+              <div class="card">
+              
+
+
+
+<b-row > 
+<b-col>
+  
+  <h5 class="mt-3" v-if="isHidden" style="color:blue" id="jumlah" > <b>Jumlah Pesakit:  {{ items.length }}</b></h5>
+  </b-col>
+  </b-row>
+
+<b-row   v-if="isHidden">
+<b-col sm="2" class="my-1" align="right">
+           <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal">Kemasukan Baru</b-button>
+        </b-col>
+        <b-col sm="6" class="my-1">
+        <b-form-group
+          label=""
+          label-for="filter-input"
+          label-cols-sm="3"
+          label-align-sm="right"
+          label-size="sm"
+          class="mb-0"
+        >
+          <b-input-group size="sm">
+            <b-form-input
+              id="filter-input"
+              v-model="filter"
+              type="search"
+              placeholder="Carian"
+            ></b-form-input>
+
+            <b-input-group-append>
+              <b-button variant="outline-secondary" :disabled="!filter" @click="filter = ''">Clear</b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+
+      <b-col sm="3"  class="my-1">
+        <b-form-group
+          label=""
+          label-for="per-page-select"
+          label-cols-sm="3"
+          label-align-sm="right"
+          label-size="sm"
+          class="mb-0"
+        >
+          <b-form-select
+            id="per-page-select"
+             v-model="perPage"
+            :options="pageOptions"
+            size="sm"
+          ></b-form-select>
+        </b-form-group>
+      </b-col>
+
+   
+    </b-row> <br>
+<div class="container-fluid">
+      <b-table  responsive 
+      :items="items"
+      :fields="fields"
+      :current-page="currentPage"
+      :per-page="perPage"
+      :filter="filter"
+      :filter-included-fields="filterOn"
+      :sort-by.sync="sortBy"
+      :sort-desc.sync="sortDesc"
+      :sort-direction="sortDirection"
+      stacked="md"
+      show-empty
+      small
+     
+      flex 
+      striped 
+      hover
+      @row-clicked="viewPatient"
+
+       v-if="isHidden"
+    >
+     <template #cell(index)="data">
+        {{ data.index + 1 }}
+      </template>
+      <template #cell(item)="row">
+        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
+      </template>
+
+       <template #cell(discharge)="row">
+       <router-link :to="{name: 'dischargeform', params:{id:row.item.id}}" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></router-link> <br>
+        
+         
+       
+    
+      </template>
+
+      <template #row-details="row">
+        <b-card>
+          <ul>
+            <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
+          </ul>
+        </b-card>
+      </template>
+    </b-table>
+               
+                       
+
+                    
+              
+               <div class="card-footer" v-if="isHidden" >
+                   <p class="mt-3"  align="center">Current Page: {{ currentPage }}</p>
+                      <b-pagination  align="center"
+                      v-model="currentPage"
+                      :total-rows="rows"
+                      :per-page="perPage"
+                      
+                       last-number
+                      aria-controls="my-table"
+                    ></b-pagination>
+                </div>
+              </div>
+            </div>
+          </div>
+            </div>   
           </div>
           <!--Row-->
           </div>
@@ -412,7 +543,7 @@
     },
       allCases(){
     let self = this;
-     axios.get('/api/admissions/'+ '?token='+ localStorage.getItem('token'))
+     axios.get('/api/active/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.items = response.data;
       }).catch(function (error) {

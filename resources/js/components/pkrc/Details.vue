@@ -68,7 +68,7 @@
                     </b-row>
                 <b-row>
                   <b-col>
-                    <router-link :to="{name: 'dischargeform', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> Kemaskini </router-link>
+                    <router-link :to="{name: 'updatePatient', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> Kemaskini </router-link>
                   </b-col>
                 </b-row>
 
@@ -233,7 +233,39 @@
         </b-button>
       </template>
     </b-table>
-          
+    
+            <!-- Vaccine Table -->
+           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Daily Review</h6>
+                </div>       
+                       <b-table  responsive 
+                     
+      :items="reviewitems"
+      :fields="reviewfields"
+      stacked="md"
+      show-empty
+      small
+     
+      flex 
+      striped 
+      hover
+    >
+     <template #cell(index)="data">
+        {{ data.index + 1 }}
+      </template>
+      <template #cell(item)="row">
+        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
+      </template>
+
+      <template #cell(actions)="row">
+        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
+         <i class="fas fa-edit"></i>
+        </b-button>
+        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
+         <i class="fas fa-trash"></i>
+        </b-button>
+      </template>
+    </b-table>
               <!-- DischargeTable -->
            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Disaj</h6>
@@ -304,6 +336,7 @@
         self.samplingitems = response.data;
         self.vaccineitems = response.data;
         self.dischargeitems = response.data;
+        self.reviewitems = response.data;
       }).catch(function (error) {
         console.log(error);
         self.$router.push({ path: '/login' });
@@ -380,6 +413,13 @@
           { key: 'duration', label: 'Bilangan Hari', sortable: true, sortDirection: 'desc' },
           { key: 'type_dc', label: 'Jenis Discharges', sortable: true, sortDirection: 'desc' },
           { key: 'notes', label: 'Catatan', sortable: true, sortDirection: 'desc' },
+          { key: 'actions', label: '' },
+        ],
+         reviewitems: [],
+       reviewfields: [     
+          { key: 'date_review', label: 'Tarikh', sortable: true, sortDirection: 'desc' },
+          { key: 'reviewing_mo', label: 'Medical Officer', sortable: true, sortDirection: 'desc' },
+   
           { key: 'actions', label: '' },
         ],
       }
