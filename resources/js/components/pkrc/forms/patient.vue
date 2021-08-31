@@ -1,22 +1,20 @@
   
 
 <template v-for="table">
-<section class="content">  
-  <div>
+<div>
  <b-breadcrumb :items="itemize"></b-breadcrumb>
+<section class="content">  
+
+
  <hr>
+   <div class="container-fluid">
  <div class="row">
    <div class="col-lg-12 ">
 
   <!--userUpdate Modal-->
   <div>
           <form class="user" @submit.prevent="patientUpdate"> 
-                    <div class="form-group" hidden>
-                      <label>User ID:</label>
-                      <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="forms.id">
-                     
-                    </div>  
-                 
+                               
                       <b-row>
                         <b-col>
                       <label>Nama</label>
@@ -99,7 +97,7 @@
                      
                     
                     <div class="form-group">
-                      <button type="submit" id="myBtn" class="btn btn-primary btn-block" @click="patientUpdate(patient.id)">Kemaskini</button>
+                      <button type="submit" id="myBtn" class="btn btn-primary btn-block">Kemaskini</button>
                
                     </div>
                
@@ -117,6 +115,7 @@
           <!--Row-->
 
 </section>
+</div>
 </template>
 
 
@@ -256,19 +255,13 @@
       },
            
       patientUpdate(){
-       let id = this.forms.id
-       axios.patch('/api/patient/'+id+ '?token='+ localStorage.getItem('token'), this.forms)
-       .then(() => {    
-         let self = this;
-        axios.get('/api/patient/')
-       .then(function (response) {
-        self.items = response.data;
-        })
-         this.$refs['edit-modal'].hide(); 
+       let $kp = this.forms.kp_passport
+       axios.post('/api/patientKP/'+$kp+ '?token='+ localStorage.getItem('token'), this.forms)
+       .then(() => {      
            this.allPatient();
              Toast.fire(
                       'Berjaya!',
-                      'Telah didaftarkan.',
+                      'Telah dikemaskini.',
                       'success'
                     )
     
