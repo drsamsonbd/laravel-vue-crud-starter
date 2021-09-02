@@ -41,10 +41,21 @@ let details= require('./components/pkrc/Details.vue').default;
 //pkrc update form 
 let updatePatient= require('./components/pkrc/forms/patient.vue').default;
 let updateAdmission= require('./components/pkrc/forms/admission.vue').default;
+let updateCase= require('./components/pkrc/forms/case.vue').default;
+let updateSampling= require('./components/pkrc/forms/sampling.vue').default;
+
+//pkrc new form 
+let newPatient= require('./components/pkrc/forms/new/patient.vue').default;
+let newAdmission= require('./components/pkrc/forms/new/admission.vue').default;
+let newCase= require('./components/pkrc/forms/new/case.vue').default;
+let newSampling= require('./components/pkrc/forms/new/sampling.vue').default;
+
 //report component
 let dailyreport = require('./components/report/index.vue').default;
 let nursingreport = require('./components/report/nursing.vue').default;
 let vaccinationreport = require('./components/report/vaccination.vue').default;
+
+
 
 //profile component
 let profile = require('./components/user/Profile.vue').default;
@@ -97,6 +108,16 @@ export const routes = [
 //pkrc  update routes
 { path: '/updatePatient', component: updatePatient, name:'updatePatient' },
 { path: '/updateAdmission', component:updateAdmission, name:'updateAdmission' },
+{ path: '/updateCase', component:updateCase, name:'updateCase' },
+{ path: '/updateSampling', component:updateSampling, name:'updateSampling' },
+
+
+//pkrc  new routes
+{ path: '/newPatient', component: newPatient, name:'newPatient' },
+{ path: '/newAdmission', component:newAdmission, name:'newAdmission' },
+{ path: '/newCase', component:newCase, name:'newCase' },
+{ path: '/newSampling', component:newSampling, name:'newSampling' },
+
 
      //report routes
      { path: '/dailyreport', component: dailyreport, name:'dailyreport' },  

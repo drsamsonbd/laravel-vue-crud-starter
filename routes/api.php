@@ -20,7 +20,7 @@ Route::get('/me/roles', 'AuthController@myRoles');
 Route::group(['middleware' => ['jwt.verify']], function() {
 	
 Route::apiResource('/patient', 'Api\PatientController');
-Route::get('/patientKP/{id}', 'Api\AdmissionRecordController@updatePatient')->name('updatePatient');
+
 
 Route::apiResource('/user', 'Api\UserController');
 Route::apiResource('/department', 'Api\DepartmentController');
@@ -57,4 +57,9 @@ Route::get('/items/out/{id}', 'Api\PosController@GetItem');
 Route::get('activepkrc', 'Api\PKRCActiveController@showbyPKRC')->name('showbyPKRC');
 Route::get('active', 'Api\PKRCActiveController@index');
 
+
+//update api
+Route::get('/patientKP/{id}', 'Api\AdmissionRecordController@updatePatient')->name('updatePatient');
+Route::get('/patientCase/{id}', 'Api\AdmissionRecordController@updateCase')->name('updateCase');
+Route::get('/patientSampling/{id}', 'Api\AdmissionRecordController@updateSampling')->name('updateSampling');
 });

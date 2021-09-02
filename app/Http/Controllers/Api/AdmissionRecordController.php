@@ -34,7 +34,7 @@ class AdmissionRecordController extends Controller
         ->leftjoin('discharges','admissions.reg_number','=','discharges.reg_number')
        ->leftJoin('reviews','admissions.reg_number','=','reviews.reg_number')
        ->select('patients.name','patients.kp_passport','patients.gender','patients.age',
-       'patients.area','patients.job','patients.address','admissions.id', 'admissions.pkrc', 'admissions.marriage', 'admissions.religion', 'admissions.kin', 'admissions.kin_address',
+       'patients.area','patients.job','patients.address','admissions.id', 'admissions.pkrc', 'admissions.reg_number', 'admissions.marriage', 'admissions.religion', 'admissions.kin', 'admissions.kin_address',
        'admissions.kin_relation', 'admissions.date', 'admissions.time', 'admissions.weight', 'admissions.note',
        'case_regs.year',
        'case_regs.epid_week',
@@ -77,6 +77,29 @@ class AdmissionRecordController extends Controller
    
        
           return response()->json($admission);
+    }
+
+    public function updateCase($id)
+    {
+        $case= DB::table('admissions')->where('admissions.id',$id)
+        ->join('case_regs','case_regs.kp_passport','=','admissions.kp_passport')
+       ->select('case_regs.*' )
+       ->get()   ;     
+   
+       
+          return response()->json($case);
+    }
+
+
+    public function updateSampling($id)
+    {
+        $case= DB::table('admissions')->where('admissions.id',$id)
+        ->join('case_samplings','case_samplings.kp_passport','=','admissions.kp_passport')
+       ->select('case_samplings.*' )
+       ->get()   ;     
+   
+       
+          return response()->json($case);
     }
 
     public function kp_passport($id)

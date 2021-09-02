@@ -13,7 +13,7 @@
 
   <!--userUpdate Modal-->
   <div>
-          <form class="user" @submit.prevent="patientUpdate"> 
+          <form class="user"> 
                      <div class="form-group" hidden>
                       <label>User ID:</label>
                       <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="forms.id">
@@ -107,8 +107,8 @@
 
                          <div class="form-group">
               <div class="card-footer  bg-white">      
-          <button  class="btn btn-outline-alternate " @click="goBack">Back</button>     
-          <button type="submit" id="myBtn" class="btn btn-primary ">Kemaskini</button>
+          <button  class="btn btn-outline-alternate " @click="goBack(id)">Back</button>     
+          <button type="submit" id="myBtn" class="btn btn-primary " @click="patientUpdate()">Kemaskini</button>
              </div>
                          </div>
                
@@ -178,15 +178,16 @@
         itemize: [
           {
             text: 'Dashboard',
-            href: '/home'
+            href: '#'
           },
           {
             text: 'Pesakit',
-            active: true
+            href: '#'
           },
                  {
             text: 'Kemaskini',
-             href: '/aktivepkrc'
+            active: true
+             
           },
         ],          
       }
@@ -269,19 +270,24 @@
        let $id = this.forms.id
        axios.patch('/api/patient/'+$id+ '?token='+ localStorage.getItem('token'), this.forms)
        .then(() => {      
-           this.allPatient();
+           
              Toast.fire(
                       'Berjaya!',
                       'Telah dikemaskini.',
                       'success'
                     )
+
+                    
+      
     
-       })
-       .catch(error =>this.errors = error.response.data.errors)
+       }); 
+        let $admid = this.$route.params.id;
+       this.$router.push({name: 'details', params: { id: $admid} })
        
      },
       goBack() {
-       this.$router.push({name: 'details', params: { id: forms.id } })
+          let $id = this.$route.params.id;
+       this.$router.push({name: 'details', params: { id: $id } })
     },
 
 

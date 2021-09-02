@@ -2,15 +2,22 @@
   
   <div>
  <b-breadcrumb :items="itemize"></b-breadcrumb>
+<section class="content">  
+
+
  <hr>
- <div class="row">
+   <div class="container-fluid">
+  <div class=" row shadow-sm- p-4 mb-4 bg-white">
    <div class="col-lg-12 ">
-   
 
     <header>Kemaskini Admission</header>
     
-            <form class="user" @submit.prevent="patientUpdate">
-                  
+            <form class="user">
+                       <div class="form-group" hidden>
+                      <label>User ID:</label>
+                      <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="form.id">
+                      
+                    </div> 
                       <b-row>
                         <b-col>
                       <label>Nama</label>
@@ -96,6 +103,7 @@
                       <label>Register Number</label>
                        <input type="text" class="form-control" id="rn" v-model="form.reg_number">
                      
+                          <small class="text-danger" v-if="errors.reg_number">{{errors.reg_number[0]}}</small>
                    </b-col>                 
                     </b-row>
                            <b-row>
@@ -106,10 +114,14 @@
                      
                    </b-col>                 
                     </b-row>
-                    <br>
-                    <div class="form-group">
-                      <button type="submit"  class="btn btn-primary btn-block">Kemaskini</button>
-                    </div>
+           
+          
+                         <div class="form-group">
+              <div class="card-footer  bg-white">      
+          <button  class="btn btn-outline-alternate " @click="goBack(id)">Back</button>     
+          <button type="submit" id="myBtn" class="btn btn-primary " @click="patientUpdate()">Kemaskini</button>
+             </div>
+                         </div>
                     <hr>
                  
                   </form>    
@@ -117,6 +129,10 @@
           </div>
 
               </div>
+
+
+   </div>
+              </sectioN>
             </div>
       
           <!--Row-->
@@ -141,41 +157,35 @@
         
          pkrc(){
     let self = this;
-     axios.get('/api/pkrc'+ localStorage.getItem('token'))
+     axios.get('/api/pkrc'+'?token='+  localStorage.getItem('token'))
       .then(function (response) {
         self.pkrcs = response.data;
-      }).catch(function (error) {
-        console.log(error);
-        self.$router.push({ path: '/login' });
-      });
+      })
     },
              patientUpdate(){
        let id = this.form.id
-       axios.patch('/api/admission/'+id+ '?token='+ localStorage.getItem('token'), this.forms)
-       .then(() => {    
-         let self = this;
-        axios.get('/api/admission/'+ localStorage.getItem('token'))
-       .then(function (response) {
-        self.items = response.data;
-        })
-       this.$refs['edit-modal'].hide(); 
-       this.allCases();
+       axios.patch('/api/admission/'+id+ '?token='+ localStorage.getItem('token'), this.form)
+       .then(() => {       
                   Toast.fire(
                       'Berjaya!',
                       'Telah dikemaskini.',
                       'success'
-                    )
-    
-       })
-          .catch(error=> this.errors = error.response.data.errors)
-          .catch(
+                    ) 
+       }).catch(()=> {
+        
             Toast.fire({
               icon: 'warning',
-              title: 'Invalid data entry'
-            })
-          )
-       
+              title: 'Invalid data! Nothing has been updated.'
+            });
+          })
+
+           ;    let $admid = this.$route.params.id;
+       this.$router.push({name: 'details', params: { id: $admid} });
      }, 
+         goBack() {
+          let $id = this.$route.params.id;
+       this.$router.push({name: 'details', params: { id: $id } })
+    },
     },
   
 
@@ -213,7 +223,11 @@
             href: '/active'
           },
           {
-            text: 'Kemasikini Admission',
+            text: 'Kemasikini',
+            href:'#'
+          },
+          {
+            text: 'Admission',
             active: true
           },
         ],

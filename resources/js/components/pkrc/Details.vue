@@ -101,19 +101,23 @@
       hover
      
     >
-     <template #cell(index)="data">
-        {{ data.index + 1 }}
-      </template>
-      <template #cell(item)="row">
-        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
-      </template>
+
 
       <template #cell(actions)="row">
-      <router-link :to="{name: 'updateAdmission', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-edit"></i> </router-link>
+<div v-if="admissions.reg_number ===null">
+
+
+  <router-link :to="{name: 'newdmission', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-plus"></i> </router-link>
+
+</div>
+<div v-else> 
+  <router-link :to="{name: 'updateAdmission', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-edit"></i> </router-link>
+    
+
+</div>
+      
               
-        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
-         <i class="fas fa-trash"></i>
-        </b-button>
+ 
       </template>
 
 
@@ -134,20 +138,22 @@
       striped 
       hover
     >
-     <template #cell(index)="data">
-        {{ data.index + 1 }}
-      </template>
-      <template #cell(item)="row">
-        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
-      </template>
 
       <template #cell(actions)="row">
-        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
-         <i class="fas fa-edit"></i>
-        </b-button>
-        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
-         <i class="fas fa-trash"></i>
-        </b-button>
+
+        <div v-if="admissions.year ===null">
+
+
+  <router-link :to="{name: 'newCase', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-plus"></i>Tambah </router-link>
+
+</div>
+<div v-else> 
+   <router-link :to="{name: 'updateCase', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-edit"></i> </router-link>
+     
+
+</div>
+   
+
       </template>
 
       <template #row-details="row">
@@ -183,12 +189,9 @@
       </template>
 
       <template #cell(actions)="row">
-        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
-         <i class="fas fa-edit"></i>
-        </b-button>
-        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
-         <i class="fas fa-trash"></i>
-        </b-button>
+  <router-link :to="{name: 'updateSampling', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-edit"></i> </router-link>
+   
+      
       </template>
 
       <template #row-details="row">
@@ -227,9 +230,7 @@
         <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
          <i class="fas fa-edit"></i>
         </b-button>
-        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
-         <i class="fas fa-trash"></i>
-        </b-button>
+  
       </template>
     </b-table>
     
@@ -260,9 +261,7 @@
         <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
          <i class="fas fa-edit"></i>
         </b-button>
-        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
-         <i class="fas fa-trash"></i>
-        </b-button>
+
       </template>
     </b-table>
               <!-- DischargeTable -->
@@ -351,8 +350,8 @@
         admissions:[],         
         itemize: [
           {
-            text: 'PKRC',
-            href: '/active'
+            text: 'Dashboard',
+            href: '/home'
           },
           {
             text: 'Details',
