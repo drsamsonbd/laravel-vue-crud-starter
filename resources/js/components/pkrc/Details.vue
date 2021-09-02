@@ -107,7 +107,7 @@
 <div v-if="admissions.reg_number ===null">
 
 
-  <router-link :to="{name: 'newdmission', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-plus"></i> </router-link>
+  <router-link :to="{name: 'newdmission', params:{kp_passport:admissions.kp_passport}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-plus"></i> </router-link>
 
 </div>
 <div v-else> 
@@ -144,7 +144,7 @@
         <div v-if="admissions.year ===null">
 
 
-  <router-link :to="{name: 'newCase', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-plus"></i>Tambah </router-link>
+  <router-link :to="{name: 'newCase', params:{kp_passport:admissions.kp_passport}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-plus"></i></router-link>
 
 </div>
 <div v-else> 
@@ -181,15 +181,19 @@
       striped 
       hover
     >
-     <template #cell(index)="data">
-        {{ data.index + 1 }}
-      </template>
-      <template #cell(item)="row">
-        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
-      </template>
-
       <template #cell(actions)="row">
+
+             <div v-if="admissions.date_sample ===null">
+
+
+  <router-link :to="{name: 'newSampling', params:{kp_passport:admissions.kp_passport}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-plus"></i> </router-link>
+
+</div>
+<div v-else> 
   <router-link :to="{name: 'updateSampling', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-edit"></i> </router-link>
+     
+
+</div>
    
       
       </template>
@@ -219,18 +223,14 @@
       striped 
       hover
     >
-     <template #cell(index)="data">
-        {{ data.index + 1 }}
-      </template>
-      <template #cell(item)="row">
-        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
-      </template>
-
       <template #cell(actions)="row">
-        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
-         <i class="fas fa-edit"></i>
-        </b-button>
-  
+                 <div v-if="admissions.date_sample ===null">
+  <router-link :to="{name: 'newSampling', params:{kp_passport:admissions.kp_passport}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-plus"></i> </router-link>
+
+</div>
+<div v-else> 
+  <router-link :to="{name: 'updateSampling', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-edit"></i> </router-link>
+</div>
       </template>
     </b-table>
     
@@ -280,20 +280,14 @@
       striped 
       hover
     >
-     <template #cell(index)="data">
-        {{ data.index + 1 }}
-      </template>
-      <template #cell(item)="row">
-        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
-      </template>
-
       <template #cell(actions)="row">
-        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
-         <i class="fas fa-edit"></i>
-        </b-button>
-        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
-         <i class="fas fa-trash"></i>
-        </b-button>
+                 <div v-if="admissions.date_dc ===null">
+  <router-link :to="{name: 'newSampling', params:{kp_passport:admissions.kp_passport}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-plus"></i> </router-link>
+
+</div>
+<div v-else> 
+  <router-link :to="{name: 'updateSampling', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-edit"></i> </router-link>
+</div>
       </template>
     </b-table>          
                 
@@ -321,13 +315,13 @@
    
        methods:{
          cases(){      
-        axios.get('/api/admissions/'+this.$route.params.id+ '/?token='+ localStorage.getItem('token'))
+        axios.get('/api/admissionskp/'+this.$route.params.id+ '/?token='+ localStorage.getItem('token'))
        .then(({data}) => (this.admissions = data[0])) 
       },
 
      admissionrecord(){
     let self = this;
-     axios.get('/api/admissions/'+ this.$route.params.id+'?token='+ localStorage.getItem('token'))
+     axios.get('/api/admissionskp/'+ this.$route.params.id+'?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.items = response.data;        
         self.caseitems = response.data;

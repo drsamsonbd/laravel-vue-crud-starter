@@ -179,11 +179,11 @@
             });
           })
 
-           ;    let $admid = this.$route.params.id;
+           ;    let $admid = this.form.kp_passport;
        this.$router.push({name: 'details', params: { id: $admid} });
      }, 
          goBack() {
-          let $id = this.$route.params.id;
+          let $id = this.form.kp_passport;
        this.$router.push({name: 'details', params: { id: $id } })
     },
     },

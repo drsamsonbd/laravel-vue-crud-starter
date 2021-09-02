@@ -711,7 +711,7 @@
      },
 
          viewPatient(record) {
-        this.$router.push({name: 'details', params: { id: record.id } })
+        this.$router.push({name: 'details', params: { id: record.kp_passport } })
    
   },
 

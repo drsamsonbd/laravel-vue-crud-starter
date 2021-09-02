@@ -22,12 +22,13 @@
                       <b-row>
                         <b-col>
                       <label>Nama</label>
-                       <input class="form-control" id="name" v-model="form.kp_passport" disabled>
+                       <input class="form-control" id="name" v-model="patient.name" disabled>
                         
                      </b-col>
                      <b-col >
                       <label>Nombor K/P atau Passport</label>
-                      <input type="text" class="form-control" id="ICnumber" v-model="form.kp_passport" disabled>
+                        <input type="text" class="form-control" id="ICnumber" v-model="patient.kp_passport" disabled>
+                      <input type="text" class="form-control" id="ICnumber" v-model="form.kp_passport" disabled hidden>
                          <small class="text-danger" v-if="errors.kp_passport">{{errors.kp_passport[0]}}</small>
                   </b-col>
                      </b-row>
@@ -97,7 +98,7 @@
                     <div class="form-group">
               <div class="card-footer  bg-white">      
           <button  class="btn btn-outline-alternate " @click="goBack(id)">Back</button>     
-          <button type="submit" id="myBtn" class="btn btn-primary " @click="patientUpdate()">Kemaskini</button>
+          <button type="submit" id="myBtn" class="btn btn-primary " @click="register()">Daftar</button>
              </div>
                          </div>
                     <hr>
@@ -147,6 +148,7 @@
           districts:[],
           localities:[],
           hospitals:[],
+          patient:[],
           
           form:{         
           kp_passport: null,
@@ -193,8 +195,8 @@
 
       allCases(){
  
-     axios.get('/api/patientCase/'+ this.$route.params.id+ '?token='+ localStorage.getItem('token'))
-        .then(({data}) => (this.form = data[0]))
+     axios.get('/api/patientkp_passport/'+ this.$route.params.kp_passport+ '?token='+ localStorage.getItem('token'))
+        .then(({data}) => (this.patient = data[0], this.form.kp_passport = data[0].kp_passport))
     .catch(function (error) {
         console.log(error);
         self.$router.push({ path: '/login' });
@@ -234,28 +236,27 @@
 
   
 
-      patientUpdate(){
-       let id = this.form.id
-       axios.patch('/api/case/'+id+ '?token='+ localStorage.getItem('token'), this.form)
+      register(){
+       axios.post('/api/case/'+'?token='+ localStorage.getItem('token'), this.form)
       .then(() => {       
                   Toast.fire(
                       'Berjaya!',
-                      'Telah dikemaskini.',
+                      'Telah didaftarkan.',
                       'success'
                     ) 
        }).catch(()=> {
         
             Toast.fire({
               icon: 'warning',
-              title: 'Invalid data! Nothing has been updated.'
+              title: 'Invalid data! Nothing has been registered.'
             });
           })
 
-           ;    let $admid = this.$route.params.id;
+           ;    let $admid = this.form.kp_passport
        this.$router.push({name: 'details', params: { id: $admid} });
      }, 
          goBack() {
-          let $id = this.$route.params.id;
+          let $id = this.form.kp_passport
        this.$router.push({name: 'details', params: { id: $id } })
     },
  },

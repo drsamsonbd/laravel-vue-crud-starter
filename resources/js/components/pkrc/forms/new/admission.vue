@@ -21,7 +21,7 @@
                       <b-row>
                         <b-col>
                       <label>Nama</label>
-                       <input class="form-control" id="name" v-model="form.name" disabled>
+                       <input class="form-control" id="name" v-model="patient.name" disabled>
                     
                      </b-col>
                      <b-col >
@@ -151,8 +151,8 @@
          cases(){
       
     
-        axios.get('/api/admissions/'+this.$route.params.id+ '?token='+ localStorage.getItem('token'))
-        .then(({data}) => (this.form = data[0]))
+        axios.get('/api/patientkp_passport/'+this.$route.params.kp_passport + '?token='+ localStorage.getItem('token'))
+        .then(({data}) => (this.patient = data[0]))
       },
         
          pkrc(){
@@ -195,6 +195,7 @@
      data(){
       return{
              pkrcs:[],
+             patient:[],
         
           form:{
            name:null,

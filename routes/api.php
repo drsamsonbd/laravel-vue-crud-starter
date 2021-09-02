@@ -59,7 +59,10 @@ Route::get('active', 'Api\PKRCActiveController@index');
 
 
 //update api
+
+Route::get('/admissionskp/{id}', 'Api\AdmissionRecordController@admissionsKP')->name('admissionsKP');;
 Route::get('/patientKP/{id}', 'Api\AdmissionRecordController@updatePatient')->name('updatePatient');
 Route::get('/patientCase/{id}', 'Api\AdmissionRecordController@updateCase')->name('updateCase');
 Route::get('/patientSampling/{id}', 'Api\AdmissionRecordController@updateSampling')->name('updateSampling');
+Route::get('/patientkp_passport/{id}', 'Api\AdmissionRecordController@kp_passport')->name('kp_passport');
 });
