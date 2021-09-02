@@ -109,9 +109,8 @@
       </template>
 
       <template #cell(actions)="row">
-        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
-         <i class="fas fa-edit"></i>
-        </b-button>
+      <router-link :to="{name: 'updateAdmission', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-edit"></i> </router-link>
+              
         <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
          <i class="fas fa-trash"></i>
         </b-button>

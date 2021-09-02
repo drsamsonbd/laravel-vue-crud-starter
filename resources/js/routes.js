@@ -40,7 +40,7 @@ let details= require('./components/pkrc/Details.vue').default;
 
 //pkrc update form 
 let updatePatient= require('./components/pkrc/forms/patient.vue').default;
-
+let updateAdmission= require('./components/pkrc/forms/admission.vue').default;
 //report component
 let dailyreport = require('./components/report/index.vue').default;
 let nursingreport = require('./components/report/nursing.vue').default;
@@ -96,7 +96,7 @@ export const routes = [
 
 //pkrc  update routes
 { path: '/updatePatient', component: updatePatient, name:'updatePatient' },
-
+{ path: '/updateAdmission', component:updateAdmission, name:'updateAdmission' },
 
      //report routes
      { path: '/dailyreport', component: dailyreport, name:'dailyreport' },  

@@ -8,13 +8,17 @@
 
  <hr>
    <div class="container-fluid">
- <div class="row">
+  <div class=" row shadow-sm- p-4 mb-4 bg-white">
    <div class="col-lg-12 ">
 
   <!--userUpdate Modal-->
   <div>
           <form class="user" @submit.prevent="patientUpdate"> 
-                               
+                     <div class="form-group" hidden>
+                      <label>User ID:</label>
+                      <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="forms.id">
+                      
+                    </div>  
                       <b-row>
                         <b-col>
                       <label>Nama</label>
@@ -97,9 +101,16 @@
                      
                     
                     <div class="form-group">
-                      <button type="submit" id="myBtn" class="btn btn-primary btn-block">Kemaskini</button>
+                 
                
                     </div>
+
+                         <div class="form-group">
+              <div class="card-footer  bg-white">      
+          <button  class="btn btn-outline-alternate " @click="goBack">Back</button>     
+          <button type="submit" id="myBtn" class="btn btn-primary ">Kemaskini</button>
+             </div>
+                         </div>
                
                   </form> 
 
@@ -187,7 +198,7 @@
   methods:{
       allPatient(){
     let self = this;
-    axios.get('/api/admissions/'+this.$route.params.id+ '/?token='+ localStorage.getItem('token'))
+    axios.get('/api/patientKP/'+this.$route.params.id+ '/?token='+ localStorage.getItem('token'))
        .then(({data}) => (this.forms = data[0])) 
       .catch(function (error) {
         console.log(error);
@@ -255,8 +266,8 @@
       },
            
       patientUpdate(){
-       let $kp = this.forms.kp_passport
-       axios.post('/api/patientKP/'+$kp+ '?token='+ localStorage.getItem('token'), this.forms)
+       let $id = this.forms.id
+       axios.patch('/api/patient/'+$id+ '?token='+ localStorage.getItem('token'), this.forms)
        .then(() => {      
            this.allPatient();
              Toast.fire(
@@ -269,6 +280,9 @@
        .catch(error =>this.errors = error.response.data.errors)
        
      },
+      goBack() {
+       this.$router.push({name: 'details', params: { id: forms.id } })
+    },
 
 
  },

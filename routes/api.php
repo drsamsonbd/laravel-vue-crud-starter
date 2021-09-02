@@ -20,7 +20,7 @@ Route::get('/me/roles', 'AuthController@myRoles');
 Route::group(['middleware' => ['jwt.verify']], function() {
 	
 Route::apiResource('/patient', 'Api\PatientController');
-Route::post('/patientKP', 'Api\PatientController@updatebyKP')->name('updatebyKP');
+Route::get('/patientKP/{id}', 'Api\AdmissionRecordController@updatePatient')->name('updatePatient');
 
 Route::apiResource('/user', 'Api\UserController');
 Route::apiResource('/department', 'Api\DepartmentController');

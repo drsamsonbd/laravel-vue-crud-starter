@@ -118,23 +118,6 @@ class PatientController extends Controller
         DB::table('patients')->where('id',$id)->update($data);
     }
 
-    public function updatebyKP(Request $request, $kp)
-    {
-        $data = array();
-        $data['name'] = $request->name;
-        $data['kp_passport'] = $request->kp_passport;
-        $data['age'] = $request->age;
-        $data['gender'] = $request->gender;
-        $data['race'] = $request->race;
-        $data['address'] = $request->address;
-        $data['phone'] = $request->phone;
-        $data['nationality'] = $request->nationality;
-        $data['job'] = $request->job;
-        $data['workplace'] = $request->workplace;
-        $data['area'] = $request->area;
-        $data['notes'] = $request->notes;
-        DB::table('patients')->where('kp_passport',$kp)->update($data);
-    }
 
     /**
      * Remove the specified resource from storage.

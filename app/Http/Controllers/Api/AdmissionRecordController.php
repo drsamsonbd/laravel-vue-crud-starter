@@ -67,6 +67,18 @@ class AdmissionRecordController extends Controller
           return response()->json($admission);
     }
 
+
+    public function updatePatient($id)
+    {
+        $admission= DB::table('admissions')->where('admissions.id',$id)
+        ->join('patients','patients.kp_passport','=','admissions.kp_passport')
+       ->select('patients.*' )
+       ->get()   ;     
+   
+       
+          return response()->json($admission);
+    }
+
     public function kp_passport($id)
     {
         $admission= DB::table('admissions')->where('admissions.kp_passport',$id)

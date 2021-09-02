@@ -9,7 +9,7 @@
 
     <header>Kemaskini Admission</header>
     
-            <form class="user" @submit.prevent="register">
+            <form class="user" @submit.prevent="patientUpdate">
                   
                       <b-row>
                         <b-col>
@@ -135,27 +135,13 @@
          cases(){
       
     
-        axios.get('/api/admissions/'+this.$route.params.id)
+        axios.get('/api/admissions/'+this.$route.params.id+ '?token='+ localStorage.getItem('token'))
         .then(({data}) => (this.form = data[0]))
       },
-           discaj(){
-          axios.post('/api/discharge', this.form)
-          .then(() => {
-       
-        Notification.success()
-        this.$router.push({ path : '/pkrclist' });
-         })
-          .catch(error=> this.errors = error.response.data.errors)
-          .catch(
-            Toast.fire({
-              icon: 'warning',
-              title: 'Invalid data entry'
-            })
-          )
-        }, 
+        
          pkrc(){
     let self = this;
-     axios.get('/api/pkrc/')
+     axios.get('/api/pkrc'+ localStorage.getItem('token'))
       .then(function (response) {
         self.pkrcs = response.data;
       }).catch(function (error) {
@@ -163,14 +149,24 @@
         self.$router.push({ path: '/login' });
       });
     },
-          register(){
-           let id = this.form.id
-       axios.patch('/api/admission/'+id, this.form)
+             patientUpdate(){
+       let id = this.form.id
+       axios.patch('/api/admission/'+id+ '?token='+ localStorage.getItem('token'), this.forms)
        .then(() => {    
-     
-        Notification.success();
-        this.$router.push({ path : '/pkrclist' });
-         })
+         let self = this;
+        axios.get('/api/admission/'+ localStorage.getItem('token'))
+       .then(function (response) {
+        self.items = response.data;
+        })
+       this.$refs['edit-modal'].hide(); 
+       this.allCases();
+                  Toast.fire(
+                      'Berjaya!',
+                      'Telah dikemaskini.',
+                      'success'
+                    )
+    
+       })
           .catch(error=> this.errors = error.response.data.errors)
           .catch(
             Toast.fire({
@@ -178,17 +174,13 @@
               title: 'Invalid data entry'
             })
           )
-        }
-       }, 
+       
+     }, 
+    },
   
 
    
-     mounted(){
-  
-
-
-      },
-
+   
       
      data(){
       return{
@@ -218,7 +210,7 @@
         itemize: [
           {
             text: 'PKRC',
-            href: '/#/pkrclist'
+            href: '/active'
           },
           {
             text: 'Kemasikini Admission',
@@ -232,19 +224,17 @@
 
     },
     mounted: function(){
-      this.cases();
+        this.cases();
          this.pkrc();
     }, 
    
 
 
   }
+  
 </script>
 
 
 <style type="text/css">
-  #em_photo{
-    height: 40px;
-    width: 40px;
-  }
+
 </style>
