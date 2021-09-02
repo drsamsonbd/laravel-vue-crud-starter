@@ -11,12 +11,7 @@
    <div class="container-fluid">
   <div class=" row shadow-sm- p-4 mb-4 bg-white">
    <div class="col-lg-12 ">
-           <form class="user">
-                   <div class="form-group" hidden>
-                      <label>User ID:</label>
-                      <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="form.id">
-                      
-                    </div>
+           <form class="user">              
                       <b-row>
                         <b-col>
                       <label>Nama</label>
@@ -133,8 +128,8 @@
                     <br>
                     <div class="form-group">
               <div class="card-footer  bg-white">      
-          <button  class="btn btn-outline-alternate " @click="goBack(id)">Back</button>     
-          <button type="submit" id="myBtn" class="btn btn-primary " @click="patientUpdate()">Kemaskini</button>
+          <button  class="btn btn-outline-primary " @click="goBack()">Back</button>     
+          <button type="submit" id="myBtn" class="btn btn-primary " @click="register()">Simpan</button>
              </div>
                          </div>
                     <hr>
@@ -159,7 +154,7 @@
   export default {
       created(){
       if (!User.loggedIn()) {
-        this.$router.push({name: '/'})
+        this.$router.push({name: '/login'})
 
           }
       },
@@ -169,24 +164,14 @@
      mounted(){
 
         this.allCases();
-        this.district();
-        this.hospital();
-        this.locality();
         this.vaccine();
       },
 
       
      data(){
       return{
-          patients:[],
-          races:[],
-          areas:[],
-          districts:[],
-          localities:[],
-          hospitals:[],
           vaccines:[],
 
-          views:[],  
           form:{         
           kp_passport: null,
           sypmtomatic: null,
@@ -237,7 +222,7 @@
   methods:{
     allCases(){
  
-     axios.get('/api/patientSampling/'+ this.$route.params.id+ '?token='+ localStorage.getItem('token'))
+     axios.get('/api/patientkp_passport/'+ this.$route.params.kp_passport+ '?token='+ localStorage.getItem('token'))
         .then(({data}) => (this.form = data[0]))
     .catch(function (error) {
         console.log(error);
@@ -245,36 +230,6 @@
       });
     },
 
-    district(){
-    let self = this;
-     axios.get('/api/district/'+ '?token='+ localStorage.getItem('token'))
-      .then(function (response) {
-        self.districts = response.data;
-      }).catch(function (error) {
-        console.log(error);
-        self.$router.push({ path: '/login' });
-      });
-    },
-   locality(){
-    let self = this;
-     axios.get('/api/locality/'+ '?token='+ localStorage.getItem('token'))
-      .then(function (response) {
-        self.localities = response.data;
-      }).catch(function (error) {
-        console.log(error);
-        self.$router.push({ path: '/login' });
-      });
-    },
-     hospital(){
-    let self = this;
-     axios.get('/api/hospital/'+ '?token='+ localStorage.getItem('token'))
-      .then(function (response) {
-        self.hospitals = response.data;
-      }).catch(function (error) {
-        console.log(error);
-        self.$router.push({ path: '/login' });
-      });
-    },
         vaccine(){
     let self = this;
      axios.get('/api/vaccine/'+ '?token='+ localStorage.getItem('token'))
@@ -287,13 +242,12 @@
     },
      
              
-      patientUpdate(){
-       let id = this.forms.id
-       axios.patch('/api/sampling/'+id+ '?token='+ localStorage.getItem('token'), this.forms)
+      register(){
+       axios.post('/api/sampling/'+'?token='+ localStorage.getItem('token'), this.form)
           .then(() => {       
                   Toast.fire(
                       'Berjaya!',
-                      'Telah dikemaskini.',
+                      'Telah direkodkan.',
                       'success'
                     ) 
        }).catch(()=> {
@@ -304,8 +258,8 @@
             });
           })
 
-           ;    let $admid = this.$route.params.id;
-       this.$router.push({name: 'details', params: { id: $admid} });
+           ;   
+       this.$router.push({name: 'details', params: { id:  this.$route.params.kp_passport} });
      }, 
 
 

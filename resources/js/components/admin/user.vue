@@ -278,15 +278,11 @@
   export default {
       created(){
       if (!User.loggedIn()) {
-        this.$router.push({name: '/'})
+        this.$router.push({name: '/login'})
 
     
       }
   
-      let token = localStorage.getItem('token');
-    if(!token){
-      this.$router.push({name: '/'})
-      }
     },
       
      mounted(){
@@ -394,7 +390,7 @@
         self.items = response.data;
       }).catch(function (error) {
         console.log(error);
-       alert('code error')
+       self.$router.push({ path: '/login' });
       });
     }
     ,

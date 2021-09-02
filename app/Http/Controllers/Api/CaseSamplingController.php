@@ -46,8 +46,8 @@ class CaseSamplingController extends Controller
             'screening_type'=>'',
             'exposure_type'=>'',
             'reinfection'=>'',
-            'date_sample'=>'required',
-            'type_sample'=>'required',
+            'date_sample'=>'',
+            'type_sample'=>'',
             'date_mka'=>'',
             'grading'=>'',
             'date_result'=>'',
@@ -62,7 +62,7 @@ class CaseSamplingController extends Controller
         $case_sampling-> kp_passport   = $request->        kp_passport;
         $case_sampling-> symptomatic   = $request->        sypmtomatic;
         $case_sampling-> onset   = $request->        onset;
-        $case_sampling-> screening_tpye   = $request->        screening_tpye;
+        $case_sampling-> screening_type   = $request->        screening_type;
         $case_sampling-> exposure_type   = $request->        exposure_type;
         $case_sampling-> reinfection   = $request->        reinfection;
         $case_sampling-> date_sample   = $request->        date_sample;
