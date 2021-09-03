@@ -62,9 +62,9 @@ class PatientController extends Controller
         $patient->race = $request->race;
         $patient->address = $request->address;
         $patient->phone = $request->phone;
-        $patient->nationality = $request->job;
+        $patient->nationality = $request->nationality;
         $patient->workplace = $request->workplace;
-        $patient->job = $request->nationality;
+        $patient->job = $request->job;
         $patient->area = $request->area;
         $patient->notes = $request->notes;
         $patient->save();
