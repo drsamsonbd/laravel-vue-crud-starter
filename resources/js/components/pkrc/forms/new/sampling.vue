@@ -240,8 +240,7 @@
         self.$router.push({ path: '/login' });
       });
     },
-     
-             
+                  
       register(){
        axios.post('/api/sampling/'+'?token='+ localStorage.getItem('token'), this.form)
           .then(() => {       
