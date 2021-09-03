@@ -4,10 +4,11 @@
   
   <div>
  <b-breadcrumb :items="itemize"></b-breadcrumb>
- <hr>
- <div class="row">
+<section class="content">  
+
+   <div class="container-fluid">
+  <div class=" row shadow-sm- p-4 mb-4 bg-white">
    <div class="col-lg-12 ">
-   
 
     <b-modal ref="my-modal" size="xl" hide-footer title="Daftar Kemasukan">
     
@@ -379,7 +380,8 @@
             </div>
           </div>
           <!--Row-->
-
+</section>
+  </div>
 
 </template>
 
@@ -485,7 +487,7 @@
       //   { key: 'religion', label: 'Agama', sortable: true, sortDirection: 'desc' },
       //    { key: 'phone', label: 'No. Tel', sortable: true, sortDirection: 'desc' },
       //    { key: 'note', label: 'Nota', sortable: true, sortDirection: 'desc' },
-          { key: 'actions', label: 'Actions' },
+      //    { key: 'actions', label: 'Actions' },
            ],
         table:'',
       }
