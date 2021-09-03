@@ -223,7 +223,7 @@
     allCases(){
  
      axios.get('/api/patientkp_passport/'+ this.$route.params.kp_passport+ '?token='+ localStorage.getItem('token'))
-        .then(({data}) => (this.form = data[0]))
+        .then(({data}) => (this.form.kp_passport = data[0].kp_passport, this.form.notes = data[0].name))
     .catch(function (error) {
         console.log(error);
         self.$router.push({ path: '/login' });
