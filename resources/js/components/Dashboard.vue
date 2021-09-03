@@ -22,7 +22,7 @@
 
                 <div class="col-12 col-sm-6 ">
                     <router-link to="/active">
-                    <div class="info-box mb-6">
+                    <div class="info-box mb-4">
                     
                         <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-head-side-virus"></i></span>
 
@@ -41,7 +41,7 @@
                 <!-- /.col -->
                 <div class="col-12 col-sm-6 ">
                    <router-link to="/discharge">
-                    <div class="info-box mb-6">
+                    <div class="info-box mb-4">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-head-side-cough-slash"></i></span>
 
                         <div class="info-box-content">
@@ -57,7 +57,20 @@
 
                 <!-- fix for small devices only -->
                 <div class="clearfix hidden-md-up"></div>
+                    <div class="col-12 col-sm-6 ">
+                   <router-link to="/discharge">
+                    <div class="info-box mb-4">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
 
+                        <div class="info-box-content">
+                            <span class="info-box-text">Kumulatif Pesakit</span>
+                             <h4><b>{{admissions.length}}</b></h4>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                   </router-link>
+                    <!-- /.info-box -->
+                </div>
          
             <!-- /.col -->
             </div>
@@ -71,6 +84,7 @@
         mounted() {
            this.allCases();
            this.allDischarges();
+           this.allAdmissions();
         },
         data(){
             return{
@@ -83,6 +97,7 @@
         ],
         items:[],
         discharges:[],
+        admissions:[],
 }
         },
          computed:{
@@ -97,6 +112,9 @@
       },
       row(){
           return this.discharges.length
+      },
+      rowz(){
+          return this.admissions.length
       }
     },
  
@@ -117,6 +135,17 @@
      axios.get('/api/discharge/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.discharges = response.data;
+      }).catch(function (error) {
+        console.log(error);
+        self.$router.push({ path: '/login' });
+      });
+    },   
+    
+    allAdmissions(){
+    let self = this;
+     axios.get('/api/admission/'+ '?token='+ localStorage.getItem('token'))
+      .then(function (response) {
+        self.admissions = response.data;
       }).catch(function (error) {
         console.log(error);
         self.$router.push({ path: '/login' });
