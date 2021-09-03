@@ -59,7 +59,12 @@
                         </select>
                   </b-col>
                   </b-row>
-
+                       <b-row>
+                     <b-col>
+                      <label>Alamat Rumah</label>
+                      <input class="form-control" id="area" v-model="form.address">                   
+                   </b-col>
+                   </b-row>
                   <b-row>
                      <b-col>
                       <label>Mukim</label>
@@ -157,6 +162,12 @@
                         </select>
                   </b-col>
                   </b-row>
+                       <b-row>
+                     <b-col>
+                      <label>Alamat Rumah</label>
+                      <input class="form-control" id="area" v-model="forms.address">                   
+                   </b-col>
+                   </b-row>
 
                   <b-row>
                      <b-col>
@@ -443,6 +454,7 @@
           race: null,
           phone: null,
           nationality: null,
+          address:null,
           job: null,
           workplace: null,
           area: null,
@@ -458,6 +470,7 @@
           race: null,
           phone: null,
           nationality: null,
+          address:null,
           job: null,
           workplace: null,
           area: null,

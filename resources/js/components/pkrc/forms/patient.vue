@@ -65,6 +65,12 @@
                         </select>
                   </b-col>
                   </b-row>
+                   <b-row>
+                     <b-col>
+                      <label>Alamat Rumah</label>
+                      <input class="form-control" id="area" v-model="forms.address">                   
+                   </b-col>
+                   </b-row>
 
                   <b-row>
                      <b-col>
@@ -163,7 +169,8 @@
           age: null,
           gender: null,          
           race: null,
-          phone: null,
+          address: null,
+          phone: null,  
           nationality: null,
           job: null,
           workplace: null,
