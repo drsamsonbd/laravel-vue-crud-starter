@@ -40,7 +40,7 @@
                 
                 <!-- /.col -->
                 <div class="col-12 col-sm-6 ">
-                   <router-link to="/discharge">
+                   <router-link to="/admission">
                     <div class="info-box mb-4">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-head-side-cough-slash"></i></span>
 
