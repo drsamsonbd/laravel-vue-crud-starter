@@ -4,12 +4,11 @@
   
   <div>
  <b-breadcrumb :items="itemize"></b-breadcrumb>
- <hr>
- <div class="row">
-   <div class="col-lg-12 ">   
-  
-  <!--UpdateModal-->
-  <div>
+<section class="content">  
+
+   <div class="container-fluid">
+  <div class=" row shadow-sm- p-4 mb-4 bg-white">
+   <div class="col-lg-12 ">
   <b-modal ref="edit-modal" size="xl" hide-footer title="Data Pesakit">     
           <form class="patient"  @submit.prevent="patientUpdate" > 
                     <div class="form-group" hidden>
@@ -80,7 +79,7 @@
 
 
  </div>
- </div>
+
 
    <div class="row">
             <div class="col-lg-12 mb-4">
@@ -201,8 +200,11 @@
                 </div>
               </div>
             </div>
+             </div>
+            </section>
           </div>
           <!--Row-->
+
 
 
 </template>
@@ -273,7 +275,7 @@
         perPage: 5,
         currentPage: 1,
         pageOptions: [5, 10, 15, 25, { value: 100, text: "Show a lot" }],
-        sortBy: 'reg_number',
+        sortBy: 'date_dc',
         sortDesc: true,
         sortDirection: 'desc',
         filter: null,
