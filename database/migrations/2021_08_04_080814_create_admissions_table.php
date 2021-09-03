@@ -27,6 +27,8 @@ class CreateAdmissionsTable extends Migration
             $table->string('date');
             $table->string('time');
             $table->string('weight')->nullable();
+            $table->string('adm_diagnosis')->nullable();
+            $table->string('adm_stage')->nullable();
             $table->string('note')->nullable();
             $table->timestamps();
         });

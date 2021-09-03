@@ -104,6 +104,29 @@
                      
                    </b-col>                 
                     </b-row>
+                <b-row>
+                       <b-col>
+                      <label>Diagnosis on admission</label>
+                        <select class="form-control" id="marriage" v-model="form.adm_diagnosis">                  
+                        <option >COVID-19</option>
+                        <option >PUI</option>
+                        <option>PUS</option>
+                        </select>
+                    </b-col>   
+                       <b-col>
+                      <label>Stage</label>
+                        <select class="form-control" id="marriage" v-model="form.adm_stage">                  
+                        <option >1</option>
+                        <option >2</option>
+                        <option>3</option>
+                          <option>4</option>
+                        <option>5</option>
+                        <option>NA</option>
+                        </select>
+
+
+                    </b-col>                
+                    </b-row>
                            <b-row>
                      <b-col>
                       <label>Nota</label>
@@ -466,6 +489,8 @@
           date: null,
           time: null,
           weight: null,
+          adm_diagnosis: null,
+          adm_stage: null,
           note: null
 
         },
@@ -506,6 +531,8 @@
           { key: 'kp_passport', label: 'No. Kad Pengenalan/Passport', sortable: true, sortDirection: 'desc' },
           { key: 'age', label: 'Umur', sortable: true, sortDirection: 'desc' },
           { key: 'gender', label: 'Jantina', sortable: true, sortDirection: 'desc' },
+           { key: 'adm_diagnosis', label: 'Diagnosis', sortable: true, sortDirection: 'desc' },
+            { key: 'adm_stage', label: 'Stage', sortable: true, sortDirection: 'desc' },
           { key: 'pkrc', label: 'PKRC', sortable: true, sortDirection: 'desc' },
          //   { key: 'view', label: 'View' },
          { key: 'discharge', label: 'Discaj' },

@@ -56,6 +56,8 @@ class AdmissionController extends Controller
        $admission->date = $request->         date;
        $admission->time = $request->         time;
        $admission->weight = $request->         weight;
+       $admission -> adm_diagnosis = $request -> adm_diagnosis;
+       $admission -> adm_stage = $request -> adm_stage;
        $admission->note = $request->         note; 
        $admission->save();
     }
@@ -105,6 +107,8 @@ class AdmissionController extends Controller
         $data['date']= $request->          date;
         $data['time']= $request->          time;
         $data['weight']= $request->            weight;
+        $data['adm_diagnosis'] = $request -> adm_diagnosis;
+        $data['adm_stage'] = $request -> adm_stage;
         $data['note']= $request->          note; 
         DB::table('admissions')->where('id',$id)->update($data);
     }

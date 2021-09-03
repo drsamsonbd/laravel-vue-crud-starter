@@ -59,7 +59,9 @@
                       <label>Alamat Kerja</label>
                      <p> {{admissions.workplace}} </p>
                     </b-col>
-                    
+                   </b-row>
+          
+                    <b-row>
                   <b-col>
                       <label>Catatan</label>
                    <p> {{admissions.notes}} </p>
@@ -357,8 +359,8 @@
         fields: [
           { key: 'pkrc', label: 'PKRC', sortable: true, sortDirection: 'desc' },
           { key: 'reg_number', label: 'RN', sortable: true, sortDirection: 'desc' },
-         // { key: 'name', label: 'Nama', sortable: true, sortDirection: 'asc' },
-        //  { key: 'kp_passport', label: 'No. Kad Pengenalan/Passport', sortable: true, sortDirection: 'desc' },
+          { key: 'adm_diagnosis', label: 'Diagnosis', sortable: true, sortDirection: 'asc' },
+         { key: 'adm_stage', label: 'Stage', sortable: true, sortDirection: 'desc' },
          // { key: 'marriage', label: 'Taraf Kahwin', sortable: true, sortDirection: 'desc' },
           { key: 'date', label: 'Tarikh', sortable: true, sortDirection: 'desc' },
           { key: 'time', label: 'Masa', sortable: true, sortDirection: 'desc' },

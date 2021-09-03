@@ -20,8 +20,9 @@ class admission extends Model
         'date',
         'time',
         'weight',
-        'note'
-        
+        'note',
+        'adm_diagnosis',
+        'adm_stage',
 
     ];
 }
