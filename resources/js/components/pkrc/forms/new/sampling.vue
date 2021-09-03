@@ -260,7 +260,10 @@
            ;   
        this.$router.push({name: 'details', params: { id:  this.$route.params.kp_passport} });
      }, 
-
+      goBack() {
+          let $id = this.form.kp_passport
+       this.$router.push({name: 'details', params: { id: $id } })
+    },
 
  },
   }   

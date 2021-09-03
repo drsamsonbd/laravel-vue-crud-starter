@@ -20,7 +20,7 @@
                       <b-row>
                         <b-col>
                       <label>Nama</label>
-                       <input class="form-control" id="name" v-model="form.name" disabled>
+                       <input class="form-control" id="name" v-model="name" disabled>
                     
                      </b-col>
                      <b-col >
@@ -159,7 +159,7 @@
   export default {
       created(){
       if (!User.loggedIn()) {
-        this.$router.push({name: '/'})
+        this.$router.push({name: '/login'})
 
           }
       },
@@ -185,7 +185,7 @@
           localities:[],
           hospitals:[],
           vaccines:[],
-
+          name:null,
           views:[],  
           form:{         
           kp_passport: null,
@@ -238,7 +238,7 @@
     allCases(){
  
      axios.get('/api/patientSampling/'+ this.$route.params.id+ '?token='+ localStorage.getItem('token'))
-        .then(({data}) => (this.form = data[0]))
+        .then(({data}) => (this.form = data[0], this.name = data[0].name))
     .catch(function (error) {
         console.log(error);
         self.$router.push({ path: '/login' });
@@ -304,10 +304,12 @@
             });
           })
 
-           ;    let $admid = this.$route.params.id;
-       this.$router.push({name: 'details', params: { id: $admid} });
+     this.$router.push({name: 'details', params: { id:  this.$route.params.kp_passport} });
      }, 
-
+      goBack() {
+          let $id = this.form.kp_passport
+       this.$router.push({name: 'details', params: { id: $id } })
+    },
 
  },
   }   
