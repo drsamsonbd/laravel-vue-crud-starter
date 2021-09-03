@@ -223,7 +223,7 @@
     allCases(){
  
      axios.get('/api/patientkp_passport/'+ this.$route.params.kp_passport+ '?token='+ localStorage.getItem('token'))
-        .then(({data}) => (this.form.kp_passport = data[0].kp_passport, this.form.notes = data[0].name))
+        .then(({data}) => (this.form.kp_passport = data[0].kp_passport, this.form.name = data[0].name))
     .catch(function (error) {
         console.log(error);
         self.$router.push({ path: '/login' });
@@ -242,7 +242,7 @@
     },
                   
       register(){
-       axios.post('/api/sampling/'+'?token='+ localStorage.getItem('token'), this.form)
+       axios.post('/api/sampling'+'?token='+ localStorage.getItem('token'), this.form)
           .then(() => {       
                   Toast.fire(
                       'Berjaya!',
