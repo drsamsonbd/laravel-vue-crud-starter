@@ -272,7 +272,7 @@
         ],
           modalShow: false,
 
-        perPage: 5,
+        perPage: 15,
         currentPage: 1,
         pageOptions: [5, 10, 15, 25, { value: 100, text: "Show a lot" }],
         sortBy: 'date_dc',
