@@ -157,7 +157,7 @@
       flex 
       striped 
       hover
-      @row-clicked="viewModal"
+      @row-clicked="viewPatient"
     >
      <template #cell(index)="data">
         {{ data.index + 1 }}
@@ -445,18 +445,12 @@
        
      },
 
-         viewModal(record) {
-          let self = this;
-            axios.get('/api/discharge/'+record.id+ '?token='+ localStorage.getItem('token'))
-  	     .then(function (response) {
-        self.views = response.data;
-        })
-        this.$refs['view-modal'].toggle('#toggle-btn')
-   
-  },
+         viewPatient(record) {
+        this.$router.push({name: 'details', params: { id: record.kp_passport } })
 
- },
-  }   
+   }   
+  }
+  }
 </script>
 
 
