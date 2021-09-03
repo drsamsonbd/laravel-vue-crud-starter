@@ -232,7 +232,7 @@
 
         vaccine(){
     let self = this;
-     axios.get('/api/vaccine/'+ '?token='+ localStorage.getItem('token'))
+     axios.get('/api/vaccine'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.vaccines = response.data;
       }).catch(function (error) {
