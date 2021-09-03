@@ -136,7 +136,8 @@ class AdmissionRecordController extends Controller
     {
         $case= DB::table('admissions')->where('admissions.id',$id)
         ->join('case_samplings','case_samplings.kp_passport','=','admissions.kp_passport')
-       ->select('case_samplings.*' )
+        ->join('patients','patients.kp_passport','=','admissions.kp_passport')
+       ->select('case_samplings.*','patients.name' )
        ->get()   ;     
    
        
