@@ -74,14 +74,26 @@
          
             <!-- /.col -->
             </div>
+
+            <div class="container">
+<center><h1>Vue laravel Chartjs</h1></center>
+         <PlanetChart/>
+       </div>
         </div>
     </section>
     </div>
 </template>
 
 <script>
+
+import PlanetChart from './charts/PlanetChart'
     export default {
-        mounted() {
+  components: {
+    PlanetChart
+  },
+      mounted() {
+
+      
            this.allCases();
            this.allDischarges();
            this.allAdmissions();

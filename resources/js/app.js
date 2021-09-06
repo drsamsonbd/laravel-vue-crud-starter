@@ -44,6 +44,8 @@ Vue.use(VueProgressBar, {
     height: '3px'
   });
 
+  import Chart from 'chart.js/auto';
+
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
@@ -77,7 +79,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 // Vue.use(IconsPlugin)
-
+window.Vue = require('vue').default;
 
 // import header
 Vue.component('container', require('./components/nav/TheContainer').default);
