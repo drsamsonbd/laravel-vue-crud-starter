@@ -382,7 +382,6 @@
           <!--Row-->
 </section>
   </div>
-
 </template>
 
 
@@ -494,8 +493,7 @@
  
 
     },
-        
-      computed:{
+       computed:{
       filtersearch(){
       return this.users.filter(user => {
          return user.name.match(this.searchTerm)
