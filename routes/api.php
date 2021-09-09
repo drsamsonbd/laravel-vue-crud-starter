@@ -1,5 +1,14 @@
 <?php
+Route::group([
 
+    'middleware' => 'api',
+    
+    
+    ], function () {
+//chartApi
+Route::apiResource('/admissionChart', 'Api\ChartController');
+
+});
 
 Route::group([
 
@@ -14,6 +23,9 @@ Route::post('logout', 'AuthController@logout');
 Route::post('refresh', 'AuthController@refresh');
 Route::post('me', 'AuthController@me');
 Route::get('/me/roles', 'AuthController@myRoles');
+
+//chartApi
+Route::apiResource('/admissionChart', 'Api\ChartController');
 
 });
 
@@ -65,4 +77,10 @@ Route::get('/patientKP/{id}', 'Api\AdmissionRecordController@updatePatient')->na
 Route::get('/patientCase/{id}', 'Api\AdmissionRecordController@updateCase')->name('updateCase');
 Route::get('/patientSampling/{id}', 'Api\AdmissionRecordController@updateSampling')->name('updateSampling');
 Route::get('/patientkp_passport/{id}', 'Api\AdmissionRecordController@kp_passport')->name('kp_passport');
+
+
+
+
+
 });
+

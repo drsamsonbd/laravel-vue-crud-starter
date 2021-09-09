@@ -44,7 +44,7 @@ Vue.use(VueProgressBar, {
     height: '3px'
   });
 
-  import Chart from 'chart.js/auto';
+  require('chart.js');
 
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)

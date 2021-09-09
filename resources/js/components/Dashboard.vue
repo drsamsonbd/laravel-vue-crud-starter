@@ -76,8 +76,8 @@
             </div>
 
             <div class="container">
-<center><h1>Vue laravel Chartjs</h1></center>
-         <PlanetChart/>
+<center><h1>Data Kemasukan Pesakit ke PKRC</h1></center>
+   <bar-chart v-if="loaded" :chart-data="counts" :chart-labels="labels"></bar-chart>
        </div>
         </div>
     </section>
@@ -86,21 +86,23 @@
 
 <script>
 
-import PlanetChart from './charts/PlanetChart'
+  import BarChart from './charts/BarChart'
     export default {
-  components: {
-    PlanetChart
-  },
+
+          name: 'BarChartContainer',
+      components: {BarChart},
+
       mounted() {
 
-      
            this.allCases();
            this.allDischarges();
            this.allAdmissions();
+          this.requestData();
         },
         data(){
             return{
-      itemize: [
+
+         itemize: [
           {
             text: 'Dashboard',
             href: true
@@ -110,7 +112,13 @@ import PlanetChart from './charts/PlanetChart'
         items:[],
         discharges:[],
         admissions:[],
-}
+      
+          package: null,
+          loaded: false,
+          counts: [],
+          labels: [],
+
+        }
         },
          computed:{
       filtersearch(){
@@ -163,9 +171,23 @@ import PlanetChart from './charts/PlanetChart'
         self.$router.push({ path: '/login' });
       });
     },
+    requestData () {
+    axios.get(`api/admissionChart/`)
+    .then(response => {
+      this.counts = response.data.map(data => data.count)
+      this.labels = response.data.map(data  => data.date)
+      
+      this.loaded = true
+    })
+   .catch(function (error) {
+        console.log(error);
+      });
+    }
 
-    }
-    }
+      }
+        } 
+  
+    
 
 </script>
 <style>
