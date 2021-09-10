@@ -25,7 +25,7 @@ class StatisticsController extends Controller
     public function BD()
     {
         $case= DB::table('case_regs')
-        ->where('date_report_KKM','=',Carbon::now())
+        ->where('date_report_KKM','=',Carbon::today())
         ->where('district','=','BELURAN')
         ->get(array(
             DB::raw('COUNT(*) as "count"')
@@ -70,7 +70,7 @@ class StatisticsController extends Controller
     public function TD()
     {
         $case= DB::table('case_regs')
-        ->where('date_report_KKM','=',Carbon::now())
+        ->where('date_report_KKM','=',Carbon::today())
         ->where('district','=','TELUPID')
         ->get(array(
             DB::raw('COUNT(*) as "count"')
