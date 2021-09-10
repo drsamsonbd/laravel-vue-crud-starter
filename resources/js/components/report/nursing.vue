@@ -1,6 +1,6 @@
   
 
-<template v-for="table">
+<template>
   <section class="content"> 
   <div>
  <b-breadcrumb :items="itemize"></b-breadcrumb>

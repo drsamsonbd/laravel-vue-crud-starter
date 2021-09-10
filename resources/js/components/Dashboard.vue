@@ -11,6 +11,172 @@
     <section class="content">
 
         <div class="container-fluid">
+           <div class="row">
+            <div class="col">
+              <h5><label for=""> BELURAN</label></h5>
+            </div>
+          </div> 
+
+<!-- /.statistik kesihatan -->
+   <div class="row ">
+
+              
+
+                <div class="col-12 col-sm-3 ">
+                    <router-link to="/active">
+                    <div class="info-box mb-4">
+                    
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-head-side-virus"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Kes Harian</span>
+                         <h4><b>
+                            {{statBD}}
+                           </b> </h4>
+                        </div>
+                        <!-- /.info-box-content -->
+                     
+                    </div>
+                    <!-- /.info-box --> </router-link>
+                </div>
+                          <div class="col-12 col-sm-3 ">
+                    <router-link to="/active">
+                    <div class="info-box mb-4">
+                    
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-viruses"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Kes Aktif</span>
+                         <h4><b>
+                            {{statBActive}}
+                           </b> </h4>
+                        </div>
+                        <!-- /.info-box-content -->
+                     
+                    </div>
+                    <!-- /.info-box --> </router-link>
+                </div>
+                
+                <!-- /.col -->
+                <div class="col-12 col-sm-3 ">
+                   <router-link to="/admission">
+                    <div class="info-box mb-4">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Kumulatif Kes</span>
+                             <h4><b>{{statBCumulative}}</b></h4>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                   </router-link>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                <!-- fix for small devices only -->
+                    <div class="col-12 col-sm-3 ">
+                   <router-link to="/discharge">
+                    <div class="info-box mb-4">
+                        <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-head-side-cough-slash"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Kematian</span>
+                             <h4><b>5</b></h4>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                   </router-link>
+                    <!-- /.info-box -->
+                </div>
+         
+            <!-- /.col -->
+            </div>
+
+<!-------------------------------------------TELUPID---------------------------------------------------------------------------------->
+             <div class="row">
+            <div class="col">
+              <h5><label for=""> TELUPID</label></h5>
+            </div>
+          </div> 
+
+<!-- /.statistik kesihatan -->
+     <div class="row ">
+
+              
+
+                <div class="col-12 col-sm-3 ">
+                    <router-link to="/active">
+                    <div class="info-box mb-4">
+                    
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-head-side-virus"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Kes Harian</span>
+                         <h4><b>
+                            {{items.length}}
+                           </b> </h4>
+                        </div>
+                        <!-- /.info-box-content -->
+                     
+                    </div>
+                    <!-- /.info-box --> </router-link>
+                </div>
+                          <div class="col-12 col-sm-3 ">
+                    <router-link to="/active">
+                    <div class="info-box mb-4">
+                    
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-head-side-virus"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Kes Aktif</span>
+                         <h4><b>
+                            {{items.length}}
+                           </b> </h4>
+                        </div>
+                        <!-- /.info-box-content -->
+                     
+                    </div>
+                    <!-- /.info-box --> </router-link>
+                </div>
+                
+                <!-- /.col -->
+                <div class="col-12 col-sm-3 ">
+                   <router-link to="/admission">
+                    <div class="info-box mb-4">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-head-side-cough-slash"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Kumulatif Kes</span>
+                             <h4><b>{{discharges.length}}</b></h4>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                   </router-link>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                <!-- fix for small devices only -->
+                    <div class="col-12 col-sm-3 ">
+                   <router-link to="/discharge">
+                    <div class="info-box mb-4">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Kematian</span>
+                             <h4><b>{{admissions.length}}</b></h4>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                   </router-link>
+                    <!-- /.info-box -->
+                </div>
+         
+            <!-- /.col -->
+            </div>
+<!-- End statistisik kesihatan-->
+
           <div class="row">
             <div class="col">
               <h5><label for=""> PKRC</label></h5>
@@ -20,7 +186,7 @@
 
               
 
-                <div class="col-12 col-sm-6 ">
+                <div class="col-12 col-sm-4 ">
                     <router-link to="/active">
                     <div class="info-box mb-4">
                     
@@ -39,7 +205,7 @@
                 </div>
                 
                 <!-- /.col -->
-                <div class="col-12 col-sm-6 ">
+                <div class="col-12 col-sm-4 ">
                    <router-link to="/admission">
                     <div class="info-box mb-4">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-head-side-cough-slash"></i></span>
@@ -56,8 +222,7 @@
                 <!-- /.col -->
 
                 <!-- fix for small devices only -->
-                <div class="clearfix hidden-md-up"></div>
-                    <div class="col-12 col-sm-6 ">
+                    <div class="col-12 col-sm-4 ">
                    <router-link to="/discharge">
                     <div class="info-box mb-4">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
@@ -75,11 +240,14 @@
             <!-- /.col -->
             </div>
 
-            <div class="container">
-<center><h1>Data Kemasukan Pesakit ke PKRC</h1></center>
+          <div class="row">
+               <div class="col-12 col-sm-6 ">
+<center><h1>Kemasukan Pesakit ke PKRC</h1></center>
    <bar-chart v-if="loaded" :chart-data="counts" :chart-labels="labels"></bar-chart>
        </div>
-        </div>
+       </div>    
+            </div>
+     
     </section>
     </div>
 </template>
@@ -98,6 +266,9 @@
            this.allDischarges();
            this.allAdmissions();
           this.requestData();
+          this.BD();
+          this.BActive();
+          this.BCumulative();
         },
         data(){
             return{
@@ -117,6 +288,9 @@
           loaded: false,
           counts: [],
           labels: [],
+          statBD:null,
+          statBActive: null,
+          statBCumulative: null,
 
         }
         },
@@ -140,6 +314,31 @@
  
   methods:{
 
+
+
+// BELURAN STAT
+// daily
+   BD(){
+      let self = this;
+     axios.get('/api/statisticsBD/')
+       .then(function (response) {
+        self.statBD = response.data[0].count;
+   });
+   },
+  BActive(){
+      let self = this;
+     axios.get('/api/statisticsBBW/')
+       .then(function (response) {
+        self.statBActive = response.data[0].count;
+   });
+   },
+  BCumulative(){
+     let self = this;
+     axios.get('/api/statisticsBC/')
+       .then(function (response) {
+        self.statBCumulative = response.data;
+   });
+   },
       allCases(){
     let self = this;
      axios.get('/api/active/'+ '?token='+ localStorage.getItem('token'))

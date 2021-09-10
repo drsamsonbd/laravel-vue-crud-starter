@@ -54,7 +54,7 @@ let newDischarge= require('./components/pkrc/forms/new/discharge.vue').default;
 let dailyreport = require('./components/report/index.vue').default;
 let nursingreport = require('./components/report/nursing.vue').default;
 let vaccinationreport = require('./components/report/vaccination.vue').default;
-
+let pkrcReport = require('./components/report/pkrcReport.vue').default;
 
 
 //profile component
@@ -123,6 +123,8 @@ export const routes = [
      { path: '/dailyreport', component: dailyreport, name:'dailyreport' },  
      { path: '/nursingreport', component: nursingreport, name:'nursingreport' },
      { path: '/vaccinationreport', component: vaccinationreport, name:'vaccinationreport' },
+     { path: '/pkrcReport', component: pkrcReport, name:'pkrcReport' },  
+
      //profile routes
      { path: '/profile', component: profile, name:'profile' },
 

@@ -77,8 +77,8 @@ data(){
            .catch(()=>{
             Toast.fire({
               icon: 'warning',
-              title: 'Invalid ID or password!'
-            });
+              title: 'Invalid email or password!'
+            });  
            })
         }
       }

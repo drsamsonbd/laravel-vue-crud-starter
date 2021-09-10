@@ -8,6 +8,13 @@ Route::group([
 //chartApi
 Route::apiResource('/admissionChart', 'Api\ChartController');
 
+
+
+//statistics APi
+Route::get('/statisticsBW', 'Api\StatisticsController@BW')->name('BW');
+Route::get('/statisticsBD', 'Api\StatisticsController@BD')->name('BD');
+Route::get('/statisticsBBW', 'Api\StatisticsController@BBW')->name('BBW');
+Route::get('/statisticsBC', 'Api\StatisticsController@BC')->name('BC');
 });
 
 Route::group([
@@ -58,6 +65,7 @@ Route::apiResource('/discharges', 'Api\DischargeRecordController');
 Route::apiResource('/review', 'Api\ReviewController');
 Route::apiResource('/reviewbyrn', 'Api\ReviewByRNController');
 Route::apiResource('/nursingreports', 'Api\NursingReportController');
+
 
 Route::get('/admission/kp/{id}', 'Api\AdmissionRecordController@kp_passport');
 Route::post('/password/update/{id}', 'Api\UserController@edit');

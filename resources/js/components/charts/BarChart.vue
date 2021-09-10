@@ -7,6 +7,7 @@
         type: Array | Object,
         required: false
       },
+      
       chartLabels: {
         type: Array,
         required: true
@@ -48,8 +49,8 @@
             pointBackgroundColor: 'white',
             borderWidth: 1,
             pointBorderColor: '#249EBF',
-            backgroundColor: '#f87979',
-            data: this.chartData
+            backgroundColor: '#99061c',
+            data: this.chartData 
           }
         ]
       }, this.options)
