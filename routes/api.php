@@ -15,6 +15,11 @@ Route::get('/statisticsBW', 'Api\StatisticsController@BW')->name('BW');
 Route::get('/statisticsBD', 'Api\StatisticsController@BD')->name('BD');
 Route::get('/statisticsBBW', 'Api\StatisticsController@BBW')->name('BBW');
 Route::get('/statisticsBC', 'Api\StatisticsController@BC')->name('BC');
+
+Route::get('/statisticsTW', 'Api\StatisticsController@TW')->name('TW');
+Route::get('/statisticsTD', 'Api\StatisticsController@TD')->name('TD');
+Route::get('/statisticsTBW', 'Api\StatisticsController@TBW')->name('TBW');
+Route::get('/statisticsTC', 'Api\StatisticsController@TC')->name('TC');
 });
 
 Route::group([

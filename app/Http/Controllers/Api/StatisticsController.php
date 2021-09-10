@@ -84,14 +84,9 @@ class StatisticsController extends Controller
           return response()->json($case);
     }
 
-    public function TM()
+    public function TC()
     {
-        $case= DB::table('case_regs')
-        ->where('date_report_KKM','>=',Carbon::now()->subdays(30))
-        ->where('district','=','TELUPID')
-        ->get(array(
-            DB::raw('COUNT(*) as "count"')
-       ));
-          return response()->json($case);
+        $case= case_reg::where( 'district', 'TELUPID')->max('cumulative');
+        return response()->json($case);
     }
 }

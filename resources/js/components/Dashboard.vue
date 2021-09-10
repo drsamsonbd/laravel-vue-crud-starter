@@ -101,7 +101,7 @@
           </div> 
 
 <!-- /.statistik kesihatan -->
-     <div class="row ">
+       <div class="row ">
 
               
 
@@ -114,7 +114,7 @@
                         <div class="info-box-content">
                             <span class="info-box-text">Kes Harian</span>
                          <h4><b>
-                            {{items.length}}
+                            {{statTD}}
                            </b> </h4>
                         </div>
                         <!-- /.info-box-content -->
@@ -126,12 +126,12 @@
                     <router-link to="/active">
                     <div class="info-box mb-4">
                     
-                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-head-side-virus"></i></span>
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-viruses"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Kes Aktif</span>
                          <h4><b>
-                            {{items.length}}
+                            {{statTActive}}
                            </b> </h4>
                         </div>
                         <!-- /.info-box-content -->
@@ -144,11 +144,11 @@
                 <div class="col-12 col-sm-3 ">
                    <router-link to="/admission">
                     <div class="info-box mb-4">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-head-side-cough-slash"></i></span>
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Kumulatif Kes</span>
-                             <h4><b>{{discharges.length}}</b></h4>
+                             <h4><b>{{statTCumulative}}</b></h4>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -161,11 +161,11 @@
                     <div class="col-12 col-sm-3 ">
                    <router-link to="/discharge">
                     <div class="info-box mb-4">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+                        <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-head-side-cough-slash"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Kematian</span>
-                             <h4><b>{{admissions.length}}</b></h4>
+                             <h4><b>3</b></h4>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -269,6 +269,9 @@
           this.BD();
           this.BActive();
           this.BCumulative();
+            this.TD();
+          this.TActive();
+          this.TCumulative();
         },
         data(){
             return{
@@ -291,6 +294,9 @@
           statBD:null,
           statBActive: null,
           statBCumulative: null,
+           statTD:null,
+          statTActive: null,
+          statTCumulative: null,
 
         }
         },
@@ -337,6 +343,28 @@
      axios.get('/api/statisticsBC/')
        .then(function (response) {
         self.statBCumulative = response.data;
+   });
+   },
+
+      TD(){
+      let self = this;
+     axios.get('/api/statisticsTD/')
+       .then(function (response) {
+        self.statTD = response.data[0].count;
+   });
+   },
+  TActive(){
+      let self = this;
+     axios.get('/api/statisticsTBW/')
+       .then(function (response) {
+        self.statTActive = response.data[0].count;
+   });
+   },
+  TCumulative(){
+     let self = this;
+     axios.get('/api/statisticsTC/')
+       .then(function (response) {
+        self.statTCumulative = response.data;
    });
    },
       allCases(){
