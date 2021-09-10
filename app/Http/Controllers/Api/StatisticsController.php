@@ -46,8 +46,13 @@ class StatisticsController extends Controller
 
     public function BC()
     {
-        $case= case_reg::where( 'district', 'BELURAN')->max('cumulative');
-          return response()->json($case);
+        $case=DB::table('case_regs')  
+       
+        ->where( 'district','=', 'BELURAN')
+        ->select('case_regs.cumulative')->max('cumulative');
+
+     
+          return ($case);
     }
 
 
