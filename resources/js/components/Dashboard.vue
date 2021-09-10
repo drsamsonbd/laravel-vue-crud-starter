@@ -82,7 +82,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Kematian</span>
-                             <h4><b>5</b></h4>
+                             <h4><b>9</b></h4>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
