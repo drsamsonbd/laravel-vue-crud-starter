@@ -23,7 +23,7 @@
               
 
                 <div class="col-12 col-sm-3 ">
-                    <router-link to="/active">
+                  
                     <div class="info-box mb-4">
                     
                         <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-head-side-virus"></i></span>
@@ -37,10 +37,10 @@
                         <!-- /.info-box-content -->
                      
                     </div>
-                    <!-- /.info-box --> </router-link>
+                   
                 </div>
                           <div class="col-12 col-sm-3 ">
-                    <router-link to="/active">
+                 
                     <div class="info-box mb-4">
                     
                         <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-viruses"></i></span>
@@ -54,12 +54,12 @@
                         <!-- /.info-box-content -->
                      
                     </div>
-                    <!-- /.info-box --> </router-link>
+             
                 </div>
                 
                 <!-- /.col -->
                 <div class="col-12 col-sm-3 ">
-                   <router-link to="/admission">
+                 
                     <div class="info-box mb-4">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
 
@@ -69,14 +69,14 @@
                         </div>
                         <!-- /.info-box-content -->
                     </div>
-                   </router-link>
+          
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
 
                 <!-- fix for small devices only -->
                     <div class="col-12 col-sm-3 ">
-                   <router-link to="/discharge">
+                 
                     <div class="info-box mb-4">
                         <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-head-side-cough-slash"></i></span>
 
@@ -86,7 +86,7 @@
                         </div>
                         <!-- /.info-box-content -->
                     </div>
-                   </router-link>
+             
                     <!-- /.info-box -->
                 </div>
          
@@ -106,7 +106,7 @@
               
 
                 <div class="col-12 col-sm-3 ">
-                    <router-link to="/active">
+                 
                     <div class="info-box mb-4">
                     
                         <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-head-side-virus"></i></span>
@@ -120,10 +120,8 @@
                         <!-- /.info-box-content -->
                      
                     </div>
-                    <!-- /.info-box --> </router-link>
                 </div>
                           <div class="col-12 col-sm-3 ">
-                    <router-link to="/active">
                     <div class="info-box mb-4">
                     
                         <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-viruses"></i></span>
@@ -137,12 +135,10 @@
                         <!-- /.info-box-content -->
                      
                     </div>
-                    <!-- /.info-box --> </router-link>
                 </div>
                 
                 <!-- /.col -->
                 <div class="col-12 col-sm-3 ">
-                   <router-link to="/admission">
                     <div class="info-box mb-4">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
 
@@ -152,14 +148,12 @@
                         </div>
                         <!-- /.info-box-content -->
                     </div>
-                   </router-link>
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
 
                 <!-- fix for small devices only -->
                     <div class="col-12 col-sm-3 ">
-                   <router-link to="/discharge">
                     <div class="info-box mb-4">
                         <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-head-side-cough-slash"></i></span>
 
@@ -169,7 +163,6 @@
                         </div>
                         <!-- /.info-box-content -->
                     </div>
-                   </router-link>
                     <!-- /.info-box -->
                 </div>
          
@@ -187,7 +180,6 @@
               
 
                 <div class="col-12 col-sm-4 ">
-                    <router-link to="/active">
                     <div class="info-box mb-4">
                     
                         <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-head-side-virus"></i></span>
@@ -201,12 +193,10 @@
                         <!-- /.info-box-content -->
                      
                     </div>
-                    <!-- /.info-box --> </router-link>
                 </div>
                 
                 <!-- /.col -->
                 <div class="col-12 col-sm-4 ">
-                   <router-link to="/admission">
                     <div class="info-box mb-4">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-head-side-cough-slash"></i></span>
 
@@ -216,14 +206,12 @@
                         </div>
                         <!-- /.info-box-content -->
                     </div>
-                   </router-link>
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
 
                 <!-- fix for small devices only -->
                     <div class="col-12 col-sm-4 ">
-                   <router-link to="/discharge">
                     <div class="info-box mb-4">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
 
@@ -233,7 +221,6 @@
                         </div>
                         <!-- /.info-box-content -->
                     </div>
-                   </router-link>
                     <!-- /.info-box -->
                 </div>
          
