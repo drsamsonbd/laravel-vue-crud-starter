@@ -20,6 +20,11 @@ Route::get('/statisticsTW', 'Api\StatisticsController@TW')->name('TW');
 Route::get('/statisticsTD', 'Api\StatisticsController@TD')->name('TD');
 Route::get('/statisticsTBW', 'Api\StatisticsController@TBW')->name('TBW');
 Route::get('/statisticsTC', 'Api\StatisticsController@TC')->name('TC');
+
+
+// autoreport
+Route::get('/CovidMale', 'Api\DailyCalcController@CovidMale')->name('CovidMale');
+
 });
 
 Route::group([

@@ -243,7 +243,16 @@
                       <textarea input type="text" class="form-control" id="notes" v-model="form.notes"></textarea>
                        
                     </div>
-                 
+                    <div v-if ="form.staff===null">
+                    <div class="form-group">
+                      <button type="submit"  class="btn btn-primary btn-block">Hantar</button>
+                    </div>
+                    </div>
+                        <div v-else>
+                    <div class="form-group">
+                      <button type="submit"  class="btn btn-primary btn-block">Kemaskini</button>
+                    </div>
+                    </div>
                     <hr>
 
                
