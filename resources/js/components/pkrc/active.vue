@@ -533,7 +533,7 @@
           { key: 'gender', label: 'Jantina', sortable: true, sortDirection: 'desc' },
            { key: 'adm_diagnosis', label: 'Diagnosis', sortable: true, sortDirection: 'desc' },
             { key: 'adm_stage', label: 'Stage', sortable: true, sortDirection: 'desc' },
-          { key: 'pkrc', label: 'PKRC', sortable: true, sortDirection: 'desc' },
+          { key: 'vaccine_type', label: 'Vaccination', sortable: true, sortDirection: 'desc' },
          //   { key: 'view', label: 'View' },
          { key: 'discharge', label: 'Discaj' },
         ],

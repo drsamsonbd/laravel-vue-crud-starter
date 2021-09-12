@@ -288,8 +288,8 @@
      
              
       patientUpdate(){
-       let id = this.forms.id
-       axios.patch('/api/sampling/'+id+ '?token='+ localStorage.getItem('token'), this.forms)
+       let id = this.form.id
+       axios.patch('/api/sampling/'+id+ '?token='+ localStorage.getItem('token'), this.form)
           .then(() => {       
                   Toast.fire(
                       'Berjaya!',
@@ -304,7 +304,7 @@
             });
           })
 
-     this.$router.push({name: 'details', params: { id:  this.$route.params.kp_passport} });
+     this.$router.push({name: 'details', params: { id:  this.form.kp_passport} });
      }, 
       goBack() {
           let $id = this.form.kp_passport
