@@ -20,18 +20,16 @@
                       <b-row>
                         <b-col>
                       <label>Nama</label>
-                      <input type="text" class="form-control" id="Name" v-model="admission.name" 
+                      <input type="text" class="form-control" id="Name" v-model="form.name" 
                       disabled>
                      </b-col>
                         <b-col>
                       <label>RN</label>
-                      <input type="text" class="form-control" id="ICnumber" v-model="admission.reg_number" disabled>
-                        <input type="text" class="form-control" id="ICnumber" v-model="form.reg_number" disabled hidden>
+                        <input type="text" class="form-control" id="ICnumber" v-model="form.reg_number" disabled >
                   </b-col>
                     <b-col>
                       <label>Nombor K/P atau Passport</label>
-                      <input type="text" class="form-control" id="ICnumber" v-model="admission.kp_passport" disabled >
-                       <input type="text" class="form-control" id="ICnumber" v-model="form.kp_passport" disabled hidden>
+                       <input type="text" class="form-control" id="ICnumber" v-model="form.kp_passport" disabled>
                   </b-col>
                       </b-row>
                       <b-row>
@@ -53,6 +51,7 @@
                         <option >Mati</option>
                         <option >Keluar Hospital dengan Risiko Sendiri</option>
                         <option >Keluar Hospital Tanpa Kebenaran</option>
+                         <option >Home Quarantine</option>
                         </select>
                     </b-col>
                   
@@ -73,10 +72,13 @@
                     </b-row>
                
                     <br>
-                    <div class="form-group">
-                      <button type="submit" id="myBtn" class="btn btn-primary btn-block" >Discaj</button>
-               
-                    </div>
+                 
+                         <div class="form-group">
+              <div class="card-footer  bg-white">      
+          <button  class="btn btn-outline-alternate " @click="goBack(id)">Back</button>     
+          <button type="submit" id="myBtn" class="btn btn-primary " @click="discajUpdate()">Kemaskini</button>
+             </div>
+                         </div>
                
                   </form> 
 
@@ -98,13 +100,14 @@
   export default {
        methods:{
          cases(){
-      
-    
+
         axios.get('/api/admissions/'+this.$route.params.id+ '?token='+ localStorage.getItem('token'))
-        .then(({data}) => (this.admission = data[0], this.form.reg_number = data[0].reg_number, this.form.kp_passport = data[0].kp_passport))
-      },
-           discaj(){
-          axios.post('/api/discharge'+ '?token='+ localStorage.getItem('token'), this.form)
+        .then(({data}) => (this.form = data[0]))
+       
+        },
+
+           discajUpdate(){
+          axios.patch('/api/discharge/'+ this.form.reg_number + '?token='+ localStorage.getItem('token'), this.form)
           .then(() => {
        
    
@@ -123,20 +126,20 @@
             })
           )
         }, 
+             goBack() {
+          let $id = this.form.kp_passport;
+       this.$router.push({name: 'details', params: { id: $id } })
+    },
        }, 
   
 
    
-     mounted(){
-
-
-      },
-
+ 
       
      data(){
       return{
         
-        
+          rn:null,
           admission:[],
           form:{
            name:null,

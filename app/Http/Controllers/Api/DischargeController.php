@@ -61,6 +61,8 @@ class dischargeController extends Controller
         return response()->json($discharge);
     }
 
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -90,8 +92,9 @@ class dischargeController extends Controller
         $data['diagnosis'] = $request -> diagnosis;
         $data['type_dc'] = $request -> type_dc;
         $data['notes'] = $request ->   notes;
-        DB::table('discharges')->where('id',$id)->update($data);
+        DB::table('discharges')->where('reg_number',$id)->update($data);
     }
+
 
     /**
      * Remove the specified resource from storage.

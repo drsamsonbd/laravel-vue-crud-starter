@@ -32,7 +32,6 @@ let admissionform= require('./components/pkrc/admissionform.vue').default;
 let pkrclist= require('./components/pkrc/index.vue').default;
 let discharge= require('./components/pkrc/discharge.vue').default;
 let dischargeform= require('./components/pkrc/dischargeform.vue').default;
-let dischargeupdate= require('./components/pkrc/dischargeupdate.vue').default;
 let review= require('./components/pkrc/review.vue').default;
 let vital= require('./components/pkrc/vital.vue').default;
 let active= require('./components/pkrc/active.vue').default;
@@ -99,7 +98,6 @@ export const routes = [
     { path: '/review', component: review, name:'review' },
     { path: '/discharge', component: discharge, name:'discharge' },
     { path: '/dischargeform', component: dischargeform, name:'dischargeform' },
-    { path: '/dischargeupdate', component: dischargeupdate, name:'dischargeupdate' },
     { path: '/vital', component: vital, name:'vital' },
     { path: '/admissionform', component: admissionform, name:'admissionform' },
     { path: '/active', component: active, name:'active' },

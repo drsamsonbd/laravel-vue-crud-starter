@@ -62,7 +62,7 @@ class AdmissionRecordController extends Controller
        'case_samplings.notes',
 
 
-        'discharges.date_dc', 'discharges.duration', 'discharges.type_dc', 'discharges.notes','reviews.date_review',
+        'discharges.date_dc', 'discharges.duration','discharges.diagnosis','discharges.type_dc', 'discharges.type_dc', 'discharges.notes','reviews.date_review',
        'reviews.reviewing_mo', )     
         ->get()     
        ;

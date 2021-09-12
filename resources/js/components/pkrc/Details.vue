@@ -288,7 +288,7 @@
 
 </div>
 <div v-else> 
-  <router-link :to="{name: 'updateSampling', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-edit"></i> </router-link>
+  <router-link :to="{name: 'updateDischarge', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-edit"></i> </router-link>
 </div>
       </template>
     </b-table>          
