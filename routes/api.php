@@ -57,6 +57,17 @@ Route::get('/stageFiveVaccineOne', 'Api\DailyCalcController@stageFiveVaccineOne'
 Route::get('/stageFiveVaccineTwo', 'Api\DailyCalcController@stageFiveVaccineTwo')->name('stageFiveccineTwo');
 Route::get('/stageFiveVaccineNone','Api\DailyCalcController@stageFiveVaccineNone')->name('stageFiveVaccineNone');
 
+Route::get('/PUIMale', 'Api\DailyCalcController@PUIMale')->name('PUIMale');
+Route::get('/PUIFemale', 'Api\DailyCalcController@PUIFemale')->name('PUIFemale');
+Route::get('/PUIMalePaeds', 'Api\DailyCalcController@PUIMalePaeds')->name('PUIMalePaeds');
+Route::get('/PUIFemalePaeds', 'Api\DailyCalcController@PUIFemalePaeds')->name('PUIFemalePaeds');
+
+
+
+Route::get('/newAdmissionPUI', 'Api\DailyCalcController@newAdmissionPUI')->name('newAdmissionPUI');
+Route::get('/stepUpPUI', 'Api\DailyCalcController@stepUpPUI')->name('stepUpPUI');
+Route::get('/statDischargesPUI', 'Api\DailyCalcController@statDischargesPUI')->name('statDischargesPUI');
+Route::get('/BOR', 'Api\DailyCalcController@BOR')->name('BOR');
 });
 
 Route::group([

@@ -113,7 +113,7 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/dailyreport" class="nav-link">
+            <router-link to="/pkrcManual" class="nav-link">
            
               <p id="submenu">
                 PKRC

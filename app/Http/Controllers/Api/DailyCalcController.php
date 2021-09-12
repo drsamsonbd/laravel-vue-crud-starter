@@ -1181,4 +1181,115 @@ class DailyCalcController extends Controller
           return response()->json($statistic);
     }
 
+
+    public function newAdmissionPUI(Request $request)
+
+    {      
+        $admission= DB::table('admissions')
+       ->join('patients','admissions.kp_passport','patients.kp_passport')
+       ->leftjoin('discharges','admissions.reg_number','=','discharges.reg_number')
+       
+       ->where('admissions.adm_diagnosis', '=', 'PUI')
+       ->where('admissions.pkrc', '=', $request -> pkrc);
+
+        $statistic =  $admission ->where('admissions.date', '=', $request -> datereporting)
+
+        ->where('discharges.date_dc', '>', $request -> datereporting)
+
+        ->orWhere(function($admission )use ($request) 
+        
+        { 
+            $admission
+            ->where('admissions.adm_diagnosis', '=', 'PUI')
+            ->where('admissions.date', '=', $request -> datereporting)
+            ->where('discharges.reg_number')
+            ->where('admissions.pkrc', '=', $request -> pkrc);
+        })
+     //  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','admissions.date','admissions.adm_stage' ,
+     //  'discharges.date_dc')
+     //  ->get();
+     ->get(array(
+        DB::raw('COUNT(*) as "count"')
+   ));
+          return response()->json($statistic);
+    }
+
+    
+    public function stepUpPUI(Request $request)
+
+    {      
+        $admission= DB::table('admissions')
+       ->join('patients','admissions.kp_passport','patients.kp_passport')
+       ->leftjoin('discharges','admissions.reg_number','=','discharges.reg_number')
+       ->where('admissions.adm_diagnosis', '=', 'PUI')
+   
+       ->where('admissions.pkrc', '=', $request -> pkrc);
+
+        $statistic =  $admission ->where('admissions.date', '<', $request -> datereporting)
+
+        ->where('discharges.date_dc', '=', $request -> datereporting)
+        ->where('discharges.type_dc', '=', 'Ditukar ke Hospital Lain')
+    
+     //  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','admissions.date','admissions.adm_stage' ,
+     //  'discharges.date_dc')
+     //  ->get();
+     ->get(array(
+        DB::raw('COUNT(*) as "count"')
+   ));
+          return response()->json($statistic);
+    }
+        
+    public function statDischargesPUI(Request $request)
+
+    {      
+        $admission= DB::table('admissions')
+       ->join('patients','admissions.kp_passport','patients.kp_passport')
+       ->leftjoin('discharges','admissions.reg_number','=','discharges.reg_number')
+
+       
+       ->where('admissions.adm_diagnosis', '=', 'PUI')
+       ->where('admissions.pkrc', '=', $request -> pkrc);
+
+        $statistic =  $admission ->where('admissions.date', '<', $request -> datereporting)
+
+        ->where('discharges.date_dc', '=', $request -> datereporting)
+        ->where('discharges.type_dc', '=', 'Balik ke Rumah')
+    
+     //  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','admissions.date','admissions.adm_stage' ,
+     //  'discharges.date_dc')
+     //  ->get();
+     ->get(array(
+        DB::raw('COUNT(*) as "count"')
+   ));
+          return response()->json($statistic);
+    }
+
+    public function BOR(Request $request)
+
+    {
+       
+        $admission= DB::table('admissions')
+       ->join('patients','admissions.kp_passport','patients.kp_passport')
+       ->leftjoin('discharges','admissions.reg_number','=','discharges.reg_number')       
+        ->where('admissions.pkrc', '=', $request -> pkrc);
+
+        $statistic =  $admission ->where('admissions.date', '<=', $request -> datereporting)
+
+        ->where('discharges.date_dc', '>', $request -> datereporting)
+
+        ->orWhere(function($admission )use ($request) 
+        
+        { 
+            $admission  
+            ->where('admissions.date', '<=', $request -> datereporting)
+         
+            ->where('discharges.reg_number')
+            ->where('admissions.pkrc', '=', $request -> pkrc);
+        });
+        $total= $statistic->count();
+
+       
+       $bor= ($total/30*100);
+          return response()->json(round($bor,2));
+    }
 }

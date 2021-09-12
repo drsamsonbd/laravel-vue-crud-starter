@@ -115,14 +115,7 @@
     <div class="col-sm-1">
    <input type="text" class="form-control form-control-sm" id="s1" v-model="non_local" disabled>
     </div>
-        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Penjaga </b> </label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="carer" disabled>
-    </div>
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b>BOR</b></label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="bor" disabled>
-    </div>
+     
   </div>
  <hr>
   <h6><b><u>Bilangan Pesakit Menerima Vaksin </u></b></h6>
@@ -228,31 +221,16 @@
   </div> 
 <hr>
                <div class="form-group row">
-    <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm"> <code></code> <b>Bilangan Staf Bertugas </b> </label>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b>BOR</b></label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm"  id="male" v-model="staff">
-      
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="bor" disabled>
     </div>
-   
 
-  </div> <hr>
+
+
+  </div>
               
-                    <div class="form-group">
-                      <label> <code></code>Nota</label>
-                      <textarea input type="text" class="form-control" id="notes" v-model="notes"></textarea>
-                       
-                    </div>
-                    <div v-if ="staff===null">
-                    <div class="form-group">
-                      <button type="submit"  class="btn btn-primary btn-block">Hantar</button>
-                    </div>
-                    </div>
-                        <div v-else>
-                    <div class="form-group">
-                      <button type="submit"  class="btn btn-primary btn-block">Kemaskini</button>
-                    </div>
-                    </div>
-                    <hr>
+         
 
                
           </div>
@@ -310,7 +288,7 @@
           carer: null, 
           local: null, 
           non_local: null, 
-          bor: this.male+this.female, 
+          bor: null, 
           stage_1: null, 
           stage_2: null, 
           stage_3: null, 
@@ -519,6 +497,9 @@
      }) ,           axios.get('/api/stepUpPUI/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
       .then(function (response) {
         self.pui_step_up = response.data[0].count;
+     }) ,           axios.get('/api/BOR/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.bor = response.data;
      }) 
     }
   }
