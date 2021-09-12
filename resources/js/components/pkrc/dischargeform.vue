@@ -53,6 +53,7 @@
                         <option >Mati</option>
                         <option >Keluar Hospital dengan Risiko Sendiri</option>
                         <option >Keluar Hospital Tanpa Kebenaran</option>
+                         <option >Home Quarantine</option>
                         </select>
                     </b-col>
                   

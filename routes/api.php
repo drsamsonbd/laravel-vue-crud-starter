@@ -24,6 +24,38 @@ Route::get('/statisticsTC', 'Api\StatisticsController@TC')->name('TC');
 
 // autoreport
 Route::get('/CovidMale', 'Api\DailyCalcController@CovidMale')->name('CovidMale');
+Route::get('/CovidFemale', 'Api\DailyCalcController@CovidFemale')->name('CovidFemale');
+Route::get('/CovidMalePaeds', 'Api\DailyCalcController@CovidMalePaeds')->name('CovidMalePaeds');
+Route::get('/CovidFemalePaeds', 'Api\DailyCalcController@CovidFemalePaeds')->name('CovidFemalePaeds');
+Route::get('/stageOne', 'Api\DailyCalcController@stageOne')->name('stageOne');
+Route::get('/stageTwo', 'Api\DailyCalcController@stageTwo')->name('stageTwo');
+Route::get('/stageThree', 'Api\DailyCalcController@stageThree')->name('stageThree');
+Route::get('/stageFour', 'Api\DailyCalcController@stageFour')->name('stageFour');
+Route::get('/stageFive', 'Api\DailyCalcController@stageFive')->name('stageFive');
+Route::get('/newAdmission', 'Api\DailyCalcController@newAdmission')->name('newAdmission');
+Route::get('/stepUp', 'Api\DailyCalcController@stepUp')->name('stepUp');
+Route::get('/statDischarges', 'Api\DailyCalcController@statDischarges')->name('statDischarges');
+Route::get('/HQ', 'Api\DailyCalcController@HQ')->name('HQ');
+Route::get('/WN', 'Api\DailyCalcController@WN')->name('WN');
+Route::get('/BWN', 'Api\DailyCalcController@BWN')->name('BWN');
+
+Route::get('/stageOneVaccineOne', 'Api\DailyCalcController@stageOneVaccineOne')->name('stageOneVaccineOne');
+Route::get('/stageOneVaccineTwo', 'Api\DailyCalcController@stageOneVaccineTwo')->name('stageOneVaccineTwo');
+Route::get('/stageOneVaccineNone', 'Api\DailyCalcController@stageOneVaccineNone')->name('stageOneVaccineNone');
+Route::get('/stageTwoVaccineOne', 'Api\DailyCalcController@stageTwoVaccineOne')->name('stageTwoVaccineOne');
+Route::get('/stageTwoVaccineTwo', 'Api\DailyCalcController@stageTwoVaccineTwo')->name('stageTwoVaccineTwo');
+Route::get('/stageTwoVaccineNone', 'Api\DailyCalcController@stageTwoVaccineNone')->name('stageTwoVaccineNone');
+
+Route::get('/stageThreeVaccineOne', 'Api\DailyCalcController@stageThreeVaccineOne')->name('stageThreeVaccineOne');
+Route::get('/stageThreeVaccineTwo', 'Api\DailyCalcController@stageThreeVaccineTwo')->name('stageThreeVaccineTwo');
+Route::get('/stageThreeVaccineNone','Api\DailyCalcController@stageThreeVaccineNone')->name('stageThreeVaccineNone');
+
+Route::get('/stageFourVaccineOne', 'Api\DailyCalcController@stageFourVaccineOne')->name('stageFourVaccineOne');
+Route::get('/stageFourVaccineTwo', 'Api\DailyCalcController@stageFourVaccineTwo')->name('stageFourccineTwo');
+Route::get('/stageFourVaccineNone','Api\DailyCalcController@stageFourVaccineNone')->name('stageFourVaccineNone');
+Route::get('/stageFiveVaccineOne', 'Api\DailyCalcController@stageFiveVaccineOne')->name('stageFiveVaccineOne');
+Route::get('/stageFiveVaccineTwo', 'Api\DailyCalcController@stageFiveVaccineTwo')->name('stageFiveccineTwo');
+Route::get('/stageFiveVaccineNone','Api\DailyCalcController@stageFiveVaccineNone')->name('stageFiveVaccineNone');
 
 });
 

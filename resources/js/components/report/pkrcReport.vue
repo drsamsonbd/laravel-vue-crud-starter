@@ -21,6 +21,7 @@
       id="inline-form-input-name"
       class="mb-4 mr-sm-2 mb-sm-0"
       type="date"
+      v-model="datereporting"
     ></b-form-input>
 
 
@@ -28,7 +29,7 @@
     <b-form-select
       id="inline-form-custom-select-pref"
       class="mb-3 mr-sm-2 mb-sm-0"
-      
+      v-model="selectedpkrc"
     > <option v-for="pkrc in pkrcs" v-bind:key="pkrc.pkrc" >{{pkrc.pkrc }} </option></b-form-select>
 
    
@@ -40,22 +41,22 @@
                            <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Dewasa Lelaki </b> </label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.male">
+      <input type="text" class="form-control form-control-sm"  id="male" v-model="male" disabled>
       
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b>Dewasa Perempuan </b></label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm" id="female" v-model="form.female" >
+      <input type="text" class="form-control form-control-sm" id="female" v-model="female" disabled>
       
     </div>
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Kanak-kanak Lelaki </b> </label>
     <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="pmale" v-model="form.paeds_male">
+       <input type="text" class="form-control form-control-sm" id="pmale" v-model="paeds_male" disabled>
       
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b>Kanak-kanak Perempuan </b></label>
     <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="pfemale" v-model="form.paeds_female">
+       <input type="text" class="form-control form-control-sm" id="pfemale" v-model="paeds_female" disabled >
       
     </div>
   </div>
@@ -65,19 +66,19 @@
                            <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Stage 1 </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_1">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="stage_1" disabled>
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b> Stage 2 </b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_2">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="stage_2" disabled>
     </div>
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Stage 3 </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_3">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="stage_3" disabled>
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b>Stage 4</b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_4">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="stage_4" disabled>
     </div>
   </div>
   
@@ -86,43 +87,41 @@
                            <div class="form-group row">
      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Kemasukan Baru </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.new_admission">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="new_admission" disabled>
     </div>
-    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code></code> <b>Step Up </b> </label>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Step Up </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.step_up">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="step_up" disabled>
     </div>
-    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"><code></code> <b> Discaj </b></label>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b> Discaj </b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.discharged">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="discharged" disabled>
     </div>
-        <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code></code> <b>HQ </b> </label>
+        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>HQ </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.home_q">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="home_q" disabled>
     </div>
-    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"><code></code> <b>Pending Admission</b></label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.pending">
-    </div>
+ 
+
   </div>
 
     <h6><b>Jumlah</b></h6>
                            <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Warganegara </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.local">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="local" disabled>
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b> BWN </b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.non_local">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="non_local" disabled>
     </div>
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Penjaga </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.carer">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="carer" disabled>
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b>BOR</b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.bor">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="bor" disabled>
     </div>
   </div>
  <hr>
@@ -131,12 +130,12 @@
                            <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Dos 1 </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_1_1">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="stage_1_1" disabled>
     </div> <div class="col-sm-1">
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b> Dos 2 </b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_1_2">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="stage_1_2" disabled>
     </div>
        
   </div>        
@@ -145,14 +144,14 @@
                            <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Dos 1 </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_2_1">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="stage_2_1" disabled>
     </div> <div class="col-sm-1">
     </div>
 
    
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b> Dos 2 </b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_2_2">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="stage_2_2" disabled>
     </div>
        
   </div>        
@@ -160,12 +159,12 @@
                            <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Dos 1 </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_3_1">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="stage_3_1" disabled>
     </div> <div class="col-sm-1">
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b> Dos 2 </b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_3_2">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="stage_3_2" disabled>
     </div>
        
   </div>    
@@ -173,12 +172,12 @@
                            <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Dos 1 </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_4_1">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="stage_4_1" disabled>
     </div> <div class="col-sm-1">
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b> Dos 2 </b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_4_2">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="stage_4_2" disabled>
     </div>
        
   </div>   
@@ -188,22 +187,22 @@
                            <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Dewasa Lelaki </b> </label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.pui_adult_male">
+      <input type="text" class="form-control form-control-sm"  id="male" v-model="pui_adult_male" disabled>
       
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b>Dewasa Perempuan </b></label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm" id="female" v-model="form.pui_adult_female" >
+      <input type="text" class="form-control form-control-sm" id="female" v-model="pui_adult_female" disabled >
       
     </div>
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Kanak-kanak Lelaki </b> </label>
     <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="pmale" v-model="form.pui_paeds_male">
+       <input type="text" class="form-control form-control-sm" id="pmale" v-model="pui_paeds_male" disabled>
       
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b>Kanak-kanak Perempuan </b></label>
     <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="pfemale" v-model="form.pui_paeds_female">
+       <input type="text" class="form-control form-control-sm" id="pfemale" v-model="pui_paeds_female" disabled>
       
     </div>
   </div> 
@@ -212,17 +211,17 @@
                            <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Kemasukan Baru </b> </label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.pui_new">
+      <input type="text" class="form-control form-control-sm"  id="male" v-model="pui_new" disabled>
       
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b>Discaj </b></label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm" id="female" v-model="form.pui_discharged" >
+      <input type="text" class="form-control form-control-sm" id="female" v-model="pui_discharged" disabled>
       
     </div>
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Kematian </b> </label>
     <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="pmale" v-model="form.pui_death">
+       <input type="text" class="form-control form-control-sm" id="pmale" v-model="pui_step_up" disabled>
       
     </div>
 
@@ -231,7 +230,7 @@
                <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm"> <code></code> <b>Bilangan Staf Bertugas </b> </label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.staff">
+      <input type="text" class="form-control form-control-sm"  id="male" v-model="staff">
       
     </div>
    
@@ -240,10 +239,10 @@
               
                     <div class="form-group">
                       <label> <code></code>Nota</label>
-                      <textarea input type="text" class="form-control" id="notes" v-model="form.notes"></textarea>
+                      <textarea input type="text" class="form-control" id="notes" v-model="notes"></textarea>
                        
                     </div>
-                    <div v-if ="form.staff===null">
+                    <div v-if ="staff===null">
                     <div class="form-group">
                       <button type="submit"  class="btn btn-primary btn-block">Hantar</button>
                     </div>
@@ -285,7 +284,7 @@
       }
       },
      mounted(){
-       this.pkrc();
+       this.pkrclist();
 
 
 
@@ -294,8 +293,9 @@
       return{
       
           pkrcs:[],
-         
-          form:{
+          selectedpkrc: null,
+          datereporting: null,       
+     
           date: null, 
           time: null, 
           pkrc: null, 
@@ -303,15 +303,14 @@
           female: null, 
           paeds_male: null, 
           paeds_female: null, 
-          new_adm: null, 
+          new_admission: null, 
           step_up: null, 
           discharged: null, 
           home_q: null, 
-          pending: null, 
           carer: null, 
           local: null, 
           non_local: null, 
-          bor: null, 
+          bor: this.male+this.female, 
           stage_1: null, 
           stage_2: null, 
           stage_3: null, 
@@ -334,9 +333,9 @@
           pui_paeds_female: null, 
           pui_new: null, 
           pui_discharged: null, 
-          pui_death: null, 
+          pui_step_up: null, 
           notes: null, 
-          },
+         
       
         itemize: [
           {
@@ -391,11 +390,15 @@
       },
       rows() {
         return this.items.length
+      },
+
+        bor() {
+        return this.items.length
       }
     },
  
   methods:{
-       pkrc(){
+       pkrclist(){
     let self = this;
      axios.get('/api/pkrc/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
@@ -405,8 +408,121 @@
         self.$router.push({ path: '/login' });
       });
     },
-
- },
+    report(){
+    let self = this;
+     axios.get('/api/CovidFemale/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.female  = response.data[0].count;
+      }),
+        axios.get('/api/CovidMale/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.male  = response.data[0].count;
+      }),
+        axios.get('/api/CovidMalePaeds/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.paeds_male  = response.data[0].count;
+      })
+     ,
+        axios.get('/api/CovidFemalePaeds/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.paeds_female  = response.data[0].count;
+      })
+        ,
+        axios.get('/api/stageOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.stage_1  = response.data[0].count;
+      })    ,
+        axios.get('/api/stageTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.stage_2  = response.data[0].count;
+      })    ,
+        axios.get('/api/stageThree/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.stage_3  = response.data[0].count;
+      })    ,
+        axios.get('/api/stageFour/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.stage_4  = response.data[0].count;
+      })    ,
+        axios.get('/api/stageFive/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.stage_5  = response.data[0].count;
+      })
+       ,
+        axios.get('/api/newAdmission/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.new_admission  = response.data[0].count;
+      }),
+        axios.get('/api/stepUp/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.step_up  = response.data[0].count;
+      }),
+            axios.get('/api/statDischarges/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.discharged  = response.data[0].count;
+      }) ,           axios.get('/api/HQ/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.home_q  = response.data[0].count;
+      })
+       ,           axios.get('/api/WN/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.local  = response.data[0].count;
+      })
+      ,           axios.get('/api/BWN/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.non_local = response.data[0].count;
+      })
+       ,           axios.get('/api/stageOneVaccineOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.stage_1_1 = response.data[0].count;
+      })
+         ,           axios.get('/api/stageOneVaccineTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.stage_1_2 = response.data[0].count;
+      })   ,           axios.get('/api/stageTwoVaccineOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.stage_2_1 = response.data[0].count;
+      }) ,           axios.get('/api/stageTwoVaccineTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.stage_2_2 = response.data[0].count;
+     }) ,           axios.get('/api/stageThreeVaccineOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.stage_3_1 = response.data[0].count;
+     })  ,           axios.get('/api/stageThreeVaccineTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.stage_3_2 = response.data[0].count;
+     }) ,           axios.get('/api/stageFourVaccineOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.stage_4_1 = response.data[0].count;
+     })   ,           axios.get('/api/stageFourVaccineTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.stage_4_2 = response.data[0].count;
+     })  ,           axios.get('/api/PUIMale/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.pui_adult_male = response.data[0].count;
+     })  ,           axios.get('/api/PUIFemale/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.pui_adult_female = response.data[0].count;
+     })  ,           axios.get('/api/PUIMalePaeds/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.pui_paeds_male = response.data[0].count;
+     }) 
+      ,           axios.get('/api/PUIFemalePaeds/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.pui_paeds_female = response.data[0].count;
+     })   ,           axios.get('/api/newAdmissionPUI/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.pui_new = response.data[0].count;
+     })    ,           axios.get('/api/statDischargesPUI/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.pui_discharged = response.data[0].count;
+     }) ,           axios.get('/api/stepUpPUI/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.pui_step_up = response.data[0].count;
+     }) 
+    }
+  }
+ 
   }   
 </script>
 
