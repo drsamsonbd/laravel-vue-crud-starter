@@ -370,9 +370,6 @@
         return this.items.length
       },
 
-        bor() {
-        return this.items.length
-      }
     },
  
   methods:{

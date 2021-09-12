@@ -288,12 +288,12 @@
       
     
        }); 
-        let $admid = this.$route.params.id;
+        let $admid = this.forms.kp_passport;
        this.$router.push({name: 'details', params: { id: $admid} })
        
      },
       goBack() {
-          let $id = this.$route.params.id;
+          let $id = this.forms.kp_passport;
        this.$router.push({name: 'details', params: { id: $id } })
     },
 
