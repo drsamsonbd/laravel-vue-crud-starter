@@ -229,10 +229,19 @@
 
           <div class="row">
                <div class="col-12 col-sm-6 ">
-<center><h1>Kemasukan Pesakit ke PKRC</h1></center>
+<center><h4>Kemasukan Pesakit ke PKRC</h4></center>
    <bar-chart v-if="loaded" :chart-data="counts" :chart-labels="labels"></bar-chart>
        </div>
        </div>    
+<br>
+          <div class="row">
+               <div class="col-12 col-sm-12 ">
+<center><h4>Laporan Harian PKRC</h4></center>
+   <LaporanHarian/>
+       </div>
+       </div>    
+
+
             </div>
      
     </section>
@@ -242,11 +251,11 @@
 <script>
 
   import BarChart from './charts/BarChart'
+  import LaporanHarian from './report/LaporanHarian';
     export default {
-
-          name: 'BarChartContainer',
-      components: {BarChart},
-
+      components:{
+     BarChart, LaporanHarian
+      },
       mounted() {
 
            this.allCases();

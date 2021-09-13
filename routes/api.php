@@ -22,6 +22,8 @@ Route::get('/statisticsTBW', 'Api\StatisticsController@TBW')->name('TBW');
 Route::get('/statisticsTC', 'Api\StatisticsController@TC')->name('TC');
 
 
+
+
 // autoreport
 Route::get('/CovidMale', 'Api\DailyCalcController@CovidMale')->name('CovidMale');
 Route::get('/CovidFemale', 'Api\DailyCalcController@CovidFemale')->name('CovidFemale');
@@ -68,6 +70,13 @@ Route::get('/newAdmissionPUI', 'Api\DailyCalcController@newAdmissionPUI')->name(
 Route::get('/stepUpPUI', 'Api\DailyCalcController@stepUpPUI')->name('stepUpPUI');
 Route::get('/statDischargesPUI', 'Api\DailyCalcController@statDischargesPUI')->name('statDischargesPUI');
 Route::get('/BOR', 'Api\DailyCalcController@BOR')->name('BOR');
+
+
+//LAPORAN DASHBOARD
+Route::get('/laporanDewasaLelaki', 'Api\LaporanHarianController@DewasaLelaki')->name('DewasaLelaki');
+Route::get('/laporanDewasaPerempuan', 'Api\LaporanHarianController@DewasaPerempuan')->name('DewasaPerempuan');
+Route::get('/laporanDewasaPerempuanEmas', 'Api\LaporanHarianController@DewasaPerempuanEmas')->name('DewasaPerempuanEmas');
+Route::get('/laporanDewasaLelakiEmas', 'Api\LaporanHarianController@DewasaPerempuanEmas')->name('DewasaPerempuanEmas');
 });
 
 Route::group([

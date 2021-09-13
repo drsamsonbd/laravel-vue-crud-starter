@@ -13,7 +13,7 @@ class ChartController extends Controller
 {
     public function index()
     {
-        for ($i=0; $i<=30; $i++) {
+        for ($i=0; $i<=45; $i++) {
             $dates[] = Carbon::now()->subDays($i)->format('Y-m-d');
          }
          
