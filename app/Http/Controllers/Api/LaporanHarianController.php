@@ -282,6 +282,36 @@ $admission= DB::table('admissions')
    return response()->json($statistic);
 }
 
+public function JumlahHarian(Request $request)
+{
+$admission= DB::table('admissions')
+->join('patients','admissions.kp_passport','patients.kp_passport')
+->leftjoin('discharges','admissions.reg_number','=','discharges.reg_number')
+
+->where('admissions.pkrc', '=', $request -> pkrc);
+
+
+ $statistic =  $admission ->where('admissions.date', '<=', $request -> datereporting)
+
+ ->where('discharges.date_dc', '>', $request -> datereporting)
+
+ ->orWhere(function($admission )use ($request) 
+ 
+ { 
+     $admission
+    
+     ->where('admissions.date', '<=', $request -> datereporting)
+     ->where('discharges.reg_number')
+     ->where('admissions.pkrc', '=', $request -> pkrc);
+ })
+//  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','admissions.date','admissions.adm_stage' ,
+//  'discharges.date_dc')
+//  ->get();
+->get(array(
+ DB::raw('COUNT(*) as "count"')
+));
+   return response()->json($statistic);
+}
 
 public function Jumlah(Request $request)
 {

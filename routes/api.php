@@ -76,7 +76,15 @@ Route::get('/BOR', 'Api\DailyCalcController@BOR')->name('BOR');
 Route::get('/laporanDewasaLelaki', 'Api\LaporanHarianController@DewasaLelaki')->name('DewasaLelaki');
 Route::get('/laporanDewasaPerempuan', 'Api\LaporanHarianController@DewasaPerempuan')->name('DewasaPerempuan');
 Route::get('/laporanDewasaPerempuanEmas', 'Api\LaporanHarianController@DewasaPerempuanEmas')->name('DewasaPerempuanEmas');
-Route::get('/laporanDewasaLelakiEmas', 'Api\LaporanHarianController@DewasaPerempuanEmas')->name('DewasaPerempuanEmas');
+Route::get('/laporanDewasaLelakiEmas', 'Api\LaporanHarianController@DewasaLelakiEmas')->name('DewasaLelakiEmas');
+Route::get('/laporanKanakLelaki', 'Api\LaporanHarianController@KanakLelaki')->name('KanakLelaki');
+Route::get('/laporanKanakPerempuan', 'Api\LaporanHarianController@KanakPerempuan')->name('KanakPerempuan');
+Route::get('/laporanLelaki', 'Api\LaporanHarianController@Lelaki')->name('Lelaki');
+Route::get('/laporanPerempuan', 'Api\LaporanHarianController@Perempuan')->name('Perempuan');
+Route::get('/laporanJumlah', 'Api\LaporanHarianController@Jumlah')->name('Jumlah');
+Route::get('/laporanJumlahHarian', 'Api\LaporanHarianController@JumlahHarian')->name('JumlahHarian');
+Route::get('/laporanDischarges', 'Api\LaporanHarianController@Discharges')->name('Discharges');
+Route::get('/laporanStepUp', 'Api\LaporanHarianController@StepUp')->name('StepUp');
 });
 
 Route::group([

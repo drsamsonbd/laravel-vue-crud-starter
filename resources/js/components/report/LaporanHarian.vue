@@ -74,11 +74,11 @@
                            <div class="form-group row">
      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Warga Emas Lelaki </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="new_admission" disabled>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="senior_male" disabled>
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Warga Emas Perempuan </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="step_up" disabled>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="senior_female" disabled>
     </div>
                      
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Warganegara </b> </label>
@@ -95,15 +95,15 @@
 
             <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Pecahan Lelaki </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="new_admission" disabled>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="total_male" disabled>
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Pecahan Perempuan </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="step_up" disabled>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="total_female" disabled>
     </div>
       <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm"><code></code> <b> Jumlah Keselurahan Pesakit </b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="non_local" disabled>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="total" disabled>
     </div>
    
      
@@ -114,17 +114,17 @@
                            <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Jumlah Dimasukkan </b> </label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm"  id="male" v-model="pui_adult_male" disabled>
+      <input type="text" class="form-control form-control-sm"  id="male" v-model="cumulative_admissions" disabled>
       
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code></code> <b>Jumlah Discaj </b></label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm" id="female" v-model="pui_adult_female" disabled >
+      <input type="text" class="form-control form-control-sm" id="female" v-model="cumulative_discharges" disabled >
       
     </div>
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Step Up ke Hospital </b> </label>
     <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="pmale" v-model="pui_paeds_male" disabled>
+       <input type="text" class="form-control form-control-sm" id="pmale" v-model="step_up" disabled>
       
     </div>
     
@@ -145,7 +145,7 @@
             </div>  
 
    </div>
- </div>
+
 
   </section>
 
@@ -184,69 +184,17 @@
           female: null, 
           paeds_male: null, 
           paeds_female: null, 
-          new_admission: null, 
-          step_up: null, 
-          discharged: null, 
-          home_q: null, 
-          carer: null, 
-          local: null, 
-          non_local: null, 
-          bor: null, 
-          stage_1: null, 
-          stage_2: null, 
-          stage_3: null, 
-          stage_4: null, 
-          stage_5: null, 
-          stage_1_1: null, 
-          stage_1_2: null, 
-          stage_2_1: null, 
-          stage_2_2: null, 
-          stage_3_1: null, 
-          stage_3_2: null, 
-          stage_4_1: null, 
-          stage_4_2: null, 
-          stage_5_1: null, 
-          stage_5_2: null, 
-          staff: null, 
-          pui_adult_male: null, 
-          pui_adult_female: null, 
-          pui_paeds_male: null, 
-          pui_paeds_female: null, 
-          pui_new: null, 
-          pui_discharged: null, 
-          pui_step_up: null, 
-          notes: null, 
-   
-          
+          senior_male: null,
+          senior_female: null,
+          total_male: null,
+          total_female: null,
+          local: null,
+          non_local: null,
+          total: null,
+          cumulative_admissions: null,
+          cumulative_discharges: null,
+          step_up: null,       
 
-        perPage: 20,
-        currentPage: 1,
-        pageOptions: [5, 10, 15, 25, { value: 100, text: "Show a lot" }],
-         sortBy: 'date',
-        sortDesc: true,
-        sortDirection: 'desc',
-        filter: null,
-        filterOn: [],
-        items: [],
-        fields: [
-          { key: 'date', label: 'Tarikh', sortable: true, sortDirection: 'asc' },
-          { key: 'time', label: 'Masa', sortable: true, sortDirection: 'desc' },
-          { key: 'pkrc', label: 'PKRC', sortable: true, sortDirection: 'desc' },
-          { key: 'male', label: 'Lelaki', sortable: true, sortDirection: 'desc' },
-          { key: 'female', label: 'Perempuan', sortable: true, sortDirection: 'desc' },
-          { key: 'paeds_male', label: 'Kanak-kanak Lelaki', sortable: true, sortDirection: 'desc' },
-          { key: 'paeds_female', label: 'Kanak-kanak Perempuan', sortable: true, sortDirection: 'desc' },
-         // { key: 'carer', label: 'Penjaga', sortable: true, sortDirection: 'desc' },
-        //  { key: 'local', label: 'Warganegara', sortable: true, sortDirection: 'desc' },
-        //  { key: 'non_local', label: 'BWN', sortable: true, sortDirection: 'desc' },
-          //{ key: 'bor', label: 'BOR', sortable: true, sortDirection: 'desc' },
-         //{ key: 'stage_1', label: 'Stage 1', sortable: true, sortDirection: 'desc' },
-       // { key: 'stage_2', label: 'Stage 2', sortable: true, sortDirection: 'desc' },
-       // { key: 'staff', label: 'Staf Bertugas', sortable: true, sortDirection: 'desc' },
-      //  { key: 'notes', label: 'Nota', sortable: true, sortDirection: 'desc' },
-        { key: 'actions', label: 'Actions' },
-
-        ],
       
       
       }
@@ -277,59 +225,55 @@
     },
     report(){
     let self = this;
-     axios.get('/api/CovidFemale/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+     axios.get('/api/laporanDewasaPerempuan/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
       .then(function (response) {
         self.female  = response.data[0].count;
       }),
-        axios.get('/api/CovidMale/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+        axios.get('/api/laporanDewasaLelaki/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
       .then(function (response) {
         self.male  = response.data[0].count;
       }),
-        axios.get('/api/CovidMalePaeds/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+        axios.get('/api/laporanKanakLelaki/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
       .then(function (response) {
         self.paeds_male  = response.data[0].count;
       })
      ,
-        axios.get('/api/CovidFemalePaeds/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+        axios.get('/api/laporanKanakPerempuan/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
       .then(function (response) {
         self.paeds_female  = response.data[0].count;
-      })
-        ,
-        axios.get('/api/stageOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_1  = response.data[0].count;
-      })    ,
-        axios.get('/api/stageTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_2  = response.data[0].count;
-      })    ,
-        axios.get('/api/stageThree/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_3  = response.data[0].count;
-      })    ,
-        axios.get('/api/stageFour/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_4  = response.data[0].count;
-      })    ,
-        axios.get('/api/stageFive/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_5  = response.data[0].count;
-      })
-       ,
-        axios.get('/api/newAdmission/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.new_admission  = response.data[0].count;
       }),
-        axios.get('/api/stepUp/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+        axios.get('/api/laporanDewasaPerempuanEmas/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.senior_female  = response.data[0].count;
+      }),
+        axios.get('/api/laporanDewasaLelakiEmas/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.senior_male  = response.data[0].count;
+      }),
+           axios.get('/api/laporanPerempuan/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.total_female  = response.data[0].count;
+      }),
+        axios.get('/api/laporanLelaki/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.total_male  = response.data[0].count;
+      }),
+              axios.get('/api/laporanJumlah/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+      .then(function (response) {
+        self.cumulative_admissions  = response.data[0].count;
+      }) , 
+ 
+        axios.get('/api/laporanStepUp/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
       .then(function (response) {
         self.step_up  = response.data[0].count;
       }),
-            axios.get('/api/statDischarges/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+            axios.get('/api/laporanDischarges/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
       .then(function (response) {
-        self.discharged  = response.data[0].count;
-      }) ,           axios.get('/api/HQ/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+        self.cumulative_discharges  = response.data[0].count;
+      }) ,  
+      axios.get('/api/laporanJumlahHarian/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
       .then(function (response) {
-        self.home_q  = response.data[0].count;
+        self.total  = response.data[0].count;
       })
        ,           axios.get('/api/WN/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
       .then(function (response) {
@@ -339,57 +283,7 @@
       .then(function (response) {
         self.non_local = response.data[0].count;
       })
-       ,           axios.get('/api/stageOneVaccineOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_1_1 = response.data[0].count;
-      })
-         ,           axios.get('/api/stageOneVaccineTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_1_2 = response.data[0].count;
-      })   ,           axios.get('/api/stageTwoVaccineOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_2_1 = response.data[0].count;
-      }) ,           axios.get('/api/stageTwoVaccineTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_2_2 = response.data[0].count;
-     }) ,           axios.get('/api/stageThreeVaccineOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_3_1 = response.data[0].count;
-     })  ,           axios.get('/api/stageThreeVaccineTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_3_2 = response.data[0].count;
-     }) ,           axios.get('/api/stageFourVaccineOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_4_1 = response.data[0].count;
-     })   ,           axios.get('/api/stageFourVaccineTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_4_2 = response.data[0].count;
-     })  ,           axios.get('/api/PUIMale/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_adult_male = response.data[0].count;
-     })  ,           axios.get('/api/PUIFemale/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_adult_female = response.data[0].count;
-     })  ,           axios.get('/api/PUIMalePaeds/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_paeds_male = response.data[0].count;
-     }) 
-      ,           axios.get('/api/PUIFemalePaeds/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_paeds_female = response.data[0].count;
-     })   ,           axios.get('/api/newAdmissionPUI/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_new = response.data[0].count;
-     })    ,           axios.get('/api/statDischargesPUI/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_discharged = response.data[0].count;
-     }) ,           axios.get('/api/stepUpPUI/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_step_up = response.data[0].count;
-     }) ,           axios.get('/api/BOR/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.bor = response.data;
-     }) 
+
     }
   }
  
