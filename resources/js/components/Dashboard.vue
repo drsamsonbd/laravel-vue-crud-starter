@@ -228,7 +228,7 @@
             </div>
 
           <div class="row">
-               <div class="col-12 col-sm-6 ">
+               <div class="col-12 col-sm-12 ">
 <center><h4>Kemasukan Pesakit ke PKRC</h4></center>
    <bar-chart v-if="loaded" :chart-data="counts" :chart-labels="labels"></bar-chart>
        </div>
