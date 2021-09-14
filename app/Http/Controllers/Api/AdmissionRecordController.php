@@ -34,6 +34,9 @@ class AdmissionRecordController extends Controller
         ->leftjoin('discharges','admissions.reg_number','=','discharges.reg_number')
        ->leftJoin('reviews','admissions.reg_number','=','reviews.reg_number')
        ->select('patients.name','patients.kp_passport','patients.gender','patients.age',
+       'patients.race',
+       'patients.nationality',
+       'patients.workplace',
        'patients.area','patients.job','patients.address','admissions.id', 'admissions.pkrc', 'admissions.reg_number', 'admissions.marriage', 'admissions.religion', 'admissions.kin', 'admissions.kin_address',
        'admissions.kin_relation', 'admissions.date', 'admissions.time', 'admissions.weight', 'admissions.note',
        'admissions.adm_diagnosis',
@@ -77,7 +80,9 @@ class AdmissionRecordController extends Controller
         ->leftjoin('case_samplings','patients.kp_passport','case_samplings.kp_passport')
         ->leftjoin('discharges','admissions.reg_number','=','discharges.reg_number')
        ->leftJoin('reviews','admissions.reg_number','=','reviews.reg_number')
-       ->select('patients.name','patients.kp_passport','patients.gender','patients.age',
+       ->select('patients.name','patients.kp_passport','patients.gender','patients.age','patients.race',
+       'patients.nationality',
+       'patients.workplace',
        'patients.area','patients.job','patients.address','admissions.id', 'admissions.pkrc', 'admissions.reg_number', 'admissions.marriage', 'admissions.religion', 'admissions.kin', 'admissions.kin_address',
        'admissions.kin_relation', 'admissions.date', 'admissions.time', 'admissions.weight', 'admissions.note',
        'admissions.adm_diagnosis',

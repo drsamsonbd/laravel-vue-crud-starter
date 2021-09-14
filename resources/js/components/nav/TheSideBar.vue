@@ -38,11 +38,64 @@
             </router-link>
           </li>
         </ul>
-      </li>
+      </li> 
+      <!--Pesakit Dalam-->
+        <li  class="nav-item has-treeview"  v-if="roles =='admin' || roles =='hospital'">
+        <a class="nav-link" href="#">
+          <i class="nav-icon fas fa-h-square purple "></i>
+          <p>WAD
+           <i class="right fas fa-angle-left"></i>
+           </p>
+        </a>
+    
+           <ul class="nav nav-treeview">
+
+          <li class="nav-item">
+            <router-link to="/inpatientactive" class="nav-link">
+             
+              <p id="submenu">
+                Bed Manager
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/inpatientadmission" class="nav-link">
+           
+              <p id="submenu">
+                Senarai 
+              </p>
+            </router-link>
+          </li>
+           <li class="nav-item">
+            <router-link to="/inpatientdischarge" class="nav-link">
+           
+              <p id="submenu">
+                Discaj
+              </p>
+            </router-link>
+          </li>
+               <li class="nav-item">
+            <router-link to="/InpatientnewPatient" class="nav-link">
+           
+              <p id="submenu">
+                Pesakit Baru
+              </p>
+            </router-link>
+          </li>
+              <li class="nav-item">
+            <router-link to="#" class="nav-link">
+           
+              <p id="submenu">
+                Carian
+              </p>
+            </router-link>
+          </li>
+        </ul>
+      </li> 
       <!--PKRC-->
         <li  class="nav-item has-treeview"  v-if="roles =='admin' || roles =='hospital'">
         <a class="nav-link" href="#">
-          <i class="nav-icon fas fa-school "></i>
+          <i class="nav-icon fas fa-school pink"></i>
           <p>PKRC
            <i class="right fas fa-angle-left"></i>
            </p>
@@ -83,7 +136,7 @@
             </router-link>
           </li>
               <li class="nav-item">
-            <router-link to="/dailyreport" class="nav-link">
+            <router-link to="#" class="nav-link">
            
               <p id="submenu">
                 Carian
@@ -207,7 +260,15 @@
                    Vaksin
                   </p>
               </router-link>
-            </li>          
+            </li>   
+               <li class="nav-item">
+              <router-link to="/ward" class="nav-link">
+                
+                  <p id="submenu">
+                   Wad
+                  </p>
+              </router-link>
+            </li>         
         </ul>
       </li>
 

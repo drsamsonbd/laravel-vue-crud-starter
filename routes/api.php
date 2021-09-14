@@ -109,7 +109,8 @@ Route::apiResource('/admissionChart', 'Api\ChartController');
 Route::group(['middleware' => ['jwt.verify']], function() {
 	
 Route::apiResource('/patient', 'Api\PatientController');
-
+Route::get('/patient/search/{id}', 'Api\SearchPatientController@showbyKPName');
+Route::get('/patient/kp/{id}', 'Api\SearchPatientController@showbyKP');
 
 Route::apiResource('/user', 'Api\UserController');
 Route::apiResource('/department', 'Api\DepartmentController');
@@ -119,6 +120,7 @@ Route::apiResource('/district', 'Api\DistrictController');
 Route::apiResource('/nationality', 'Api\NationalityController');
 Route::apiResource('/locality', 'Api\LocalityController');
 Route::apiResource('/pkrc', 'Api\PkrcController');
+Route::apiResource('/ward', 'Api\WardController');
 Route::apiResource('/hospital', 'Api\HospitalController');
 Route::apiResource('/vaccine', 'Api\VaccineController');
 Route::apiResource('/case', 'Api\CaseRegController');
@@ -129,6 +131,8 @@ Route::apiResource('/caselist', 'Api\CaseListController');
 Route::apiResource('/reports', 'Api\ManualReportController');
 Route::apiResource('/sum', 'Api\ReportSumController');
 Route::apiResource('/admission', 'Api\AdmissionController');
+
+Route::apiResource('/WardAdmission', 'Api\WardAdmissionController');
 Route::apiResource('/admissions', 'Api\AdmissionRecordController');
 Route::apiResource('/discharge', 'Api\DischargeController');
 Route::apiResource('/discharges', 'Api\DischargeRecordController');
@@ -146,7 +150,8 @@ Route::get('/stock/out/{id}', 'Api\OptimumlevelController@showbydept');
 Route::get('/items/out/{id}', 'Api\PosController@GetItem');
 Route::get('activepkrc', 'Api\PKRCActiveController@showbyPKRC')->name('showbyPKRC');
 Route::get('active', 'Api\PKRCActiveController@index');
-
+Route::get('/activeWard', 'Api\WardActiveController@showbyWard')->name('showbyWard');
+Route::get('/active/ward', 'Api\WardActiveController@index');
 
 //update api
 
@@ -157,7 +162,13 @@ Route::get('/patientSampling/{id}', 'Api\AdmissionRecordController@updateSamplin
 Route::get('/patientkp_passport/{id}', 'Api\AdmissionRecordController@kp_passport')->name('kp_passport');
 
 
-
+//inpatient routes
+Route::apiResource('/WardAdmissionRecord', 'Api\WardAdmissionRecordController');
+Route::get('/wardadmissionskp/{id}', 'Api\WardAdmissionRecordController@admissionsKP')->name('admissionsKP');
+Route::get('/inpatientKP/{id}', 'Api\WardAdmissionRecordController@updatePatient')->name('updatePatient');
+Route::get('/inpatientSampling/{id}', 'Api\WardAdmissionRecordController@updateSampling')->name('updateSampling');
+Route::apiResource('/inpatient/discharge', 'Api\WardDischargeController');
+Route::apiResource('/inpatient/discharges', 'Api\WardDischargesRecordController');
 
 
 });

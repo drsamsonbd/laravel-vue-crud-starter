@@ -223,6 +223,8 @@
         self.$router.push({ path: '/login' });
       });
     },
+
+    
     report(){
     let self = this;
      axios.get('/api/laporanDewasaPerempuan/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })

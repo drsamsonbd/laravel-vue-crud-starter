@@ -24,7 +24,7 @@ let locality= require('./components/settings/locality.vue').default;
 let hospital= require('./components/settings/hospital.vue').default;
 let pkrc= require('./components/settings/pkrc.vue').default;
 let vaccine= require('./components/settings/vaccine.vue').default;
-
+let ward= require('./components/settings/ward.vue').default;
 
 //pkrc component
 let admission= require('./components/pkrc/admission.vue').default;
@@ -36,6 +36,28 @@ let review= require('./components/pkrc/review.vue').default;
 let vital= require('./components/pkrc/vital.vue').default;
 let active= require('./components/pkrc/active.vue').default;
 let details= require('./components/pkrc/Details.vue').default;
+
+
+//inpatient component
+let newinpatientadmission= require('./components/inpatient/newadmission.vue').default;
+let inpatientadmission= require('./components/inpatient/admission.vue').default;
+let inpatientadmissionform= require('./components/inpatient/forms/new/admission.vue').default;
+let inpatientlist= require('./components/inpatient/index.vue').default;
+let inpatientdischarge= require('./components/inpatient/discharge.vue').default;
+let inpatientdischargeform= require('./components/inpatient/forms/new/discharge.vue').default;
+let inpatientreview= require('./components/inpatient/review.vue').default;
+let inpatientvital= require('./components/inpatient/vital.vue').default;
+let inpatientactive= require('./components/inpatient/active.vue').default;
+let inpatientdetails= require('./components/inpatient/Details.vue').default;
+let InpatientnewPatient= require('./components/inpatient/forms/new/patient.vue').default;
+
+//inpatient update form 
+let inpatientupdatePatient= require('./components/inpatient/forms/patient.vue').default;
+let inpatientupdateAdmission= require('./components/inpatient/forms/admission.vue').default;
+let inpatientupdateCase= require('./components/inpatient/forms/case.vue').default;
+let inpatientupdateSampling= require('./components/inpatient/forms/sampling.vue').default;
+let inpatientupdateDischarge= require('./components/inpatient/forms/discharge.vue').default;
+
 
 //pkrc update form 
 let updatePatient= require('./components/pkrc/forms/patient.vue').default;
@@ -83,7 +105,7 @@ export const routes = [
     { path: '/hospital', component: hospital, name:'hospital' },
     { path: '/pkrc', component: pkrc, name:'pkrc' },
     { path: '/vaccine', component: vaccine, name:'vaccine' },
-
+    { path: '/ward', component: ward, name:'ward' },
 
 
       // patient Routes
@@ -102,6 +124,25 @@ export const routes = [
     { path: '/admissionform', component: admissionform, name:'admissionform' },
     { path: '/active', component: active, name:'active' },
     { path: '/details', component: details, name:'details' },
+
+        //inpatient routes
+        { path: '/newInpatientAdmission', component: newinpatientadmission, name:'newinpatientadmission' },
+        { path: '/inpatientadmission', component: inpatientadmission, name:'inpatientadmission' },
+        { path: '/inpatientlist', component: inpatientlist, name:'inpatientlist' },
+        { path: '/inpatientreview', component: inpatientreview, name:'inpatientreview' },
+        { path: '/inpatientdischarge', component: inpatientdischarge, name:'inpatientdischarge' },
+        { path: '/inpatientdischargeform', component: inpatientdischargeform, name:'inpatientdischargeform' },
+        { path: '/inpatientvital', component: inpatientvital, name:'inpatientvital' },
+        { path: '/inpatientadmissionform', component: inpatientadmissionform, name:'inpatientadmissionform' },
+        { path: '/inpatientactive', component: inpatientactive, name:'inpatientactive' },
+        { path: '/inpatientdetails', component: inpatientdetails, name:'inpatientdetails' },
+        { path: '/InpatientnewPatient', component: InpatientnewPatient, name:'InpatientnewPatient' },
+        //inpatient  update routes
+{ path: '/inpatientupdatePatient', component: inpatientupdatePatient, name:'inpatientupdatePatient' },
+{ path: '/inpatientupdateAdmission', component:inpatientupdateAdmission, name:'inpatientupdateAdmission' },
+{ path: '/inpatientupdateCase', component:inpatientupdateCase, name:'inpatientupdateCase' },
+{ path: '/inpatientupdateSampling', component:inpatientupdateSampling, name:'inpatientupdateSampling' },
+{ path: '/inpatientupdateDischarge', component:inpatientupdateDischarge, name:'inpatientupdateDischarge' },
 
 //pkrc  update routes
 { path: '/updatePatient', component: updatePatient, name:'updatePatient' },

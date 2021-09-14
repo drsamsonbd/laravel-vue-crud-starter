@@ -82,6 +82,7 @@ class PatientController extends Controller
         return response()->json($patient);
     }
 
+ 
     /**
      * Show the form for editing the specified resource.
      *

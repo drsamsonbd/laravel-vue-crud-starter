@@ -249,7 +249,7 @@
             href: '/active'
           },
           {
-            text: 'Kemasikini',
+            text: 'Kemaskini',
             href:'#'
           },
           {
