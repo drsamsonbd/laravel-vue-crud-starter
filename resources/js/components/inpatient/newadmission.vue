@@ -194,7 +194,7 @@
     searchName(){
     this.isHidden = false;
      let self = this;
-     axios.get('/api/patient/search/' + this.search.name + '/?token='+ localStorage.getItem('token'))
+     axios.get('/api/patient/search/' + this.search.name + '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.items = response.data;
       }).catch(function (error) {
