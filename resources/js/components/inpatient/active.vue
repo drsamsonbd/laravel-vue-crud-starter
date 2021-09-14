@@ -449,7 +449,7 @@
 
      
         this.getward();
-        this.allPatients();
+     
         this.allCases();
         this.ward();
   
@@ -460,7 +460,7 @@
       return{
           isHidden: true,
 
-          patients:[],
+        
           races:[],
           wards:[],
           districts:[],
@@ -555,16 +555,8 @@
     },
  
   methods:{
- allPatients(){
-    let self = this;
-     axios.get('/api/patient/' + '?token='+ localStorage.getItem('token'))
-      .then(function (response) {
-        self.patients = response.data;
-      }).catch(function (error) {
-        console.log(error);
-        self.$router.push({ path: '/login' });
-      });
-    },
+
+
       allCases(){
     let self = this;
      axios.get('/api/active/ward'+ '?token='+ localStorage.getItem('token'))
