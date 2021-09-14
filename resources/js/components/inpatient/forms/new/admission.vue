@@ -175,7 +175,6 @@
        methods:{
          cases(){
       
-    
         axios.get('/api/patient/kp/'+this.$route.params.id + '/?token='+ localStorage.getItem('token'))
         .then(({data}) => (this.patient = data[0],
         this.form = data[0]))
