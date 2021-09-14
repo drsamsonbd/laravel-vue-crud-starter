@@ -221,7 +221,7 @@
     },
 
   newPatient(){
-       axios.post('/api/patient/'+ '?token='+ localStorage.getItem('token'), this.forms)
+       axios.post('/api/patient'+ '?token='+ localStorage.getItem('token'), this.forms)
        .then(() => {      
            
              Toast.fire(
@@ -235,7 +235,7 @@
     
        }); 
       
-       this.$router.push({name: 'newinpatientadmission'})
+       this.$router.push({name: 'inpatientadmissionform', params: { id: $admid} })
        
      },
  
