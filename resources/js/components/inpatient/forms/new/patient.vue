@@ -234,7 +234,7 @@
       
     
        }); 
-      
+        let $admid = this.forms.kp_passport;
        this.$router.push({name: 'inpatientadmissionform', params: { id: $admid} })
        
      },

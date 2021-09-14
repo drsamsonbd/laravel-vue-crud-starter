@@ -189,7 +189,7 @@
     },
         register(){
 
-       axios.post('/api/WardAdmission/'+'?token='+ localStorage.getItem('token'), this.form)
+       axios.post('/api/WardAdmission'+'?token='+ localStorage.getItem('token'), this.form)
        .then(() => {       
                   Toast.fire(
                       'Berjaya!',
