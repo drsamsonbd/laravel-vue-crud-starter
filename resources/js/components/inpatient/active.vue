@@ -528,8 +528,8 @@
           { key: 'kp_passport', label: 'No. Kad Pengenalan/Passport', sortable: true, sortDirection: 'desc' },
           { key: 'age', label: 'Umur', sortable: true, sortDirection: 'desc' },
           { key: 'gender', label: 'Jantina', sortable: true, sortDirection: 'desc' },
-           { key: 'adm_diagnosis', label: 'Diagnosis', sortable: true, sortDirection: 'desc' },
-            { key: 'adm_stage', label: 'Stage', sortable: true, sortDirection: 'desc' },
+          { key: 'adm_diagnosis', label: 'Diagnosis', sortable: true, sortDirection: 'desc', tdClass: 'setDxTdClass' },
+          { key: 'adm_stage', label: 'Stage', sortable: true, sortDirection: 'desc' },
           { key: 'vaccine_type', label: 'Vaccination', sortable: true, sortDirection: 'desc' },
          //   { key: 'view', label: 'View' },
          { key: 'discharge', label: 'Discaj' },
@@ -555,7 +555,10 @@
     },
  
   methods:{
-
+  setDxTdClass() {
+      if(adm_diagnosis === 'COVID-19')
+        return 'text-red';
+    },
 
       allCases(){
     let self = this;
