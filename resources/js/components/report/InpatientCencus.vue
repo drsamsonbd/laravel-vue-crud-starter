@@ -46,6 +46,7 @@
 
        <br>  <hr>
    <h6><b>CENCUS NON-COVID</b></h6>
+   <!--NON COVID-->
     <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Lelaki </b> </label>
     <div class="col-sm-1">
@@ -68,7 +69,7 @@
        
     </div> 
       </div>
-<hr>
+    <hr>
          
    <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Lelaki </b></label>
@@ -89,7 +90,8 @@
        <input type="text" class="form-control form-control-sm" id="tb" v-model="form.ward_children" disabled>      
     </div>
    </div>
-<div class="form-group row">
+
+    <div class="form-group row">
      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Akut</b></label>
     <div class="col-sm-1">
        <input type="text" class="form-control form-control-sm" id="tb" v-model="form.ward_acute" disabled>      
@@ -103,176 +105,318 @@
        <input type="text" class="form-control form-control-sm" id="tb" v-model="form.ward_female_tb" disabled>      
     </div>   
     </div>
-     </div>               
+    <!--admissison, discharge, step up/down-->
+ 
+                           <div class="form-group row">
+     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kemasukan Baru</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="newadm" v-model="form.nc_admission" disabled>
+    </div>
+
+         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Disaj</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.nc_discharged" disabled>
+    </div>
+
+        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Step Up</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="ns2" v-model="form.nc_step_up" disabled>
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kematian</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="ns3" v-model="form.nc_death" disabled> 
+    </div>
+    </div>      
        <hr>
    
-<!--Admission-->
+<!--COVID-->
+   <h6><b>CENCUS COVID</b></h6>
+  
+    <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Lelaki </b> </label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.covid_male" disabled>
+
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Perempuan </b></label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control form-control-sm" id="female" v-model="form.covid_female" disabled >
+      
+    </div>
+        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kanak-kanak Lelaki</b> </label>
+    <div class="col-sm-1">
+       <input type="text" class="form-control form-control-sm" id="pmale" v-model="form.covid_paeds_male" disabled>
+      
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Kanak-kanak Perempuan </b></label>
+    <div class="col-sm-1">
+       <input type="text" class="form-control form-control-sm" id="pfemale" v-model="form.covid_paeds_female" disabled>
+       
+    </div> 
+      </div>
+  <hr>
+    <!--Staging-->
+                            <h6><b>Covid Patient Staging</b></h6>
+                           <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 1 </b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_1" disabled>
+    </div>
+    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"><code>*</code> <b> Stage 2 </b></label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="s2" v-model="form.stage_2" disabled>
+    </div>
+        <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 3 </b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="s3" v-model="form.stage_3" disabled>
+    </div>
+    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"><code>*</code> <b>Stage 4</b></label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="s4" v-model="form.stage_4" disabled>
+    </div>
+      <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"><code>*</code> <b>Stage 5</b></label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="s5" v-model="form.stage_5" disabled>
+    </div>
+  </div>
+  
+<hr>
+
+        
+
+<!--Vaccination-->
+
+  <h6><b><u>Bilangan Pesakit Menerima Vaksin </u></b></h6>
+                     
+                           <div class="form-group row">
+     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <b>Stage 1 :</b> </label>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Dos 1 </b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="vs11" v-model="form.stage_1_1" disabled>
+    </div> <div class="col-sm-1">
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b> Dos 2 </b></label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="vs12" v-model="form.stage_1_2" disabled>
+    </div>
+       
+  </div>        
+
+                           <div class="form-group row">
+     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <b>Stage 2 :</b> </label>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Dos 1 </b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="vs21" v-model="form.stage_2_1" disabled>
+    </div> <div class="col-sm-1">
+    </div>
+
+   
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b> Dos 2 </b></label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="vs22" v-model="form.stage_2_2" disabled>
+    </div>
+       
+  </div>        
+                           <div class="form-group row">
+<label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <b>Stage 3 :</b> </label>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Dos 1 </b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="vs31" v-model="form.stage_3_1" disabled>
+    </div> <div class="col-sm-1">
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b> Dos 2 </b></label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="vs32" v-model="form.stage_3_2" disabled>
+    </div>
+       
+  </div>    
+
+       <div class="form-group row">
+       <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <b>Stage 4 :</b> </label>                            
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Dos 1 </b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="vs41" v-model="form.stage_4_1" disabled>
+    </div> <div class="col-sm-1">
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b> Dos 2 </b></label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="vs42" v-model="form.stage_4_2" disabled> 
+    </div>
+       
+  </div>   
+     <div class="form-group row">
+        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <b>Stage 5 :</b> </label>     
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Dos 1 </b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="vs51" v-model="form.stage_5_1" disabled>
+    </div> <div class="col-sm-1">
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b> Dos 2 </b></label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="vs52" v-model="form.stage_5_2" disabled>
+    </div>
+       
+  </div>   
+  <hr>
+
     <h6><b>Bilangan Kemasukan Baru</b></h6>
                            <div class="form-group row">
-     <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code>*</code> <b>Non Covid</b> </label>
+
+         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 1</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="newadm" v-model="form.new_admn">
-                         <small class="text-danger" v-if="errors.new_adm">{{errors.new_adm[0]}}</small>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.newstage_1" disabled>
     </div>
 
-         <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code>*</code> <b>Covid Stage 1</b> </label>
+        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 2</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.newstage_1">
-                         <small class="text-danger" v-if="errors.newstage_1">{{errors.newstage_1[0]}}</small>
+   <input type="text" class="form-control form-control-sm" id="ns2" v-model="form.newstage_2" disabled>
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 3</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="ns3" v-model="form.newstage_3" disabled>
+    </div>
+        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 4</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="ns4" v-model="form.newstage_4" disabled>
+    </div>
+                           </div>
+    <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 5</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="ns5" v-model="form.newstage_5" disabled>
     </div>
 
-        <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code>*</code> <b>Covid Stage 2</b> </label>
+<br>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Pending</b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="ns2" v-model="form.newstage_2">
-                         <small class="text-danger" v-if="errors.newstage_2">{{errors.newstage_2[0]}}</small>
-    </div>
-    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code>*</code> <b>Covid Stage 3</b> </label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="ns3" v-model="form.newstage_3">
-                         <small class="text-danger" v-if="errors.newstage_3">{{errors.newstage_3[0]}}</small>
-    </div>
-        <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code>*</code> <b>Covid Stage 4</b> </label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="ns4" v-model="form.newstage_4">
-                         <small class="text-danger" v-if="errors.newstage_4">{{errors.newstage_4[0]}}</small>
-    </div>
-    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code>*</code> <b>Covid Stage 5</b> </label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="ns5" v-model="form.newstage_5">
-                         <small class="text-danger" v-if="errors.newstage_5">{{errors.newstage_5[0]}}</small>
-    </div>
-
-
-      <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"><code>*</code> <b>PUI</b></label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="puinew" v-model="form.pui_new">
-                         <small class="text-danger" v-if="errors.pui_new">{{errors.pui_new[0]}}</small>
-    </div>
-
-    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"><code>*</code> <b>Pending Admission</b></label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.pending">
-                         <small class="text-danger" v-if="errors.pending">{{errors.pending[0]}}</small>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.pending" disabled>
     </div>
   </div>
 
-
-  <!--Discharged--> <hr>
- <h6><b>Discaj</b></h6>
- <div class="form-group row">
-    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code>*</code> <b>Non Covid </b> </label>
+    <!--admissison, discharge, step up/down-->
+ 
+  <div class="form-group row">
+     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kemasukan Baru</b> </label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm"  id="discharged" v-model="form.discharged">
-      
-                         <small class="text-danger" v-if="errors.discharged">{{errors.discharged[0]}}</small>
-    </div>
-    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"><code>*</code> <b>PUI</b></label>
-    <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm" id="puidc" v-model="form.pui_discharged" >
-      
-                         <small class="text-danger" v-if="errors.pui_discharged">{{errors.pui_discharged[0]}}</small>
-    </div>
-        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>COVID-19 </b> </label>
-    <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="coviddc" v-model="form.covid_discharged">
-                         <small class="text-danger" v-if="errors.covid_discharged">{{errors.covid_discharged[0]}}</small>
-      
+   <input type="text" class="form-control form-control-sm" id="newadm" v-model="form.covid_admission" disabled>
     </div>
 
-            <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code>*</code> <b>COVID-19 Death </b> </label>
+         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Disaj</b> </label>
     <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="coviddc" v-model="form.covid_death">
-                         <small class="text-danger" v-if="errors.covid_death">{{errors.covid_death[0]}}</small>
-      
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.covid_discharged" disabled>
     </div>
 
-            <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code>*</code> <b>PUI Death</b> </label>
+        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Step Up</b> </label>
     <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="coviddc" v-model="form.pui_death">
-                         <small class="text-danger" v-if="errors.pui_death">{{errors.pui_death[0]}}</small>
-      
+   <input type="text" class="form-control form-control-sm" id="ns2" v-model="form.covid_step_up" disabled>
     </div>
-
-  </div> 
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kematian</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="ns3" v-model="form.covid_death" disabled> 
+    </div>
+    </div>      
+   
     
-<!-- COVID--> <hr>
-      <h6><b>Pesakit COVID</b></h6>
-                           <div class="form-group row">
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Dewasa Lelaki </b> </label>
-    <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.covid_adult_male">
-      
-    </div>
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Dewasa Perempuan </b></label>
-    <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm" id="female" v-model="form.covid_adult_female" >
-          </div>
-        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kanak-kanak Lelaki </b> </label>
-    <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="pmale" v-model="form.covid_paeds_male">
-                  
-    </div>
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Kanak-kanak Perempuan </b></label>
-    <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="pfemale" v-model="form.covid_paeds_female">
-        
-    </div>
-
-  </div> 
-                             <div class="form-group row">
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Local </b> </label>
-    <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.covid_local">
-      
-    </div>
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Non-local </b></label>
-    <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm" id="female" v-model="form.covid_non_local" >
-      
-    </div>
-         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Step Up </b></label>
-    <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm" id="female" v-model="form.covid_step_up" >
-      
-                         <small class="text-danger" v-if="errors.covid_step_up">{{errors.covid_step_up[0]}}</small>
-    </div>
-            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Step Down </b></label>
-    <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm" id="female" v-model="form.covid_step_down" >
-      
-                         <small class="text-danger" v-if="errors.covid_step_down">{{errors.covid_step_down[0]}}</small>
-    </div>
-</div>
-
 <!-- PUI--> <hr>
-      <h6><b>Pesakit PUI</b></h6>
-                           <div class="form-group row">
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Dewasa Lelaki </b> </label>
+    <h6><b>CENCUS PUI</b></h6>
+  
+    <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Lelaki </b> </label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.pui_adult_male">
-      
-                         <small class="text-danger" v-if="errors.pui_adult_male">{{errors.pui_adult_male[0]}}</small>
+      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.pui_male" disabled>
+
     </div>
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Dewasa Perempuan </b></label>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Perempuan </b></label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm" id="female" v-model="form.pui_adult_female" >
+      <input type="text" class="form-control form-control-sm" id="female" v-model="form.pui_female" disabled >
       
-                         <small class="text-danger" v-if="errors.pui_adult_female">{{errors.pui_adult_female[0]}}</small>
     </div>
-        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kanak-kanak Lelaki </b> </label>
+        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kanak-kanak Lelaki</b> </label>
     <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="pmale" v-model="form.pui_paeds_male">
-                         <small class="text-danger" v-if="errors.pui_paeds_male">{{errors.pui_paeds_male[0]}}</small>
+       <input type="text" class="form-control form-control-sm" id="pmale" v-model="form.pui_paeds_male" disabled>
       
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Kanak-kanak Perempuan </b></label>
     <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="pfemale" v-model="form.pui_paeds_female">
-                         <small class="text-danger" v-if="errors.pui_paeds_female">{{errors.pui_paeds_female[0]}}</small>
+       <input type="text" class="form-control form-control-sm" id="pfemale" v-model="form.pui_paeds_female" disabled>
+       
+    </div> 
+      </div>
+    <hr>
+
+    <!--admissison, discharge, step up/down-->
+ 
+  <div class="form-group row">
+     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kemasukan Baru</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="newadm" v-model="form.pui_admission" disabled>
+    </div>
+
+         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Disaj</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.pui_discharged" disabled>
+    </div>
+
+        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Step Up</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="ns2" v-model="form.pui_step_up" disabled>
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kematian</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="ns3" v-model="form.pui_death" disabled> 
+    </div>
+    </div>      
+
+<!-- SARI--> <hr>
+    <h6><b>CENCUS SARI</b></h6>
+  
+    <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Lelaki </b> </label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.sari_male" disabled>
+
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Perempuan </b></label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control form-control-sm" id="female" v-model="form.sari_female" disabled >
       
     </div>
-  </div> 
+        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kanak-kanak Lelaki</b> </label>
+    <div class="col-sm-1">
+       <input type="text" class="form-control form-control-sm" id="pmale" v-model="form.sari_paeds_male" disabled>
+      
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Kanak-kanak Perempuan </b></label>
+    <div class="col-sm-1">
+       <input type="text" class="form-control form-control-sm" id="pfemale" v-model="form.sari_paeds_female" disabled>
+       
+    </div> 
+      </div>
+    <hr>
 
+    <!--admissison, discharge, step up/down-->
+ 
+  <div class="form-group row">
+     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kemasukan Baru</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="newadm" v-model="form.sari_admission" disabled>
+    </div>
+
+         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Disaj</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.sari_discharged" disabled>
+    </div>
+
+        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Step Up</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="ns2" v-model="form.sari_step_up" disabled>
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kematian</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="ns3" v-model="form.sari_death" disabled> 
+    </div>
+    </div>      
+       <hr>
 <!--Oxygen-->
 <hr>
     <h6><b>Penggunaan Oksigen</b></h6>
@@ -309,123 +453,7 @@
    
 
   </div> 
-  <hr>
-    <!--Staging-->
-                            <h6><b>Covid Patient Staging</b></h6>
-                           <div class="form-group row">
-    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 1 </b> </label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.stage_1">
-                         <small class="text-danger" v-if="errors.stage_1">{{errors.stage_1[0]}}</small>
-    </div>
-    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"><code>*</code> <b> Stage 2 </b></label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s2" v-model="form.stage_2">
-                         <small class="text-danger" v-if="errors.stage_2">{{errors.stage_2[0]}}</small>
-    </div>
-        <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 3 </b> </label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s3" v-model="form.stage_3">
-                         <small class="text-danger" v-if="errors.stage_3">{{errors.stage_3[0]}}</small>
-    </div>
-    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"><code>*</code> <b>Stage 4</b></label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s4" v-model="form.stage_4">
-                         <small class="text-danger" v-if="errors.stage_4">{{errors.stage_4[0]}}</small>
-    </div>
-      <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"><code>*</code> <b>Stage 5</b></label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s5" v-model="form.stage_5">
-                         <small class="text-danger" v-if="errors.stage_5">{{errors.stage_5[0]}}</small>
-    </div>
-  </div>
-  
 <hr>
-
-        
-
-<!--Vaccination-->
- <hr>
-  <h6><b><u>Bilangan Pesakit Menerima Vaksin </u></b></h6>
-                     <h6> Pesakit Stage 1</h6>
-                           <div class="form-group row">
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Dos 1 </b> </label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="vs11" v-model="form.stage_1_1">
-                         <small class="text-danger" v-if="errors.stage_1_1">{{errors.stage_1_1[0]}}</small>
-    </div> <div class="col-sm-1">
-    </div>
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b> Dos 2 </b></label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="vs12" v-model="form.stage_1_2">
-                         <small class="text-danger" v-if="errors.stage_1_2">{{errors.stage_1_2[0]}}</small>
-    </div>
-       
-  </div>        
-
-              <h6> Pesakit Stage 2</h6>
-                           <div class="form-group row">
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Dos 1 </b> </label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="vs21" v-model="form.stage_2_1">
-                         <small class="text-danger" v-if="errors.stage_2_1">{{errors.stage_2_1[0]}}</small>
-    </div> <div class="col-sm-1">
-    </div>
-
-   
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b> Dos 2 </b></label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="vs22" v-model="form.stage_2_2">
-                         <small class="text-danger" v-if="errors.stage_2_2">{{errors.stage_2_2[0]}}</small>
-    </div>
-       
-  </div>        
-                    <h6> Pesakit Stage 3</h6>
-                           <div class="form-group row">
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Dos 1 </b> </label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="vs31" v-model="form.stage_3_1">
-                         <small class="text-danger" v-if="errors.stage_3_1">{{errors.stage_3_1[0]}}</small>
-    </div> <div class="col-sm-1">
-    </div>
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b> Dos 2 </b></label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="vs32" v-model="form.stage_3_2">
-                         <small class="text-danger" v-if="errors.stage_3_2">{{errors.stage_3_2[0]}}</small>
-    </div>
-       
-  </div>    
-   <h6> Pesakit Stage 4</h6>
-                           <div class="form-group row">
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Dos 1 </b> </label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="vs41" v-model="form.stage_4_1">
-                         <small class="text-danger" v-if="errors.stage_4_1">{{errors.stage_4_1[0]}}</small>
-    </div> <div class="col-sm-1">
-    </div>
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b> Dos 2 </b></label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="vs42" v-model="form.stage_4_2">
-                         <small class="text-danger" v-if="errors.stage_4_2">{{errors.stage_4_2[0]}}</small>
-    </div>
-       
-  </div>   
-  <h6> Pesakit Stage 5</h6>
-                           <div class="form-group row">
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Dos 1 </b> </label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="vs51" v-model="form.stage_5_1">
-                         <small class="text-danger" v-if="errors.stage_5_1">{{errors.stage_5_1[0]}}</small>
-    </div> <div class="col-sm-1">
-    </div>
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b> Dos 2 </b></label>
-    <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="vs52" v-model="form.stage_5_2">
-                         <small class="text-danger" v-if="errors.stage_5_2">{{errors.stage_5_2[0]}}</small>
-    </div>
-       
-  </div>   
-  <hr>
                       
       
                     <div class="form-group">
@@ -452,7 +480,7 @@
             </div>  
 
    </div>
- </div>
+
 
   </section>
 

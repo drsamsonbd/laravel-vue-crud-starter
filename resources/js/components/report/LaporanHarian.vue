@@ -38,11 +38,11 @@
                    
                            <br>  <hr>
 
-    <div class="row">
+<!--    <div class="row">
         <div class="col">
             <p>Tarikh: {{tarikh}}</p>
         </div>
-    </div>
+    </div> -->
 
                            <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code></code> <b>Dewasa Lelaki </b> </label>
