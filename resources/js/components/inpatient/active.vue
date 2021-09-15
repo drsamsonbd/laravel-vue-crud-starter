@@ -388,7 +388,7 @@
       </template>
 
        <template #cell(discharge)="row">
-       <router-link :to="{name: 'dischargeform', params:{id:row.item.id}}" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></router-link> <br>
+       <router-link :to="{name: 'dischargeform', params:{id:row.item.id}}" class="btn btn-sm btn-success"><i class="fas fa-sign-out-alt"></i></router-link> <br>
         
          
        
