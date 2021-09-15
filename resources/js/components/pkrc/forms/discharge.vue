@@ -51,7 +51,8 @@
                         <option >Mati</option>
                         <option >Keluar Hospital dengan Risiko Sendiri</option>
                         <option >Keluar Hospital Tanpa Kebenaran</option>
-                         <option >Home Quarantine</option>
+                        <option >Home Quarantine</option>
+                        <option >Step Down PKRC</option>
                         </select>
                     </b-col>
                   
