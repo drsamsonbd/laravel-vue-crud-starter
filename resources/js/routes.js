@@ -50,6 +50,7 @@ let inpatientvital= require('./components/inpatient/vital.vue').default;
 let inpatientactive= require('./components/inpatient/active.vue').default;
 let inpatientdetails= require('./components/inpatient/Details.vue').default;
 let InpatientnewPatient= require('./components/inpatient/forms/new/patient.vue').default;
+let InpatientnewSampling= require('./components/inpatient/forms/new/sampling.vue').default;
 
 //inpatient update form 
 let inpatientupdatePatient= require('./components/inpatient/forms/patient.vue').default;
@@ -139,6 +140,7 @@ export const routes = [
         { path: '/inpatientactive', component: inpatientactive, name:'inpatientactive' },
         { path: '/inpatientdetails', component: inpatientdetails, name:'inpatientdetails' },
         { path: '/InpatientnewPatient', component: InpatientnewPatient, name:'InpatientnewPatient' },
+        { path: '/InpatientnewSampling', component: InpatientnewSampling, name:'InpatientnewSampling' },
         //inpatient  update routes
 { path: '/inpatientupdatePatient', component: inpatientupdatePatient, name:'inpatientupdatePatient' },
 { path: '/inpatientupdateAdmission', component:inpatientupdateAdmission, name:'inpatientupdateAdmission' },
