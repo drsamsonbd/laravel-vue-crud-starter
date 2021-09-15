@@ -84,17 +84,24 @@
     <div class="col-sm-1">
        <input type="number" class="form-control form-control-sm" id="maternity" v-model="form.maternity">
         </div>
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad TB </b></label>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Kanak-kanak</b></label>
     <div class="col-sm-1">
-       <input type="number" class="form-control form-control-sm" id="tb" v-model="form.tb">      
+       <input type="number" class="form-control form-control-sm" id="tb" v-model="form.children">      
     </div>
    </div>
 <div class="form-group row">
-<label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Covid </b></label>
+     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Akut</b></label>
     <div class="col-sm-1">
-       <input type="number" class="form-control form-control-sm" id="covid" v-model="form.covid">
-                         <small class="text-danger" v-if="errors.covid">{{errors.covid[0]}}</small>
-      
+       <input type="number" class="form-control form-control-sm" id="tb" v-model="form.acute">      
+    </div>
+   <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad TB Lelaki</b></label>
+    <div class="col-sm-1">
+       <input type="number" class="form-control form-control-sm" id="tb" v-model="form.male_tb">      
+    </div>
+      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad TB Perempuan</b></label>
+    <div class="col-sm-1">
+       <input type="number" class="form-control form-control-sm" id="tb" v-model="form.female_tb">      
+    </div>   
     </div>
      </div>               
        <hr>

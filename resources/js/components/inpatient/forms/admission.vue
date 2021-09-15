@@ -114,6 +114,7 @@
                         <option >COVID-19</option>
                         <option >PUI</option>
                         <option>PUS</option>
+                          <option>SARI</option>
                         </select>
                     </b-col>   
                        <b-col>
