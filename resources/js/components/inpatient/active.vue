@@ -558,7 +558,7 @@
   setDxTdClass(value) {
        var adm_diagnosis = value;
       if(adm_diagnosis === 'COVID-19')
-        return 'text-red';
+        return 'row-red';
     },
 
       allCases(){
