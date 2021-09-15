@@ -391,8 +391,8 @@
           { key: 'type_sample', label: 'Jenis', sortable: true, sortDirection: 'desc' },
           { key: 'grading', label: 'Grading', sortable: true, sortDirection: 'desc' },
           { key: 'date_result', label: 'Tarikh Keputusan', sortable: true, sortDirection: 'desc' }, 
-          { key: 'notes', label: 'Status Saringan/ Kontak', sortable: true, sortDirection: 'desc' },
-          { key: 'actions', label: '' },
+        
+       //   { key: 'actions', label: '' },
         ],
          vaccineitems: [],
        vaccinefields: [     

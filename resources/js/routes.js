@@ -140,7 +140,7 @@ export const routes = [
         { path: '/inpatientactive', component: inpatientactive, name:'inpatientactive' },
         { path: '/inpatientdetails', component: inpatientdetails, name:'inpatientdetails' },
         { path: '/InpatientnewPatient', component: InpatientnewPatient, name:'InpatientnewPatient' },
-        { path: '/InpatientnewSampling', component: InpatientnewSampling, name:'InpatientnewSampling' },
+        { path: '/InpatientnewSampling', component: InpatientnewSampling, name:'inpatientnewSampling' },
         //inpatient  update routes
 { path: '/inpatientupdatePatient', component: inpatientupdatePatient, name:'inpatientupdatePatient' },
 { path: '/inpatientupdateAdmission', component:inpatientupdateAdmission, name:'inpatientupdateAdmission' },
