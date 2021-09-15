@@ -115,6 +115,7 @@
                         <option >PUI</option>
                         <option>PUS</option>
                           <option>SARI</option>
+                            <option>Non COVID</option> 
                         </select>
                     </b-col>   
                        <b-col>
