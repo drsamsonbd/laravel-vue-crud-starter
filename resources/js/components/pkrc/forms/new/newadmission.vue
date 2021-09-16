@@ -151,7 +151,7 @@
             href: '/home'
           },
             {
-            text: 'Wad',
+            text: 'PKRC',
             href: '#'
           },
           {
