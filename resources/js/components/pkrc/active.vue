@@ -180,7 +180,7 @@
 
 <b-row   v-if="!isHidden">
 <b-col sm="2" class="my-1" align="right">
-           <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal">Kemasukan Baru</b-button>
+    <b-button size="sm" variant="outline-primary" id="show-btn" @click="newAdmission()">Kemasukan Baru</b-button>
         </b-col>
         <b-col sm="6" class="my-1">
         <b-form-group
@@ -311,7 +311,7 @@
 
 <b-row   v-if="isHidden">
 <b-col sm="2" class="my-1" align="right">
-           <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal">Kemasukan Baru</b-button>
+    <b-button size="sm" variant="outline-primary" id="show-btn" @click="newAdmission()">Kemasukan Baru</b-button>
         </b-col>
         <b-col sm="6" class="my-1">
         <b-form-group
@@ -740,7 +740,10 @@
          viewPatient(record) {
         this.$router.push({name: 'details', params: { id: record.kp_passport } })
    
-  },
+  },    newAdmission(){
+     this.$router.push({name: 'newAdmissionSearch' }) 
+    },
+   
 
  },
   }   

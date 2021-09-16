@@ -50,7 +50,7 @@ class PatientController extends Controller
             'nationality'=>'required',
             'job'=>'',
             'workplace'=>'',
-            'area'=>'required',
+            'area'=>'',
             'notes'=>'',
 
         ]);

@@ -67,24 +67,25 @@
                   </b-row>
 
                   <b-row>
-                     <b-col>
+                <!--     <b-col>
                       <label>Mukim</label>
                       <select class="form-control" id="area" v-model="forms.area">
                         <option v-for="area in areas" v-bind:key="area.area" >{{area.area }} </option>
                         
                         </select>
-                   </b-col>
+                   </b-col>-->
                     <b-col>
-                      <label>Pekerjaan</label>
-                      <input type="text" class="form-control" id="job" v-model="forms.job">
-                         <small class="text-danger" v-if="errors.job">{{errors.job[0]}}</small>
+                      <label>Alamat</label>
+                      <input type="text" class="form-control" id="workplace" v-model="forms.address">
+                         <small class="text-danger" v-if="errors.address">{{errors.address[0]}}</small>
                     </b-col>
                     </b-row>
                      <b-row>
-                      <b-col>
-                      <label>Alamat Tempat Kerja</label>
-                      <input type="text" class="form-control" id="workplace" v-model="forms.workplace">
-                         <small class="text-danger" v-if="errors.workplace">{{errors.workplace[0]}}</small>
+                 
+                         <b-col>
+                      <label>Pekerjaan</label>
+                      <input type="text" class="form-control" id="job" v-model="forms.job">
+                         <small class="text-danger" v-if="errors.job">{{errors.job[0]}}</small>
                     </b-col>
                        <b-col>
                       <label>No. Tel</label>
@@ -164,7 +165,7 @@
           phone: null,
           nationality: null,
           job: null,
-          workplace: null,
+          address: null,
           area: null,
           case_district: null,
           notes: null,

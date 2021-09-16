@@ -7,7 +7,7 @@ Route::group([
     ], function () {
 //chartApi
 Route::apiResource('/admissionChart', 'Api\ChartController');
-
+Route::get('/dischargeChart', 'Api\ChartController@discharge');
 
 
 //statistics APi

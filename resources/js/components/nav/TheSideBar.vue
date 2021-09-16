@@ -128,7 +128,7 @@
             </router-link>
           </li>
                <li class="nav-item">
-            <router-link to="/patient" class="nav-link">
+            <router-link to="/newPatient" class="nav-link">
            
               <p id="submenu">
                 Pesakit Baru

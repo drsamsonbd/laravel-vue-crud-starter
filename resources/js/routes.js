@@ -72,6 +72,7 @@ let newAdmission= require('./components/pkrc/forms/new/admission.vue').default;
 let newCase= require('./components/pkrc/forms/new/case.vue').default;
 let newSampling= require('./components/pkrc/forms/new/sampling.vue').default;
 let newDischarge= require('./components/pkrc/forms/new/discharge.vue').default;
+let newAdmissionSearch= require('./components/pkrc/forms/new/newadmission.vue').default;
 //report component
 let dailyreport = require('./components/report/index.vue').default;
 let nursingreport = require('./components/report/nursing.vue').default;
@@ -161,7 +162,7 @@ export const routes = [
 { path: '/newCase', component:newCase, name:'newCase' },
 { path: '/newSampling', component:newSampling, name:'newSampling' },
 { path: '/newDischarge', component:newDischarge, name:'newDischarge' },
-
+{ path: '/newAdmissionSearch', component:newAdmissionSearch, name:'newAdmissionSearch' },
      //report routes
      { path: '/dailyreport', component: dailyreport, name:'dailyreport' },  
      { path: '/nursingreport', component: nursingreport, name:'nursingreport' },

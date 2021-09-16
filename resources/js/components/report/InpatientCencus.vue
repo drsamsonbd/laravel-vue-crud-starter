@@ -260,7 +260,7 @@
   <hr>
 
     <h6><b>Bilangan Kemasukan Baru</b></h6>
-                           <div class="form-group row">
+        <div class="form-group row">
 
          <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 1</b> </label>
     <div class="col-sm-1">

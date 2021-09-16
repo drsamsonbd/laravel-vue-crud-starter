@@ -27,7 +27,6 @@
                      <b-col >
                       <label>Nombor K/P atau Passport</label>
                       <input type="text" class="form-control" id="ICnumber" v-model="form.kp_passport" disabled>
-                         <small class="text-danger" v-if="errors.kp_passport">{{errors.kp_passport[0]}}</small>
                   </b-col>
                      </b-row>
                              
@@ -143,7 +142,7 @@
                          <div class="form-group">
               <div class="card-footer  bg-white">      
           <button  class="btn btn-outline-alternate " @click="goBack(id)">Back</button>     
-          <button type="submit" id="myBtn" class="btn btn-primary " @click="patientUpdate()">Kemaskini</button>
+          <button type="submit" id="myBtn" class="btn btn-primary " @click="patientUpdate()">Daftar Masuk</button>
              </div>
                          </div>
                     <hr>
@@ -174,9 +173,9 @@
        methods:{
          cases(){
       
-    
-        axios.get('/api/patientkp_passport/'+this.$route.params.kp_passport + '?token='+ localStorage.getItem('token'))
-        .then(({data}) => (this.patient = data[0]))
+        axios.get('/api/patient/kp/'+this.$route.params.id + '/?token='+ localStorage.getItem('token'))
+        .then(({data}) => (this.patient = data[0],
+        this.form = data[0]))
       },
         
          pkrc(){
@@ -187,8 +186,7 @@
       })
     },
              patientUpdate(){
-       let id = this.form.id
-       axios.patch('/api/admission/'+id+ '?token='+ localStorage.getItem('token'), this.form)
+       axios.post('/api/admission'+ '?token='+ localStorage.getItem('token'), this.form)
        .then(() => {       
                   Toast.fire(
                       'Berjaya!',
@@ -202,13 +200,10 @@
               title: 'Invalid data! Nothing has been updated.'
             });
           })
-
-           ;    let $admid = this.$route.params.id;
-       this.$router.push({name: 'details', params: { id: $admid} });
+ this.$router.push({name: 'active' });
      }, 
-         goBack() {
-          let $id = this.$route.params.id;
-       this.$router.push({name: 'details', params: { id: $id } })
+         goBack() {      
+        this.$router.push({name: 'active' });
     },
     },
   
@@ -246,10 +241,6 @@
           {
             text: 'PKRC',
             href: '/active'
-          },
-          {
-            text: 'Kemasikini',
-            href:'#'
           },
           {
             text: 'Admission',

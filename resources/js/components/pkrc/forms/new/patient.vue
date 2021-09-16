@@ -67,24 +67,25 @@
                   </b-row>
 
                   <b-row>
-                     <b-col>
+                <!--     <b-col>
                       <label>Mukim</label>
                       <select class="form-control" id="area" v-model="forms.area">
                         <option v-for="area in areas" v-bind:key="area.area" >{{area.area }} </option>
                         
                         </select>
-                   </b-col>
+                   </b-col>-->
                     <b-col>
-                      <label>Pekerjaan</label>
-                      <input type="text" class="form-control" id="job" v-model="forms.job">
-                         <small class="text-danger" v-if="errors.job">{{errors.job[0]}}</small>
+                      <label>Alamat</label>
+                      <input type="text" class="form-control" id="workplace" v-model="forms.address">
+                         <small class="text-danger" v-if="errors.address">{{errors.address[0]}}</small>
                     </b-col>
                     </b-row>
                      <b-row>
-                      <b-col>
-                      <label>Alamat Tempat Kerja</label>
-                      <input type="text" class="form-control" id="workplace" v-model="forms.workplace">
-                         <small class="text-danger" v-if="errors.workplace">{{errors.workplace[0]}}</small>
+                 
+                         <b-col>
+                      <label>Pekerjaan</label>
+                      <input type="text" class="form-control" id="job" v-model="forms.job">
+                         <small class="text-danger" v-if="errors.job">{{errors.job[0]}}</small>
                     </b-col>
                        <b-col>
                       <label>No. Tel</label>
@@ -107,8 +108,7 @@
 
                          <div class="form-group">
               <div class="card-footer  bg-white">      
-          <button  class="btn btn-outline-alternate " @click="goBack(id)">Back</button>     
-          <button type="submit" id="myBtn" class="btn btn-primary " @click="patientUpdate()">Kemaskini</button>
+          <button type="submit" id="myBtn" class="btn btn-primary " @click="newPatient()">Daftar</button>
              </div>
                          </div>
                
@@ -143,7 +143,6 @@
     },
       
      mounted(){
-        this.allPatient();
         this.race();
         this.area(),
         this.nationality();
@@ -152,7 +151,7 @@
       
      data(){
       return{
-          views:[], 
+        
           races: [],
           nationalities:[],
           areas:[], 
@@ -166,7 +165,7 @@
           phone: null,
           nationality: null,
           job: null,
-          workplace: null,
+          address: null,
           area: null,
           case_district: null,
           notes: null,
@@ -177,15 +176,11 @@
         
         itemize: [
           {
-            text: 'Dashboard',
-            href: '#'
-          },
-          {
             text: 'Pesakit',
             href: '#'
           },
                  {
-            text: 'Kemaskini',
+            text: 'Daftar Baru',
             active: true
              
           },
@@ -197,15 +192,7 @@
    
  
   methods:{
-      allPatient(){
-    let self = this;
-    axios.get('/api/patientKP/'+this.$route.params.id+ '/?token='+ localStorage.getItem('token'))
-       .then(({data}) => (this.forms = data[0])) 
-      .catch(function (error) {
-        console.log(error);
-        self.$router.push({ path: '/login' });
-      });
-    },
+
      race(){
     let self = this;
      axios.get('/api/race/'+ '?token='+ localStorage.getItem('token'))
@@ -213,7 +200,6 @@
         self.races = response.data;
       }).catch(function (error) {
         console.log(error);
-        self.$router.push({ path: '/login' });
       });
     },
        area(){
@@ -223,7 +209,6 @@
         self.areas = response.data;
       }).catch(function (error) {
         console.log(error);
-        self.$router.push({ path: '/login' });
       });
     },
        nationality(){
@@ -233,47 +218,16 @@
         self.nationalities = response.data;
       }).catch(function (error) {
         console.log(error);
-        self.$router.push({ path: '/login' });
       });
     },
 
-      deleteUser(id){
-                Swal.fire({
-                  title: 'Anda pasti?',
-                  text: "Tindakan ini memadamkan data!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Teruskan'
-                }).then((result) => {
-                  if (result.value) {
-                    axios.delete('/api/patient/'+id+ '?token='+ localStorage.getItem('token'))
-                  .then(() => {
-                    window.location.reload()
-                
-                  })
-                  .catch(() => {
-                  
-                  })
-                    Swal.fire(
-                      'Deleted!',
-                      'Telah dipadamkan.',
-                      'success'
-                    )
-                  }
-                })
-
-      },
-           
-      patientUpdate(){
-       let $id = this.forms.id
-       axios.patch('/api/patient/'+$id+ '?token='+ localStorage.getItem('token'), this.forms)
+  newPatient(){
+       axios.post('/api/patient'+ '?token='+ localStorage.getItem('token'), this.forms)
        .then(() => {      
            
              Toast.fire(
                       'Berjaya!',
-                      'Telah dikemaskini.',
+                      'Telah didaftarkan.',
                       'success'
                     )
 
@@ -281,14 +235,11 @@
       
     
        }); 
-        let $admid = this.$route.params.id;
-       this.$router.push({name: 'details', params: { id: $admid} })
+        let $admid = this.forms.kp_passport;
+       this.$router.push({name: 'newAdmission', params: { id: $admid} })
        
      },
-      goBack() {
-          let $id = this.$route.params.id;
-       this.$router.push({name: 'details', params: { id: $id } })
-    },
+ 
 
 
  },
