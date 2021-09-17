@@ -91,7 +91,7 @@
                    </b-col>
                     <b-col>
                       <label>PKRC</label>
-                        <select class="form-control" id="district" v-model="form.pkrc">
+                        <select class="form-control" id="district" v-model="form.pkrc" required>
                         <option v-for="pkrc in pkrcs" v-bind:key="pkrc.pkrc" >{{pkrc.pkrc }} </option>
                         
                         </select>
@@ -100,7 +100,7 @@
                       <b-row>
                      <b-col>
                       <label>Register Number</label>
-                       <input type="text" class="form-control" id="rn" v-model="form.reg_number">
+                       <input type="text" class="form-control" id="rn" v-model="form.reg_number" required>
                      
                           <small class="text-danger" v-if="errors.reg_number">{{errors.reg_number[0]}}</small>
                    </b-col>                 
@@ -109,7 +109,7 @@
                                   <b-row>
                        <b-col>
                       <label>Diagnosis on admission</label>
-                        <select class="form-control" id="marriage" v-model="form.adm_diagnosis">                  
+                        <select class="form-control" id="marriage" v-model="form.adm_diagnosis" required>                  
                         <option >COVID-19</option>
                         <option >PUI</option>
                         <option>PUS</option>
@@ -117,7 +117,7 @@
                     </b-col>   
                        <b-col>
                       <label>Stage</label>
-                        <select class="form-control" id="marriage" v-model="form.adm_stage">                  
+                        <select class="form-control" id="marriage" v-model="form.adm_stage" required>                  
                         <option >1</option>
                         <option >2</option>
                         <option>3</option>
