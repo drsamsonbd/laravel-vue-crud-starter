@@ -12,7 +12,7 @@
 
  
     
-            <form class="user">
+            <form class="user" @submit.prevent="register">
                        <div class="form-group" hidden>
                       <label>User ID:</label>
                       <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="form.id">
@@ -75,13 +75,11 @@
                   <b-row>
                   <b-col>
                       <label>Tarikh Masuk</label>
-                      <input type="date" class="form-control" id="date_report" v-model="form.date">
-                         <small class="text-danger" v-if="errors.date">{{errors.date[0]}}</small>
+                      <input type="date" class="form-control" id="date_report" v-model="form.date" required>
                   </b-col>
                     <b-col>
                       <label>Masa</label>
-                      <input type="time" class="form-control" id="time" v-model="form.time">
-                         <small class="text-danger" v-if="errors.time">{{errors.time[0]}}</small>
+                      <input type="time" class="form-control" id="time" v-model="form.time" required>
                   </b-col>
                   </b-row>
 
@@ -92,7 +90,7 @@
                    </b-col>
                     <b-col>
                       <label>Wad</label>
-                        <select class="form-control" id="district" v-model="form.ward">
+                        <select class="form-control" id="district" v-model="form.ward" required>
                         <option v-for="ward in wards" v-bind:key="ward.ward" >{{ward.ward }} </option>
                         
                         </select>
@@ -101,16 +99,15 @@
                       <b-row>
                      <b-col>
                       <label>Register Number</label>
-                       <input type="text" class="form-control" id="rn" v-model="form.reg_number">
+                       <input type="text" class="form-control" id="rn" v-model="form.reg_number" required>
                      
-                          <small class="text-danger" v-if="errors.reg_number">{{errors.reg_number[0]}}</small>
                    </b-col>                 
                     </b-row>
 
                                   <b-row>
                        <b-col>
                       <label>Diagnosis on admission</label>
-                        <select class="form-control" id="marriage" v-model="form.adm_diagnosis">                  
+                        <select class="form-control" id="marriage" v-model="form.adm_diagnosis" required>                  
                         <option >COVID-19</option>
                         <option >PUI</option>
                         <option>PUS</option>
@@ -120,7 +117,7 @@
                     </b-col>   
                        <b-col>
                       <label>Stage</label>
-                        <select class="form-control" id="marriage" v-model="form.adm_stage">                  
+                        <select class="form-control" id="marriage" v-model="form.adm_stage" required>                  
                         <option >1</option>
                         <option >2</option>
                         <option>3</option>
@@ -136,7 +133,7 @@
                      <b-col>
                       <label>Nota</label>
                        <textarea type="text" class="form-control" id="note" v-model="form.note"></textarea>
-                          <small class="text-danger" v-if="errors.note">{{errors.note[0]}}</small>
+                        
                      
                    </b-col>                 
                     </b-row>
@@ -145,7 +142,7 @@
                          <div class="form-group">
               <div class="card-footer  bg-white">      
           <button  class="btn btn-outline-alternate " @click="goBack()">Back</button>     
-          <button type="submit" id="myBtn" class="btn btn-primary " @click="register()">Admit</button>
+          <button type="submit" id="myBtn" class="btn btn-primary " >Admit</button>
              </div>
                          </div>
                     <hr>

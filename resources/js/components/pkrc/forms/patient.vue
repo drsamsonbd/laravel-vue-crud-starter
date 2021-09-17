@@ -109,7 +109,7 @@
                          <div class="form-group">
               <div class="card-footer  bg-white">      
                    <button  class="btn btn-outline-alternate " @click="goBack(id)">Back</button>   
-          <button type="submit" id="myBtn" class="btn btn-primary " @click="patientUpdate()">Daftar</button>
+          <button type="submit" id="myBtn" class="btn btn-primary " @click="patientUpdate()">Kemaskini</button>
              </div>
                          </div>
                
@@ -182,7 +182,7 @@
             href: '#'
           },
                  {
-            text: 'Daftar Baru',
+            text: 'Kemaskini',
             active: true
              
           },

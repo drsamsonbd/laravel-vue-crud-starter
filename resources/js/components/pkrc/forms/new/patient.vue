@@ -13,7 +13,7 @@
 
   <!--userUpdate Modal-->
   <div>
-          <form class="user"> 
+          <form class="user"  @submit.prevent="newPatient"> 
                      <div class="form-group" hidden>
                       <label>User ID:</label>
                       <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="forms.id">
@@ -23,29 +23,27 @@
                         <b-col>
                       <label>Nama</label>
                       <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Nama mengikut kad pengenalan" v-model="forms.name">
-                     <small class="text-danger" v-if="errors.name">{{errors.name[0]}}</small>
+  
                      </b-col>
                      </b-row>
                              
                     <b-row>
                       <b-col>
                       <label>Nombor K/P atau Passport</label>
-                      <input type="text" class="form-control" id="ICnumber" v-model="forms.kp_passport">
-                         <small class="text-danger" v-if="errors.kp_passport">{{errors.kp_passport[0]}}</small>
+                      <input type="text" class="form-control" id="ICnumber" v-model="forms.kp_passport" required>
                   </b-col>
                    <b-col>
                       <label>Jantina</label>
-                       <select class="form-control" id="gender" v-model="forms.gender">                  
+                       <select class="form-control" id="gender" v-model="forms.gender" required>                  
                         <option >Lelaki</option>
                         <option >Perempuan</option>
                         </select>
-                         <small class="text-danger" v-if="errors.gender">{{errors.gender[0]}}</small>
                     </b-col>
 
                      <b-col>
                       <label>Umur</label>
-                      <input type="text" class="form-control" id="age" v-model="forms.age">
-                         <small class="text-danger" v-if="errors.age">{{errors.age[0]}}</small>
+                      <input type="text" class="form-control" id="age" v-model="forms.age" required>
+                            <span style="font-size: 0.6em;">Nota:*Jika kurang satu (1) tahun sila isikan 0.01 sehingga 0.99</span>
                     </b-col>
                     </b-row>
                   
@@ -59,7 +57,7 @@
                   </b-col>
                   <b-col>
                       <label>Warganegara</label>
-                      <select class="form-control" id="nationality" v-model="forms.nationality">
+                      <select class="form-control" id="nationality" v-model="forms.nationality" required>
                         <option v-for="nationality in nationalities" v-bind:key="nationality.nationality" >{{nationality.nationality }} </option>
                         
                         </select>
@@ -77,7 +75,6 @@
                     <b-col>
                       <label>Alamat</label>
                       <input type="text" class="form-control" id="workplace" v-model="forms.address">
-                         <small class="text-danger" v-if="errors.address">{{errors.address[0]}}</small>
                     </b-col>
                     </b-row>
                      <b-row>
@@ -85,18 +82,15 @@
                          <b-col>
                       <label>Pekerjaan</label>
                       <input type="text" class="form-control" id="job" v-model="forms.job">
-                         <small class="text-danger" v-if="errors.job">{{errors.job[0]}}</small>
                     </b-col>
                        <b-col>
                       <label>No. Tel</label>
                       <input type="text" class="form-control" id="phone" v-model="forms.phone">
-                         <small class="text-danger" v-if="errors.phone">{{errors.phone[0]}}</small>
                     </b-col>
                     </b-row>
                     <div class="form-group">
                       <label>Nota</label>
                       <textarea input type="text" class="form-control" id="notes" v-model="forms.notes"></textarea>
-                         <small class="text-danger" v-if="errors.notes">{{errors.notes[0]}}</small>
                     </div>
                       
                      
@@ -108,7 +102,7 @@
 
                          <div class="form-group">
               <div class="card-footer  bg-white">      
-          <button type="submit" id="myBtn" class="btn btn-primary " @click="newPatient()">Daftar</button>
+          <button type="submit" id="myBtn" class="btn btn-primary ">Daftar</button>
              </div>
                          </div>
                

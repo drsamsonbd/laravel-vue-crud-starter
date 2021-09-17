@@ -38,17 +38,17 @@
                       <b-row>
                             <b-col>
                       <label>Tarikh Keluar Ward</label>
-                      <input type="date" class="form-control" id="datedc" v-model="form.date_dc">
+                      <input type="date" class="form-control" id="datedc" v-model="form.date_dc" required>
                          <small class="text-danger" v-if="errors.date_dc">{{errors.date_dc[0]}}</small>
                    </b-col>
                      <b-col>
                        <label>Masa Tinggal (Hari)</label>
-                      <input type="number" class="form-control" id="duration" v-model="form.duration">
+                      <input type="number" class="form-control" id="duration" v-model="form.duration" required>
                          <small class="text-danger" v-if="errors.duration">{{errors.duration[0]}}</small>
                    </b-col>
                    <b-col>
                       <label>Jenis Discaj</label>
-                        <select class="form-control" id="type dc" v-model="form.type_dc">                  
+                        <select class="form-control" id="type dc" v-model="form.type_dc" required>                  
                         <option >Balik ke Rumah</option>
                         <option >Ditukar ke Hospital Lain</option>
                         <option >Mati</option>
