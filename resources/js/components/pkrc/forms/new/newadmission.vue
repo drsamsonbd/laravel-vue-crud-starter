@@ -151,7 +151,7 @@
             href: '/home'
           },
             {
-            text: 'PKRC',
+            text: 'PKRC-',
             href: '#'
           },
           {

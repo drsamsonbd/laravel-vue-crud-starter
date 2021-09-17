@@ -407,7 +407,7 @@
           { key: 'duration', label: 'Bilangan Hari', sortable: true, sortDirection: 'desc' },
           { key: 'type_dc', label: 'Jenis Discharges', sortable: true, sortDirection: 'desc' },
           { key: 'notes', label: 'Catatan', sortable: true, sortDirection: 'desc' },
-          { key: 'actions', label: '' },
+        //  { key: 'actions', label: '' },
         ],
          reviewitems: [],
        reviewfields: [     
