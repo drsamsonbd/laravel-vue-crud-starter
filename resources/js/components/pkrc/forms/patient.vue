@@ -108,7 +108,8 @@
 
                          <div class="form-group">
               <div class="card-footer  bg-white">      
-          <button type="submit" id="myBtn" class="btn btn-primary " @click="newPatient()">Daftar</button>
+                   <button  class="btn btn-outline-alternate " @click="goBack(id)">Back</button>   
+          <button type="submit" id="myBtn" class="btn btn-primary " @click="patientUpdate()">Daftar</button>
              </div>
                          </div>
                
@@ -146,6 +147,7 @@
         this.race();
         this.area(),
         this.nationality();
+        this.allPatient();
       },
 
       
@@ -192,6 +194,15 @@
    
  
   methods:{
+          allPatient(){
+    let self = this;
+    axios.get('/api/patientKP/'+this.$route.params.id+ '/?token='+ localStorage.getItem('token'))
+       .then(({data}) => (this.forms = data[0])) 
+      .catch(function (error) {
+        console.log(error);
+        self.$router.push({ path: '/login' });
+      });
+    },
 
      race(){
     let self = this;
@@ -221,13 +232,14 @@
       });
     },
 
-  newPatient(){
-       axios.post('/api/patient'+ '?token='+ localStorage.getItem('token'), this.forms)
+      patientUpdate(){
+       let $id = this.forms.id
+       axios.patch('/api/patient/'+$id+ '?token='+ localStorage.getItem('token'), this.forms)
        .then(() => {      
            
              Toast.fire(
                       'Berjaya!',
-                      'Telah didaftarkan.',
+                      'Telah dikemaskini.',
                       'success'
                     )
 
@@ -236,9 +248,13 @@
     
        }); 
         let $admid = this.forms.kp_passport;
-       this.$router.push({name: 'inpatientadmissionform', params: { id: $admid} })
+       this.$router.push({name: 'details', params: { id: $admid} })
        
      },
+      goBack() {
+          let $id = this.forms.kp_passport;
+       this.$router.push({name: 'details', params: { id: $id } })
+    },
  
 
 
