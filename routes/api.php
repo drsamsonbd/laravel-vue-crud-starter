@@ -21,7 +21,7 @@ Route::get('/statisticsTD', 'Api\StatisticsController@TD')->name('TD');
 Route::get('/statisticsTBW', 'Api\StatisticsController@TBW')->name('TBW');
 Route::get('/statisticsTC', 'Api\StatisticsController@TC')->name('TC');
 
-
+Route::apiResource('/inpatient/cencus', 'Api\InpatientCencusController');
 
 
 // autoreport
@@ -169,6 +169,7 @@ Route::get('/inpatientKP/{id}', 'Api\WardAdmissionRecordController@updatePatient
 Route::get('/inpatientSampling/{id}', 'Api\WardAdmissionRecordController@updateSampling')->name('updateSampling');
 Route::apiResource('/inpatient/discharge', 'Api\WardDischargeController');
 Route::apiResource('/inpatient/discharges', 'Api\WardDischargesRecordController');
+
 
 
 });

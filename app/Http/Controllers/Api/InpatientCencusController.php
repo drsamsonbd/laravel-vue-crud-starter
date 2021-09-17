@@ -8,31 +8,29 @@ use Illuminate\Support\Facades\DB;
 
 class InpatientCencusController extends Controller
 {
-    public function DewasaLelaki(Request $request)
+    public function index(Request $request)
     {
-    $admission= DB::table('ward_admissions')
+    $DLadmission= DB::table('ward_admissions')
     ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
     ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
     ->where('patients.age', '>','12')
     ->where('patients.age', '<','60')
-    ->where('patients.gender', '=','LELAKI')
-    ->where('ward_admissions.ward', '=', $request -> ward);
+    ->where('patients.gender', '=','LELAKI');
 
  
-     $statistic =  $admission ->where('ward_admissions.date', '<=', $request -> datereporting)
+     $DLstatistic =  $DLadmission ->where('ward_admissions.date', '<=', $request -> datereporting)
 
      ->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
-     ->orWhere(function($admission )use ($request) 
+     ->orWhere(function($DLadmission )use ($request) 
      
      { 
-         $admission
+         $DLadmission
          ->where('patients.gender', '=','LELAKI')
          ->where('ward_admissions.date', '<=', $request -> datereporting)
          ->where('patients.age', '>','12')
         ->where('patients.age', '<','60')
-         ->where('ward_discharges.reg_number')
-         ->where('ward_admissions.ward', '=', $request -> ward);
+         ->where('ward_discharges.reg_number');
      })
   //  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
   //  'ward_discharges.date_dc')
@@ -40,34 +38,29 @@ class InpatientCencusController extends Controller
   ->get(array(
      DB::raw('COUNT(*) as "count"')
 ));
-       return response()->json($statistic);
-}
 
-public function DewasaLelakiEmas(Request $request)
-{
-$admission= DB::table('ward_admissions')
+
+$DLCadmission= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
 
 ->where('patients.age', '>=','60')
-->where('patients.gender', '=','LELAKI')
-->where('ward_admissions.ward', '=', $request -> ward);
+->where('patients.gender', '=','LELAKI');
 
 
- $statistic =  $admission ->where('ward_admissions.date', '<=', $request -> datereporting)
+ $DLCstatistic =  $DLCadmission ->where('ward_admissions.date', '<=', $request -> datereporting)
 
  ->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
- ->orWhere(function($admission )use ($request) 
+ ->orWhere(function($DLCadmission )use ($request) 
  
  { 
-     $admission
+     $DLCadmission
      ->where('patients.gender', '=','LELAKI')
      ->where('ward_admissions.date', '<=', $request -> datereporting)
     
     ->where('patients.age', '>=','60')
-     ->where('ward_discharges.reg_number')
-     ->where('ward_admissions.ward', '=', $request -> ward);
+     ->where('ward_discharges.reg_number');
  })
 //  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
 //  'ward_discharges.date_dc')
@@ -75,7 +68,7 @@ $admission= DB::table('ward_admissions')
 ->get(array(
  DB::raw('COUNT(*) as "count"')
 ));
-   return response()->json($statistic);
+   return response()->json( compact('DLCstatistic', 'DLstatistic'));
 }
 
 public function DewasaPerempuan(Request $request)

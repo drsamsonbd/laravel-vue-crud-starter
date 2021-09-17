@@ -500,7 +500,6 @@
       }
       },
      mounted(){
-       this.pkrclist();
         this.user();
 
 
@@ -585,135 +584,18 @@
     },
  
   methods:{
-       pkrclist(){
-    let self = this;
-     axios.get('/api/pkrc/'+ '?token='+ localStorage.getItem('token'))
-      .then(function (response) {
-        self.pkrcs = response.data;
-      }).catch(function (error) {
-        console.log(error);
-        self.$router.push({ path: '/login' });
-      });
-    },
+
      user(){
       let loggeduser = localStorage.getItem('user')
       this.form.name_kj = loggeduser;
     }, 
     report(){
     let self = this;
-     axios.get('/api/CovidFemale/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
+     axios.get('/api/inpatient/cencus/',{ params: { datereporting: this.datereporting } })
       .then(function (response) {
-        self.female  = response.data[0].count;
-      }),
-        axios.get('/api/CovidMale/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.male  = response.data[0].count;
-      }),
-        axios.get('/api/CovidMalePaeds/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.paeds_male  = response.data[0].count;
-      })
-     ,
-        axios.get('/api/CovidFemalePaeds/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.paeds_female  = response.data[0].count;
-      })
-        ,
-        axios.get('/api/stageOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_1  = response.data[0].count;
-      })    ,
-        axios.get('/api/stageTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_2  = response.data[0].count;
-      })    ,
-        axios.get('/api/stageThree/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_3  = response.data[0].count;
-      })    ,
-        axios.get('/api/stageFour/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_4  = response.data[0].count;
-      })    ,
-        axios.get('/api/stageFive/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_5  = response.data[0].count;
-      })
-       ,
-        axios.get('/api/newAdmission/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.new_admission  = response.data[0].count;
-      }),
-        axios.get('/api/stepUp/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.step_up  = response.data[0].count;
-      }),
-            axios.get('/api/statDischarges/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.discharged  = response.data[0].count;
-      }) ,           axios.get('/api/HQ/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.home_q  = response.data[0].count;
-      })
-       ,           axios.get('/api/WN/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.local  = response.data[0].count;
-      })
-      ,           axios.get('/api/BWN/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.non_local = response.data[0].count;
-      })
-       ,           axios.get('/api/stageOneVaccineOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_1_1 = response.data[0].count;
-      })
-         ,           axios.get('/api/stageOneVaccineTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_1_2 = response.data[0].count;
-      })   ,           axios.get('/api/stageTwoVaccineOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_2_1 = response.data[0].count;
-      }) ,           axios.get('/api/stageTwoVaccineTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_2_2 = response.data[0].count;
-     }) ,           axios.get('/api/stageThreeVaccineOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_3_1 = response.data[0].count;
-     })  ,           axios.get('/api/stageThreeVaccineTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_3_2 = response.data[0].count;
-     }) ,           axios.get('/api/stageFourVaccineOne/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_4_1 = response.data[0].count;
-     })   ,           axios.get('/api/stageFourVaccineTwo/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.stage_4_2 = response.data[0].count;
-     })  ,           axios.get('/api/PUIMale/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_adult_male = response.data[0].count;
-     })  ,           axios.get('/api/PUIFemale/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_adult_female = response.data[0].count;
-     })  ,           axios.get('/api/PUIMalePaeds/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_paeds_male = response.data[0].count;
-     }) 
-      ,           axios.get('/api/PUIFemalePaeds/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_paeds_female = response.data[0].count;
-     })   ,           axios.get('/api/newAdmissionPUI/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_new = response.data[0].count;
-     })    ,           axios.get('/api/statDischargesPUI/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_discharged = response.data[0].count;
-     }) ,           axios.get('/api/stepUpPUI/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.pui_step_up = response.data[0].count;
-     }) ,           axios.get('/api/BOR/',{ params: { pkrc: this.selectedpkrc, datereporting: this.datereporting } })
-      .then(function (response) {
-        self.bor = response.data;
-     }) 
+        self.form.paeds_male  = response.data.DLCstatistic[0].count;
+        self.form.male  = response.data.DLstatistic[0].count;
+      });
     }
   }
  
