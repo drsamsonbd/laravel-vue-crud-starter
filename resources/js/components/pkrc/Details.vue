@@ -283,11 +283,7 @@
       hover
     >
       <template #cell(actions)="row">
-                 <div v-if="admissions.date_dc ===null">
-  <router-link :to="{name: 'newSampling', params:{kp_passport:admissions.kp_passport}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-plus"></i> </router-link>
-
-</div>
-<div v-else> 
+<div > 
   <router-link :to="{name: 'updateDischarge', params:{id:admissions.id}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-edit"></i> </router-link>
 </div>
       </template>
@@ -407,7 +403,7 @@
           { key: 'duration', label: 'Bilangan Hari', sortable: true, sortDirection: 'desc' },
           { key: 'type_dc', label: 'Jenis Discharges', sortable: true, sortDirection: 'desc' },
           { key: 'notes', label: 'Catatan', sortable: true, sortDirection: 'desc' },
-        //  { key: 'actions', label: '' },
+        { key: 'actions', label: '' },
         ],
          reviewitems: [],
        reviewfields: [     
