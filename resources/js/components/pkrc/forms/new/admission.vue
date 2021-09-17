@@ -12,7 +12,7 @@
 
     <header>Kemaskini Admission</header>
     
-            <form class="user">
+            <form class="user" @submit.prevent="patientUpdate">
                        <div class="form-group" hidden>
                       <label>User ID:</label>
                       <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="form.id">
@@ -74,13 +74,11 @@
                   <b-row>
                   <b-col>
                       <label>Tarikh Masuk</label>
-                      <input type="date" class="form-control" id="date_report" v-model="form.date">
-                         <small class="text-danger" v-if="errors.date">{{errors.date[0]}}</small>
+                      <input type="date" class="form-control" id="date_report" v-model="form.date" required>
                   </b-col>
                     <b-col>
                       <label>Masa</label>
-                      <input type="time" class="form-control" id="time" v-model="form.time">
-                         <small class="text-danger" v-if="errors.time">{{errors.time[0]}}</small>
+                      <input type="time" class="form-control" id="time" v-model="form.time" required>
                   </b-col>
                   </b-row>
 
@@ -100,9 +98,7 @@
                       <b-row>
                      <b-col>
                       <label>Register Number</label>
-                       <input type="text" class="form-control" id="rn" v-model="form.reg_number" required>
-                     
-                          <small class="text-danger" v-if="errors.reg_number">{{errors.reg_number[0]}}</small>
+                       <input type="text" class="form-control" id="rn" v-model="form.reg_number" required>                     
                    </b-col>                 
                     </b-row>
 
@@ -133,7 +129,6 @@
                      <b-col>
                       <label>Nota</label>
                        <input type="text" class="form-control" id="note" v-model="form.note">
-                          <small class="text-danger" v-if="errors.note">{{errors.note[0]}}</small>
                      
                    </b-col>                 
                     </b-row>
@@ -142,7 +137,7 @@
                          <div class="form-group">
               <div class="card-footer  bg-white">      
           <button  class="btn btn-outline-alternate " @click="goBack(id)">Back</button>     
-          <button type="submit" id="myBtn" class="btn btn-primary " @click="patientUpdate()">Daftar Masuk</button>
+          <button type="submit" id="myBtn" class="btn btn-primary ">Daftar Masuk</button>
              </div>
                          </div>
                     <hr>
