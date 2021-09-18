@@ -40,13 +40,49 @@
                           <option value="Petang">Petang</option>
                           <option value="Malam">Malam</option></b-form-select>
         
-    <b-button variant="primary" @click="report()">Generate Cencus</b-button>
+    <b-button variant="primary" @click="report()">Lihat Cencus</b-button>
   </b-form>
            
 
        <br>  <hr>
    <h6><b>CENCUS NON-COVID</b></h6>
    <!--NON COVID-->
+  <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Lelaki </b></label>
+    <div class="col-sm-1">
+       <input type="text" class="form-control form-control-sm" v-model="form.male_ward" disabled>      
+    </div>
+
+       <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Perempuan</b></label>
+    <div class="col-sm-1">
+       <input type="text" class="form-control form-control-sm" id="children" v-model="form.female_ward" disabled>      
+    </div>
+      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Bersalin </b></label>
+    <div class="col-sm-1">
+       <input type="text" class="form-control form-control-sm" id="maternity" v-model="form.maternity_ward" disabled>
+        </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Kanak-kanak</b></label>
+    <div class="col-sm-1">
+       <input type="text" class="form-control form-control-sm" id="tb" v-model="form.children_ward" disabled>      
+    </div>
+   </div>
+       <div class="form-group row">
+     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Akut</b></label>
+    <div class="col-sm-1">
+       <input type="text" class="form-control form-control-sm" id="tb" v-model="form.acute_ward" disabled>      
+    </div>
+   <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad TB Lelaki</b></label>
+    <div class="col-sm-1">
+       <input type="text" class="form-control form-control-sm" id="tb" v-model="form.male_tb_ward" disabled>      
+    </div>
+      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad TB Perempuan</b></label>
+    <div class="col-sm-1">
+       <input type="text" class="form-control form-control-sm" id="tb" v-model="form.female_tb_ward" disabled>      
+    </div>   
+    </div>
+    <hr>
+         
+ 
     <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Lelaki </b> </label>
     <div class="col-sm-1">
@@ -69,62 +105,27 @@
        
     </div> 
       </div>
-    <hr>
-         
-   <div class="form-group row">
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Lelaki </b></label>
-    <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" v-model="form.ward_male" disabled>      
-    </div>
 
-       <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Perempuan</b></label>
-    <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="children" v-model="form.ward_female" disabled>      
-    </div>
-      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Bersalin </b></label>
-    <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="maternity" v-model="form.ward_maternity" disabled>
-        </div>
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Kanak-kanak</b></label>
-    <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="tb" v-model="form.ward_children" disabled>      
-    </div>
-   </div>
-
-    <div class="form-group row">
-     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad Akut</b></label>
-    <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="tb" v-model="form.ward_acute" disabled>      
-    </div>
-   <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad TB Lelaki</b></label>
-    <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="tb" v-model="form.ward_male_tb" disabled>      
-    </div>
-      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Wad TB Perempuan</b></label>
-    <div class="col-sm-1">
-       <input type="text" class="form-control form-control-sm" id="tb" v-model="form.ward_female_tb" disabled>      
-    </div>   
-    </div>
     <!--admissison, discharge, step up/down-->
  
                            <div class="form-group row">
      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kemasukan Baru</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="newadm" v-model="form.nc_admission" disabled>
+   <input type="text" class="form-control form-control-sm" id="newadm" v-model="form.non_covid_new_admission" disabled>
     </div>
 
          <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Disaj</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.nc_discharged" disabled>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.non_covid_discharged" disabled>
     </div>
 
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Step Up</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="ns2" v-model="form.nc_step_up" disabled>
+   <input type="text" class="form-control form-control-sm" id="ns2" v-model="form.non_covid_step_up" disabled>
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kematian</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="ns3" v-model="form.nc_death" disabled> 
+   <input type="text" class="form-control form-control-sm" id="ns3" v-model="form.non_covid_death" disabled> 
     </div>
     </div>      
        <hr>
@@ -153,6 +154,20 @@
        <input type="text" class="form-control form-control-sm" id="pfemale" v-model="form.covid_paeds_female" disabled>
        
     </div> 
+      </div>
+
+          <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Warganegara</b> </label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.covid_local" disabled>
+
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Bukan Warganegara</b></label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control form-control-sm" id="female" v-model="form.covid_non_local" disabled >
+      
+    </div>
+
       </div>
   <hr>
     <!--Staging-->
@@ -264,32 +279,32 @@
 
          <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 1</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.newstage_1" disabled>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.new_stage_1" disabled>
     </div>
 
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 2</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="ns2" v-model="form.newstage_2" disabled>
+   <input type="text" class="form-control form-control-sm" id="ns2" v-model="form.new_stage_2" disabled>
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 3</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="ns3" v-model="form.newstage_3" disabled>
+   <input type="text" class="form-control form-control-sm" id="ns3" v-model="form.new_stage_3" disabled>
     </div>
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 4</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="ns4" v-model="form.newstage_4" disabled>
+   <input type="text" class="form-control form-control-sm" id="ns4" v-model="form.new_stage_4" disabled>
     </div>
                            </div>
     <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Stage 5</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="ns5" v-model="form.newstage_5" disabled>
+   <input type="text" class="form-control form-control-sm" id="ns5" v-model="form.new_stage_5" disabled>
     </div>
 
 <br>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Pending</b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.pending" disabled>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.pending" >
     </div>
   </div>
 
@@ -298,7 +313,7 @@
   <div class="form-group row">
      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kemasukan Baru</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="newadm" v-model="form.covid_admission" disabled>
+   <input type="text" class="form-control form-control-sm" id="newadm" v-model="form.covid_new_admission" disabled>
     </div>
 
          <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Disaj</b> </label>
@@ -310,9 +325,17 @@
     <div class="col-sm-1">
    <input type="text" class="form-control form-control-sm" id="ns2" v-model="form.covid_step_up" disabled>
     </div>
-    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kematian</b> </label>
+
+        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kematian</b> </label>
     <div class="col-sm-1">
    <input type="text" class="form-control form-control-sm" id="ns3" v-model="form.covid_death" disabled> 
+    </div>
+</div>
+        <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Home Quarantine</b> </label>
+
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="ns3" v-model="form.covid_home_q" disabled> 
     </div>
     </div>      
    
@@ -342,7 +365,7 @@
        
     </div> 
       </div>
-    <hr>
+    
 
     <!--admissison, discharge, step up/down-->
  
@@ -392,7 +415,7 @@
        
     </div> 
       </div>
-    <hr>
+   
 
     <!--admissison, discharge, step up/down-->
  
@@ -418,28 +441,24 @@
     </div>      
        <hr>
 <!--Oxygen-->
-<hr>
+
     <h6><b>Penggunaan Oksigen</b></h6>
                            <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Bed With Oxygen Concentrator </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.o2_conc">
-                         <small class="text-danger" v-if="errors.o2_conc">{{errors.o2_conc[0]}}</small>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.o2_conc" required>
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b> Oxygen Concentrator Occupied </b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.o2_conc_occupied">
-                         <small class="text-danger" v-if="errors.o2_conc_occupied">{{errors.o2_conc_occupied[0]}}</small>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.o2_conc_occupied" required>
     </div>
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Bed With Oxygen Cylinder </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.o2_cylinder">
-                         <small class="text-danger" v-if="errors.o2_cylinder">{{errors.o2_cylinder[0]}}</small>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.o2_cylinder" required>
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Oxygen Cylinder Occupied</b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.o2_cylinder_occupied">
-                         <small class="text-danger" v-if="errors.o2_cylinder_occupied">{{errors.o2_cylinder_occupied[0]}}</small>
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.o2_cylinder_occupied" required>
     </div>
   </div> 
   <hr>
@@ -447,8 +466,6 @@
     <label for="colFormLabelSm" > <code>*</code> <b>Staf Bertugas </b> </label>
  
       <textarea type="text" class="form-control "  id="staff" v-model="form.staff"></textarea>
-      
-                         <small class="text-danger" v-if="errors.staff">{{errors.staff[0]}}</small>
 
    
 
@@ -457,9 +474,10 @@
                       
       
                     <div class="form-group">
-                      <label> <code>*</code>Nota</label>
-                      <textarea input type="text" class="form-control" id="notes" v-model="form.notes"></textarea>
-                         <small class="text-danger" v-if="errors.notes">{{errors.notes[0]}}</small>
+                      <label> <code>*</code>Catatan</label>
+                      <textarea 
+                        auto-grow
+                        input type="text" class="form-control" id="notes" v-model="form.notes"></textarea>
                     </div>
                     <div class="form-group">
                       <button type="submit"  class="btn btn-primary btn-block">Hantar</button>
@@ -507,27 +525,38 @@
      data(){
       return{
       
-          pkrcs:[],
-          selectedpkrc: null,
+       
+          shift: null,
           datereporting: null,       
      
-        form:{
+          form:{
           name_kj:null,
-          date: null, 
-          time: null, 
-          pkrc: null, 
           male: null, 
           female: null, 
           paeds_male: null, 
           paeds_female: null, 
-          new_admission: null, 
-          step_up: null, 
-          discharged: null, 
-          home_q: null, 
-          carer: null, 
-          local: null, 
-          non_local: null, 
-          bor: null, 
+          non_covid_new_admission: null, 
+          non_covid_step_up: null, 
+          non_covid_discharged: null, 
+          non_covid_death: null,
+          male_ward: null,
+          female_ward: null,
+          maternity_ward: null,
+          children_ward: null,
+          male_tb_ward: null,
+          female_tb_ward: null,
+          acute_ward: null,
+          covid_new_admission: null, 
+          covid_step_up: null, 
+          covid_discharged: null, 
+          covid_death: null,
+          covid_home_q: null, 
+          covid_male: null, 
+          covid_female: null, 
+          covid_paeds_male: null, 
+          covid_paeds_female: null, 
+          covid_local: null, 
+          covid_non_local: null, 
           stage_1: null, 
           stage_2: null, 
           stage_3: null, 
@@ -543,7 +572,11 @@
           stage_4_2: null, 
           stage_5_1: null, 
           stage_5_2: null, 
-          staff: null, 
+          new_stage_1: null, 
+          new_stage_2: null, 
+          new_stage_3: null, 
+          new_stage_4: null, 
+          new_stage_5: null, 
           pui_adult_male: null, 
           pui_adult_female: null, 
           pui_paeds_male: null, 
@@ -551,6 +584,17 @@
           pui_new: null, 
           pui_discharged: null, 
           pui_step_up: null, 
+          pui_death: null, 
+          sari_adult_male: null, 
+          sari_adult_female: null, 
+          sari_paeds_male: null, 
+          sari_paeds_female: null, 
+          sari_new: null, 
+          sari_discharged: null, 
+          sari_step_up: null, 
+          sari_death: null, 
+          staff: null, 
+          bor: null, 
           notes: null, 
         },
         errors:'',
@@ -591,10 +635,90 @@
     }, 
     report(){
     let self = this;
-     axios.get('/api/inpatient/cencus/',{ params: { datereporting: this.datereporting } })
+     axios.get('/api/inpatient/cencus/noncovid',{ params: { datereporting: this.datereporting } })
       .then(function (response) {
-        self.form.paeds_male  = response.data.DLCstatistic[0].count;
-        self.form.male  = response.data.DLstatistic[0].count;
+          self.form.male= response.data.statistic_nca_male[0].count; 
+          self.form.female= response.data.statistic_nca_female[0].count; 
+          self.form.paeds_male= response.data.statistic_nca_male_paeds[0].count; 
+          self.form.paeds_female= response.data.statistic_nca_female_paeds[0].count; 
+          self.form.non_covid_new_admission= response.data.statistic_nca_new_admission[0].count; 
+          self.form.non_covid_step_up= response.data.statistic_nca_step_up[0].count; 
+          self.form.non_covid_discharged= response.data.statistic_nca_new_discharges[0].count; 
+          self.form.non_covid_death= response.data.statistic_nca_death[0].count;
+          self.form.male_ward= response.data.statistic_nca_male_ward[0].count;
+          self.form.female_ward= response.data.statistic_nca_female_ward[0].count;
+          self.form.maternity_ward= response.data.statistic_nca_maternity_ward[0].count;
+          self.form.children_ward= response.data.statistic_nca_children_ward[0].count;
+          self.form.male_tb_ward= response.data.statistic_nca_male_tb_ward[0].count;
+          self.form.female_tb_ward= response.data.statistic_nca_female_tb_ward[0].count;
+          self.form.acute_ward= response.data.statistic_nca_acute_ward[0].count;
+
+      }),
+         axios.get('/api/inpatient/cencus/covid',{ params: { datereporting: this.datereporting } })
+        .then(function (response) {
+         self.form.covid_new_admission = response.data.statistic_covid_new_admission[0].count; 
+         self.form.covid_step_up = response.data.statistic_covid_step_up[0].count; 
+         self.form.covid_discharged = response.data.statistic_covid_new_discharges[0].count; 
+         self.form.covid_death = response.data.statistic_covid_death[0].count;
+         self.form.covid_home_q = response.data.statistic_covid_home_q[0].count; 
+         self.form.covid_male = response.data.statistic_covid_male[0].count; 
+         self.form.covid_female = response.data.statistic_covid_female[0].count; 
+         self.form.covid_paeds_male = response.data.statistic_covid_male_paeds[0].count; 
+         self.form.covid_paeds_female = response.data.statistic_covid_female_paeds[0].count; 
+         self.form.covid_local = response.data.statistic_covid_local[0].count; 
+         self.form.covid_non_local = response.data.statistic_covid_non_local[0].count; 
+         self.form.stage_1 = response.data.statistic_stage_1[0].count; 
+         self.form.stage_2 = response.data.statistic_stage_2[0].count; 
+         self.form.stage_3 = response.data.statistic_stage_3[0].count; 
+         self.form.stage_4 = response.data.statistic_stage_4[0].count; 
+         self.form.stage_5 = response.data.statistic_stage_5[0].count; 
+         self.form.stage_1_1 = response.data.statistic_stage_1_1[0].count; 
+         self.form.stage_2_1 = response.data.statistic_stage_2_1[0].count; 
+         self.form.stage_3_1 = response.data.statistic_stage_3_1[0].count; 
+         self.form.stage_4_1 = response.data.statistic_stage_4_1[0].count; 
+         self.form.stage_5_1 = response.data.statistic_stage_5_1[0].count; 
+         self.form.stage_1_2 = response.data.statistic_stage_1_2[0].count; 
+         self.form.stage_2_2 = response.data.statistic_stage_2_2[0].count; 
+         self.form.stage_3_2 = response.data.statistic_stage_3_2[0].count; 
+         self.form.stage_4_2 = response.data.statistic_stage_4_2[0].count; 
+         self.form.stage_5_2 = response.data.statistic_stage_5_2[0].count; 
+         self.form.new_stage_1 = response.data.statistic_covid_new_admission_1[0].count;
+         self.form.new_stage_2 = response.data.statistic_covid_new_admission_2[0].count;
+         self.form.new_stage_3 = response.data.statistic_covid_new_admission_3[0].count;
+         self.form.new_stage_4 = response.data.statistic_covid_new_admission_4[0].count;
+         self.form.new_stage_5 = response.data.statistic_covid_new_admission_5[0].count;
+      }),
+          axios.get('/api/inpatient/cencus/pui',{ params: { datereporting: this.datereporting } })
+        .then(function (response) {
+         self.form.pui_admission = response.data.statistic_pui_new_admission[0].count; 
+         self.form.pui_step_up = response.data.statistic_pui_step_up[0].count; 
+         self.form.pui_discharged = response.data.statistic_pui_new_discharges[0].count; 
+         self.form.pui_death = response.data.statistic_pui_death[0].count;
+         self.form.pui_male = response.data.statistic_pui_male[0].count; 
+         self.form.pui_female = response.data.statistic_pui_female[0].count; 
+         self.form.pui_paeds_male = response.data.statistic_pui_male_paeds[0].count; 
+         self.form.pui_paeds_female = response.data.statistic_pui_female_paeds[0].count; 
+
+
+
+
+      }),
+       axios.get('/api/inpatient/cencus/sari',{ params: { datereporting: this.datereporting } })
+        .then(function (response) {
+         self.form.sari_admission = response.data.statistic_sari_new_admission[0].count; 
+         self.form.sari_step_up = response.data.statistic_sari_step_up[0].count; 
+         self.form.sari_discharged = response.data.statistic_sari_new_discharges[0].count; 
+         self.form.sari_death = response.data.statistic_sari_death[0].count;
+         self.form.sari_male = response.data.statistic_sari_male[0].count; 
+         self.form.sari_female = response.data.statistic_sari_female[0].count; 
+         self.form.sari_paeds_male = response.data.statistic_sari_male_paeds[0].count; 
+         self.form.sari_paeds_female = response.data.statistic_sari_female_paeds[0].count; 
+
+
+
+
+
+
       });
     }
   }
@@ -603,8 +727,10 @@
 </script>
 
 <style type="text/css">
-  #em_photo{
-    height: 40px;
-    width: 40px;
-  }
+    #textAreaContainer.{
+        autoResizeEnabled: true,
+        minHeight: 100,
+        maxHeight: 200
+    };
+  
 </style>

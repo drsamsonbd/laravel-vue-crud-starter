@@ -21,8 +21,10 @@ Route::get('/statisticsTD', 'Api\StatisticsController@TD')->name('TD');
 Route::get('/statisticsTBW', 'Api\StatisticsController@TBW')->name('TBW');
 Route::get('/statisticsTC', 'Api\StatisticsController@TC')->name('TC');
 
-Route::apiResource('/inpatient/cencus', 'Api\InpatientCencusController');
-
+Route::apiResource('/inpatient/cencus/noncovid', 'Api\InpatientCencusController');
+Route::apiResource('/inpatient/cencus/covid', 'Api\CovidInpatientCencusController');
+Route::apiResource('/inpatient/cencus/pui', 'Api\PuiInpatientCencusController');
+Route::apiResource('/inpatient/cencus/sari', 'Api\SariInpatientCencusController');
 
 // autoreport
 Route::get('/CovidMale', 'Api\DailyCalcController@CovidMale')->name('CovidMale');

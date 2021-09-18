@@ -10,353 +10,336 @@ class InpatientCencusController extends Controller
 {
     public function index(Request $request)
     {
-    $DLadmission= DB::table('ward_admissions')
-    ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
-    ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
-    ->where('patients.age', '>','12')
-    ->where('patients.age', '<','60')
-    ->where('patients.gender', '=','LELAKI');
-
- 
-     $DLstatistic =  $DLadmission ->where('ward_admissions.date', '<=', $request -> datereporting)
-
-     ->where('ward_discharges.date_dc', '>', $request -> datereporting)
-
-     ->orWhere(function($DLadmission )use ($request) 
-     
-     { 
-         $DLadmission
-         ->where('patients.gender', '=','LELAKI')
-         ->where('ward_admissions.date', '<=', $request -> datereporting)
+//Non covid
+         $nca_male= DB::table('ward_admissions')
+         ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+         ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
          ->where('patients.age', '>','12')
-        ->where('patients.age', '<','60')
+         ->where('patients.gender', '=','LELAKI');
+
+      
+         $statistic_nca_male =  $nca_male ->where('ward_admissions.date', '<=', $request -> datereporting)
+         ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+         ->where('ward_discharges.date_dc', '>', $request -> datereporting)
+
+         ->orWhere(function($nca_male )use ($request) 
+         
+         { 
+               $nca_male
+               ->where('patients.gender', '=','LELAKI')
+               ->where('ward_admissions.date', '<=', $request -> datereporting)
+               ->where('patients.age', '>','12')    
+            ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+               ->where('ward_discharges.reg_number');
+         })
+
+      ->get(array(
+         DB::raw('COUNT(*) as "count"')
+      ));
+
+      $nca_male_paeds= DB::table('ward_admissions')
+      ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+      ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
+      ->where('patients.age', '<','12')
+      ->where('patients.gender', '=','LELAKI');
+
+   
+      $statistic_nca_male_paeds =  $nca_male_paeds ->where('ward_admissions.date', '<=', $request -> datereporting)
+      ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+      ->where('ward_discharges.date_dc', '>', $request -> datereporting)
+
+      ->orWhere(function($nca_male_paeds )use ($request) 
+      
+      { 
+            $nca_male_paeds
+            ->where('patients.gender', '=','LELAKI')
+            ->where('ward_admissions.date', '<=', $request -> datereporting)
+            ->where('patients.age', '<','12')    
+         ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+            ->where('ward_discharges.reg_number');
+      })
+
+   ->get(array(
+      DB::raw('COUNT(*) as "count"')
+   ));
+
+   $nca_female= DB::table('ward_admissions')
+   ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+   ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
+   ->where('patients.age', '>','12')
+   ->where('patients.gender', '=','PEREMPUAN');
+
+
+   $statistic_nca_female =  $nca_female ->where('ward_admissions.date', '<=', $request -> datereporting)
+   ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+   ->where('ward_discharges.date_dc', '>', $request -> datereporting)
+
+   ->orWhere(function($nca_female )use ($request) 
+   
+   { 
+         $nca_female
+         ->where('patients.gender', '=','PEREMPUAN')
+         ->where('ward_admissions.date', '<=', $request -> datereporting)
+         ->where('patients.age', '>','12')    
+      ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
          ->where('ward_discharges.reg_number');
-     })
-  //  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
-  //  'ward_discharges.date_dc')
-  //  ->get();
-  ->get(array(
-     DB::raw('COUNT(*) as "count"')
-));
+   })
 
-
-$DLCadmission= DB::table('ward_admissions')
-->join('patients','ward_admissions.kp_passport','patients.kp_passport')
-->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
-
-->where('patients.age', '>=','60')
-->where('patients.gender', '=','LELAKI');
-
-
- $DLCstatistic =  $DLCadmission ->where('ward_admissions.date', '<=', $request -> datereporting)
-
- ->where('ward_discharges.date_dc', '>', $request -> datereporting)
-
- ->orWhere(function($DLCadmission )use ($request) 
- 
- { 
-     $DLCadmission
-     ->where('patients.gender', '=','LELAKI')
-     ->where('ward_admissions.date', '<=', $request -> datereporting)
-    
-    ->where('patients.age', '>=','60')
-     ->where('ward_discharges.reg_number');
- })
-//  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
-//  'ward_discharges.date_dc')
-//  ->get();
 ->get(array(
- DB::raw('COUNT(*) as "count"')
+   DB::raw('COUNT(*) as "count"')
 ));
-   return response()->json( compact('DLCstatistic', 'DLstatistic'));
-}
 
-public function DewasaPerempuan(Request $request)
-{
-$admission= DB::table('ward_admissions')
+$nca_female_paeds= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
-->where('patients.age', '>','12')
-->where('patients.age', '<','60')
-->where('patients.gender', '=','PEREMPUAN')
-->where('ward_admissions.ward', '=', $request -> ward);
+->where('patients.age', '<','12')
+->where('patients.gender', '=','PEREMPUAN');
 
 
- $statistic =  $admission ->where('ward_admissions.date', '<=', $request -> datereporting)
+$statistic_nca_female_paeds =  $nca_female_paeds ->where('ward_admissions.date', '<=', $request -> datereporting)
+->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
- ->where('ward_discharges.date_dc', '>', $request -> datereporting)
+->orWhere(function($nca_female_paeds )use ($request) 
 
- ->orWhere(function($admission )use ($request) 
- 
- { 
-     $admission
-     ->where('patients.gender', '=','PEREMPUAN')
-     ->where('ward_admissions.date', '<=', $request -> datereporting)
-     ->where('patients.age', '>','12')
-    ->where('patients.age', '<','60')
-     ->where('ward_discharges.reg_number')
-     ->where('ward_admissions.ward', '=', $request -> ward);
- })
-//  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
-//  'ward_discharges.date_dc')
-//  ->get();
+{ 
+      $nca_female_paeds
+      ->where('ward_admissions.date', '<=', $request -> datereporting)
+      ->where('patients.age', '<','12')
+      ->where('patients.gender', '=','PEREMPUAN')
+   ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+      ->where('ward_discharges.reg_number');
+})
+
 ->get(array(
- DB::raw('COUNT(*) as "count"')
+DB::raw('COUNT(*) as "count"')
 ));
-   return response()->json($statistic);
-}
 
-
-public function DewasaPerempuanEmas(Request $request)
-{
-$admission= DB::table('ward_admissions')
-->join('patients','ward_admissions.kp_passport','patients.kp_passport')
-->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
-
-->where('patients.age', '>=','60')
-->where('patients.gender', '=','PEREMPUAN')
-->where('ward_admissions.ward', '=', $request -> ward);
-
-
- $statistic =  $admission ->where('ward_admissions.date', '<=', $request -> datereporting)
-
- ->where('ward_discharges.date_dc', '>', $request -> datereporting)
-
- ->orWhere(function($admission )use ($request) 
- 
- { 
-     $admission
-     ->where('patients.gender', '=','PEREMPUAN')
-     ->where('ward_admissions.date', '<=', $request -> datereporting)
-     ->where('patients.age', '>=','60')
-     ->where('ward_discharges.reg_number')
-     ->where('ward_admissions.ward', '=', $request -> ward);
- })
-//  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
-//  'ward_discharges.date_dc')
-//  ->get();
+$statistic_nca_new_admission = DB::table('ward_admissions')
+->where('ward_admissions.date', '=', $request -> datereporting)
+->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
 ->get(array(
- DB::raw('COUNT(*) as "count"')
+DB::raw('COUNT(*) as "count"')
 ));
-   return response()->json($statistic);
-}
 
-
-public function KanakLelaki(Request $request)
-{
-$admission= DB::table('ward_admissions')
+$statistic_nca_new_discharges= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
-->where('patients.age', '<=','12')
+->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+->where('ward_discharges.date_dc', '=', $request -> datereporting)
+->get(array(
+DB::raw('COUNT(*) as "count"')
+));
 
-->where('patients.gender', '=','LELAKI')
-->where('ward_admissions.ward', '=', $request -> ward);
+$nca_step_up= DB::table('ward_admissions')
+->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
 
- $statistic =  $admission ->where('ward_admissions.date', '<=', $request -> datereporting)
 
- ->where('ward_discharges.date_dc', '>', $request -> datereporting)
+$statistic_nca_step_up =  $nca_step_up ->where('ward_admissions.date', '<=', $request -> datereporting)
+->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+->where('ward_discharges.date_dc', '=', $request -> datereporting)
+->where('ward_discharges.type_dc', '=','Ditukar ke Hospital Lain')
 
- ->orWhere(function($admission )use ($request) 
- 
- { 
-     $admission
-     ->where('patients.gender', '=','LELAKI')
-     ->where('ward_admissions.date', '<=', $request -> datereporting)
-     ->where('patients.age', '<=','12')
+
+->get(array(
+DB::raw('COUNT(*) as "count"')
+));
+
+$nca_death= DB::table('ward_admissions')
+->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
+
+
+$statistic_nca_death =  $nca_death ->where('ward_admissions.date', '<=', $request -> datereporting)
+->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+->where('ward_discharges.date_dc', '=', $request -> datereporting)
+->where('ward_discharges.type_dc', '=','Mati')
+
+->get(array(
+DB::raw('COUNT(*) as "count"')
+));
+
+
+// stat by ward
+
+$nca_male_ward= DB::table('ward_admissions')
+->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
+
+
+$statistic_nca_male_ward =  $nca_male_ward ->where('ward_admissions.date', '<=', $request -> datereporting)
+->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+->where('ward_admissions.ward', '=', 'Male Ward')
+->where('ward_discharges.date_dc', '>', $request -> datereporting)
+
+->orWhere(function($nca_male_ward )use ($request) 
+
+{ 
+      $nca_male_ward
    
-     ->where('ward_discharges.reg_number')
-     ->where('ward_admissions.ward', '=', $request -> ward);
- })
-//  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
-//  'ward_discharges.date_dc')
-//  ->get();
+      ->where('ward_admissions.date', '<=', $request -> datereporting)
+      ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+      ->where('ward_admissions.ward', '=', 'Male Ward')
+      ->where('ward_discharges.reg_number');
+})
+
 ->get(array(
- DB::raw('COUNT(*) as "count"')
+DB::raw('COUNT(*) as "count"')
 ));
-   return response()->json($statistic);
-}
 
-public function KanakPerempuan(Request $request)
-{
-$admission= DB::table('ward_admissions')
+$nca_female_ward= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
-->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
-->where('patients.age', '<=','12')
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
-->where('patients.gender', '=','PEREMPUAN')
-->where('ward_admissions.ward', '=', $request -> ward);
+$statistic_nca_female_ward =  $nca_female_ward ->where('ward_admissions.date', '<=', $request -> datereporting)
+->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+->where('ward_admissions.ward', '=', 'Female Ward')
+->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
+->orWhere(function($nca_female_ward )use ($request) 
 
- $statistic =  $admission ->where('ward_admissions.date', '<=', $request -> datereporting)
-
- ->where('ward_discharges.date_dc', '>', $request -> datereporting)
-
- ->orWhere(function($admission )use ($request) 
- 
- { 
-     $admission
-     ->where('patients.gender', '=','PEREMPUAN')
-     ->where('ward_admissions.date', '<=', $request -> datereporting)
-     ->where('patients.age', '<=','12')
+{ 
+      $nca_female_ward
    
-     ->where('ward_discharges.reg_number')
-     ->where('ward_admissions.ward', '=', $request -> ward);
- })
-//  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
-//  'ward_discharges.date_dc')
-//  ->get();
-->get(array(
- DB::raw('COUNT(*) as "count"')
-));
-   return response()->json($statistic);
-}
+      ->where('ward_admissions.date', '<=', $request -> datereporting)
+      ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+      ->where('ward_admissions.ward', '=', 'Female Ward')
+      ->where('ward_discharges.reg_number');
+})
 
-public function Lelaki(Request $request)
-{
-$admission= DB::table('ward_admissions')
+->get(array(
+DB::raw('COUNT(*) as "count"')
+));
+
+$nca_maternity_ward= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
-->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
-->where('patients.gender', '=','LELAKI')
-->where('ward_admissions.ward', '=', $request -> ward);
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
+$statistic_nca_maternity_ward =  $nca_maternity_ward ->where('ward_admissions.date', '<=', $request -> datereporting)
+->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+->where('ward_admissions.ward', '=', 'Maternity Ward')
+->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
- $statistic =  $admission ->where('ward_admissions.date', '<=', $request -> datereporting)
+->orWhere(function($nca_maternity_ward )use ($request) 
 
- ->where('ward_discharges.date_dc', '>', $request -> datereporting)
+{ 
+      $nca_maternity_ward
+   
+      ->where('ward_admissions.date', '<=', $request -> datereporting)
+      ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+      ->where('ward_admissions.ward', '=', 'Maternity Ward')
+      ->where('ward_discharges.reg_number');
+})
 
- ->orWhere(function($admission )use ($request) 
- 
- { 
-     $admission
-     ->where('patients.gender', '=','LELAKI')
-     ->where('ward_admissions.date', '<=', $request -> datereporting)
-     ->where('ward_discharges.reg_number')
-     ->where('ward_admissions.ward', '=', $request -> ward);
- })
-//  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
-//  'ward_discharges.date_dc')
-//  ->get();
 ->get(array(
- DB::raw('COUNT(*) as "count"')
+DB::raw('COUNT(*) as "count"')
 ));
-   return response()->json($statistic);
-}
 
-public function Perempuan(Request $request)
-{
-$admission= DB::table('ward_admissions')
+$nca_children_ward= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
-->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
-->where('patients.gender', '=','PEREMPUAN')
-->where('ward_admissions.ward', '=', $request -> ward);
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
+$statistic_nca_children_ward =  $nca_children_ward ->where('ward_admissions.date', '<=', $request -> datereporting)
+->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+->where('ward_admissions.ward', '=', 'Children Ward')
+->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
- $statistic =  $admission ->where('ward_admissions.date', '<=', $request -> datereporting)
+->orWhere(function($nca_children_ward )use ($request) 
 
- ->where('ward_discharges.date_dc', '>', $request -> datereporting)
+{ 
+      $nca_children_ward
+   
+      ->where('ward_admissions.date', '<=', $request -> datereporting)
+      ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+      ->where('ward_admissions.ward', '=', 'Children Ward')
+      ->where('ward_discharges.reg_number');
+})
 
- ->orWhere(function($admission )use ($request) 
- 
- { 
-     $admission
-     ->where('patients.gender', '=','PEREMPUAN')
-     ->where('ward_admissions.date', '<=', $request -> datereporting)
-     ->where('ward_discharges.reg_number')
-     ->where('ward_admissions.ward', '=', $request -> ward);
- })
-//  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
-//  'ward_discharges.date_dc')
-//  ->get();
 ->get(array(
- DB::raw('COUNT(*) as "count"')
+DB::raw('COUNT(*) as "count"')
 ));
-   return response()->json($statistic);
-}
 
-public function JumlahHarian(Request $request)
-{
-$admission= DB::table('ward_admissions')
+$nca_acute_ward= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
-->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
-->where('ward_admissions.ward', '=', $request -> ward);
+$statistic_nca_acute_ward =  $nca_acute_ward ->where('ward_admissions.date', '<=', $request -> datereporting)
+->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+->where('ward_admissions.ward', '=', 'Acute Ward')
+->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
+->orWhere(function($nca_acute_ward )use ($request) 
 
- $statistic =  $admission ->where('ward_admissions.date', '<=', $request -> datereporting)
+{ 
+      $nca_acute_ward
+   
+      ->where('ward_admissions.date', '<=', $request -> datereporting)
+      ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+      ->where('ward_admissions.ward', '=', 'Acute Ward')
+      ->where('ward_discharges.reg_number');
+})
 
- ->where('ward_discharges.date_dc', '>', $request -> datereporting)
-
- ->orWhere(function($admission )use ($request) 
- 
- { 
-     $admission
-    
-     ->where('ward_admissions.date', '<=', $request -> datereporting)
-     ->where('ward_discharges.reg_number')
-     ->where('ward_admissions.ward', '=', $request -> ward);
- })
-//  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
-//  'ward_discharges.date_dc')
-//  ->get();
 ->get(array(
- DB::raw('COUNT(*) as "count"')
+DB::raw('COUNT(*) as "count"')
 ));
-   return response()->json($statistic);
+
+$nca_male_tb_ward= DB::table('ward_admissions')
+->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
+
+$statistic_nca_male_tb_ward =  $nca_male_tb_ward ->where('ward_admissions.date', '<=', $request -> datereporting)
+->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+->where('ward_admissions.ward', '=', 'Male TB Ward')
+->where('ward_discharges.date_dc', '>', $request -> datereporting)
+
+->orWhere(function($nca_male_tb_ward )use ($request) 
+
+{ 
+      $nca_male_tb_ward
+   
+      ->where('ward_admissions.date', '<=', $request -> datereporting)
+      ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+      ->where('ward_admissions.ward', '=', 'Male TB Ward')
+      ->where('ward_discharges.reg_number');
+})
+
+->get(array(
+DB::raw('COUNT(*) as "count"')
+));
+
+
+$nca_female_tb_ward= DB::table('ward_admissions')
+->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
+
+$statistic_nca_female_tb_ward =  $nca_female_tb_ward ->where('ward_admissions.date', '<=', $request -> datereporting)
+->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+->where('ward_admissions.ward', '=', 'Female TB Ward')
+->where('ward_discharges.date_dc', '>', $request -> datereporting)
+
+->orWhere(function($nca_female_tb_ward )use ($request) 
+
+{ 
+      $nca_female_tb_ward
+   
+      ->where('ward_admissions.date', '<=', $request -> datereporting)
+      ->where('ward_admissions.adm_diagnosis', '=', 'Non COVID')
+      ->where('ward_admissions.ward', '=', 'Female TB Ward')
+      ->where('ward_discharges.reg_number');
+})
+
+->get(array(
+DB::raw('COUNT(*) as "count"')
+));
+
+
+   return response()->json( compact('statistic_nca_male', 'statistic_nca_male_paeds','statistic_nca_female',
+   'statistic_nca_female_paeds' ,'statistic_nca_new_admission', 'statistic_nca_new_discharges','statistic_nca_step_up', 'statistic_nca_death', 'statistic_nca_male_ward',
+   'statistic_nca_female_ward',  'statistic_nca_maternity_ward', 'statistic_nca_children_ward', 'statistic_nca_acute_ward','statistic_nca_male_tb_ward','statistic_nca_female_tb_ward'));
 }
 
-public function Jumlah(Request $request)
-{
-$admission= DB::table('ward_admissions')
-->where('ward_admissions.ward', '=', $request -> ward);
-
- $statistic =  $admission ->where('ward_admissions.date', '<=', $request -> datereporting)
-
-//  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
-//  'ward_discharges.date_dc')
-//  ->get();
-->get(array(
- DB::raw('COUNT(*) as "count"')
-));
-   return response()->json($statistic);
-}
-
-public function ward_discharges(Request $request)
-{
-$admission= DB::table('ward_admissions')
-->join('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
-
-->where('ward_admissions.ward', '=', $request -> ward);
-
- $statistic =  $admission ->where('ward_admissions.date', '<=', $request -> datereporting)
 
 
-//  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
-//  'ward_discharges.date_dc')
-//  ->get();
-->get(array(
- DB::raw('COUNT(*) as "count"')
-));
-   return response()->json($statistic);
-}
-
-
-public function StepUp(Request $request)
-{
-$admission= DB::table('ward_admissions')
-->join('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
-
-->where('ward_admissions.ward', '=', $request -> ward)
-->where('ward_discharges.type_dc', '=', 'Ditukar ke Hospital Lain');
- $statistic =  $admission ->where('ward_admissions.date', '<=', $request -> datereporting)
-
-
-//  ->select('patients.name','patients.kp_passport','patients.gender','patients.age','ward_admissions.date','ward_admissions.adm_stage' ,
-//  'ward_discharges.date_dc')
-//  ->get();
-->get(array(
- DB::raw('COUNT(*) as "count"')
-));
-   return response()->json($statistic);
-}
 }
