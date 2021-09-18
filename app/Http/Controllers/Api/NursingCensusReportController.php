@@ -109,6 +109,11 @@ class NursingCensusReportController extends Controller
               $NursingCensus ->  total = $request ->   total;
               $NursingCensus ->  bor = $request ->   bor;
               $NursingCensus ->  notes = $request ->   notes;
+                $NursingCensus -> o2_conc = $request -> o2_conc;
+                $NursingCensus -> o2_conc_occupied = $request -> o2_conc_occupied;
+                $NursingCensus -> o2_cylinder = $request -> o2_cylinder;
+                $NursingCensus -> o2_cylinder_occupied = $request -> o2_cylinder_occupied;
+                $NursingCensus -> covid_pending = $request -> covid_pending;
               $NursingCensus ->save();
     }
 
@@ -203,6 +208,11 @@ class NursingCensusReportController extends Controller
        $data ['total'] = $request ->   total;
        $data ['bor'] = $request ->   bor;
        $data ['notes'] = $request ->   notes;
+       $data ['o2_conc'] = $request -> o2_conc;
+       $data ['o2_conc_occupied'] = $request -> o2_conc_occupied;
+       $data ['o2_cylinder'] = $request -> o2_cylinder;
+       $data ['o2_cylinder_occupied'] = $request -> o2_cylinder_occupied;
+       $data ['covid_pending'] = $request -> covid_pending;
         DB::table('nursing_census_reports')->where('id',$id)->update($data);
     }
 

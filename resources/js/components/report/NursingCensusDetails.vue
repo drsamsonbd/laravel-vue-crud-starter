@@ -291,7 +291,7 @@
 <br>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Pending</b></label>
     <div class="col-sm-1">
-   <input  type="number" min="0" class="form-control form-control-sm" id="s1" v-model="form.pending"  disabled>
+   <input  type="number" min="0" class="form-control form-control-sm" id="s1" v-model="form.covid_pending"  disabled>
     </div>
   </div>
 
@@ -333,12 +333,12 @@
     <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Lelaki </b> </label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.pui_male" disabled>
+      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.pui_adult_male" disabled>
 
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Perempuan </b></label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm" id="female" v-model="form.pui_female" disabled >
+      <input type="text" class="form-control form-control-sm" id="female" v-model="form.pui_adult_female" disabled >
       
     </div>
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kanak-kanak Lelaki</b> </label>
@@ -359,7 +359,7 @@
   <div class="form-group row">
      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kemasukan Baru</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="newadm" v-model="form.pui_admission" disabled>
+   <input type="text" class="form-control form-control-sm" id="newadm" v-model="form.pui_new" disabled>
     </div>
 
          <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Disaj</b> </label>
@@ -383,12 +383,12 @@
     <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Lelaki </b> </label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.sari_male" disabled>
+      <input type="text" class="form-control form-control-sm"  id="male" v-model="form.sari_adult_male" disabled>
 
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Perempuan </b></label>
     <div class="col-sm-1">
-      <input type="text" class="form-control form-control-sm" id="female" v-model="form.sari_female" disabled >
+      <input type="text" class="form-control form-control-sm" id="female" v-model="form.sari_adult_female" disabled >
       
     </div>
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kanak-kanak Lelaki</b> </label>
@@ -409,7 +409,7 @@
   <div class="form-group row">
      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Kemasukan Baru</b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="newadm" v-model="form.sari_admission" disabled>
+   <input type="text" class="form-control form-control-sm" id="newadm" v-model="form.sari_new" disabled>
     </div>
 
          <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Disaj</b> </label>

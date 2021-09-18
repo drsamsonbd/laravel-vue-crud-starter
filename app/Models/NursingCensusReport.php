@@ -77,6 +77,11 @@ class NursingCensusReport extends Model
         'total',
         'bor',
         'notes',
+       'o2_conc',
+       'o2_conc_occupied',
+       'o2_cylinder',
+       'o2_cylinder_occupied',
+       'covid_pending',
     
         ];
 }

@@ -304,7 +304,7 @@
 <br>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Pending</b></label>
     <div class="col-sm-1">
-   <input  type="number" min="0" class="form-control form-control-sm" id="s1" v-model="form.pending" >
+   <input  type="number" min="0" class="form-control form-control-sm" id="s1" v-model="form.covid_pending" >
     </div>
   </div>
 
@@ -608,6 +608,11 @@
           total: null,
           bor: null, 
           notes: null, 
+          o2_conc: null,
+          o2_conc_occupied: null,
+          o2_cylinder: null,
+          o2_cylinder_occupied: null,
+          covid_pending: null,
         },
         errors:'',
         itemize: [
@@ -733,14 +738,14 @@
       });
     },
     submitCensus(){
-          axios.post('/api/inpatient/census'+ '?token='+ localStorage.getItem('token'), this.form)
+          axios.post('/api/nursing/census'+ '?token='+ localStorage.getItem('token'), this.form)
           .then(() => {
               Toast.fire({
               icon: 'success',
               title: 'Laporan telah dihantar!'
                   })
          })
-          this.$router.push({name: 'inpatientactive' });
+          this.$router.push({name: 'NursingCensus' });
   
 
     }

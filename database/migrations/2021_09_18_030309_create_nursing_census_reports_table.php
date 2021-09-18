@@ -84,6 +84,11 @@ class CreateNursingCensusReportsTable extends Migration
           $table -> integer('total');
           $table -> integer('bor'); 
           $table -> string('notes')->nullable();
+          $table -> integer ('o2_conc') ;
+          $table -> integer ('o2_conc_occupied') ;
+          $table -> integer ('o2_cylinder') ;
+          $table -> integer ('o2_cylinder_occupied') ;
+          $table -> integer ('covid_pending') ;
           $table->timestamps();
         });
     }
