@@ -81,6 +81,8 @@ let pkrcReport = require('./components/report/pkrcReport.vue').default;
 let pkrcManual = require('./components/report/pkrcManual.vue').default;
 let laporanharian = require('./components/report/LaporanHarian.vue').default;
 let InpatientReport = require('./components/report/InpatientCencus.vue').default;
+let NursingCensus = require('./components/report/nursingCensus.vue').default;
+let NursingCensusDetails = require('./components/report/NursingCensusDetails.vue').default;
 
 //profile component
 let profile = require('./components/user/Profile.vue').default;
@@ -171,7 +173,9 @@ export const routes = [
      { path: '/pkrcManual', component: pkrcManual, name:'pkrcManual' }, 
      { path: '/laporanharian', component: laporanharian, name:'laporanharian' }, 
      { path: '/InpatientReport', component:InpatientReport, name:'InpatientReport' }, 
-   
+     { path: '/NursingCensus', component:NursingCensus, name:'NursingCensus' }, 
+     { path: '/NursingCensusDetails', component:NursingCensusDetails, name:'NursingCensusDetails' }, 
+
      //profile routes
      { path: '/profile', component: profile, name:'profile' },
 

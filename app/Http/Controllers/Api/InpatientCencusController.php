@@ -334,10 +334,33 @@ $statistic_nca_female_tb_ward =  $nca_female_tb_ward ->where('ward_admissions.da
 DB::raw('COUNT(*) as "count"')
 ));
 
+       
+$admission= DB::table('ward_admissions')
+->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
+
+ $statistic =  $admission ->where('ward_admissions.date', '<=', $request -> datereporting)
+
+ ->where('ward_discharges.date_dc', '>', $request -> datereporting)
+
+ ->orWhere(function($admission )use ($request) 
+ 
+ { 
+     $admission  
+     ->where('ward_admissions.date', '<=', $request -> datereporting)
+  
+     ->where('ward_discharges.reg_number');
+ });
+ $total= $statistic->count();
+   
+ $bor= ($total/52*100);
+ $total_bor= round($bor,2);
 
    return response()->json( compact('statistic_nca_male', 'statistic_nca_male_paeds','statistic_nca_female',
    'statistic_nca_female_paeds' ,'statistic_nca_new_admission', 'statistic_nca_new_discharges','statistic_nca_step_up', 'statistic_nca_death', 'statistic_nca_male_ward',
-   'statistic_nca_female_ward',  'statistic_nca_maternity_ward', 'statistic_nca_children_ward', 'statistic_nca_acute_ward','statistic_nca_male_tb_ward','statistic_nca_female_tb_ward'));
+   'statistic_nca_female_ward',  'statistic_nca_maternity_ward', 
+   'statistic_nca_children_ward', 'statistic_nca_acute_ward','statistic_nca_male_tb_ward','statistic_nca_female_tb_ward', 'total',
+   'total_bor'));
 }
 
 

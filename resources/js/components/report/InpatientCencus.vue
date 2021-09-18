@@ -14,21 +14,21 @@
                 </div>
 
     <div class="container-fluid">
-
+<form class="user" @submit.prevent="submitCensus">
     <b-row>
      <b-col cols="12">
     <label >Ketua Jururawat Bertugas :</label>  <span>  {{form.name_kj}} </span>             
   <input type="text" class="form-control" id="mo" v-model="form.name_kj" disabled hidden>
   </b-col>
  </b-row> 
-      <b-form inline>
+  <b-form inline>
            <label class="mr-sm-2" for="inline-form-custom-select-pref">Tarikh</label>
     <b-form-input
       id="inline-form-input-name"
       class="mb-4 mr-sm-2 mb-sm-0"
       type="date"
-      v-model="datereporting"
-    ></b-form-input>
+      v-model="form.datereporting"
+    required ></b-form-input>
 
 
     <label class="mr-sm-3" for="inline-form-custom-select-pref">Syif</label>
@@ -36,7 +36,7 @@
       id="inline-form-custom-select-pref"
       class="mb-3 mr-sm-2 mb-sm-0"
       v-model="form.shift"
-    >   <option value="Pagi">Pagi</option>
+    required>   <option value="Pagi">Pagi</option>
                           <option value="Petang">Petang</option>
                           <option value="Malam">Malam</option></b-form-select>
         
@@ -304,7 +304,7 @@
 <br>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Pending</b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.pending" >
+   <input  type="number" min="0" class="form-control form-control-sm" id="s1" v-model="form.pending" >
     </div>
   </div>
 
@@ -446,20 +446,33 @@
                            <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Bed With Oxygen Concentrator </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.o2_conc" required>
+   <input  type="number" min="0" class="form-control form-control-sm" id="s1" v-model="form.o2_conc" required>
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b> Oxygen Concentrator Occupied </b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.o2_conc_occupied" required>
+   <input  type="number" min="0" class="form-control form-control-sm" id="s1" v-model="form.o2_conc_occupied" required>
     </div>
         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"> <code>*</code> <b>Bed With Oxygen Cylinder </b> </label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.o2_cylinder" required>
+   <input type="number" min="0" class="form-control form-control-sm" id="s1" v-model="form.o2_cylinder" required>
     </div>
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Oxygen Cylinder Occupied</b></label>
     <div class="col-sm-1">
-   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.o2_cylinder_occupied" required>
+   <input  type="number" min="0" class="form-control form-control-sm" id="s1" v-model="form.o2_cylinder_occupied" required>
     </div>
+  </div> 
+  <hr>
+
+                           <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm"> <code>*</code> <b>JUMLAH KESELURUHAN PESAKIT</b> </label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.total" disabled>
+    </div>
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b> BOR </b></label>
+    <div class="col-sm-1">
+   <input type="text" class="form-control form-control-sm" id="s1" v-model="form.bor" disabled>
+    </div>
+  
   </div> 
   <hr>
                 <div class="form-group">
@@ -483,7 +496,7 @@
                       <button type="submit"  class="btn btn-primary btn-block">Hantar</button>
                     </div>
                     <hr>
-         
+</form>    
   </div>
               
          
@@ -525,11 +538,9 @@
      data(){
       return{
       
-       
-          shift: null,
-          datereporting: null,       
-     
           form:{
+          datereporting: null,   
+          shift: null,
           name_kj:null,
           male: null, 
           female: null, 
@@ -581,7 +592,7 @@
           pui_adult_female: null, 
           pui_paeds_male: null, 
           pui_paeds_female: null, 
-          pui_new: null, 
+          pui_admission: null, 
           pui_discharged: null, 
           pui_step_up: null, 
           pui_death: null, 
@@ -589,11 +600,12 @@
           sari_adult_female: null, 
           sari_paeds_male: null, 
           sari_paeds_female: null, 
-          sari_new: null, 
+          sari_admission: null, 
           sari_discharged: null, 
           sari_step_up: null, 
           sari_death: null, 
           staff: null, 
+          total: null,
           bor: null, 
           notes: null, 
         },
@@ -629,13 +641,13 @@
  
   methods:{
 
-     user(){
+    user(){
       let loggeduser = localStorage.getItem('user')
       this.form.name_kj = loggeduser;
     }, 
     report(){
     let self = this;
-     axios.get('/api/inpatient/cencus/noncovid',{ params: { datereporting: this.datereporting } })
+     axios.get('/api/inpatient/cencus/noncovid',{ params: { datereporting: this.form.datereporting } })
       .then(function (response) {
           self.form.male= response.data.statistic_nca_male[0].count; 
           self.form.female= response.data.statistic_nca_female[0].count; 
@@ -652,9 +664,12 @@
           self.form.male_tb_ward= response.data.statistic_nca_male_tb_ward[0].count;
           self.form.female_tb_ward= response.data.statistic_nca_female_tb_ward[0].count;
           self.form.acute_ward= response.data.statistic_nca_acute_ward[0].count;
+          self.form.total= response.data.total;
+          self.form.bor= response.data.total_bor;
+
 
       }),
-         axios.get('/api/inpatient/cencus/covid',{ params: { datereporting: this.datereporting } })
+         axios.get('/api/inpatient/cencus/covid',{ params: { datereporting: this.form.datereporting } })
         .then(function (response) {
          self.form.covid_new_admission = response.data.statistic_covid_new_admission[0].count; 
          self.form.covid_step_up = response.data.statistic_covid_step_up[0].count; 
@@ -688,7 +703,7 @@
          self.form.new_stage_4 = response.data.statistic_covid_new_admission_4[0].count;
          self.form.new_stage_5 = response.data.statistic_covid_new_admission_5[0].count;
       }),
-          axios.get('/api/inpatient/cencus/pui',{ params: { datereporting: this.datereporting } })
+          axios.get('/api/inpatient/cencus/pui',{ params: { datereporting: this.form.datereporting } })
         .then(function (response) {
          self.form.pui_admission = response.data.statistic_pui_new_admission[0].count; 
          self.form.pui_step_up = response.data.statistic_pui_step_up[0].count; 
@@ -703,7 +718,7 @@
 
 
       }),
-       axios.get('/api/inpatient/cencus/sari',{ params: { datereporting: this.datereporting } })
+       axios.get('/api/inpatient/cencus/sari',{ params: { datereporting: this.form.datereporting } })
         .then(function (response) {
          self.form.sari_admission = response.data.statistic_sari_new_admission[0].count; 
          self.form.sari_step_up = response.data.statistic_sari_step_up[0].count; 
@@ -715,11 +730,19 @@
          self.form.sari_paeds_female = response.data.statistic_sari_female_paeds[0].count; 
 
 
-
-
-
-
       });
+    },
+    submitCensus(){
+          axios.post('/api/inpatient/census'+ '?token='+ localStorage.getItem('token'), this.form)
+          .then(() => {
+              Toast.fire({
+              icon: 'success',
+              title: 'Laporan telah dihantar!'
+                  })
+         })
+          this.$router.push({name: 'inpatientactive' });
+  
+
     }
   }
  

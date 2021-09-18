@@ -165,6 +165,14 @@
               </p>
             </router-link>
           </li>
+              <li class="nav-item">
+            <router-link to="/NursingCensus" class="nav-link">
+             
+              <p id="submenu">
+                Nursing Census
+              </p>
+            </router-link>
+          </li>
           <li class="nav-item">
             <router-link to="/pkrcManual" class="nav-link">
            

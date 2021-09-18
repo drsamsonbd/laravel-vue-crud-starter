@@ -171,6 +171,7 @@ Route::get('/inpatientKP/{id}', 'Api\WardAdmissionRecordController@updatePatient
 Route::get('/inpatientSampling/{id}', 'Api\WardAdmissionRecordController@updateSampling')->name('updateSampling');
 Route::apiResource('/inpatient/discharge', 'Api\WardDischargeController');
 Route::apiResource('/inpatient/discharges', 'Api\WardDischargesRecordController');
+Route::apiResource('/nursing/census', 'Api\NursingCensusReportController');
 
 
 
