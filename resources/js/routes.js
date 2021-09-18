@@ -91,7 +91,6 @@ let profile = require('./components/user/Profile.vue').default;
 let statistics_pkrc = require('./components/statistics/pkrc.vue').default;
 
 
-
 export const routes = [
     { path: '/login', component: login, name: '/' },
     { path: '/register', component: register, name:'register' },
