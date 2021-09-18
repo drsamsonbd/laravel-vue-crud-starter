@@ -73,6 +73,7 @@ let newCase= require('./components/pkrc/forms/new/case.vue').default;
 let newSampling= require('./components/pkrc/forms/new/sampling.vue').default;
 let newDischarge= require('./components/pkrc/forms/new/discharge.vue').default;
 let newAdmissionSearch= require('./components/pkrc/forms/new/newadmission.vue').default;
+
 //report component
 let dailyreport = require('./components/report/index.vue').default;
 let nursingreport = require('./components/report/nursing.vue').default;
