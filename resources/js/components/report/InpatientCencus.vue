@@ -727,10 +727,5 @@
 </script>
 
 <style type="text/css">
-    #textAreaContainer.{
-        autoResizeEnabled: true,
-        minHeight: 100,
-        maxHeight: 200
-    };
-  
+
 </style>
