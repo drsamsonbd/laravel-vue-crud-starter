@@ -40,7 +40,7 @@
                           <option value="Petang">Petang</option>
                           <option value="Malam">Malam</option></b-form-select>
         
-    <b-button variant="primary" @click="report()">Lihat Cencus</b-button>
+    <b-button variant="primary" @click="report()">Lihat Census</b-button>
   </b-form>
            
 
