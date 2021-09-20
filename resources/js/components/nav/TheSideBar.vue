@@ -143,6 +143,33 @@
               </p>
             </router-link>
           </li>
+       <li  class="nav-item has-treeview" >
+        <a class="nav-link" href="#">
+          <i class="nav-icon fas fa-chart-bar "></i>
+          <p>Cencus
+           <i class="right fas fa-angle-left"></i>
+           </p>
+         </a>
+    
+           <ul class="nav nav-treeview">
+            <li class="nav-item">
+            <router-link to="/pkrcReport" class="nav-link">
+           
+              <p id="submenu">
+                Census
+              </p>
+            </router-link>
+          </li>
+               <li class="nav-item">
+            <router-link  to="/pkrcManual" class="nav-link">
+           
+              <p id="submenu">
+                PKRC
+              </p>
+            </router-link>
+          </li>
+           </ul>
+       </li>
         </ul>
       </li> 
 
@@ -184,7 +211,7 @@
        <li  class="nav-item has-treeview"  v-if="roles =='admin' || roles =='hospital'">
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-chart-bar "></i>
-          <p>Cencus
+          <p>Census
            <i class="right fas fa-angle-left"></i>
            </p>
          </a>
