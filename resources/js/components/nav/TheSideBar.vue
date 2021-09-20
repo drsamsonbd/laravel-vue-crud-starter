@@ -93,7 +93,7 @@
         </ul>
       </li> 
       <!--PKRC-->
-        <li  class="nav-item has-treeview"  v-if="roles =='admin' || roles =='hospital'">
+        <li  class="nav-item has-treeview"  v-if="roles =='admin' || roles =='hospital' || roles =='pkrc'">
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-school pink"></i>
           <p>PKRC
