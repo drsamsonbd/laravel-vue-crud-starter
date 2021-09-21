@@ -338,7 +338,7 @@
            <ul class="nav nav-treeview">
 
           <li class="nav-item">
-            <router-link to="/jkns/inpatient/active'" class="nav-link">
+            <router-link to="/jkns/inpatient/active" class="nav-link">
            
               <p id="submenu">
                 Senarai Aktif

@@ -733,7 +733,7 @@
      },
 
          viewPatient(record) {
-        this.$router.push({name: 'jknsdetails', params: { id: record.kp_passport } })
+        this.$router.push({name: 'jknpkrcdetails', params: { id: record.kp_passport } })
    
   },    newAdmission(){
      this.$router.push({name: 'newAdmissionSearch' }) 
