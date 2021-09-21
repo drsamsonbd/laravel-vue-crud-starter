@@ -28,8 +28,16 @@
                      </b-row>
                              
                     <b-row>
+                   <b-col>
+                      <label>Jenis Pengenalan</label>
+                        <select class="form-control" id="gender" v-model="forms.id_type" required>                  
+                        <option value="1">Kad Pengenalan</option>
+                        <option value="2">Passport</option>
+                        <option value ="0">NIL</option>
+                        </select>
+                  </b-col>
                       <b-col>
-                      <label>Nombor K/P atau Passport</label>
+                      <label>Nombor</label>
                       <input type="text" class="form-control" id="ICnumber" v-model="forms.kp_passport" required>
                   </b-col>
                    <b-col>
@@ -155,7 +163,9 @@
           areas:[], 
       
           forms:{
+            
           name: null,
+          id_type: null,
           kp_passport: null,
           age: null,
           gender: null,          
@@ -233,8 +243,16 @@
       
     
        }); 
-        let $admid = this.forms.kp_passport;
+          let $idtype = this.forms.id_type;
+         let $admid = this.forms.kp_passport;
+             let    $id='NIL-'+this.forms.name;
+        if($idtype ==0){
+ 
+          this.$router.push({name: 'inpatientadmissionform', params: { id: $id } })
+        } 
+       else{
        this.$router.push({name: 'inpatientadmissionform', params: { id: $admid} })
+       }
        
      },
  

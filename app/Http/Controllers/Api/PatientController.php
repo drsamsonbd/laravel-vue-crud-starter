@@ -41,6 +41,7 @@ class PatientController extends Controller
     {
         $validateData = $request->validate([
             'name'=>'required',
+            'id_type'=>'required',
             'kp_passport'=>'required|unique:patients',
             'age'=>'required',
             'gender'=>'required',
@@ -54,20 +55,45 @@ class PatientController extends Controller
             'notes'=>'',
 
         ]);
-        $patient = new Patient;
-        $patient->name = $request->name;
-        $patient->kp_passport = $request->kp_passport;
-        $patient->age = $request->age;
-        $patient->gender = $request->gender;
-        $patient->race = $request->race;
-        $patient->address = $request->address;
-        $patient->phone = $request->phone;
-        $patient->nationality = $request->nationality;
-        $patient->workplace = $request->workplace;
-        $patient->job = $request->job;
-        $patient->area = $request->area;
-        $patient->notes = $request->notes;
-        $patient->save();
+       
+        $id_type = $request -> id_type;
+        $name =$request->name;
+
+        if($id_type == 0){
+
+            $kp_passport = "NIL"."-".$name;
+            $patient = new Patient;
+            $patient->name = $request->name;
+            $patient->kp_passport = $kp_passport;
+            $patient->age = $request->age;
+            $patient->gender = $request->gender;
+            $patient->race = $request->race;
+            $patient->address = $request->address;
+            $patient->phone = $request->phone;
+            $patient->nationality = $request->nationality;
+            $patient->workplace = $request->workplace;
+            $patient->job = $request->job;
+            $patient->area = $request->area;
+            $patient->notes = $request->notes;
+            $patient->save();
+            
+        } else{
+            $patient = new Patient;
+            $patient->name = $request->name;
+            $patient->kp_passport =  $request-> kp_passport;
+            $patient->age = $request->age;
+            $patient->gender = $request->gender;
+            $patient->race = $request->race;
+            $patient->address = $request->address;
+            $patient->phone = $request->phone;
+            $patient->nationality = $request->nationality;
+            $patient->workplace = $request->workplace;
+            $patient->job = $request->job;
+            $patient->area = $request->area;
+            $patient->notes = $request->notes;
+            $patient->save();
+        }
+  
     }
 
     /**
