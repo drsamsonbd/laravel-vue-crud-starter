@@ -42,8 +42,8 @@
                   </b-col>
                      <b-col>
                       <label>Umur</label>
-                      <input type="text" class="form-control" id="age" v-model="forms.age" required>
-                            <span style="font-size: 0.6em;">Nota:*Jika kurang satu (1) tahun sila isikan 0.01 sehingga 0.99</span>
+                      <input type="number" min="0.1" class="form-control" id="age" v-model="forms.age" required>
+                            <span style="font-size: 0.6em;">Nota:*Jika kurang satu (1) tahun sila isikan 0.01 sehingga 0.9</span>
                     </b-col>
                     </b-row>
                   
@@ -231,8 +231,10 @@
     
        }); 
           let $idtype = this.forms.id_type;
+
          let $admid = this.forms.kp_passport;
-             let    $id='NIL-'+this.forms.name;
+         let nameid=  str_replace('/', '', this.forms.name);
+          let    $id='NIL-'+ nameid;
         if($idtype ==0){
  
           this.$router.push({name: 'inpatientadmissionform', params: { id: $id } })

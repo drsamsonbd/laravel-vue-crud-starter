@@ -17,8 +17,7 @@ class SearchPatientController extends Controller
 
     public function showbyKP($id)
     {
-        $new = str_replace('%20 ', ' ', $id);
-        $patient = DB::table('patients')->where('kp_passport', '=', $new)->get();
+        $patient = DB::table('patients')->where('kp_passport', '=', $id)->get();
       
         return response()->json($patient);
     }

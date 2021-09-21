@@ -58,10 +58,10 @@ class PatientController extends Controller
        
         $id_type = $request -> id_type;
         $name =$request->name;
-
+        $nameid =str_replace('/', '', $name);
         if($id_type == 0){
 
-            $kp_passport = "NIL"."-".$name;
+            $kp_passport = "NIL"."-".$nameid;
             $patient = new Patient;
             $patient->name = $request->name;
             $patient->kp_passport = $kp_passport;
