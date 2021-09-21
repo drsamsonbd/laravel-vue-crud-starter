@@ -145,8 +145,7 @@
           </li>
        <li  class="nav-item has-treeview" >
         <a class="nav-link" href="#">
-          <i class="nav-icon fas fa-chart-bar "></i>
-          <p>Cencus
+          <p  id="submenu"><b>LAPORAN</b>
            <i class="right fas fa-angle-left"></i>
            </p>
          </a>
@@ -325,6 +324,80 @@
             </li>         
         </ul>
       </li>
+
+<!--JKNS VIEW-->
+           <!--Pesakit Dalam-->
+        <li  class="nav-item has-treeview"  v-if="roles =='admin' || roles =='jkns'">
+        <a class="nav-link" href="#">
+          <i class="nav-icon fas fa-h-square purple "></i>
+          <p>WAD
+           <i class="right fas fa-angle-left"></i>
+           </p>
+        </a>
+    
+           <ul class="nav nav-treeview">
+
+          <li class="nav-item">
+            <router-link to="/jkns/inpatient/active'" class="nav-link">
+           
+              <p id="submenu">
+                Senarai Aktif
+              </p>
+            </router-link>
+          </li>
+           <li class="nav-item">
+            <router-link to="/jkns/inpatient/discharge" class="nav-link">
+           
+              <p id="submenu">
+               Senarai Discaj
+              </p>
+            </router-link>
+          </li>
+
+        </ul>
+      </li> 
+      <!--PKRC-->
+        <li  class="nav-item has-treeview"  v-if="roles =='admin' || roles =='jkns'">
+        <a class="nav-link" href="#">
+          <i class="nav-icon fas fa-school pink"></i>
+          <p>PKRC
+           <i class="right fas fa-angle-left"></i>
+           </p>
+        </a>
+    
+           <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <router-link to="/jkns/pkrc/active"  class="nav-link">
+           
+              <p id="submenu">
+                Senarai 
+              </p>
+            </router-link>
+          </li>
+           <li class="nav-item">
+            <router-link to="/jkns/pkrc/discharge"  class="nav-link">
+           
+              <p id="submenu">
+                Discaj
+              </p>
+            </router-link>
+          </li>
+
+
+            <li class="nav-item">
+            <router-link to="/pkrcReport" class="nav-link">
+           
+              <p id="submenu">
+                Census
+              </p>
+            </router-link>
+                      </li>
+
+          
+   
+        </ul>
+      </li> 
+<!-- jkns end-->
 
       <li class="nav-item" v-show="$route.path === '/login' ? false : true ">
               <router-link to="/logout" class="nav-link">

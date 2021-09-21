@@ -91,6 +91,14 @@ let profile = require('./components/user/Profile.vue').default;
 //statistics component
 let statistics_pkrc = require('./components/statistics/pkrc.vue').default;
 
+//JKNS component
+let jkninpatientactive= require('./components/jkns/inpatient/active.vue').default;
+let jkninpatientdetails= require('./components/jkns/inpatient/details.vue').default;
+let jkninpatientdischarge= require('./components/jkns/inpatient/discharge.vue').default;
+
+let jknpkrcactive= require('./components/jkns/pkrc/active.vue').default;
+let jknpkrcdetails= require('./components/jkns/pkrc/details.vue').default;
+let jknpkrcdischarge= require('./components/jkns/pkrc/discharge.vue').default;
 
 export const routes = [
     { path: '/login', component: login, name: '/' },
@@ -181,5 +189,15 @@ export const routes = [
 
      //statistics routes
      { path: '/statistics_pkrc', component: statistics_pkrc, name:'statistics_pkrc' },
+     
+      //jkns routes
+      { path: '/jkns/inpatient/active', component: jkninpatientactive, name:'jkninpatientactive' },
+      { path: '/jkns/inpatient/details', component: jkninpatientdetails, name:'jkninpatientdetails' },      
+      { path: '/jkns/inpatient/discharge', component: jkninpatientdischarge, name:'jkninpatientdischarge' },
+
+          { path: '/jkns/pkrc/active', component: jknpkrcactive, name:'jknpkrcactive' },
+          { path: '/jkns/pkrc/details', component: jknpkrcdetails, name:'jknpkrcdetails' },      
+          { path: '/jkns/pkrc/discharge', component: jknpkrcdischarge, name:'jknpkrcdischarge' },
+    
     
   ]

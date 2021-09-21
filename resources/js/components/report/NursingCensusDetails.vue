@@ -17,15 +17,15 @@
      <br>    
   <div class="form-group row">
     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Tarikh </b></label>
-    <div class="col-sm-1">
+    <div class="col-sm-2">
        <input type="text" class="form-control form-control-sm" v-model="form.datereporting" disabled>      
     </div>
 
-       <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>Syif</b></label>
+       <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"><code>*</code> <b>Syif</b></label>
     <div class="col-sm-1">
        <input type="text" class="form-control form-control-sm" id="children" v-model="form.shift" disabled>      
     </div>
-      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><code>*</code> <b>KJ Bertugas </b></label>
+      <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm"><code>*</code> <b>KJ Bertugas </b></label>
     <div class="col-sm-4">
        <input type="text" class="form-control" id="maternity" v-model="form.name_kj" disabled>
         </div>
@@ -465,7 +465,7 @@
                 <div class="form-group">
     <label for="colFormLabelSm" > <code>*</code> <b>Staf Bertugas </b> </label>
  
-      <textarea type="text" class="form-control "  id="staff" v-model="form.staff"></textarea>
+      <textarea type="text" class="form-control "  id="staff" v-model="form.staff" disabled></textarea>
 
    
 
@@ -477,7 +477,7 @@
                       <label> <code>*</code>Catatan</label>
                       <textarea 
                         auto-grow
-                        input type="text" class="form-control" id="notes" v-model="form.notes"></textarea>
+                        input type="text" class="form-control" id="notes" v-model="form.notes" disabled></textarea>
                     </div>
  
                     <hr>
