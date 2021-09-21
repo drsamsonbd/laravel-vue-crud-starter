@@ -327,7 +327,7 @@
 
 <!--JKNS VIEW-->
            <!--Pesakit Dalam-->
-        <li  class="nav-item has-treeview"  v-if="roles =='admin' || roles =='jkns'">
+        <li  class="nav-item has-treeview"  v-if="roles =='admin' || roles =='jkns' || roles =='kesihatan'">
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-h-square purple "></i>
           <p>WAD
@@ -357,7 +357,7 @@
         </ul>
       </li> 
       <!--PKRC-->
-        <li  class="nav-item has-treeview"  v-if="roles =='admin' || roles =='jkns'">
+        <li  class="nav-item has-treeview"  v-if="roles =='admin' || roles =='jkns' || roles =='kesihatan'">
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-school pink"></i>
           <p>PKRC
