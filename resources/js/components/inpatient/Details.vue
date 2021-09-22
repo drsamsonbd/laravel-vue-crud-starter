@@ -226,7 +226,7 @@
       hover
     >
       <template #cell(actions)="row">
-                 <div v-if="admissions.vaccine_type ===null">
+                 <div v-if="admissions.vaccine_type ===null  && admissions.date_sample ===null">
   <router-link :to="{name: 'inpatientnewSampling', params:{kp_passport:admissions.kp_passport}}" class="btn btn-sm btn-outline-primary"> <i class="fas fa-plus"></i> </router-link>
 
 </div>
