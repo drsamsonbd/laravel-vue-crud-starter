@@ -425,7 +425,7 @@ export default {
 
     userRoles() {
         let self = this;
-        axios.get('/api/auth/me/roles'+ '/?token='+ localStorage.getItem('token'))
+        axios.get('/api/auth/me/'+ '?token='+ localStorage.getItem('token'))
         .then(({data}) => (self.roles = data.roles)).catch(function (error) {
         console.log(error); 
 
