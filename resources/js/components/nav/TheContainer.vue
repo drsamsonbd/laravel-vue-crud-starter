@@ -109,7 +109,7 @@ export default {
        
     userRoles() {
         let self = this;
-        axios.post('/api/auth/me/' + '?token='+ localStorage.getItem('token'))
+        axios.post('/api/auth/me' + '?token='+ localStorage.getItem('token'))
         .then(({data}) => (self.roles = data.roles)).catch(function (error) {
         console.log(error);    
           localStorage.removeItem('token');
