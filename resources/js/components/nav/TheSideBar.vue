@@ -418,7 +418,7 @@ export default {
 
   data() {
     return{
-       roles: null,
+       roles: '',
     }
   },
   methods: {
@@ -426,7 +426,9 @@ export default {
     userRoles() {
         let self = this;
         axios.post('/api/auth/me'+ '?token='+ localStorage.getItem('token'))
-        .then(({data}) => (self.roles = data.roles)).catch(function (error) {
+        .then(({data}) => (self.roles = data.roles))
+        
+        .catch(function (error) {
         console.log(error); 
 
       });    
