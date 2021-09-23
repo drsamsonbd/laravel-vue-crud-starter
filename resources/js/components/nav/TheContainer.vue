@@ -99,7 +99,7 @@ export default {
          roles: '',
          user: localStorage.getItem('user'),
          logohbln:'',
-         APPNAME: 'Intergrated HMS',
+         APPNAME: 'CPRC HBLN',
     
 
       }
