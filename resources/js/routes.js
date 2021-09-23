@@ -25,7 +25,7 @@ let hospital= require('./components/settings/hospital.vue').default;
 let pkrc= require('./components/settings/pkrc.vue').default;
 let vaccine= require('./components/settings/vaccine.vue').default;
 let ward= require('./components/settings/ward.vue').default;
-
+let discipline= require('./components/settings/discipline.vue').default;
 //pkrc component
 let admission= require('./components/pkrc/admission.vue').default;
 let admissionform= require('./components/pkrc/admissionform.vue').default;
@@ -120,6 +120,7 @@ export const routes = [
     { path: '/pkrc', component: pkrc, name:'pkrc' },
     { path: '/vaccine', component: vaccine, name:'vaccine' },
     { path: '/ward', component: ward, name:'ward' },
+    { path: '/discipline', component: discipline, name:'discipline' },
 
 
       // patient Routes

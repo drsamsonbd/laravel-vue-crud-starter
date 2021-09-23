@@ -238,7 +238,7 @@
       </li> 
 
       <!-- TETAPAN -->
-      <li class="nav-item has-treeview"  v-if="roles.includes('pkrc')    || roles.includes('hospital') "  >
+      <li class="nav-item has-treeview"  v-if=" roles.includes('superadmin')    ||roles.includes('pkrc')    || roles.includes('hospital') "  >
         <a  class="nav-link">
           <i class="nav-icon fas fa-cog green"></i>
           <p>
@@ -321,7 +321,15 @@
                    Wad
                   </p>
               </router-link>
-            </li>         
+            </li>    
+                     <li class="nav-item">
+              <router-link to="/discipline" class="nav-link">
+                
+                  <p id="submenu">
+                   Disiplin
+                  </p>
+              </router-link>
+            </li>      
         </ul>
       </li>
 

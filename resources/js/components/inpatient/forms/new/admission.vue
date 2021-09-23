@@ -95,6 +95,14 @@
                         
                         </select>
                     </b-col>
+                                <b-col>
+                      <label>Kelas</label>
+                        <select class="form-control" id="district" v-model="form.class" required>
+                        <option value="1" >1 </option>
+                          <option value="2" >2 </option>
+                            <option value="3" >3 </option>
+                        </select>
+                    </b-col>
                     </b-row>
                       <b-row>
                      <b-col>

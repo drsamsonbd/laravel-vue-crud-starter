@@ -122,7 +122,11 @@ Route::apiResource('/district', 'Api\DistrictController');
 Route::apiResource('/nationality', 'Api\NationalityController');
 Route::apiResource('/locality', 'Api\LocalityController');
 Route::apiResource('/pkrc', 'Api\PkrcController');
+
 Route::apiResource('/ward', 'Api\WardController');
+Route::apiResource('/discipline', 'Api\DisciplineController');
+
+
 Route::apiResource('/hospital', 'Api\HospitalController');
 Route::apiResource('/vaccine', 'Api\VaccineController');
 Route::apiResource('/case', 'Api\CaseRegController');
