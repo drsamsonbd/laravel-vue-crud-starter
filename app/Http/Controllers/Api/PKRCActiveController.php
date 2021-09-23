@@ -17,7 +17,7 @@ class PKRCActiveController extends Controller
     })
     ->whereNull('discharges.reg_number')
     ->join('patients','admissions.kp_passport','patients.kp_passport')
-    ->join('case_samplings','admissions.kp_passport','case_samplings.kp_passport')
+    ->leftjoin('case_samplings','admissions.kp_passport','case_samplings.kp_passport')
    // ->leftJoin('reviews','admissions.reg_number','=','reviews.reg_number')
     
     ->select('patients.name','patients.kp_passport','patients.gender','patients.age','patients.job','patients.address','admissions.*', 'case_samplings.vaccine_type')
