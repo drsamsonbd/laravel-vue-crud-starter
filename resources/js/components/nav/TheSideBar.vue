@@ -12,7 +12,7 @@
 
        
      
-      <li  class="nav-item has-treeview"   v-if="roles.indexOf('admin') ">
+      <li  class="nav-item has-treeview"   v-if="roles.includes('admin') ">
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-user-cog yellow"></i>
           <p>Pentadbir
@@ -40,7 +40,7 @@
         </ul>
       </li> 
       <!--Pesakit Dalam-->
-        <li  class="nav-item has-treeview"  v-if="roles.indexOf('superadmin')    || roles.indexOf('hospital') "  >
+        <li  class="nav-item has-treeview"  v-if="roles.includes('superadmin')    || roles.includes('hospital') "  >
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-h-square purple "></i>
           <p>WAD
@@ -93,7 +93,7 @@
         </ul>
       </li> 
       <!--PKRC-->
-        <li  class="nav-item has-treeview" v-if="roles.indexOf('superadmin')    || roles.indexOf('pkrc') " >
+        <li  class="nav-item has-treeview" v-if="roles.includes('superadmin')    || roles.includes('pkrc') " >
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-school pink"></i>
           <p>PKRC
@@ -173,7 +173,7 @@
       </li> 
 
      <!--LAPORAN-->
-        <li  class="nav-item has-treeview" v-if="roles.indexOf('superadmin')    || roles.indexOf('hospital') " >
+        <li  class="nav-item has-treeview" v-if="roles.includes('superadmin')    || roles.includes('hospital') " >
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-clipboard "></i>
           <p>Laporan
@@ -207,7 +207,7 @@
               </p>
             </router-link>
           </li>
-       <li  class="nav-item has-treeview"  v-if="roles.indexOf('superadmin')    || roles.indexOf('hospital') " >
+       <li  class="nav-item has-treeview"  v-if="roles.includes('superadmin')    || roles.includes('hospital') " >
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-chart-bar "></i>
           <p>Census
@@ -238,7 +238,7 @@
       </li> 
 
       <!-- TETAPAN -->
-      <li class="nav-item has-treeview"  v-if="roles.indexOf('pkrc')    || roles.indexOf('hospital') "  >
+      <li class="nav-item has-treeview"  v-if="roles.includes('pkrc')    || roles.includes('hospital') "  >
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-cog green"></i>
           <p>
@@ -327,7 +327,7 @@
 
 <!--JKNS VIEW-->
            <!--Pesakit Dalam-->
-        <li  class="nav-item has-treeview"  v-if="roles.indexOf('jkns')    || roles.indexOf('kesihatan')  || roles.indexOf('admin')" >
+        <li  class="nav-item has-treeview"  v-if="roles.includes('jkns')    || roles.includes('kesihatan')  || roles.includes('admin')" >
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-h-square purple "></i>
           <p>WAD
@@ -357,7 +357,7 @@
         </ul>
       </li> 
       <!--PKRC-->
-        <li  class="nav-item has-treeview"  v-if="roles.indexOf('jkns')    || roles.indexOf('kesihatan')     || roles.indexOf('admin')" >
+        <li  class="nav-item has-treeview"  v-if="roles.includes('jkns')    || roles.includes('kesihatan')     || roles.includes('admin')" >
         <a class="nav-link" href="#">
           <i class="nav-icon fas fa-school pink"></i>
           <p>PKRC
@@ -418,7 +418,7 @@ export default {
 
   data() {
     return{
-       roles:'',
+       roles: null,
     }
   },
   methods: {
