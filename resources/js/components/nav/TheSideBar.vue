@@ -13,7 +13,7 @@
        
      
       <li  class="nav-item has-treeview"   v-if="roles.includes('admin') ">
-        <a class="nav-link" href="#">
+        <a class="nav-link" >
           <i class="nav-icon fas fa-user-cog yellow"></i>
           <p>Pentadbir
            <i class="right fas fa-angle-left"></i>
@@ -41,7 +41,7 @@
       </li> 
       <!--Pesakit Dalam-->
         <li  class="nav-item has-treeview"  v-if="roles.includes('superadmin')    || roles.includes('hospital') "  >
-        <a class="nav-link" href="#">
+        <a class="nav-link" >
           <i class="nav-icon fas fa-h-square purple "></i>
           <p>WAD
            <i class="right fas fa-angle-left"></i>
@@ -94,7 +94,7 @@
       </li> 
       <!--PKRC-->
         <li  class="nav-item has-treeview" v-if="roles.includes('superadmin')    || roles.includes('pkrc') " >
-        <a class="nav-link" href="#">
+        <a class="nav-link" >
           <i class="nav-icon fas fa-school pink"></i>
           <p>PKRC
            <i class="right fas fa-angle-left"></i>
@@ -144,7 +144,7 @@
             </router-link>
           </li>
        <li  class="nav-item has-treeview" >
-        <a class="nav-link" href="#">
+        <a class="nav-link" >
           <p  id="submenu"><b>LAPORAN</b>
            <i class="right fas fa-angle-left"></i>
            </p>
@@ -174,7 +174,7 @@
 
      <!--LAPORAN-->
         <li  class="nav-item has-treeview" v-if="roles.includes('superadmin')    || roles.includes('hospital') " >
-        <a class="nav-link" href="#">
+        <a class="nav-link" >
           <i class="nav-icon fas fa-clipboard "></i>
           <p>Laporan
            <i class="right fas fa-angle-left"></i>
@@ -208,7 +208,7 @@
             </router-link>
           </li>
        <li  class="nav-item has-treeview"  v-if="roles.includes('superadmin')    || roles.includes('hospital') " >
-        <a class="nav-link" href="#">
+        <a class="nav-link" >
           <i class="nav-icon fas fa-chart-bar "></i>
           <p>Census
            <i class="right fas fa-angle-left"></i>
@@ -239,7 +239,7 @@
 
       <!-- TETAPAN -->
       <li class="nav-item has-treeview"  v-if="roles.includes('pkrc')    || roles.includes('hospital') "  >
-        <a href="#" class="nav-link">
+        <a  class="nav-link">
           <i class="nav-icon fas fa-cog green"></i>
           <p>
             Tetapan
@@ -328,7 +328,7 @@
 <!--JKNS VIEW-->
            <!--Pesakit Dalam-->
         <li  class="nav-item has-treeview"  v-if="roles.includes('jkns')    || roles.includes('kesihatan')  || roles.includes('admin')" >
-        <a class="nav-link" href="#">
+        <a class="nav-link" >
           <i class="nav-icon fas fa-h-square purple "></i>
           <p>WAD
            <i class="right fas fa-angle-left"></i>
@@ -358,7 +358,7 @@
       </li> 
       <!--PKRC-->
         <li  class="nav-item has-treeview"  v-if="roles.includes('jkns')    || roles.includes('kesihatan')     || roles.includes('admin')" >
-        <a class="nav-link" href="#">
+        <a class="nav-link" >
           <i class="nav-icon fas fa-school pink"></i>
           <p>PKRC
            <i class="right fas fa-angle-left"></i>
