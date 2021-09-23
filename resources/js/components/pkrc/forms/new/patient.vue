@@ -40,6 +40,13 @@
                       <label>Nombor</label>
                       <input type="text" class="form-control" id="ICnumber" v-model="forms.kp_passport" required>
                   </b-col>
+                        <b-col>
+                      <label>Jantina</label>
+                       <select class="form-control" id="gender" v-model="forms.gender" required>                  
+                        <option >Lelaki</option>
+                        <option >Perempuan</option>
+                        </select>
+                    </b-col>
                      <b-col>
                       <label>Umur</label>
                       <input type="number" min="0.1" class="form-control" id="age" v-model="forms.age" required>
