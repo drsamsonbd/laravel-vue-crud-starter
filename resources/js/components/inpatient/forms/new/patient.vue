@@ -50,8 +50,8 @@
 
                      <b-col>
                       <label>Umur</label>
-                      <input type="text" class="form-control" id="age" v-model="forms.age" required>
-                      <span style="font-size: 0.6em;">Nota:*Jika kurang satu (1) tahun sila isikan 0.01 sehingga 0.99</span>
+                      <input type="number" min="0.1" class="form-control" id="age" v-model="forms.age" required>
+                      <span style="font-size: 0.6em;">Nota:*Jika kurang satu (1) tahun sila isikan 0.01 sehingga 0.9</span>
                     </b-col>
                     </b-row>
                   

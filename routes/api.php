@@ -124,6 +124,7 @@ Route::apiResource('/locality', 'Api\LocalityController');
 Route::apiResource('/pkrc', 'Api\PkrcController');
 
 Route::apiResource('/ward', 'Api\WardController');
+Route::apiResource('/bed', 'Api\BedController');
 Route::apiResource('/discipline', 'Api\DisciplineController');
 
 

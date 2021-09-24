@@ -322,6 +322,14 @@
                   </p>
               </router-link>
             </li>    
+                <li class="nav-item">
+              <router-link to="/bed" class="nav-link">
+                
+                  <p id="submenu">
+                   Katil
+                  </p>
+              </router-link>
+            </li> 
                      <li class="nav-item">
               <router-link to="/discipline" class="nav-link">
                 

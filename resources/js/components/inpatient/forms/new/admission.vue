@@ -137,6 +137,16 @@
 
                     </b-col>                
                     </b-row>
+                    <b-row>
+
+                         <b-col>
+                      <label>Disiplin</label>
+                        <select class="form-control" id="district" v-model="form.discipline" required>
+                        <option v-for="discipline in disciplines" v-bind:key="discipline.discipline" >{{discipline.discipline }} </option>
+                        
+                        </select>
+                    </b-col>
+                    </b-row>s`
                            <b-row>
                      <b-col>
                       <label>Nota</label>
@@ -193,6 +203,13 @@
         self.wards = response.data;
       })
     },
+             discipline(){
+    let self = this;
+     axios.get('/api/discipline'+'?token='+  localStorage.getItem('token'))
+      .then(function (response) {
+        self.disciplines = response.data;
+      })
+    },
         register(){
 
        axios.post('/api/WardAdmission'+'?token='+ localStorage.getItem('token'), this.form)
@@ -223,7 +240,7 @@
    
       
      data(){
-      return{
+      return{disciplines:[],
              wards:[],
              patient:[],
         
@@ -268,6 +285,7 @@
     mounted: function(){
         this.cases();
          this.ward();
+         this.discipline();
     }, 
    
 
