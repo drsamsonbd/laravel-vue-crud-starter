@@ -14,7 +14,13 @@ class WardController extends Controller
      */
     public function index()
     {
-        $ward = ward::all();      
+        $ward = ward::all(); 
+           
+        $ward = DB::table('wards')
+        ->leftJoin('departments', 'departments.id', 'wards.team_id')
+        ->select('wards.*', 'departments.name_department')
+        ->orderBy('ward','asc')
+        ->get();     
         return response()->json($ward);
     }
 
@@ -45,6 +51,7 @@ class WardController extends Controller
         $ward->ward = $request->ward;
         $ward->capacity = $request->capacity;
         $ward->status = $request->status;
+        $ward->team_id = $request->team_id;
         $ward->save();
     }
 
@@ -84,6 +91,7 @@ class WardController extends Controller
         $data['ward'] = $request->ward;
         $data['capacity'] = $request->capacity;
         $data['status'] = $request->status;
+        $data['team_id'] = $request->team_id;
         DB::table('wards')->where('id',$id)->update($data);
     }
 

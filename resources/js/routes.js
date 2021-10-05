@@ -14,7 +14,7 @@ let department= require('./components/admin/department.vue').default;
  let patient = require('./components/patient/patient.vue').default;
  let case_reg = require('./components/patient/case.vue').default;
  let sampling = require('./components/patient/sampling.vue').default;
-
+ let PatientDetails = require('./components/patient/details.vue').default;
 //settings component
 let race= require('./components/settings/race.vue').default;
 let area= require('./components/settings/area.vue').default;
@@ -43,7 +43,9 @@ let details= require('./components/pkrc/Details.vue').default;
 let newinpatientadmission= require('./components/inpatient/newadmission.vue').default;
 let inpatientadmission= require('./components/inpatient/admission.vue').default;
 let inpatientadmissionform= require('./components/inpatient/forms/new/admission.vue').default;
+let inpatientadmissiondirect= require('./components/inpatient/forms/new/admissionDirect.vue').default;
 let inpatientlist= require('./components/inpatient/index.vue').default;
+let inpatientsearch= require('./components/inpatient/search.vue').default;
 let inpatientdischarge= require('./components/inpatient/discharge.vue').default;
 let inpatientdischargeform= require('./components/inpatient/forms/new/discharge.vue').default;
 let inpatientreview= require('./components/inpatient/review.vue').default;
@@ -59,7 +61,7 @@ let inpatientupdateAdmission= require('./components/inpatient/forms/admission.vu
 let inpatientupdateCase= require('./components/inpatient/forms/case.vue').default;
 let inpatientupdateSampling= require('./components/inpatient/forms/sampling.vue').default;
 let inpatientupdateDischarge= require('./components/inpatient/forms/discharge.vue').default;
-
+let inpatientupdate= require('./components/inpatient/forms/update.vue').default;
 
 //pkrc update form 
 let updatePatient= require('./components/pkrc/forms/patient.vue').default;
@@ -130,7 +132,7 @@ export const routes = [
   { path: '/patient', component: patient, name:'patient'},
   { path: '/case', component: case_reg, name:'case'},
   { path: '/sampling', component: sampling, name:'sampling'},
-
+  { path: '/PatientDetails', component: PatientDetails, name:'PatientDetails'},
     //pkrc routes
     { path: '/admission', component: admission, name:'admission' },
     { path: '/pkrclist', component: pkrclist, name:'pkrclist' },
@@ -146,22 +148,25 @@ export const routes = [
         { path: '/newInpatientAdmission', component: newinpatientadmission, name:'newinpatientadmission' },
         { path: '/inpatientadmission', component: inpatientadmission, name:'inpatientadmission' },
         { path: '/inpatientlist', component: inpatientlist, name:'inpatientlist' },
+        { path: '/inpatientsearch', component: inpatientsearch, name:'inpatientsearch' },
         { path: '/inpatientreview', component: inpatientreview, name:'inpatientreview' },
         { path: '/inpatientdischarge', component: inpatientdischarge, name:'inpatientdischarge' },
         { path: '/inpatientdischargeform', component: inpatientdischargeform, name:'inpatientdischargeform' },
         { path: '/inpatientvital', component: inpatientvital, name:'inpatientvital' },
         { path: '/inpatientadmissionform', component: inpatientadmissionform, name:'inpatientadmissionform' },
+        { path: '/inpatientadmissionDirect', component: inpatientadmissiondirect, name:'inpatientadmissionDirect' },
         { path: '/inpatientactive', component: inpatientactive, name:'inpatientactive' },
         { path: '/inpatientdetails', component: inpatientdetails, name:'inpatientdetails' },
         { path: '/InpatientnewPatient', component: InpatientnewPatient, name:'InpatientnewPatient' },
         { path: '/InpatientnewSampling', component: InpatientnewSampling, name:'inpatientnewSampling' },
+
         //inpatient  update routes
 { path: '/inpatientupdatePatient', component: inpatientupdatePatient, name:'inpatientupdatePatient' },
 { path: '/inpatientupdateAdmission', component:inpatientupdateAdmission, name:'inpatientupdateAdmission' },
 { path: '/inpatientupdateCase', component:inpatientupdateCase, name:'inpatientupdateCase' },
 { path: '/inpatientupdateSampling', component:inpatientupdateSampling, name:'inpatientupdateSampling' },
 { path: '/inpatientupdateDischarge', component:inpatientupdateDischarge, name:'inpatientupdateDischarge' },
-
+{ path: '/inpatientupdate', component:inpatientupdate, name:'inpatientupdate' },
 //pkrc  update routes
 { path: '/updatePatient', component: updatePatient, name:'updatePatient' },
 { path: '/updateAdmission', component:updateAdmission, name:'updateAdmission' },

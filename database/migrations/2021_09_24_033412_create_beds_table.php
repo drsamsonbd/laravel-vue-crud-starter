@@ -15,10 +15,11 @@ class CreateBedsTable extends Migration
     {
         Schema::create('beds', function (Blueprint $table) {
             $table->id();
-            $table->string('ward_id');
+            $table->int('ward_id');
             $table->string('bed_number');
-            $table->string('bed_code');
-            $table->string('notes');
+            $table->string('bed_code')->unique();
+            $table->string('bed_class');
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }

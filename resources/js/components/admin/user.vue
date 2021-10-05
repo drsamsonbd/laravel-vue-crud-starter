@@ -45,6 +45,17 @@
                         <input type="text" class="form-control" placeholder="Roles: admin, finance, head, user" v-model="form.roles">
                      
                     </div>
+                        
+                  <div class="form-group">
+                      <label>Jabatan:</label>
+                      <select class="form-control" id="Jabatan" v-model="form.current_team_id">
+                        <option v-for="department in departments "   v-bind:key="department.id" :value="department.id"> {{department.name_department}}</option>
+                        
+                        </select>
+                     
+                    </div>
+                     
+                 
                     <div class="form-group">
                       <button type="submit"  class="btn btn-primary btn-block">Daftar</button>
                     </div>
@@ -288,8 +299,7 @@
      mounted(){
         this.getRoles();
         this.allUser();
-        this.allDept();
- 
+        this.allDept();    
       },
 
       
@@ -297,6 +307,7 @@
       return{
         departments:[],
         users:[],
+        wards:[],
         searchTerm:'',
         
           form:{
@@ -304,7 +315,7 @@
           email: null,
           ic: null,
           password: null,
-          
+          current_team_id: null,
           roles: null,
       
         },
@@ -313,7 +324,7 @@
           email: null,
           ic: null,
           roles: null,
-      
+          current_team_id: null,
         },
         formr:{
        
@@ -348,6 +359,7 @@
           { key: 'ic', label: 'No. Kad Pengenalan', sortable: true, sortDirection: 'desc' },
           { key: 'email', label: 'Email', sortable: true, sortDirection: 'desc' },
           { key: 'roles', label: 'Roles', sortable: true, sortDirection: 'desc' },
+          { key: 'name_department', label: 'Team', sortable: true, sortDirection: 'desc' },
           { key: 'actions', label: 'Actions' },
         ],
         table:'',

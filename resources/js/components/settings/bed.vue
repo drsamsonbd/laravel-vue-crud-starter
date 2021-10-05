@@ -20,14 +20,14 @@
               <b-row>
                   <b-col>
                       <label>Wad</label>
-                        <select class="form-control" id="district" v-model="form.ward" required>
-                        <option v-for="ward in wards" v-bind:key="ward.id"  >{{ward.ward }} </option>
+                        <select class="form-control" id="district" v-model="form.ward_id" required>
+                        <option v-for="ward in wards" v-bind:key="ward.id"  v-bind:value="ward.id">{{ward.ward }} </option>
                         
                         </select>
                     </b-col>
                 <b-col>
                   <label for=""><b>Katil</b></label>
-              <input type="number" min="1" class="form-control" id="exampleInputFirstName" placeholder="Sila nombor katil" v-model="form.bed_number" required>
+              <input type="number" min="1" class="form-control"  placeholder="Sila nombor katil" v-model="form.bed_number" required>
                
                 </b-col>
             </b-row>
@@ -36,17 +36,24 @@
                <b-row>
                 <b-col>
                   <label for=""><b>Kod</b></label>
-              <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Kod Panggilan" v-model="form.bed_code" required>
+              <input type="text" class="form-control"  placeholder="Kod Panggilan" v-model="form.bed_code" required>
              
                 </b-col>
-     
+            <b-col>
+                      <label>Kelas</label>
+                        <select class="form-control" id="district" v-model="form.bed_class" required>
+                        <option value="1"  >1 </option>
+                        <option value="2"  >2 </option>
+                        <option value="3"  >3 </option>
+                        </select>
+                    </b-col>
             </b-row>
                             <br>
                <b-row>
                 <b-col>
       
                   <label for=""><b>Catatan</b></label>
-              <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Capacity" v-model="form.notes" required>
+              <input type="text" class="form-control"  placeholder="" v-model="form.notes" >
  
                 </b-col>
             </b-row>
@@ -68,22 +75,46 @@
   <!--category-->
   <b-modal ref="update-modal" hide-footer title="Kemaskini Kod Peruntukan">     
            <form class="user" @submit.prevent="categoryUpdate">
+        <b-row> 
+                  <b-col>
+                      <label>Wad</label>
+                        <select class="form-control" id="district" v-model="forms.ward_id" required>
+                        <option v-for="ward in wards" v-bind:key="ward.id" v-bind:value="ward.id" >{{ward.ward }} </option>
+                        
+                        </select>
+                    </b-col>
+                <b-col>
+                  <label for=""><b>Katil</b></label>
+              <input type="number" min="1" class="form-control"  placeholder="Sila nombor katil" v-model="forms.bed_number" required>
+               
+                </b-col>
+            </b-row>
+            
+                      <br>
                <b-row>
                 <b-col>
-                  <label for=""><b>bed</b></label>
-              <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Sila masukkan wad" v-model="forms.bed">
-              <small class="text-danger" v-if="errors.bed"> {{ errors.bed[0] }} </small>   
+                  <label for=""><b>Kod</b></label>
+              <input type="text" class="form-control"  placeholder="Kod Panggilan" v-model="forms.bed_code" required>
+             
                 </b-col>
+                 <b-col>
+                      <label>Kelas</label>
+                        <select class="form-control" id="district" v-model="forms.bed_class" required>
+                        <option value="1"  >1 </option>
+                        <option value="2"  >2 </option>
+                        <option value="3"  >3 </option>
+                        </select>
+                    </b-col>
             </b-row>
-            <br>
-            <b-row>
+                            <br>
+               <b-row>
                 <b-col>
-                  <label for=""><b>Kapasiti</b></label>
-              <input type="text" class="form-control" id="exampleInputFirstName" placeholder="capacity" v-model="forms.capacity">
-              <small class="text-danger" v-if="errors.capacity"> {{ errors.capacity[0] }} </small>   
+      
+                  <label for=""><b>Catatan</b></label>
+              <input type="text" class="form-control"  placeholder="" v-model="forms.notes" >
+ 
                 </b-col>
-            </b-row>
-            <br>
+            </b-row> <br>
             <b-row>
               <b-col>
             <b-button type="submit" id="update-btn" class="btn-outline btn-primary btn-block">Kemaskini</b-button>
@@ -108,7 +139,7 @@
               <!-- Simple Tables -->
               <div class="card">
     <b-col class="shadow-sm  bg-white">
-           <caption><h5><b>Wad</b></h5></caption>  
+           <caption><h5><b>Katil</b></h5></caption>  
  
       <b-row>
        <b-col sm="3" class="my-1">
@@ -262,15 +293,20 @@
       return{
           wards:[],
           form:{
-          bed: null,
-          capacity: null,
-          
+          ward_id: null,
+          bed_number: null,
+          bed_code: null,
+          bed_class: null,
+          notes: null,
           
       
         },
           forms:{          
-           bed: null,
-          capacity: null,
+               ward_id: null,
+          bed_number: null,
+          bed_code: null,
+                bed_class: null,
+          notes: null,
       
         },
         errors:{},     
@@ -297,9 +333,12 @@
         categoryfilterOn: [],
         categoryitems: [],
         categoryfields: [
-          { key: 'bed', label: 'Wad', sortable: true, sortDirection: 'asc' },
-          { key: 'capacity', label: 'Kapasiti', sortable: true, sortDirection: 'asc' },
-          { key: 'actions', label: 'Actions' },
+          { key: 'ward', label: 'Wad', sortable: true, sortDirection: 'asc' },
+          { key: 'bed_code', label: 'Kod', sortable: true, sortDirection: 'asc' },
+          { key: 'bed_number', label: 'Nombor Katil', sortable: true, sortDirection: 'asc' },
+           { key: 'bed_class', label: 'Kelas', sortable: true, sortDirection: 'asc' },
+          { key: 'notes', label: 'Catatan', sortable: true, sortDirection: 'asc' },
+          { key: 'actions', label: '' },
 
         ],
 
@@ -326,7 +365,7 @@
  //all   
     allCategory(){
     let self = this;
-     axios.get('/api/bed/'+ '?token='+ localStorage.getItem('token'))
+     axios.get('/api/wardbed/'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.categoryitems = response.data;
       }).catch(function (error) {

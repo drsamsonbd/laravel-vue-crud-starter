@@ -11,6 +11,7 @@ class bed extends Model
     'ward_id',
     'bed_number',
     'bed_code',
+    'bed_class',
     'notes',
     ];
 }

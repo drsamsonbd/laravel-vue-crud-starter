@@ -101,7 +101,7 @@
          cases(){
       
     
-        axios.get('/api/admissions/'+this.$route.params.id+ '?token='+ localStorage.getItem('token'))
+        axios.get('/api/admissions/'+this.$route.query.id+ '?token='+ localStorage.getItem('token'))
         .then(({data}) => (this.admission = data[0], this.form.reg_number = data[0].reg_number, this.form.kp_passport = data[0].kp_passport))
       },
            discaj(){

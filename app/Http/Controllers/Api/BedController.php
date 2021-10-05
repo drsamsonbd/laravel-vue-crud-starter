@@ -44,6 +44,7 @@ class BedController extends Controller
           $bed->ward_id = $request -> ward_id;
           $bed->bed_number = $request -> bed_number;
           $bed->bed_code = $request -> bed_code;
+          $bed->bed_class = $request -> bed_class;
           $bed->notes = $request -> notes;
           $bed->save();
     }
@@ -59,7 +60,14 @@ class BedController extends Controller
         $bed = DB::table('beds')->where('id',$id)->first();
         return response()->json($bed);
     }
-
+   
+    public function showbyWard($id)
+    {
+        $bed = DB::table('beds')->where('ward_id',$id)
+        ->select('id','bed_code')
+        ->get();
+        return response()->json($bed);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -84,7 +92,8 @@ class BedController extends Controller
         $data['ward_id'] = $request -> ward_id;
         $data['bed_number'] = $request -> bed_number;
         $data['bed_code'] = $request -> bed_code;
-        $data['notes'] = $request -> notes; $data['bed'] = $request->bed;
+        $data['bed_class'] = $request -> bed_class;
+        $data['notes'] = $request -> notes; 
         DB::table('beds')->where('id',$id)->update($data);
     }
 

@@ -10,6 +10,7 @@ class ward extends Model
     protected $fillable = [
         'ward',
         'capacity',
-        'status'
+        'status',
+        'team_id'
     ];
 }

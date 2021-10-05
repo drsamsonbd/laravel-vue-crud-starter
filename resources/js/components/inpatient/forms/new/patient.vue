@@ -50,12 +50,16 @@
 
                      <b-col>
                       <label>Umur</label>
-                      <input type="number" min="0.1" class="form-control" id="age" v-model="forms.age" required>
-                      <span style="font-size: 0.6em;">Nota:*Jika kurang satu (1) tahun sila isikan 0.01 sehingga 0.9</span>
+                      <input type="number" min="0.0" class="form-control" id="age" v-model="forms.age" required>
+                      <span style="font-size: 0.6em;">Nota:*Jika kurang satu (1) tahun sila isikan 0.1 sehingga 0.9</span>
                     </b-col>
                     </b-row>
                   
                   <b-row>
+                       <b-col>
+                      <label>Tarikh Lahir</label>
+                      <input type="date" class="form-control" id="date_report" v-model="forms.dob" >
+                  </b-col>
                   <b-col>
                       <label>Bangsa</label>
                  <select class="form-control" id="race" v-model="forms.race">
@@ -170,6 +174,7 @@
           age: null,
           gender: null,          
           race: null,
+          dob: null,
           phone: null,
           nationality: null,
           job: null,
@@ -244,14 +249,15 @@
     
        }); 
           let $idtype = this.forms.id_type;
-         let $admid = this.forms.kp_passport;
+          let $admid = this.forms.kp_passport;
+          let adm_id = str_replace("-", "", $admid);
              let    $id='NIL-'+this.forms.name;
-        if($idtype ==0){
+        if($idtype ===0){
  
-          this.$router.push({name: 'inpatientadmissionform', params: { id: $id } })
+          this.$router.push({name: 'inpatientadmissionDirect', query: { id: $id } });
         } 
        else{
-       this.$router.push({name: 'inpatientadmissionform', params: { id: $admid} })
+         this.$router.push({name: 'inpatientadmissionDirect', query: { id: adm_id} });
        }
        
      },

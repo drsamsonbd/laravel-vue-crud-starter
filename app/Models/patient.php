@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class patient extends Model
 {
     protected $fillable = [
-        'name', 'kp_passport', 'age', 'gender', 'race', 'address', 'phone','job', 'workplace','nationality', 'area', 'notes'
+        'name','id_type', 'kp_passport', 'age', 'gender', 'race', 'dob',
+        'address', 'phone','job', 'workplace','nationality', 'area', 'notes'
     ];
 }

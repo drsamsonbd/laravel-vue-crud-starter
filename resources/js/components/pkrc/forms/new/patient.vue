@@ -242,12 +242,12 @@
          let $admid = this.forms.kp_passport;
          let nameid=  str_replace('/', '', this.forms.name);
           let    $id='NIL-'+ nameid;
-        if($idtype ==0){
+        if($idtype ===0){
  
-          this.$router.push({name: 'inpatientadmissionform', params: { id: $id } })
+          this.$router.push({name: 'newAdmission', params: { id: $id } })
         } 
        else{
-       this.$router.push({name: 'inpatientadmissionform', params: { id: $admid} })
+       this.$router.push({name: 'newAdmission', params: { id: $admid} })
        }
        
      },

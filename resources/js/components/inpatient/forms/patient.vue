@@ -289,12 +289,12 @@
     
        }); 
         let $admid = this.forms.kp_passport;
-       this.$router.push({name: 'inpatientdetails', params: { id: $admid} })
+       this.$router.push({name: 'inpatientdetails', query: { id: $admid} })
        
      },
       goBack() {
           let $id = this.forms.kp_passport;
-       this.$router.push({name: 'inpatientdetails', params: { id: $id } })
+       this.$router.push({name: 'inpatientdetails', query: { id: $id } })
     },
 
 

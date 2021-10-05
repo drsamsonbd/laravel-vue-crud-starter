@@ -58,7 +58,7 @@
               </p>
             </router-link>
           </li>
-          <li class="nav-item">
+      <!--    <li class="nav-item">
             <router-link to="/inpatientadmission" class="nav-link">
            
               <p id="submenu">
@@ -73,7 +73,7 @@
                 Discaj
               </p>
             </router-link>
-          </li>
+          </li>-->
                <li class="nav-item">
             <router-link to="/InpatientnewPatient" class="nav-link">
            
@@ -83,7 +83,7 @@
             </router-link>
           </li>
               <li class="nav-item">
-            <router-link to="#" class="nav-link">
+            <router-link to="/inpatientsearch" class="nav-link">
            
               <p id="submenu">
                 Carian
@@ -92,7 +92,7 @@
           </li>
         </ul>
       </li> 
-      <!--PKRC-->
+      <!--PKRC
         <li  class="nav-item has-treeview" v-if="roles.includes('superadmin')    || roles.includes('pkrc') " >
         <a class="nav-link" >
           <i class="nav-icon fas fa-school pink"></i>
@@ -170,7 +170,7 @@
            </ul>
        </li>
         </ul>
-      </li> 
+      </li> -->
 
      <!--LAPORAN-->
         <li  class="nav-item has-treeview" v-if="roles.includes('superadmin')    || roles.includes('hospital') " >
@@ -435,6 +435,7 @@ export default {
   data() {
     return{
        roles: '',
+       current_team_id:'',
     }
   },
   methods: {
@@ -442,7 +443,7 @@ export default {
     userRoles() {
         let self = this;
         axios.post('/api/auth/me'+ '?token='+ localStorage.getItem('token'))
-        .then(({data}) => (self.roles = data.roles))
+        .then(({data}) => (self.roles = data.roles, self.current_team_id = data.current_team_id))
         
         .catch(function (error) {
         console.log(error); 

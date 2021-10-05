@@ -741,7 +741,7 @@
         this.$router.push({name: 'details', params: { id: record.kp_passport } })
    
   },    newAdmission(){
-     this.$router.push({name: 'newAdmissionSearch' }) 
+     this.$router.push({name: 'newAdmissionSearch', params: { id: record.bed_code } }) 
     },
    
 

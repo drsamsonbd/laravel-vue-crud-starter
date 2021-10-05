@@ -21,7 +21,7 @@
     <b-form-select v-model="selectedward"
          placeholder="Sila pilih fasiliti"        
          >
-                     <option v-for="ward in options" v-bind:key="ward.ward" >{{ward.ward }} </option> 
+                     <option v-for="ward in options" v-bind:key="ward.ward" v-bind:value="ward.id" >{{ward.ward }} </option> 
                 </b-form-select>     <button size="sm" variant="outline-primary" @click="getbyWard()">Pilih Wad</button> <br>
     
          
@@ -31,14 +31,11 @@
 <b-row > 
 <b-col>
   
-  <h5 class="mt-3" v-if="!isHidden" style="color:blue" id="jumlah" > <b>Jumlah Pesakit:  {{ items.length }}</b></h5>
+  <h5 class="mt-3" v-if="!isHidden" style="color:blue" id="jumlah" > <b>Jumlah Pesakit:  {{ count }}</b></h5>
   </b-col>
   </b-row>
 
 <b-row   v-if="!isHidden">
-<b-col sm="2" class="my-1" align="right">
-         <b-button size="sm" variant="outline-primary" id="show-btn" @click="newAdmission()">Kemasukan Baru</b-button>
-        </b-col>
         <b-col sm="6" class="my-1">
         <b-form-group
           label=""
@@ -84,7 +81,7 @@
    
     </b-row> <br>
 <div class="container-fluid">
-      <b-table  responsive 
+      <b-table  responsive  bordered
       :items="items"
       :fields="fields"
       :current-page="currentPage"
@@ -105,19 +102,130 @@
 
        v-if="!isHidden"
     >
-     <template #cell(index)="data">
-        {{ data.index + 1 }}
+   <template #cell(bed_code)="row">
+     {{row.item.bed_code}}
+     
       </template>
-      <template #cell(item)="row">
-        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
+   <template #cell(date_bed)="row">
+   <div v-if="row.item.date_dc === null  && row.item.status == '1' ">
+   {{row.item.date_bed}}
+</div>
+       <div v-else>
+ 
+</div> 
       </template>
 
-       <template #cell(discharge)="row">
-       <router-link :to="{name: 'dischargeform', params:{id:row.item.id}}" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></router-link> <br>
-        
-         
-       
-    
+         <template #cell(time_bed)="row">
+   <div v-if="row.item.date_dc === null  && row.item.status == '1' ">
+   {{row.item.time_bed}}
+</div>
+       <div v-else>
+ 
+</div> 
+      </template>
+
+
+         <template #cell(rn)="row">
+   <div v-if="row.item.date_dc === null  && row.item.status == '1'">
+   {{row.item.rn}}
+</div>
+       <div v-else>
+ 
+</div> 
+      </template>
+
+          <template #cell(name)="row">
+   <div v-if="row.item.date_dc === null  && row.item.status == '1'">
+   {{row.item.name}}
+</div>
+       <div v-else>
+ 
+</div> 
+      </template>
+         <template #cell(kp_passport)="row">
+   <div v-if="row.item.date_dc === null  && row.item.status == '1'">
+   {{row.item.kp_passport}}
+</div>
+       <div v-else>
+ 
+</div> 
+      </template>
+               <template #cell(age)="row">
+   <div v-if="row.item.date_dc === null  && row.item.status == '1' ">
+   {{row.item.age}}
+</div>
+       <div v-else>
+ 
+</div> 
+      </template>
+
+               <template #cell(diagnosis)="row">
+   <div v-if="row.item.date_dc === null  && row.item.status == '1'">
+   {{row.item.diagnosis}}
+</div>
+       <div v-else>
+ 
+</div> 
+      </template>
+                     <template #cell(stage)="row">
+   <div v-if="row.item.date_dc === null  && row.item.status == '1' ">
+   {{row.item.stage}}
+</div>
+       <div v-else>
+ 
+</div> 
+      </template>
+                     <template #cell(vaccine)="row">
+   <div v-if="row.item.date_dc === null  && row.item.status == '1' ">
+   {{row.item.vaccine}} 
+</div>
+       <div v-else>
+ 
+</div> 
+      </template>
+
+                     <template #cell(discipline)="row">
+   <div v-if="row.item.date_dc === null  && row.item.status == '1'">
+   {{row.item.discipline}}
+</div>
+       <div v-else>
+ 
+</div> 
+      </template>
+       <template #cell(update)="row">
+    <div v-if="row.item.rn === null  || (row.item.rn !==null && row.item.date_dc !== null) || (row.item.rn !==null && row.item.status == '0')">
+ 
+</div>
+       <div v-else>
+         <div v-if=" row.item.team_id == current_team_id">
+     <router-link :to="{name: 'inpatientupdate', query:{id:row.item.BDid, ward_id: row.item.ward_id }}"  target="_blank"  class="btn btn-sm btn-outline-danger"><i class="fas fa-pen"></i></router-link> <br>
+  </div>
+  <div v-else> 
+     <button  class="btn btn-sm btn-alt" disabled><i class="fas fa-pen"></i></button> <br>
+  </div>
+</div> 
+      
+      </template>
+ <template #cell(discharge)="row">
+   
+ <div v-if="row.item.rn === null || (row.item.rn !==null && row.item.date_dc !== null)|| (row.item.rn !==null && row.item.status == '0') ">
+    <div v-if=" row.item.team_id == current_team_id">
+      <router-link :to="{name: 'newinpatientadmission', query:{id:row.item.id}}"  target="_blank" class="btn btn-sm btn-outline-primary"> <i class="fas fa-plus"></i> </router-link>
+</div>
+ 
+  <div v-else> 
+     <button  class="btn btn-sm btn-alt" disabled><i class="fas fa-plus"></i></button> <br>
+  </div>
+ </div>
+<div v-else> 
+  <div v-if=" row.item.team_id == current_team_id">
+    <router-link :to="{name: 'inpatientdischargeform', query:{rn:row.item.rn, id:row.item.BDid}}"  target="_blank"  class="btn btn-sm btn-success"><i class="fas fa-sign-out-alt"></i></router-link> <br>
+ 
+  </div>
+  <div v-else> 
+     <button  class="btn btn-sm btn-alt" disabled><i class="fas fa-sign-out-alt"></i></button> <br>
+  </div>
+    </div>      
       </template>
 
       <template #row-details="row">
@@ -168,7 +276,6 @@
 
 <b-row   v-if="isHidden">
 <b-col sm="2" class="my-1" align="right">
-           <b-button size="sm" variant="outline-primary" id="show-btn" @click="newAdmission()">Kemasukan Baru</b-button>
         </b-col>
         <b-col sm="6" class="my-1">
         <b-form-group
@@ -232,7 +339,7 @@
       flex 
       striped 
       hover
-      @row-clicked="viewPatient"
+     
 
        v-if="isHidden"
     >
@@ -243,13 +350,7 @@
         {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
       </template>
 
-       <template #cell(discharge)="row">
-       <router-link :to="{name: 'inpatientdischargeform', params:{id:row.item.id}}" class="btn btn-sm btn-success"><i class="fas fa-sign-out-alt"></i></router-link> <br>
-        
-         
-       
-    
-      </template>
+
 
       <template #row-details="row">
         <b-card>
@@ -303,10 +404,9 @@
      mounted(){
 
      
-        this.getward();
-     
+        this.getward();     
         this.allCases();
-        this.ward();
+        this.userTeam();
   
       },
 
@@ -314,8 +414,8 @@
      data(){
       return{
           isHidden: true,
-
-        
+          current_team_id:'',
+          count: null,
           races:[],
           wards:[],
           districts:[],
@@ -356,7 +456,7 @@
           },
             {
             text: 'Wad',
-            href: '#'
+            href: 'inpatientactive'
           },
           {
             text: 'Aktif',
@@ -368,26 +468,27 @@
         perPage: 20,
         currentPage: 1,
         pageOptions: [5, 10, 15, 25, { value: 100, text: "Show a lot" }],
-        sortBy: 'date',
-        sortDesc: true,
-        sortDirection: 'desc',
+        sortBy: 'bed_code',
+        sortDesc: false,
+        sortDirection: 'asc',
         filter: null,
         filterOn: [],
         items: [],
         fields: [     
-           { key: 'id', label: 'ID', sortable: true, sortDirection: 'asc' },       
-          { key: 'date', label: 'Tarikh Kemasukan', sortable: true, sortDirection: 'asc' },          
-          { key: 'time', label: 'Masa', sortable: true, sortDirection: 'asc' },
-          { key: 'reg_number', label: 'RN', sortable: true, sortDirection: 'asc' },
+          { key:'bed_code', label: 'Katil', sortable: true, sortDirection: 'asc' },       
+          { key: 'date_bed', label: 'Tarikh', sortable: true, sortDirection: 'asc' },          
+         // { key: 'time_bed', label: 'Masa', sortable: true, sortDirection: 'asc' },
+          { key: 'rn', label: 'RN', sortable: true, sortDirection: 'asc' },
           { key: 'name', label: 'Nama', sortable: true, sortDirection: 'asc' },
-          { key: 'kp_passport', label: 'No. Kad Pengenalan/Passport', sortable: true, sortDirection: 'desc' },
+          { key: 'kp_passport', label: 'No. KP', sortable: true, sortDirection: 'desc' },
           { key: 'age', label: 'Umur', sortable: true, sortDirection: 'desc' },
-          { key: 'gender', label: 'Jantina', sortable: true, sortDirection: 'desc' },
-          { key: 'adm_diagnosis', label: 'Diagnosis', sortable: true, sortDirection: 'desc', tdClass: 'setDxTdClass' },
-          { key: 'adm_stage', label: 'Stage', sortable: true, sortDirection: 'desc' },
-          { key: 'vaccine_type', label: 'Vaccination', sortable: true, sortDirection: 'desc' },
-         //   { key: 'view', label: 'View' },
-         { key: 'discharge', label: 'Discaj' },
+         // { key: 'gender', label: 'Jantina', sortable: true, sortDirection: 'desc' },
+          { key: 'diagnosis', label: 'Diagnosis', sortable: true, sortDirection: 'desc', tdClass: 'setDxTdClass' },
+          { key: 'stage', label: 'Stage', sortable: true, sortDirection: 'desc' },
+          { key: 'vaccine', label: 'Vaccination', sortable: true, sortDirection: 'desc' },
+           { key: 'discipline', label: 'Disiplin', sortable: true, sortDirection: 'desc' },
+          { key: 'update', label: '', class: 'text-center' },
+          { key: 'discharge', label: '', class: 'text-center' },
         ],
         table:'',
       }
@@ -418,7 +519,7 @@
 
       allCases(){
     let self = this;
-     axios.get('/api/active/ward'+ '?token='+ localStorage.getItem('token'))
+     axios.get('/api/wardbedActives'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.items = response.data;
       }).catch(function (error) {
@@ -427,27 +528,34 @@
       });
     },
 
-   ward(){
-    let self = this;
-     axios.get('/api/ward/'+ '?token='+ localStorage.getItem('token'))
-      .then(function (response) {
-        self.wards = response.data;
-      }).catch(function (error) {
-        console.log(error);
-        self.$router.push({ path: '/login' });
-      });
-    },
+   userTeam() {
+        let self = this;
+        axios.post('/api/auth/me'+ '?token='+ localStorage.getItem('token'))
+        .then(({data}) => (self.current_team_id = data.current_team_id))
+        
+        .catch(function (error) {
+        console.log(error); 
+
+      });    
+     
+      },
+
 
 
     getbyWard(){
      this.isHidden = false;
     let self = this;
-     axios.get('/api/activeWard/'+ '?token='+ localStorage.getItem('token'), { params: { ward: this.selectedward } })
+     axios.get('/api/wardbedActive/'+ '?token='+ localStorage.getItem('token'), { params: { ward: this.selectedward } })
       .then(function (response) {
         self.items = response.data;
-      }).catch(function (error) {
+      }),
+          axios.get('/api/wardbedActive/count/'+ '?token='+ localStorage.getItem('token'), { params: { ward: this.selectedward } })
+      .then(function (response) {
+        self.count = response.data;
+      })
+      
+      .catch(function (error) {
         console.log(error);
-        self.$router.push({ path: '/login' });
       });
     },
 
@@ -462,15 +570,8 @@
       });
     },
 
-   
-    newAdmission(){
-     this.$router.push({name: 'newinpatientadmission' }) 
-    },
-   
-
-
          viewPatient(record) {
-        this.$router.push({name: 'inpatientdetails', params: { id: record.kp_passport } })
+        this.$router.push({name: 'inpatientdetails', query: { id: record.kp_passport } })
    
   },
 

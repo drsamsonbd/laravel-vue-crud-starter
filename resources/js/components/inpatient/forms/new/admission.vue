@@ -90,18 +90,17 @@
                    </b-col>
                     <b-col>
                       <label>Wad</label>
-                        <select class="form-control" id="district" v-model="form.ward" required>
-                        <option v-for="ward in wards" v-bind:key="ward.ward" >{{ward.ward }} </option>
-                        
-                        </select>
+                        <input class="form-control" id="district" v-model="bed_discipline.ward" required disabled>
+                      
+                    </b-col>
+                        <b-col>
+                      <label>Katil</label>
+                        <input class="form-control" id="district" v-model="bed_discipline.bed_code" required disabled>
+                      
                     </b-col>
                                 <b-col>
                       <label>Kelas</label>
-                        <select class="form-control" id="district" v-model="form.class" required>
-                        <option value="1" >1 </option>
-                          <option value="2" >2 </option>
-                            <option value="3" >3 </option>
-                        </select>
+                     <input class="form-control" id="district" v-model="bed_discipline.bed_class" required disabled>
                     </b-col>
                     </b-row>
                       <b-row>
@@ -129,7 +128,7 @@
                         <option >1</option>
                         <option >2</option>
                         <option>3</option>
-                          <option>4</option>
+                        <option>4</option>
                         <option>5</option>
                         <option>NA</option>
                         </select>
@@ -141,12 +140,35 @@
 
                          <b-col>
                       <label>Disiplin</label>
-                        <select class="form-control" id="district" v-model="form.discipline" required>
-                        <option v-for="discipline in disciplines" v-bind:key="discipline.discipline" >{{discipline.discipline }} </option>
+                        <select class="form-control" id="district" v-model="bed_discipline.discipline_id" required>
+                        <option v-for="discipline in disciplines" v-bind:key="discipline.discipline" v-bind:value="discipline.id" >{{discipline.discipline }} </option>
                         
                         </select>
                     </b-col>
-                    </b-row>s`
+                    </b-row>
+
+                      <b-row>
+                     <b-col>
+                      <label>Vaksinasi</label>
+                          <select class="form-control" id="vaccine" v-model="vaccination.vaccine">
+                        <option v-for="vaccine in vaccines" v-bind:key="vaccine.vaccine" > {{vaccine.vaccine }}</option>
+                        
+                        </select>
+                   </b-col>
+                    <b-col hidden>
+                      <label>Patient KP</label>
+                     <input type="text" class="form-control" id="1stdose" v-model="vaccination.patient_kp_passport" >
+                    </b-col>
+
+                       <b-col>
+                      <label>Tarikh 1st Dose</label>
+                     <input type="date" class="form-control" id="1stdose" v-model="vaccination.date_first">
+                    </b-col>
+                     <b-col>
+                      <label>Tarikh 2nd Dose</label>
+                     <input type="date" class="form-control" id="2nddose" v-model="vaccination.date_second">
+                    </b-col>
+                    </b-row>
                            <b-row>
                      <b-col>
                       <label>Nota</label>
@@ -191,17 +213,21 @@
        methods:{
          cases(){
       
-        axios.get('/api/patient/kp/'+this.$route.params.id + '/?token='+ localStorage.getItem('token'))
-        .then(({data}) => (this.patient = data[0],
+        axios.get('/api/patient/kp/'+this.$route.query.id + '/?token='+ localStorage.getItem('token'))
+        .then(({data}) => (this.patient = data[0],this.vaccination.patient_kp_passport = data[0].kp_passport,
         this.form = data[0]))
       },
         
          ward(){
     let self = this;
-     axios.get('/api/ward'+'?token='+  localStorage.getItem('token'))
+     axios.get('/api/wardbed/'+this.$route.query.bed_id + '?token='+  localStorage.getItem('token'))
       .then(function (response) {
-        self.wards = response.data;
-      })
+     self.bed_discipline.bed_code = response.data[0].bed_code;
+     self.bed_discipline.ward = response.data[0].ward;
+     self.bed_discipline.bed_class = response.data[0].bed_class;
+      }).catch(function (error) {
+        console.log(error);
+     });
     },
              discipline(){
     let self = this;
@@ -210,9 +236,29 @@
         self.disciplines = response.data;
       })
     },
-        register(){
+      
+      
+      register(){
 
-       axios.post('/api/WardAdmission'+'?token='+ localStorage.getItem('token'), this.form)
+       axios.post('/api/WardAdmission'+'?token='+ localStorage.getItem('token'), this.form),
+       axios.post('/api/vaccinestatus'+'?token='+ localStorage.getItem('token'), this.vaccination),
+       axios.post('/api/bed_discipline'+'?token='+ localStorage.getItem('token'), 
+       {ward: this.bed_discipline.ward,
+       rn: this.form.reg_number,
+      date_bed: this.form.date,
+      time_bed: this.form.time,
+      bed_id: this.$route.query.bed_id,
+      discipline_id:this.bed_discipline.discipline_id,
+      remarks: 'New',
+      status:'1'}),
+         axios.post('/api/diagnosis'+'?token='+ localStorage.getItem('token'), 
+       {
+          patient_reg_number: this.form.reg_number,
+          diagnosis: this.form.adm_diagnosis,
+          stage: this.form.adm_stage,
+          date_diagnosis: this.form.date,
+          remarks: 'Admission',
+          status: '1'})
        .then(() => {       
                   Toast.fire(
                       'Berjaya!',
@@ -233,6 +279,16 @@
          goBack() {
      this.$router.push({name: 'newinpatientadmission'});
     },
+            vaccine(){
+    let self = this;
+     axios.get('/api/vaccine'+ '?token='+ localStorage.getItem('token'))
+      .then(function (response) {
+        self.vaccines = response.data;
+      }).catch(function (error) {
+        console.log(error);
+        self.$router.push({ path: '/login' });
+      });
+    },
     },
   
 
@@ -243,13 +299,15 @@
       return{disciplines:[],
              wards:[],
              patient:[],
-        
+          vaccines:[],
           form:{
+
           name:null,
           kp_passport: null,
           reg_number: null,
           kp_passport: null,
-          ward: null,
+          adm_diagnosis: null,
+          adm_stage: null,
           marriage: null,
           religion: null,
           kin: null,
@@ -261,8 +319,21 @@
           weight: null,
           note: null
           },
-              
+          bed_discipline:{
        
+          ward: null,
+          bedcode: null,
+          bed_class: null,   
+          bed_id: null, 
+          discipline_id: null,
+          },
+          
+          vaccination:{
+          vaccine: null,
+          date_first:null,
+          date_second: null,
+          patient_kp_passport:null,
+          },
         errors:{},     
         
         itemize: [
@@ -286,6 +357,7 @@
         this.cases();
          this.ward();
          this.discipline();
+         this.vaccine();
     }, 
    
 

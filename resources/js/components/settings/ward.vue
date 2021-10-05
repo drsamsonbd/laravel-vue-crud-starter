@@ -33,6 +33,21 @@
               <small class="text-danger" v-if="errors.capacity"> {{ errors.capacity[0] }} </small>   
                 </b-col>
             </b-row>
+<br>
+             <b-row>
+               <b-col>
+                <label>Jabatan:</label>
+                      <select class="form-control" id="Jabatan" v-model="form.team_id">
+                        <option v-for="department in departments "   v-bind:key="department.id" :value="department.id"> {{department.name_department}}</option>
+                        
+                        </select>
+
+               </b-col>
+
+             </b-row>
+                    
+                     
+                    
                       <br>
             <b-row>
               <b-col>
@@ -66,6 +81,19 @@
               <small class="text-danger" v-if="errors.capacity"> {{ errors.capacity[0] }} </small>   
                 </b-col>
             </b-row>
+            <br>
+             <b-row>
+               <b-col>
+                <label>Jabatan:</label>
+                      <select class="form-control" id="Jabatan" v-model="forms.team_id">
+                        <option v-for="department in departments "   v-bind:key="department.id" :value="department.id"> {{department.name_department}}</option>
+                        
+                        </select>
+
+               </b-col>
+
+             </b-row>
+                    
             <br>
             <b-row>
               <b-col>
@@ -233,7 +261,7 @@
     },
    mounted(){ 
     this.allCategory();
-
+    this.allDept();
   
     },
   
@@ -246,14 +274,14 @@
           form:{
           ward: null,
           capacity: null,
-          
+          team_id: null,
           
       
         },
           forms:{          
            ward: null,
           capacity: null,
-      
+          team_id: null,
         },
         errors:{},     
         
@@ -281,6 +309,7 @@
         categoryfields: [
           { key: 'ward', label: 'Wad', sortable: true, sortDirection: 'asc' },
           { key: 'capacity', label: 'Kapasiti', sortable: true, sortDirection: 'asc' },
+          { key: 'name_department', label: 'Unit', sortable: true, sortDirection: 'asc' },
           { key: 'actions', label: 'Actions' },
 
         ],
@@ -317,7 +346,16 @@
       });
     },
 
-
+     allDept(){
+    let self = this;
+     axios.get('/api/department/'+ '?token='+ localStorage.getItem('token'))
+      .then(function (response) {
+        self.departments = response.data;
+      }).catch(function (error) {
+        console.log(error);
+       Notification.unauthorized() 
+      });
+    },
 
 
 //delete

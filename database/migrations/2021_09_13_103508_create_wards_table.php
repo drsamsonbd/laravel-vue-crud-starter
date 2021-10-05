@@ -18,6 +18,7 @@ class CreateWardsTable extends Migration
             $table->string('ward');
             $table->string('capacity')->nullable();
             $table->string('status')->nullable();
+            $table->integer('team_id')->nullable();
             $table->timestamps();
         });
     }

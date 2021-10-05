@@ -20,6 +20,8 @@ class UserController extends Controller
         $user = User::all();
         
         $user = DB::table('users')
+        ->leftJoin('departments', 'departments.id', 'users.current_team_id')
+        ->select('users.*', 'departments.name_department')
         ->orderBy('name','asc')
         ->get();
         return response()->json($user);

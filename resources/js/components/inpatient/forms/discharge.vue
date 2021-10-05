@@ -102,7 +102,7 @@
        methods:{
          cases(){
 
-        axios.get('/api/WardAdmissionRecord/'+this.$route.params.id+ '?token='+ localStorage.getItem('token'))
+        axios.get('/api/WardAdmissionRecord/'+this.$route.query.id+ '?token='+ localStorage.getItem('token'))
         .then(({data}) => (this.form = data[0]))
        
         },

@@ -101,10 +101,16 @@
          cases(){
       
     
-        axios.get('/api/WardAdmissionRecord/'+this.$route.params.id+ '?token='+ localStorage.getItem('token'))
+        axios.get('/api/WardAdmissionRecord/Discharge/'+this.$route.query.rn+ '?token='+ localStorage.getItem('token'))
         .then(({data}) => (this.admission = data[0], this.form.reg_number = data[0].reg_number, this.form.kp_passport = data[0].kp_passport))
       },
            discaj(){
+       let $id = this.$route.query.id;
+       axios.patch('/api/bed_discipline/status/'+$id+'?token='+ localStorage.getItem('token'), 
+       {
+
+      status: '0'
+       }),
           axios.post('/api/inpatient/discharge'+ '?token='+ localStorage.getItem('token'), this.form)
           .then(() => {
                  Toast.fire(

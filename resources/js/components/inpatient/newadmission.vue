@@ -45,7 +45,11 @@
 
 </b-col>
 </b-row> <br>
-
+<b-row>
+  <b-col>
+    <p>Kemasukan bagi katil: <b> {{bedcode}} </b></p>
+  </b-col>
+</b-row>
 
 
 <b-row   v-if="!isHidden">
@@ -82,7 +86,7 @@
       </template>
 
        <template #cell(action)="row">
-       <router-link :to="{name: 'inpatientadmissionform', params:{id:row.item.kp_passport}}" class="btn btn-sm btn-secondary"><i class="fas fa-procedures white"></i></router-link> <br>
+       <router-link :to="{name: 'inpatientadmissionform', query:{id:row.item.kp_passport, bed_id: bed_id}}" _target="blank" class="btn btn-sm btn-secondary"><i class="fas fa-procedures white"></i></router-link> <br>
         
          
        
@@ -134,11 +138,15 @@
       } 
 
     },
-      
+    mounted()  {
+      this.getbed();
+    },
 
       
      data(){
       return{
+        bedcode : '',
+        bed_id :'',
           isHidden: true,
             search:{
                 name: null,
@@ -202,9 +210,19 @@
       
       });
     },
-
+    getbed(){
+      let self = this;
+      axios.get('/api/bed/' + this.$route.query.id + '?token='+ localStorage.getItem('token'))
+      .then(function (response) {
+     self.bedcode = response.data.bed_code;
+     self.bed_id = response.data.id;
+      }).catch(function (error) {
+        console.log(error);
+     });
+    },
          viewPatient(record) {
-        this.$router.push({name: 'details', params: { id: record.kp_passport } })
+     this.$router.push({name: 'PatientDetails', params: { id: record.kp_passport } });
+   
    
   },
 

@@ -124,6 +124,37 @@
 
 
     </b-table>
+
+                <!-- Bed Disciplines Table -->
+           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Discipline</h6>
+                </div>       
+                       <b-table  responsive 
+                     
+      :items="BDitems"
+      :fields="BDfields"
+      stacked="md"
+      show-empty
+      small
+     
+      flex 
+      striped 
+      hover
+    >
+     <template #cell(index)="data">
+        {{ data.index + 1 }}
+      </template>
+      <template #cell(item)="row">
+        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
+      </template>
+
+      <template #cell(actions)="row">
+        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
+         <i class="fas fa-edit"></i>
+        </b-button>
+
+      </template>
+    </b-table>
  <!-- Case Reporting Table -->
            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Daftar Kes</h6>
@@ -236,36 +267,7 @@
       </template>
     </b-table>
     
-            <!-- Vaccine Table -->
-           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Daily Review</h6>
-                </div>       
-                       <b-table  responsive 
-                     
-      :items="reviewitems"
-      :fields="reviewfields"
-      stacked="md"
-      show-empty
-      small
-     
-      flex 
-      striped 
-      hover
-    >
-     <template #cell(index)="data">
-        {{ data.index + 1 }}
-      </template>
-      <template #cell(item)="row">
-        {{ row.value.name }} {{ row.value.icno }} {{ row.value.email }} {{ row.value.roles}}
-      </template>
 
-      <template #cell(actions)="row">
-        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
-         <i class="fas fa-edit"></i>
-        </b-button>
-
-      </template>
-    </b-table>
               <!-- DischargeTable -->
            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Disaj</h6>
@@ -317,20 +319,20 @@
    
        methods:{
          cases(){      
-        axios.get('/api/wardadmissionskp/'+this.$route.params.id+ '/?token='+ localStorage.getItem('token'))
+        axios.get('/api/wardadmissionskp/'+this.$route.query.id+ '/?token='+ localStorage.getItem('token'))
        .then(({data}) => (this.admissions = data[0])) 
       },
 
      admissionrecord(){
     let self = this;
-     axios.get('/api/wardadmissionskp/'+ this.$route.params.id+'?token='+ localStorage.getItem('token'))
+     axios.get('/api/wardadmissionskp/'+ this.$route.query.id+'?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.items = response.data;        
         self.caseitems = response.data;
         self.samplingitems = response.data;
         self.vaccineitems = response.data;
         self.dischargeitems = response.data;
-        self.reviewitems = response.data;
+        self.BDitems = response.data;
       }).catch(function (error) {
         console.log(error);
         self.$router.push({ path: '/login' });
@@ -409,10 +411,12 @@
           { key: 'notes', label: 'Catatan', sortable: true, sortDirection: 'desc' },
           { key: 'actions', label: '' },
         ],
-         reviewitems: [],
-          reviewfields: [     
-          { key: 'date_review', label: 'Tarikh', sortable: true, sortDirection: 'desc' },
-          { key: 'reviewing_mo', label: 'Medical Officer', sortable: true, sortDirection: 'desc' },
+         BDitems: [],
+          BDfields: [     
+          { key: 'rn', label: 'RN', sortable: true, sortDirection: 'desc' },
+          { key: 'date_bed', label: 'Tarikh', sortable: true, sortDirection: 'desc' },
+          { key: 'bed_code', label: 'Kod', sortable: true, sortDirection: 'desc' },
+           { key: 'discipline', label: 'Disiplin', sortable: true, sortDirection: 'desc' },
    
           { key: 'actions', label: '' },
         ],

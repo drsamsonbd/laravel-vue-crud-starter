@@ -46,6 +46,7 @@ class PatientController extends Controller
             'age'=>'required',
             'gender'=>'required',
             'race'=>'',
+            'dob' =>'',
             'address'=>'',
             'phone'=>'',
             'nationality'=>'required',
@@ -59,15 +60,19 @@ class PatientController extends Controller
         $id_type = $request -> id_type;
         $name =$request->name;
         $nameid =str_replace('/', '', $name);
+        $ic_passport = $request ->kp_passport;
+        $kp = str_replace("-", "", $ic_passport);
         if($id_type == 0){
 
             $kp_passport = "NIL"."-".$nameid;
             $patient = new Patient;
             $patient->name = $request->name;
+            $patient->id_type = $request->id_type;
             $patient->kp_passport = $kp_passport;
             $patient->age = $request->age;
             $patient->gender = $request->gender;
             $patient->race = $request->race;
+            $patient->dob = $request->dob;
             $patient->address = $request->address;
             $patient->phone = $request->phone;
             $patient->nationality = $request->nationality;
@@ -80,10 +85,12 @@ class PatientController extends Controller
         } else{
             $patient = new Patient;
             $patient->name = $request->name;
-            $patient->kp_passport =  $request-> kp_passport;
+            $patient->id_type = $request->id_type;
+            $patient->kp_passport =  $kp;
             $patient->age = $request->age;
             $patient->gender = $request->gender;
             $patient->race = $request->race;
+            $patient->dob = $request->dob;
             $patient->address = $request->address;
             $patient->phone = $request->phone;
             $patient->nationality = $request->nationality;
@@ -131,10 +138,12 @@ class PatientController extends Controller
     {
         $data = array();
         $data['name'] = $request->name;
+        $data['id_type'] = $request->kp_passport;
         $data['kp_passport'] = $request->kp_passport;
         $data['age'] = $request->age;
         $data['gender'] = $request->gender;
         $data['race'] = $request->race;
+        $data['dob'] = $request->dob;
         $data['address'] = $request->address;
         $data['phone'] = $request->phone;
         $data['nationality'] = $request->nationality;

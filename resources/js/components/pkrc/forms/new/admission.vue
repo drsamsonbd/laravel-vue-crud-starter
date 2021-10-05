@@ -195,7 +195,7 @@
               title: 'Invalid data! Nothing has been updated.'
             });
           })
- this.$router.push({name: 'active' });
+  this.$router.push({name: 'active' });
      }, 
          goBack() {      
         this.$router.push({name: 'active' });

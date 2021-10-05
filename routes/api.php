@@ -125,8 +125,16 @@ Route::apiResource('/pkrc', 'Api\PkrcController');
 
 Route::apiResource('/ward', 'Api\WardController');
 Route::apiResource('/bed', 'Api\BedController');
+Route::get('/bed/ward/{id}', 'Api\BedController@showbyWard')->name('showbyWard');
+Route::apiResource('/bed_discipline', 'Api\BedDisciplineController');
+Route::patch('/bed_discipline/status/{id}', 'Api\BedDisciplineController@updateStatus')->name('updateStatus');
+Route::apiResource('/wardbed', 'Api\WardBedController');
+Route::get('/wardbedActive', 'Api\WardBedActiveController@showbyWard')->name('showbyWard');
+Route::apiResource('/wardbedActives', 'Api\WardBedActiveController');
+Route::get('/wardbedActive/count', 'Api\WardBedActiveController@count')->name('count');
 Route::apiResource('/discipline', 'Api\DisciplineController');
-
+Route::apiResource('/diagnosis', 'Api\DiagnosisController');
+Route::patch('/diagnosis/status/{id}', 'Api\DiagnosisController@updateStatus')->name('updateStatus');
 
 Route::apiResource('/hospital', 'Api\HospitalController');
 Route::apiResource('/vaccine', 'Api\VaccineController');
@@ -138,6 +146,7 @@ Route::apiResource('/caselist', 'Api\CaseListController');
 Route::apiResource('/reports', 'Api\ManualReportController');
 Route::apiResource('/sum', 'Api\ReportSumController');
 Route::apiResource('/admission', 'Api\AdmissionController');
+Route::apiResource('/vaccinestatus', 'Api\VaccinationStatusController');
 
 Route::apiResource('/WardAdmission', 'Api\WardAdmissionController');
 Route::apiResource('/admissions', 'Api\AdmissionRecordController');
@@ -171,6 +180,10 @@ Route::get('/patientkp_passport/{id}', 'Api\AdmissionRecordController@kp_passpor
 
 //inpatient routes
 Route::apiResource('/WardAdmissionRecord', 'Api\WardAdmissionRecordController');
+Route::get('/WardAdmissionRecord/Discharge/{id}', 'Api\WardAdmissionRecordController@showRN')->name('showRN');
+Route::get('/SearchWardAdmissionRecord', 'Api\WardAdmissionRecordController@search')->name('search');
+Route::get('/SearchWardDischargeRecord', 'Api\WardAdmissionRecordController@searchDischarge')->name('searchDischarge');
+Route::get('/SearchRecord/{id}', 'Api\WardAdmissionRecordController@searchKPRN')->name('searchKPRN');
 Route::get('/wardadmissionskp/{id}', 'Api\WardAdmissionRecordController@admissionsKP')->name('admissionsKP');
 Route::get('/inpatientKP/{id}', 'Api\WardAdmissionRecordController@updatePatient')->name('updatePatient');
 Route::get('/inpatientSampling/{id}', 'Api\WardAdmissionRecordController@updateSampling')->name('updateSampling');
