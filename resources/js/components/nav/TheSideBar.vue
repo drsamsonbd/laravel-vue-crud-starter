@@ -92,7 +92,7 @@
           </li>
         </ul>
       </li> 
-      <!--PKRC
+      PKRC
         <li  class="nav-item has-treeview" v-if="roles.includes('superadmin')    || roles.includes('pkrc') " >
         <a class="nav-link" >
           <i class="nav-icon fas fa-school pink"></i>
@@ -170,8 +170,7 @@
            </ul>
        </li>
         </ul>
-      </li> -->
-
+      </li> 
      <!--LAPORAN-->
         <li  class="nav-item has-treeview" v-if="roles.includes('superadmin')    || roles.includes('hospital') " >
         <a class="nav-link" >
