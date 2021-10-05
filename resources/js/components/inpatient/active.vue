@@ -545,7 +545,7 @@
     getbyWard(){
      this.isHidden = false;
     let self = this;
-     axios.get('/api/wardbedActive/'+ '?token='+ localStorage.getItem('token'), { params: { ward: this.selectedward } })
+     axios.get('/api/wardbedActive'+ '?token='+ localStorage.getItem('token'), { params: { ward: this.selectedward } })
       .then(function (response) {
         self.items = response.data;
       }),
@@ -561,7 +561,7 @@
 
        getward(){
     let self = this;
-     axios.get('/api/ward/'+ '?token='+ localStorage.getItem('token'))
+     axios.get('/api/ward'+ '?token='+ localStorage.getItem('token'))
       .then(function (response) {
         self.options = response.data;
       }).catch(function (error) {
