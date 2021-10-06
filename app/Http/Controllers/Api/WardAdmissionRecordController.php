@@ -315,21 +315,22 @@ class WardAdmissionRecordController extends Controller
     {
       
        
-        $admission= DB::table('ward_admissions')        
-        ->where('ward_admissions.kp_passport', 'like', '%' .$id. '%')
-        ->orWhere('ward_admissions.reg_number', 'like', '%' .$id. '%')
-        ->join('bed__disciplines','ward_admissions.reg_number','bed__disciplines.rn')
+        $admission= DB::table('patients')        
+        ->where('patients.kp_passport', 'like', '%' .$id. '%')
+        ->orWhere('patients.name', 'like', '%' .$id. '%')
+        ->leftjoin('ward_admissions','ward_admissions.kp_passport','patients.kp_passport')
+        ->leftjoin('bed__disciplines','ward_admissions.reg_number','bed__disciplines.rn')
         
-        ->join('patients','patients.kp_passport','ward_admissions.kp_passport')
+        
       
       
       
-       ->join('disciplines','disciplines.id','bed__disciplines.discipline_id')
-       ->join('beds','beds.id','bed__disciplines.bed_id')
-       ->Join('wards', 'wards.id', 'beds.ward_id')
-       ->join('diagnoses','diagnoses.patient_reg_number','bed__disciplines.rn')
+       ->leftjoin('disciplines','disciplines.id','bed__disciplines.discipline_id')
+       ->leftjoin('beds','beds.id','bed__disciplines.bed_id')
+       ->leftJoin('wards', 'wards.id', 'beds.ward_id')
+       ->leftjoin('diagnoses','diagnoses.patient_reg_number','bed__disciplines.rn')
        ->where('diagnoses.status','=',1)
-       ->join('vaccination_statuses','vaccination_statuses.patient_kp_passport','patients.kp_passport')
+       ->leftjoin('vaccination_statuses','vaccination_statuses.patient_kp_passport','patients.kp_passport')
       
        ->select('patients.name','patients.kp_passport','patients.gender','patients.age',
        'patients.race',

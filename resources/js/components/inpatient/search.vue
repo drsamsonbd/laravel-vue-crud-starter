@@ -16,7 +16,7 @@
 
 <!-- ADMISSIONS-->
 <div class="container-fluid">
-    <header> <b> RN ATAU NOMBOR PENGENALAN</b></header> 
+    <header> <b> NAMA ATAU NOMBOR PENGENALAN</b></header> 
                 <b-form-group
           label=""
           label-for="filter-input"
