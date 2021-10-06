@@ -86,10 +86,8 @@ class WardBedActiveController extends Controller
      
      { 
          $query  
-         ->where('beds.ward_id', '=', $request->ward)  
-         ->leftjoin('bed__disciplines',function($join) { $join->on('beds.id', '=', 'bed__disciplines.bed_id');
-         })
-         ->whereNull('bed__disciplines.bed_id');
+         ->where('beds.ward_id', '=', $request->ward)  ;
+       
  
     
      })
