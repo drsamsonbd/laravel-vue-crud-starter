@@ -23,6 +23,8 @@ Route::get('/statisticsTC', 'Api\StatisticsController@TC')->name('TC');
 
 Route::apiResource('/inpatient/cencus/noncovid', 'Api\InpatientCencusController');
 Route::apiResource('/inpatient/cencus/covid', 'Api\CovidInpatientCencusController');
+
+Route::apiResource('/inpatient/cencus/inpatient', 'Api\getCensusController');
 Route::apiResource('/inpatient/cencus/pui', 'Api\PuiInpatientCencusController');
 Route::apiResource('/inpatient/cencus/sari', 'Api\SariInpatientCencusController');
 

@@ -90,6 +90,14 @@
               </p>
             </router-link>
           </li>
+                        <li class="nav-item">
+            <router-link to="/inpatientCensus" class="nav-link">
+           
+              <p id="submenu">
+                Census Harian
+              </p>
+            </router-link>
+          </li>
         </ul>
       </li> 
   <!--    PKRC --->
