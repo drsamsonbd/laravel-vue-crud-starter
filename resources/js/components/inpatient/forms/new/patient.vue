@@ -247,12 +247,12 @@
                     
       
     
-       }); 
+       })
           let $idtype = this.forms.id_type;
           let $admid = this.forms.kp_passport;
           let adm_id = str_replace("-", "", $admid);
-             let    $id='NIL-'+this.forms.name;
-        if($idtype ===0){
+          let    $id='NIL-'+this.forms.name;
+        if($idtype == 0){
  
           this.$router.push({name: 'inpatientadmissionDirect', query: { id: $id } });
         } 

@@ -150,7 +150,7 @@
                       <b-row>
                      <b-col>
                       <label>Vaksinasi</label>
-                          <select class="form-control" id="vaccine" v-model="vaccination.vaccine">
+                          <select class="form-control" id="vaccine" v-model="vaccination.vaccine" required>
                         <option v-for="vaccine in vaccines" v-bind:key="vaccine.vaccine" > {{vaccine.vaccine }}</option>
                         
                         </select>
