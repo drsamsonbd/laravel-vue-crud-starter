@@ -41,7 +41,7 @@
                <b-row>
                 <b-col>
                   <label for=""><b>Vaksin</b></label>
-              <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Sila masukkan mukim" v-model="forms.vaccine">
+              <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Sila maklumat vaksin" v-model="forms.vaccine">
               <small class="text-danger" v-if="errors.vaccine"> {{ errors.vaccine[0] }} </small>   
                 </b-col>
             </b-row>
