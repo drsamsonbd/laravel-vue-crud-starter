@@ -329,7 +329,7 @@
        methods:{
          cases(){
       
-        axios.get('/api/WardAdmissionRecord/'+this.$route.query.id + '/?token='+ localStorage.getItem('token'))
+        axios.get('/api/WardAdmissionRecord/'+this.$route.query.id + '?token='+ localStorage.getItem('token'))
         .then(({data}) => (this.patient = data[0],
         this.form = data[0], this.bed_discipline.discipline = data[0].discipline, this.bedUpdate.discipline = data[0].discipline_id, 
         this.bedUpdate.current_bed_code = data[0].bed_code,

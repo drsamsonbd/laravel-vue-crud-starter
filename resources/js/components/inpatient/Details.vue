@@ -401,7 +401,7 @@
           { key: 'vaccine_type', label: 'Jenis Vaksin', sortable: true, sortDirection: 'desc' },
           { key: 'first_dose_date', label: '1st Dose', sortable: true, sortDirection: 'desc' },
           { key: 'second_dose_date', label: '2nd Dose', sortable: true, sortDirection: 'desc' },
-          { key: 'actions', label: '' },
+        //  { key: 'actions', label: '' },
         ],
                dischargeitems: [],
        dischargefields: [     
