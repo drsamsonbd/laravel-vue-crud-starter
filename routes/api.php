@@ -27,7 +27,7 @@ Route::apiResource('/inpatient/cencus/covid', 'Api\CovidInpatientCencusControlle
 Route::apiResource('/inpatient/cencus/inpatient', 'Api\getCensusController');
 Route::apiResource('/inpatient/cencus/pui', 'Api\PuiInpatientCencusController');
 Route::apiResource('/inpatient/cencus/sari', 'Api\SariInpatientCencusController');
-
+Route::apiResource('/inpatient/cencus/test', 'Api\TestCensusController');
 // autoreport
 Route::get('/CovidMale', 'Api\DailyCalcController@CovidMale')->name('CovidMale');
 Route::get('/CovidFemale', 'Api\DailyCalcController@CovidFemale')->name('CovidFemale');
