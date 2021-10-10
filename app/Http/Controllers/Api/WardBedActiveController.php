@@ -61,16 +61,19 @@ class WardBedActiveController extends Controller
  {   
 
      $active= DB::table('beds') 
-     ->leftJoin('wards', 'wards.id','beds.ward_id')
      ->where('beds.ward_id', '=', $request->ward)
+     
+     ->leftJoin('wards', 'wards.id','beds.ward_id')
      ->leftjoin('bed__disciplines','bed__disciplines.bed_id','beds.id') 
-    
+     ->select(DB::raw('max(bed__disciplines.id)'))
+     ->groupBy('bed__disciplines.rn')    
+     ->where('bed__disciplines.status', '=', 1)
+     ->where('bed__disciplines.status', '=', 1)  
      ->leftjoin('ward_admissions','ward_admissions.reg_number','bed__disciplines.rn')
      ->leftJoin('departments', 'departments.id', 'wards.team_id')
      ->leftjoin('ward_discharges',function($join) { $join->on('ward_admissions.reg_number', '=', 'ward_discharges.reg_number');
      })
      ->whereNull('ward_discharges.reg_number')
-     ->where('bed__disciplines.status', '=', 1)  
      ->leftjoin('disciplines','disciplines.id','bed__disciplines.discipline_id')
      ->leftjoin('diagnoses','diagnoses.patient_reg_number','bed__disciplines.rn')
      ->where('diagnoses.status','=',1)
