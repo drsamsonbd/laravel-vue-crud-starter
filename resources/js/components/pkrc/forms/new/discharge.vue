@@ -53,6 +53,7 @@
                         <option >Mati</option>
                         <option >Keluar Hospital dengan Risiko Sendiri</option>
                         <option >Keluar Hospital Tanpa Kebenaran</option>
+                        <option >Kebenaran Bercuti</option>
                         </select>
                     </b-col>
                   

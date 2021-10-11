@@ -53,7 +53,7 @@
                         <option >Mati</option>
                         <option >Keluar Hospital dengan Risiko Sendiri</option>
                         <option >Keluar Hospital Tanpa Kebenaran</option>
-                         <option >Home Quarantine</option>
+                        <option >Kebenaran Bercuti</option>
                         </select>
                     </b-col>
                   
@@ -68,7 +68,7 @@
                       <b-row>
                      <b-col>
                       <label>Nota</label>
-                      <textarea type="text" class="form-control" id="notes" v-model="form.notes"></textarea>
+                      <textarea type="text" class="form-control" id="notes" placeholder="Sila tulis Home Quarantine jika discaj untuk kuarantin rumah" v-model="form.notes"></textarea>
                    </b-col>
                  
                     </b-row>

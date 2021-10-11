@@ -209,7 +209,7 @@
       <tr>
     <td>18</td>
     <td scope="col" colspan="2">**Bilangan pesakit yang dipindah keluar ke disiplin lain di dalam wad yang sama</td>
-     <td ><div style='width: 100px; text-align:center'>{{dischargecensus.transfer_discipline_total_male  }}</div></td>    
+    <td ><div style='width: 100px; text-align:center'>{{dischargecensus.transfer_discipline_total_male  }}</div></td>    
     <td ><div style='width: 100px; text-align:center'>{{dischargecensus.transfer_discipline_total_female  }}</div></td>
     <td ><div style='width: 100px; text-align:center'>{{dischargecensus.transfer_discipline_total_total  }}</div></td>
     <td ><div style='width: 100px; text-align:center'>{{dischargecensus.transfer_discipline_discipline_male  }}</div></td>    
@@ -218,7 +218,7 @@
       <tr>
     <td>19</td>
     <td scope="col" colspan="2">Jumlah bilangan pesakit yang tinggal pada tengah malam [10 - (11 + 12 + 13 + 14 + 15 + 16 + 17)]</td>
-    <td ><div style='width: 100px; text-align:center'>{{total.midnight_total_male  }}</div></td>    
+    <td ><div style='width: 100px; text-align:center'>{{sum[dischargecensus.transfer_ward_total_male, dischargecensus.transfer_ward_total_male]  }}</div></td>    
     <td ><div style='width: 100px; text-align:center'>{{total.midnight_total_female  }}</div></td>
     <td ><div style='width: 100px; text-align:center'>{{total.midnight_total_total  }}</div></td>
     <td ><div style='width: 100px; text-align:center'>{{total.midnight_discipline_male  }}</div></td>    
@@ -487,6 +487,13 @@
       ward_id: this.form.ward_id, discipline_id: this.form.discipline_id} })
       .then(function (response) {
           self.census = response.data;
+
+
+      }),
+            axios.get('/api/inpatient/cencus/discharge',{ params: { datereporting: this.form.datereporting,
+      ward_id: this.form.ward_id, discipline_id: this.form.discipline_id} })
+      .then(function (response) {
+          self.dischargecensus = response.data;
 
 
       })

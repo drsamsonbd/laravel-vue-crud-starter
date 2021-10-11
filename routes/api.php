@@ -26,6 +26,7 @@ Route::apiResource('/inpatient/cencus/covid', 'Api\CovidInpatientCencusControlle
 
 Route::apiResource('/inpatient/cencus/inpatient', 'Api\getCensusController');
 Route::get('/inpatient/cencus/discipline', 'Api\getCensusController@active')->name('active');
+Route::get('/inpatient/cencus/discharge', 'Api\getCensusController@discharge')->name('discharge');
 Route::apiResource('/inpatient/cencus/pui', 'Api\PuiInpatientCencusController');
 Route::apiResource('/inpatient/cencus/sari', 'Api\SariInpatientCencusController');
 Route::get('/inpatient/cencus/test', 'Api\TestCensusController@showbyWard')->name('showbyWard');
