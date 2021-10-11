@@ -61,7 +61,7 @@
                   <b-row>
                      <b-col>
                       <label>Diagnosis</label>
-                      <input type="text" class="form-control" id="diagnosis" v-model="form.diagnosis">
+                      <input type="text" class="form-control" id="diagnosis" v-model="form.diagnosis" required>
                          <small class="text-danger" v-if="errors.diagnosis">{{errors.diagnosis[0]}}</small>
                    </b-col>
                   </b-row>

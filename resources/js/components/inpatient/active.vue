@@ -102,98 +102,9 @@
 
        v-if="!isHidden"
     >
-   <template #cell(bed_code)="row">
-     {{row.item.bed_code}}
-     
-      </template>
-   <template #cell(date_bed)="row">
-   <div v-if="row.item.date_dc === null  && row.item.status == '1' ">
-   {{row.item.date_bed}}
-</div>
-       <div v-else>
- 
-</div> 
-      </template>
 
-         <template #cell(time_bed)="row">
-   <div v-if="row.item.date_dc === null  && row.item.status == '1' ">
-   {{row.item.time_bed}}
-</div>
-       <div v-else>
- 
-</div> 
-      </template>
-
-
-         <template #cell(rn)="row">
-   <div v-if="row.item.date_dc === null  && row.item.status == '1'">
-   {{row.item.rn}}
-</div>
-       <div v-else>
- 
-</div> 
-      </template>
-
-          <template #cell(name)="row">
-   <div v-if="row.item.date_dc === null  && row.item.status == '1'">
-   {{row.item.name}}
-</div>
-       <div v-else>
- 
-</div> 
-      </template>
-         <template #cell(kp_passport)="row">
-   <div v-if="row.item.date_dc === null  && row.item.status == '1'">
-   {{row.item.kp_passport}}
-</div>
-       <div v-else>
- 
-</div> 
-      </template>
-               <template #cell(age)="row">
-   <div v-if="row.item.date_dc === null  && row.item.status == '1' ">
-   {{row.item.age}}
-</div>
-       <div v-else>
- 
-</div> 
-      </template>
-
-               <template #cell(diagnosis)="row">
-   <div v-if="row.item.date_dc === null  && row.item.status == '1'">
-   {{row.item.diagnosis}}
-</div>
-       <div v-else>
- 
-</div> 
-      </template>
-                     <template #cell(stage)="row">
-   <div v-if="row.item.date_dc === null  && row.item.status == '1' ">
-   {{row.item.stage}}
-</div>
-       <div v-else>
- 
-</div> 
-      </template>
-                     <template #cell(vaccine)="row">
-   <div v-if="row.item.date_dc === null  && row.item.status == '1' ">
-   {{row.item.vaccine}} 
-</div>
-       <div v-else>
- 
-</div> 
-      </template>
-
-                     <template #cell(discipline)="row">
-   <div v-if="row.item.date_dc === null  && row.item.status == '1'">
-   {{row.item.discipline}}
-</div>
-       <div v-else>
- 
-</div> 
-      </template>
        <template #cell(update)="row">
-    <div v-if="row.item.rn === null  || (row.item.rn !==null && row.item.date_dc !== null) || (row.item.rn !==null && row.item.status == '0')">
+    <div v-if="(row.item.rn ==null && row.item.status == null )">
  
 </div>
        <div v-else>
@@ -208,7 +119,7 @@
       </template>
  <template #cell(discharge)="row">
    
- <div v-if="row.item.rn === null || (row.item.rn !==null && row.item.date_dc !== null)|| (row.item.rn !==null && row.item.status == '0') ">
+ <div v-if="(row.item.rn ==null && row.item.status == null ) ">
     <div v-if=" row.item.team_id == current_team_id">
       <router-link :to="{name: 'newinpatientadmission', query:{id:row.item.id}}"  target="_blank" class="btn btn-sm btn-outline-primary"> <i class="fas fa-plus"></i> </router-link>
 </div>
