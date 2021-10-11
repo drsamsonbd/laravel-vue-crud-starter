@@ -50,7 +50,7 @@
 
                      <b-col>
                       <label>Umur</label>
-                      <input type="number" min="0.0" class="form-control" id="age" v-model="forms.age" required>
+                      <input type="number" step="any" min="0.1" class="form-control" id="age" v-model="forms.age" required>
                       <span style="font-size: 0.6em;">Nota:*Jika kurang satu (1) tahun sila isikan 0.1 sehingga 0.9</span>
                     </b-col>
                     </b-row>

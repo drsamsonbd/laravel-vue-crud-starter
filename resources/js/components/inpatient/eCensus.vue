@@ -32,8 +32,7 @@
     <b-form-select
       id="inline-form-custom-select-pref"
       class="mb-3 mr-sm-2 mb-sm-0"
-      v-model="form.ward_id"
-    required>   <option v-for="ward in options" v-bind:key="ward.ward" v-bind:value="ward.id" >{{ward.ward }} </option> </b-form-select>
+      v-model="form.ward_id" required @change="getDiscipline()"  >   <option v-for="ward in options" v-bind:key="ward.ward" v-bind:value="ward.id" >{{ward.ward }} </option> </b-form-select>
 
 
      
@@ -45,7 +44,6 @@
                         
                          </b-form-select>
               
-        
     <b-button variant="primary" @click="getCensus()">Lihat Census</b-button>
   </b-form>
 
@@ -288,7 +286,6 @@
       
      mounted(){
         this.getward();
-        this.getDiscipline();
 
       },
 
@@ -447,7 +444,8 @@
           three_discipline_male: null,
           three_discipline_female: null,
 
-        }
+        },
+      
       }
  
 
@@ -468,6 +466,16 @@
     },
  
   methods:{
+
+      getDiscipline(){
+     let self = this;
+      axios.get('/api/inpatient/cencus/discipline', { params: { datereporting: this.form.datereporting,
+      ward_id: this.form.ward_id}} )
+      .then(function (response) {
+        self.disciplines = response.data;
+      })
+      },
+
       getCensus(){
         let selected = this.form.discipline_id
         let self = this;
@@ -482,9 +490,10 @@
           self.census = response.data;
 
 
-      });
+      })
 
       },
+
              getward(){
     let self = this;
      axios.get('/api/ward'+ '?token='+ localStorage.getItem('token'))
@@ -495,13 +504,7 @@
         self.$router.push({ path: '/login' });
       });
     },
-            getDiscipline(){
-    let self = this;
-     axios.get('/api/discipline'+'?token='+  localStorage.getItem('token'))
-      .then(function (response) {
-        self.disciplines = response.data;
-      })
-    },
+
         view(record) {
         this.$router.push({name: 'NursingCensusDetails', params: { id: record.id } })
    
