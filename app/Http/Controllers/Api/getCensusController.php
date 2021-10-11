@@ -287,7 +287,7 @@ $stat_transfer_discipline_total_female =  $data_transfer->where([['bed__discipli
 
 $count_transfer_ward_total_female=  $stat_transfer_ward_total_female ->count();
 $count_transfer_discipline_total_female=  $stat_transfer_discipline_total_female ->count();
-
+$ward = $request ->ward_id;
 if ($ward == 6){
       $kelmarin_total_female = $count_kelmarin_total_female - $count_transfer_ward_total_female - $count_transfer_discipline_total_female + $kelmarin_adult_female_pkrc ;
   
