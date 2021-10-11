@@ -218,7 +218,7 @@
       <tr>
     <td>19</td>
     <td scope="col" colspan="2">Jumlah bilangan pesakit yang tinggal pada tengah malam [10 - (11 + 12 + 13 + 14 + 15 + 16 + 17)]</td>
-    <td ><div style='width: 100px; text-align:center'>{{sum[dischargecensus.transfer_ward_total_male, dischargecensus.transfer_ward_total_male]  }}</div></td>    
+    <td ><div style='width: 100px; text-align:center'>{{dischargecensus.transfer_ward_total_male + dischargecensus.transfer_ward_total_male  }}</div></td>    
     <td ><div style='width: 100px; text-align:center'>{{total.midnight_total_female  }}</div></td>
     <td ><div style='width: 100px; text-align:center'>{{total.midnight_total_total  }}</div></td>
     <td ><div style='width: 100px; text-align:center'>{{total.midnight_discipline_male  }}</div></td>    
