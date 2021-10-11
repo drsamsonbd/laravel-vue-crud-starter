@@ -444,9 +444,10 @@ $count_kelmarin_discipline_female = $stat_kelmarin_discipline_female -> count();
         ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id);
         
         $count_transfer_ward_discipline_female=  $stat_transfer_ward_total_female ->count();
-        
+        $ward = $request ->ward_id;
+
         $discipline = $request -> discipline_id;
-        if($discipline == 1 )  {
+        if($discipline == 1  && $ward == 6)  {
           $kelmarin_discipline_female = $count_kelmarin_discipline_female - $count_transfer_ward_discipline_female + $kelmarin_adult_female_pkrc;
         }
         else{
@@ -595,9 +596,10 @@ $stat_admission_discipline_male =  $data_transfer->where([['bed__disciplines.rem
 ->where('beds.ward_id', '=', $request -> ward_id);
 
 $count_admission_adult_discipline_male=  $stat_admission_discipline_male ->count();
+$ward = $request ->ward_id;
 
 $discipline = $request -> discipline_id;
-if($discipline == 1 )  {
+if($discipline == 1  && $ward == 1)  {
   $admission_adult_discipline_male = $count_admission_adult_discipline_male + $admission_adult_male_pkrc;
 }
 else{
@@ -622,9 +624,10 @@ $stat_admission_discipline_female =  $tblAdmFemale->where([['bed__disciplines.re
 ->where('beds.ward_id', '=', $request -> ward_id);
 
 $count_admission_adult_discipline_female=  $stat_admission_discipline_female ->count();
+$ward = $request ->ward_id;
 
 $discipline = $request -> discipline_id;
-if($discipline == 1 )  {
+if($discipline == 1  && $ward == 6)  {
   $admission_adult_discipline_female = $count_admission_adult_discipline_female + $admission_adult_female_pkrc;
 }
 else{

@@ -62,8 +62,7 @@
   </thead>
     <tr>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+   <td scope="col" colspan="2"></td>
     <td ><div style='width: 100px; text-align:center'>Lelaki</div></td>
     
     <td ><div style='width: 100px; text-align:center'>Perempuan</div></td>

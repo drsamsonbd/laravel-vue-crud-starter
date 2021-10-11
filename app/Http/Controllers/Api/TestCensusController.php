@@ -12,24 +12,46 @@ class TestCensusController extends Controller
 {
  public function showbyWard(Request $request)
  {   
+//total_female
+$datatable= DB::table('bed__disciplines')
 
-    $admission= DB::table('admissions')
-    ->join('patients','admissions.kp_passport','patients.kp_passport')
-    ->leftjoin('discharges','admissions.reg_number','=','discharges.reg_number')
-    ->where('patients.age', '>','12')
-    ->where('patients.gender', '=','Perempuan');
-    
-     $statistic_adult_pkrc =  $admission ->where('admissions.date', '<', $request -> datereporting)
-     ->where('discharges.date_dc', '>', $request -> datereporting)
-     ->orWhere(function($admission )use ($request)  
-     { 
-         $admission
-         ->where('patients.gender', '=','Perempuan')
-         ->where('admissions.date', '<', $request -> datereporting)
-         ->where('discharges.reg_number')
-         ->where('patients.age', '>','12');
-     });
-    $kelmarin_adult_pkrc = $statistic_adult_pkrc->count();
-     return response()->json($kelmarin_adult_pkrc);
+->join('ward_admissions','bed__disciplines.rn','ward_admissions.reg_number')
+->join('patients','ward_admissions.kp_passport','patients.kp_passport')         
+->join('beds', 'beds.id', 'bed__disciplines.bed_id')
+->join('wards','wards.id','beds.ward_id')
+->join('disciplines','disciplines.id','bed__disciplines.discipline_id')
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
+->where('patients.age', '>','12')
+->where('patients.gender', '=','Perempuan');  
+
+
+$stat_kelmarin_total_female =  $datatable 
+->where([['bed__disciplines.remarks', '=','New'],
+['bed__disciplines.date_bed', '<', $request -> datereporting]])
+->where('beds.ward_id', '=', $request -> ward_id)
+->where('ward_discharges.date_dc', '>', $request -> datereporting)
+->where('beds.ward_id', '=', $request -> ward_id)
+
+
+->orWhere(function($datatable )use ($request) 
+
+{ 
+      $datatable
+      ->where('patients.gender', '=','Perempuan')         
+      ->where([['bed__disciplines.remarks', '=','New'],
+      ['bed__disciplines.date_bed', '<', $request -> datereporting]])
+      ->where('patients.age', '>','12')    
+      ->where('beds.ward_id', '=', $request -> ward_id)
+      ->where('ward_discharges.reg_number');
+})
+
+->get();
+
+
+
+
+
+
+     return response()->json($stat_kelmarin_total_female);
  }
 }
