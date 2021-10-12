@@ -391,7 +391,7 @@
       time_bed: this.bedUpdate.time_bed,
       bed_id: this.bedUpdate.bedcode,
       discipline_id: this.bedUpdate.discipline,
-      remarks: 'TRANSFER BED',
+      remarks: 'New',
       status: '1'
        })
        .then(() => {       
@@ -409,8 +409,9 @@
           })
 
       
-     this.$router.push({name: 'inpatientupdate', query:{id:row.item.BDid, ward_id: row.item.ward_id }});
+    setTimeout(function(){ window.top.close();}, 3000);
      },
+     
 //update ward
      updateWard(){
       let $id = this.bedUpdate.BDid;
@@ -424,7 +425,7 @@
       
        rn: this.form.rn,
        date_bed: this.wardUpdate.date_update,       
-       bed_id: this.bedUpdate.BDid,
+       bed_id: this.bedUpdate.bed_id,
        discipline_id:this.wardUpdate.discipline_id,     
        time_bed: this.wardUpdate.time_update,
        remarks: 'TRANSFER OUT',
@@ -456,7 +457,7 @@
             });
           })
 
-     this.$router.push({name: 'inpatientupdate', query:{id:row.item.BDid, ward_id: row.item.ward_id }});
+      setTimeout(function(){ window.top.close();}, 3000);
        
      }, 
 
@@ -504,7 +505,7 @@
             });
           }), 
       
-     this.$router.push({name: 'inpatientupdate', query:{id:row.item.BDid, ward_id: row.item.ward_id }});
+      setTimeout(function(){ window.top.close();}, 3000);
   
   },
         //updateDiagnosis
@@ -539,7 +540,7 @@
             });
           }), 
       
-     this.$router.push({name: 'inpatientupdate', query:{id:row.item.BDid, ward_id: row.item.ward_id }});
+       setTimeout(function(){ window.top.close();}, 3000);
   
   },
 
@@ -570,7 +571,7 @@
             });
           }), 
       
-     this.$router.push({name: 'inpatientupdate', query:{id:row.item.BDid, ward_id: row.item.ward_id }});
+       setTimeout(function(){ window.top.close();}, 3000);
   
   },
 

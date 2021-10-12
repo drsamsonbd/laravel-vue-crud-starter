@@ -14,18 +14,16 @@ class TestCensusController extends Controller
  {   
 //total_female
 
-$discharges_pkrc= DB::table('discharges')
-->join('admissions','admissions.reg_number','discharges.reg_number')
-->join('patients', 'patients.kp_passport','discharges.kp_passport');
+$transfer= DB::table('bed__disciplines')
+->join('beds', 'beds.id', 'bed__disciplines.bed_id')
+->join('wards','wards.id','beds.ward_id')
+->join('disciplines','disciplines.id','bed__disciplines.discipline_id')
+->join('ward_admissions', 'ward_admissions.reg_number','bed__disciplines.rn' )
+->join('patients','patients.kp_passport', 'ward_admissions.kp_passport' );
 
-$balik_adult_male_pkrc = $discharges_pkrc ->where([['discharges.date_dc', '=', $request -> datereporting],['discharges.type_dc', '=','Balik ke Rumah']])
-                                     ->where([['patients.gender','=','Perempuan'],['patients.age','>', 12 ]]) 
-                                    ->count() ;
+$transfer_discipline_total_male  = $transfer ->where([['bed__disciplines.date_bed', '=', $request -> datereporting],['bed__disciplines.status', '=','UPDATE DISCIPLINE']])
+->where('beds.ward_id', '=', $request -> ward_id)  ->where('patients.gender','=','Lelaki')->get();
 
-
-
-
-
-     return response()->json(compact('balik_adult_male_pkrc'));
+     return response()->json(compact('transfer_discipline_total_male'));
  }
 }
