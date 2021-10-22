@@ -47,6 +47,7 @@ let inpatientadmissiondirect= require('./components/inpatient/forms/new/admissio
 let inpatientlist= require('./components/inpatient/index.vue').default;
 let inpatientsearch= require('./components/inpatient/search.vue').default;
 let inpatientdischarge= require('./components/inpatient/discharge.vue').default;
+let inpatientdischargelist= require('./components/inpatient/dischargelist.vue').default;
 let inpatientdischargeform= require('./components/inpatient/forms/new/discharge.vue').default;
 let inpatientreview= require('./components/inpatient/review.vue').default;
 let inpatientvital= require('./components/inpatient/vital.vue').default;
@@ -161,6 +162,7 @@ export const routes = [
         { path: '/InpatientnewPatient', component: InpatientnewPatient, name:'InpatientnewPatient' },
         { path: '/InpatientnewSampling', component: InpatientnewSampling, name:'inpatientnewSampling' },
         { path: '/InpatientCensus', component: InpatientCensus, name:'inpatientCensus' },
+        { path: '/inpatientdischargelist', component: inpatientdischargelist, name:'inpatientdischargelist' },
 
         //inpatient  update routes
 { path: '/inpatientupdatePatient', component: inpatientupdatePatient, name:'inpatientupdatePatient' },

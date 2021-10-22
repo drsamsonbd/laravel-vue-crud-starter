@@ -22,6 +22,8 @@ $admission= DB::table('admissions')
 
  $statistic_adult_male_pkrc =  $admission ->where('admissions.date', '<', $request -> datereporting)
  ->where('discharges.date_dc', '>', $request -> datereporting)
+ ->where('patients.age', '>','12')
+ ->where('patients.gender', '=','LELAKI')
  ->orWhere(function($admission )use ($request)  
  { 
      $admission
@@ -137,7 +139,7 @@ $admission= DB::table('admissions')
 $kelmarin_newborn_female_pkrc = $statistic_newborn_female_pkrc->count();
 
 
-//INPATIENT
+/////////////////////////////////////INPATIENT///////////////////////////////////////////////
 
 //total_male
          $datatable= DB::table('bed__disciplines')
@@ -165,18 +167,17 @@ $kelmarin_newborn_female_pkrc = $statistic_newborn_female_pkrc->count();
                $datatable
                ->where('patients.gender', '=','Lelaki')         
                ->where([['bed__disciplines.remarks', '=','New'],
-               ['bed__disciplines.date_bed', '<', $request -> datereporting]])
-            
+               ['bed__disciplines.date_bed', '<', $request -> datereporting]])            
                ->where('beds.ward_id', '=', $request -> ward_id)
                ->where('ward_discharges.reg_number');
          });
 
          $count_kelmarin_total_male = $stat_kelmarin_total_male -> count()
          ;
-
          $data_transfer= DB::table('bed__disciplines')
-
          ->join('ward_admissions','bed__disciplines.rn','ward_admissions.reg_number')
+         
+         ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number') 
          ->join('patients','ward_admissions.kp_passport','patients.kp_passport')         
          ->join('beds', 'beds.id', 'bed__disciplines.bed_id')
          ->join('wards','wards.id','beds.ward_id')
@@ -184,20 +185,34 @@ $kelmarin_newborn_female_pkrc = $statistic_newborn_female_pkrc->count();
          ->where('patients.gender', '=','Lelaki');
          
          $stat_transfer_ward_total_male =  $data_transfer->where([['bed__disciplines.remarks', '=','TRANSFER OUT'],
-         ['bed__disciplines.date_bed', '=', $request -> datereporting]])
-         ->where('beds.ward_id', '=', $request -> ward_id);
+         ['bed__disciplines.date_bed', '<=', $request -> datereporting]])
+         ->where('ward_discharges.date_dc', '>', $request -> datereporting)
+         ->where('beds.ward_id', '=', $request -> ward_id)
+      
+         ->orWhere(function($data_transfer)use ($request) 
+               
+         { 
+               $data_transfer
+               ->where([['bed__disciplines.remarks', '=','TRANSFER OUT'],
+               ['bed__disciplines.date_bed', '<=', $request -> datereporting]])
+               ->where('beds.ward_id', '=', $request -> ward_id)
+               ->where('ward_discharges.reg_number');
+         });
 
          
          $data_transfer= DB::table('bed__disciplines')
 
          ->join('ward_admissions','bed__disciplines.rn','ward_admissions.reg_number')
+         
+         ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number') 
          ->join('patients','ward_admissions.kp_passport','patients.kp_passport')         
          ->join('beds', 'beds.id', 'bed__disciplines.bed_id')
          ->join('wards','wards.id','beds.ward_id')
          ->join('disciplines','disciplines.id','bed__disciplines.discipline_id')
          ->where('patients.gender', '=','Lelaki');
          $stat_transfer_discipline_total_male =  $data_transfer->where([['bed__disciplines.remarks', '=','NEW DISCIPLINE'],
-         ['bed__disciplines.date_bed', '=', $request -> datereporting]])
+         ['bed__disciplines.date_bed', '=<', $request -> datereporting]])
+         ->where('ward_discharges.date_dc', '>', $request -> datereporting)
          ->where('beds.ward_id', '=', $request -> ward_id)
          ->where('patients.gender', '=','Lelaki');
 
@@ -210,7 +225,7 @@ $kelmarin_newborn_female_pkrc = $statistic_newborn_female_pkrc->count();
             $kelmarin_total_male = $count_kelmarin_total_male - $count_transfer_ward_total_male - $count_transfer_discipline_total_male + $kelmarin_adult_male_pkrc ;
         
       }
-elseif($ward == 7){
+    elseif($ward == 7){
       $kelmarin_total_male = $count_kelmarin_total_male - $count_transfer_ward_total_male - $count_transfer_discipline_total_male + $kelmarin_paeds_male_pkrc + $kelmarin_newborn_male_pkrc ;
   
 }
@@ -219,7 +234,7 @@ else {
       $kelmarin_total_male = $count_kelmarin_total_male - $count_transfer_ward_total_male - $count_transfer_discipline_total_male ;
 }
 
-//total_female
+///////total_female//////////
 $datatable= DB::table('bed__disciplines')
 
 ->join('ward_admissions','bed__disciplines.rn','ward_admissions.reg_number')
@@ -227,7 +242,7 @@ $datatable= DB::table('bed__disciplines')
 ->join('beds', 'beds.id', 'bed__disciplines.bed_id')
 ->join('wards','wards.id','beds.ward_id')
 ->join('disciplines','disciplines.id','bed__disciplines.discipline_id')
-->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')   
 ->where('patients.gender', '=','Perempuan');  
 
 
@@ -238,25 +253,24 @@ $stat_kelmarin_total_female =  $datatable
 ->where('ward_discharges.date_dc', '>', $request -> datereporting)
 ->where('beds.ward_id', '=', $request -> ward_id)
 
-
+->where('patients.gender', '=','Perempuan')
 ->orWhere(function($datatable )use ($request) 
 
 { 
       $datatable
       ->where('patients.gender', '=','Perempuan')         
       ->where([['bed__disciplines.remarks', '=','New'],
-      ['bed__disciplines.date_bed', '<', $request -> datereporting]])
+      ['bed__disciplines.date_bed', '<', $request -> datereporting]])            
       ->where('beds.ward_id', '=', $request -> ward_id)
       ->where('ward_discharges.reg_number');
 });
 
-$count_kelmarin_total_female = $stat_kelmarin_total_female -> count();
-
-
-
+$count_kelmarin_total_female = $stat_kelmarin_total_female -> count()
+;
 $data_transfer= DB::table('bed__disciplines')
-
 ->join('ward_admissions','bed__disciplines.rn','ward_admissions.reg_number')
+
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number') 
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')         
 ->join('beds', 'beds.id', 'bed__disciplines.bed_id')
 ->join('wards','wards.id','beds.ward_id')
@@ -265,25 +279,46 @@ $data_transfer= DB::table('bed__disciplines')
 
 $stat_transfer_ward_total_female =  $data_transfer->where([['bed__disciplines.remarks', '=','TRANSFER OUT'],
 ['bed__disciplines.date_bed', '<=', $request -> datereporting]])
-->where('beds.ward_id', '=', $request -> ward_id);
+->where('ward_discharges.date_dc', '>', $request -> datereporting)
+->where('patients.gender', '=','Perempuan')
+->where('beds.ward_id', '=', $request -> ward_id)
+
+->orWhere(function($data_transfer)use ($request) 
+      
+{ 
+      $data_transfer
+      ->where([['bed__disciplines.remarks', '=','TRANSFER OUT'],
+      ['bed__disciplines.date_bed', '<=', $request -> datereporting]])
+      ->where('beds.ward_id', '=', $request -> ward_id)
+         ->where('patients.gender', '=','Perempuan')
+      ->where('ward_discharges.reg_number');
+});
+
+
 $data_transfer= DB::table('bed__disciplines')
 
 ->join('ward_admissions','bed__disciplines.rn','ward_admissions.reg_number')
+
+->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number') 
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')         
 ->join('beds', 'beds.id', 'bed__disciplines.bed_id')
 ->join('wards','wards.id','beds.ward_id')
 ->join('disciplines','disciplines.id','bed__disciplines.discipline_id')
 ->where('patients.gender', '=','Perempuan');
 $stat_transfer_discipline_total_female =  $data_transfer->where([['bed__disciplines.remarks', '=','NEW DISCIPLINE'],
-['bed__disciplines.date_bed', '=', $request -> datereporting]])
-->where('beds.ward_id', '=', $request -> ward_id);
+['bed__disciplines.date_bed', '=<', $request -> datereporting]])
+->where('ward_discharges.date_dc', '>', $request -> datereporting)
+->where('beds.ward_id', '=', $request -> ward_id)
+->where('patients.gender', '=','Perempuan');
 
 $count_transfer_ward_total_female=  $stat_transfer_ward_total_female ->count();
 $count_transfer_discipline_total_female=  $stat_transfer_discipline_total_female ->count();
+
 $ward = $request ->ward_id;
+
 if ($ward == 6){
-      $kelmarin_total_female = $count_kelmarin_total_female - $count_transfer_ward_total_female - $count_transfer_discipline_total_female + $kelmarin_adult_female_pkrc ;
-  
+   $kelmarin_total_female = $count_kelmarin_total_female - $count_transfer_ward_total_female - $count_transfer_discipline_total_female + $kelmarin_adult_female_pkrc ;
+
 }
 elseif($ward == 7){
 $kelmarin_total_female = $count_kelmarin_total_female - $count_transfer_ward_total_female - $count_transfer_discipline_total_female + $kelmarin_paeds_female_pkrc + $kelmarin_newborn_female_pkrc ;
@@ -297,9 +332,6 @@ $kelmarin_total_female = $count_kelmarin_total_female - $count_transfer_ward_tot
 
 
 
-
-
-
 //total kelmarin
 
 $kelmarin_total_total = $kelmarin_total_female + $kelmarin_total_male;
@@ -307,7 +339,7 @@ $kelmarin_total_total = $kelmarin_total_female + $kelmarin_total_male;
 
 
 
-//discipline_male
+////////////////////////discipline_male///////////////////////////////////
 $datatable= DB::table('bed__disciplines')
 
 ->join('ward_admissions','bed__disciplines.rn','ward_admissions.reg_number')
@@ -320,18 +352,19 @@ $datatable= DB::table('bed__disciplines')
 ->where('patients.gender', '=','Lelaki');  
 
 $stat_kelmarin_discipline_male =  $datatable 
+ 
 ->where([['bed__disciplines.remarks', '=','New'],
 ['bed__disciplines.date_bed', '<', $request -> datereporting]])
 ->where('beds.ward_id', '=', $request -> ward_id)
-->where('ward_discharges.date_dc', '>', $request -> datereporting)
-->where('beds.ward_id', '=', $request -> ward_id)
+->where('ward_discharges.date_dc', '>=', $request -> datereporting)
  ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id)
 
 ->orWhere(function($datatable )use ($request) 
 
 { 
       $datatable
-      ->where('patients.gender', '=','Lelaki')         
+      ->where('patients.gender', '=','Lelaki')    
+   
       ->where([['bed__disciplines.remarks', '=','New'],
       ['bed__disciplines.date_bed', '<', $request -> datereporting]])
    
@@ -345,7 +378,9 @@ $stat_kelmarin_discipline_male =  $datatable
    $datatable
    ->where([['bed__disciplines.remarks', '=','NEW DISCIPLINE'],
    ['bed__disciplines.date_bed', '<', $request -> datereporting]]) 
-   ->where('beds.ward_id', '=', $request -> ward_id);
+   ->where('beds.ward_id', '=', $request -> ward_id)
+   ->where('ward_discharges.date_dc', '>=', $request -> datereporting)   
+   ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id);
 });
 
 $count_kelmarin_discipline_male = $stat_kelmarin_discipline_male -> count();
@@ -363,50 +398,80 @@ $count_kelmarin_discipline_male = $stat_kelmarin_discipline_male -> count();
         ->where('patients.gender', '=','Lelaki');
         
         $stat_transfer_ward_total_male =  $data_transfer->where([['bed__disciplines.remarks', '=','TRANSFER OUT'],
-        ['bed__disciplines.date_bed', '<=', $request -> datereporting]])
+        ['bed__disciplines.date_bed', '=', $request -> datereporting]])
         ->where('patients.gender', '=','Lelaki')
         ->where('beds.ward_id', '=', $request -> ward_id)
         ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id);
         
         $count_transfer_ward_discipline_male=  $stat_transfer_ward_total_male ->count();
+
+        $datatable= DB::table('bed__disciplines')
+
+        ->join('ward_admissions','bed__disciplines.rn','ward_admissions.reg_number')
+        ->join('patients','ward_admissions.kp_passport','patients.kp_passport')         
+        ->join('beds', 'beds.id', 'bed__disciplines.bed_id')
+        ->join('wards','wards.id','beds.ward_id')
+        ->join('disciplines','disciplines.id','bed__disciplines.discipline_id')
+        ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
+        
+        ->where('patients.gender', '=','Lelaki');  
+        
+        $transferred_kelmarin_discipline_male =  $datatable 
+     
+        ->where([['bed__disciplines.remarks', '=','TRANSFER OUT'],
+        ['bed__disciplines.date_bed', '<', $request -> datereporting]])
+        ->where('beds.ward_id', '=', $request -> ward_id)
+        ->where('ward_discharges.date_dc', '>', $request -> datereporting)
+         ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id)
+         
+         ->orWhere(function($datatable )use ($request) 
+         {
+         $datatable 
+      
+         ->where([['bed__disciplines.remarks', '=','TRANSFER OUT'],
+         ['bed__disciplines.date_bed', '<', $request -> datereporting]])
+         ->where('beds.ward_id', '=', $request -> ward_id)
+          ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id)           
+    
+          ->where('ward_discharges.reg_number');
+        });
+        $count_kelmarin_discipline_male_transferred = $transferred_kelmarin_discipline_male -> count();
         
       $discipline = $request -> discipline_id;
-      if($discipline == 1 )  {
-        $kelmarin_discipline_male = $count_kelmarin_discipline_male - $count_transfer_ward_discipline_male + $kelmarin_adult_male_pkrc;
+      if($discipline == 1 && $ward == 1 )  {
+        $kelmarin_discipline_male = $count_kelmarin_discipline_male - $count_transfer_ward_discipline_male + $kelmarin_adult_male_pkrc - $count_kelmarin_discipline_male_transferred;
       }
       else{
-            $kelmarin_discipline_male = $count_kelmarin_discipline_male - $count_transfer_ward_discipline_male;
+            $kelmarin_discipline_male = $count_kelmarin_discipline_male - $count_transfer_ward_discipline_male - $count_kelmarin_discipline_male_transferred;
         
       }
 
-//discipline_female
+//////////////////////////discipline_female////////////////////////////////////
 $datatable= DB::table('bed__disciplines')
-
 ->join('ward_admissions','bed__disciplines.rn','ward_admissions.reg_number')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')         
 ->join('beds', 'beds.id', 'bed__disciplines.bed_id')
 ->join('wards','wards.id','beds.ward_id')
 ->join('disciplines','disciplines.id','bed__disciplines.discipline_id')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
-
 ->where('patients.gender', '=','Perempuan');  
 
 $stat_kelmarin_discipline_female =  $datatable 
+ 
+->where('patients.gender', '=','Perempuan')
 ->where([['bed__disciplines.remarks', '=','New'],
 ['bed__disciplines.date_bed', '<', $request -> datereporting]])
 ->where('beds.ward_id', '=', $request -> ward_id)
-->where('ward_discharges.date_dc', '>', $request -> datereporting)
-->where('beds.ward_id', '=', $request -> ward_id)
+->where('ward_discharges.date_dc', '>=', $request -> datereporting)
  ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id)
 
 ->orWhere(function($datatable )use ($request) 
 
 { 
       $datatable
-      ->where('patients.gender', '=','Perempuan')         
+      ->where('patients.gender', '=','Perempuan')      
       ->where([['bed__disciplines.remarks', '=','New'],
-      ['bed__disciplines.date_bed', '<', $request -> datereporting]])
-   
+      ['bed__disciplines.date_bed', '<', $request -> datereporting]])   
       ->where('beds.ward_id', '=', $request -> ward_id)
       ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id)
       ->where('ward_discharges.reg_number');
@@ -415,42 +480,80 @@ $stat_kelmarin_discipline_female =  $datatable
          
 { 
    $datatable
-   ->where('patients.gender', '=','Perempuan')     
    ->where([['bed__disciplines.remarks', '=','NEW DISCIPLINE'],
    ['bed__disciplines.date_bed', '<', $request -> datereporting]]) 
-   ->where('beds.ward_id', '=', $request -> ward_id);
+   ->where('beds.ward_id', '=', $request -> ward_id)
+   ->where('patients.gender', '=','Perempuan')
+   ->where('ward_discharges.date_dc', '>=', $request -> datereporting)   
+   ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id)
+   ;
 });
 
 $count_kelmarin_discipline_female = $stat_kelmarin_discipline_female -> count();
+
+
+
         $data_transfer= DB::table('bed__disciplines')
         ->join('ward_admissions','bed__disciplines.rn','ward_admissions.reg_number')
         ->join('patients','ward_admissions.kp_passport','patients.kp_passport')         
         ->join('beds', 'beds.id', 'bed__disciplines.bed_id')
         ->join('wards','wards.id','beds.ward_id')
         ->join('disciplines','disciplines.id','bed__disciplines.discipline_id')
-
         ->where('patients.gender', '=','Perempuan');
         
         $stat_transfer_ward_total_female =  $data_transfer->where([['bed__disciplines.remarks', '=','TRANSFER OUT'],
-        ['bed__disciplines.date_bed', '<=', $request -> datereporting]])
+        ['bed__disciplines.date_bed', '=', $request -> datereporting]])
+        ->where('patients.gender', '=','Perempuan')
         ->where('beds.ward_id', '=', $request -> ward_id)
         ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id);
         
         $count_transfer_ward_discipline_female=  $stat_transfer_ward_total_female ->count();
-        $ward = $request ->ward_id;
 
-        $discipline = $request -> discipline_id;
-        if($discipline == 1  && $ward == 6)  {
-          $kelmarin_discipline_female = $count_kelmarin_discipline_female - $count_transfer_ward_discipline_female + $kelmarin_adult_female_pkrc;
-        }
-        else{
-              $kelmarin_discipline_female = $count_kelmarin_discipline_female - $count_transfer_ward_discipline_female;
-          
-        }
+        $datatable= DB::table('bed__disciplines')
+
+        ->join('ward_admissions','bed__disciplines.rn','ward_admissions.reg_number')
+        ->join('patients','ward_admissions.kp_passport','patients.kp_passport')         
+        ->join('beds', 'beds.id', 'bed__disciplines.bed_id')
+        ->join('wards','wards.id','beds.ward_id')
+        ->join('disciplines','disciplines.id','bed__disciplines.discipline_id')
+        ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number')
         
+        ->where('patients.gender', '=','Perempuan');  
+        
+        $transferred_kelmarin_discipline_female =  $datatable 
+    
+        ->where([['bed__disciplines.remarks', '=','TRANSFER OUT'],
+        ['bed__disciplines.date_bed', '<', $request -> datereporting]])
+        ->where('beds.ward_id', '=', $request -> ward_id)
+        ->where('ward_discharges.date_dc', '>', $request -> datereporting)
+         ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id)
+         
+         ->orWhere(function($datatable )use ($request) 
+         {
+         $datatable 
+     
+         ->where([['bed__disciplines.remarks', '=','TRANSFER OUT'],
+         ['bed__disciplines.date_bed', '<', $request -> datereporting]])
+         ->where('beds.ward_id', '=', $request -> ward_id)
+          ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id)           
+          ->where('patients.gender', '=','Perempuan')
+          ->where('ward_discharges.reg_number');
+        });
+        $count_kelmarin_discipline_female_transferred = $transferred_kelmarin_discipline_female -> count();
+        
+      $discipline = $request -> discipline_id;
+      if($discipline == 1 && $ward == 6 )  {
+        $kelmarin_discipline_female = $count_kelmarin_discipline_female - $count_transfer_ward_discipline_female + $kelmarin_adult_female_pkrc - $count_kelmarin_discipline_female_transferred;
+      }
+      else{
+            $kelmarin_discipline_female = $count_kelmarin_discipline_female - $count_transfer_ward_discipline_female - $count_kelmarin_discipline_female_transferred;
+        
+      }
 
 
-// ADMISSION STAT
+
+
+///////////////////// ADMISSION STAT///////////////////////////////
 
 //PKRC ADMISSION
 //adult male
@@ -1602,6 +1705,38 @@ $total_discipline_female =  $kelmarin_discipline_female + $admission_adult_disci
 
 
 ));
+   }
+
+
+
+   /////////////////admitted discharged same day///////////////////
+   public function sameDay(Request $request)
+   {
+//total balik ke rumah
+     $discharge= DB::table('ward_discharges')
+
+     ->join('bed__disciplines','bed__disciplines.rn','ward_discharges.reg_number')
+     ->join('ward_admissions','ward_admissions.kp_passport','ward_discharges.kp_passport')    
+     ->join('patients','ward_admissions.kp_passport','patients.kp_passport')         
+     ->join('beds', 'beds.id', 'bed__disciplines.bed_id')
+     ->join('wards','wards.id','beds.ward_id')
+     ->join('disciplines','disciplines.id','bed__disciplines.discipline_id');
+
+     $admit_discharge_total_male = $discharge ->where('ward_discharges.date_dc', '=', $request -> datereporting) ->where('ward_admissions.date', '=', $request -> datereporting)
+     ->where('beds.ward_id', '=', $request -> ward_id)  ->where('patients.gender','=','Lelaki') ->count();
+     $admit_discharge_total_female = $discharge ->where('ward_discharges.date_dc', '=', $request -> datereporting) ->where('ward_admissions.date', '=', $request -> datereporting)
+     ->where('beds.ward_id', '=', $request -> ward_id)  ->where('patients.gender','=','Perempuan') ->count();
+     $admit_discharge_discipline_male = $discharge ->where('ward_discharges.date_dc', '=', $request -> datereporting) ->where('ward_admissions.date', '=', $request -> datereporting)
+     ->where('beds.ward_id', '=', $request -> ward_id) ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id) 
+     ->where('patients.gender','=','Lelaki') ->count();
+     $admit_discharge_discipline_female = $discharge ->where('ward_discharges.date_dc', '=', $request -> datereporting) ->where('ward_admissions.date', '=', $request -> datereporting)
+     ->where('beds.ward_id', '=', $request -> ward_id) ->where('bed__disciplines.discipline_id', '=', $request -> discipline_id) 
+     ->where('patients.gender','=','Perempuan') ->count();
+
+     $admit_discharge_total_total= $admit_discharge_total_male + $admit_discharge_total_female;
+
+     return response()->json( compact('admit_discharge_total_male','admit_discharge_total_female','admit_discharge_total_total','admit_discharge_discipline_male', 'admit_discharge_discipline_female'  ));
+
    }
 
 

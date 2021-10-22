@@ -218,11 +218,29 @@
       <tr>
     <td>19</td>
     <td scope="col" colspan="2">Jumlah bilangan pesakit yang tinggal pada tengah malam [10 - (11 + 12 + 13 + 14 + 15 + 16 + 17)]</td>
-    <td ><div style='width: 100px; text-align:center'>{{dischargecensus.transfer_ward_total_male + dischargecensus.transfer_ward_total_male  }}</div></td>    
-    <td ><div style='width: 100px; text-align:center'>{{total.midnight_total_female  }}</div></td>
-    <td ><div style='width: 100px; text-align:center'>{{total.midnight_total_total  }}</div></td>
-    <td ><div style='width: 100px; text-align:center'>{{total.midnight_discipline_male  }}</div></td>    
-    <td ><div style='width: 100px; text-align:center'>{{total.midnight_discipline_female  }}</div></td>
+    <td ><div style='width: 100px; text-align:center'>{{ census.total_total_male - dischargecensus.balik_total_male - dischargecensus.dama_total_male -
+      dischargecensus.tanpa_total_male - dischargecensus.pindah_total_male -  dischargecensus.mati_total_male - dischargecensus.cuti_total_male - 
+      dischargecensus.transfer_ward_total_male}}</div></td>    
+    <td ><div style='width: 100px; text-align:center'>{{ census.total_total_female - dischargecensus.balik_total_female - dischargecensus.dama_total_female -
+      dischargecensus.tanpa_total_female - dischargecensus.pindah_total_female -  dischargecensus.mati_total_female - dischargecensus.cuti_total_female - 
+      dischargecensus.transfer_ward_total_female
+
+  }}</div></td>
+    <td ><div style='width: 100px; text-align:center'>{{ census.total_total_total - dischargecensus.balik_total_total - dischargecensus.dama_total_total -
+      dischargecensus.tanpa_total_total - dischargecensus.pindah_total_total -  dischargecensus.mati_total_total - dischargecensus.cuti_total_total - 
+      dischargecensus.transfer_ward_total_total
+
+  }}</div></td>
+    <td ><div style='width: 100px; text-align:center'>{{ census.total_discipline_male - dischargecensus.balik_discipline_male - dischargecensus.dama_discipline_male -
+      dischargecensus.tanpa_total_male - dischargecensus.pindah_discipline_male -  dischargecensus.mati_discipline_male - dischargecensus.cuti_discipline_male - 
+      dischargecensus.transfer_ward_discipline_male
+
+  }}</div></td>    
+    <td ><div style='width: 100px; text-align:center'>{{ census.total_discipline_female - dischargecensus.balik_discipline_female - dischargecensus.dama_discipline_female -
+      dischargecensus.tanpa_total_female - dischargecensus.pindah_discipline_female -  dischargecensus.mati_discipline_female - dischargecensus.cuti_discipline_female - 
+      dischargecensus.transfer_ward_discipline_female
+
+ }}</div></td>
   </tr>
       <tr>
     <td>20</td>
@@ -237,29 +255,47 @@
     <td>21</td>
     <th rowspan="3">Bilangan pesakit yang tinggal pada tengah malam mengikut kelas</th>
     <td>Kelas 1</td>
-    <td ><div style='width: 100px; text-align:center'>{{total.one_total_male  }}</div></td>    
-    <td ><div style='width: 100px; text-align:center'>{{total.one_total_female  }}</div></td>
-    <td ><div style='width: 100px; text-align:center'>{{total.one_total_total  }}</div></td>
-    <td ><div style='width: 100px; text-align:center'>{{total.one_discipline_male  }}</div></td>    
-    <td ><div style='width: 100px; text-align:center'>{{total.one_discipline_female  }}</div></td>
+    <td ><div style='width: 100px; text-align:center'>{{0  }}</div></td>    
+    <td ><div style='width: 100px; text-align:center'>{{0  }}</div></td>
+    <td ><div style='width: 100px; text-align:center'>{{0  }}</div></td>
+    <td ><div style='width: 100px; text-align:center'>{{0  }}</div></td>    
+    <td ><div style='width: 100px; text-align:center'>{{0  }}</div></td>
      </tr>
          <tr>
     <td>22</td>
     <td>Kelas 2</td>
-    <td ><div style='width: 100px; text-align:center'>{{total.two_total_male  }}</div></td>    
-    <td ><div style='width: 100px; text-align:center'>{{total.two_total_female  }}</div></td>
-    <td ><div style='width: 100px; text-align:center'>{{total.two_total_total  }}</div></td>
-    <td ><div style='width: 100px; text-align:center'>{{total.two_discipline_male  }}</div></td>    
-    <td ><div style='width: 100px; text-align:center'>{{total.two_discipline_female  }}</div></td>
+    <td ><div style='width: 100px; text-align:center'>{{0  }}</div></td>    
+    <td ><div style='width: 100px; text-align:center'>{{0  }}</div></td>
+    <td ><div style='width: 100px; text-align:center'>{{0  }}</div></td>
+    <td ><div style='width: 100px; text-align:center'>{{0  }}</div></td>    
+    <td ><div style='width: 100px; text-align:center'>{{0  }}</div></td>
   </tr>
       <tr>
     <td>23</td>
     <td>Kelas 3</td>
-    <td ><div style='width: 100px; text-align:center'>{{total.three_total_male  }}</div></td>    
-    <td ><div style='width: 100px; text-align:center'>{{total.three_total_female  }}</div></td>
-    <td ><div style='width: 100px; text-align:center'>{{total.three_total_total  }}</div></td>
-    <td ><div style='width: 100px; text-align:center'>{{total.three_discipline_male  }}</div></td>    
-    <td ><div style='width: 100px; text-align:center'>{{total.three_discipline_female  }}</div></td>
+     <td ><div style='width: 100px; text-align:center'>{{ census.total_total_male - dischargecensus.balik_total_male - dischargecensus.dama_total_male -
+      dischargecensus.tanpa_total_male - dischargecensus.pindah_total_male -  dischargecensus.mati_total_male - dischargecensus.cuti_total_male - 
+      dischargecensus.transfer_ward_total_male}}</div></td>    
+    <td ><div style='width: 100px; text-align:center'>{{ census.total_total_female - dischargecensus.balik_total_female - dischargecensus.dama_total_female -
+      dischargecensus.tanpa_total_female - dischargecensus.pindah_total_female -  dischargecensus.mati_total_female - dischargecensus.cuti_total_female - 
+      dischargecensus.transfer_ward_total_female
+
+  }}</div></td>
+    <td ><div style='width: 100px; text-align:center'>{{ census.total_total_total - dischargecensus.balik_total_total - dischargecensus.dama_total_total -
+      dischargecensus.tanpa_total_total - dischargecensus.pindah_total_total -  dischargecensus.mati_total_total - dischargecensus.cuti_total_total - 
+      dischargecensus.transfer_ward_total_total
+
+  }}</div></td>
+    <td ><div style='width: 100px; text-align:center'>{{ census.total_discipline_male - dischargecensus.balik_discipline_male - dischargecensus.dama_discipline_male -
+      dischargecensus.tanpa_total_male - dischargecensus.pindah_discipline_male -  dischargecensus.mati_discipline_male - dischargecensus.cuti_discipline_male - 
+      dischargecensus.transfer_ward_discipline_male
+
+  }}</div></td>    
+    <td ><div style='width: 100px; text-align:center'>{{ census.total_discipline_female - dischargecensus.balik_discipline_female - dischargecensus.dama_discipline_female -
+      dischargecensus.tanpa_total_female - dischargecensus.pindah_discipline_female -  dischargecensus.mati_discipline_female - dischargecensus.cuti_discipline_female - 
+      dischargecensus.transfer_ward_discipline_female
+
+ }}</div></td>
   </tr>
 </table>          
                        
@@ -427,16 +463,16 @@
           admit_discharge_discipline_male: null,
           admit_discharge_discipline_female: null,
       
-          one_total_male: null,
-          one_total_female: null,
-          one_total_total: null,
-          one_discipline_male: null,
-          one_discipline_female: null,
-          two_total_male: null,
-          two_total_female: null,
-          two_total_total: null,
-          two_discipline_male: null,
-          two_discipline_female: null,
+         //one_total_male: 0,
+         //one_total_female: 0,
+         //one_total_total: 0,
+         //one_discipline_male: 0,
+         //one_discipline_female: 0,
+         //two_total_male: 0,
+         //two_total_female: 0,
+         //two_total_total: 0,
+         //two_discipline_male: 0,
+         //two_discipline_female: 0,
           three_total_male: null,
           three_total_female: null,
           three_total_total: null,
@@ -494,6 +530,13 @@
       ward_id: this.form.ward_id, discipline_id: this.form.discipline_id} })
       .then(function (response) {
           self.dischargecensus = response.data;
+
+
+      }),
+            axios.get('/api/inpatient/cencus/sameDay',{ params: { datereporting: this.form.datereporting,
+      ward_id: this.form.ward_id, discipline_id: this.form.discipline_id} })
+      .then(function (response) {
+          self.total = response.data;
 
 
       })

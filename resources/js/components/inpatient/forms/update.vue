@@ -472,11 +472,11 @@
       axios.post('/api/bed_discipline'+'?token='+ localStorage.getItem('token'), 
        {
       
-       rn: this.form.reg_number,
-       date_bed: this.form.date_bed,       
+        rn: this.form.reg_number,
+       date_bed: this.bed_discipline.date_update,       
        bed_id: this.form.bed_id,
        discipline_id:this.form.discipline_id,     
-       time_bed: this.form.time_bed,
+       time_bed: this.bed_discipline.time_update,
        remarks: 'UPDATE DISCIPLINE',
        status: '0'
        }),
