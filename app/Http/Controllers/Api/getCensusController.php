@@ -157,8 +157,8 @@ $kelmarin_newborn_female_pkrc = $statistic_newborn_female_pkrc->count();
          ->where([['bed__disciplines.remarks', '=','New'],
          ['bed__disciplines.date_bed', '<', $request -> datereporting]])
          ->where('beds.ward_id', '=', $request -> ward_id)
-         ->where('ward_discharges.date_dc', '>', $request -> datereporting)
-         ->where('beds.ward_id', '=', $request -> ward_id)
+         ->where('ward_discharges.date_dc', '>=', $request -> datereporting)
+    
       
 
          ->orWhere(function($datatable )use ($request) 
@@ -250,8 +250,8 @@ $stat_kelmarin_total_female =  $datatable
 ->where([['bed__disciplines.remarks', '=','New'],
 ['bed__disciplines.date_bed', '<', $request -> datereporting]])
 ->where('beds.ward_id', '=', $request -> ward_id)
-->where('ward_discharges.date_dc', '>', $request -> datereporting)
-->where('beds.ward_id', '=', $request -> ward_id)
+->where('ward_discharges.date_dc', '>=', $request -> datereporting)
+
 
 ->where('patients.gender', '=','Perempuan')
 ->orWhere(function($datatable )use ($request) 
