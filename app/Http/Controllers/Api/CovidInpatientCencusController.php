@@ -376,13 +376,14 @@ DB::raw('COUNT(*) as "count"')
 
 $covid_stage_1_1= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->join('vaccination_statuses','vaccination_statuses.patient_kp_passport','patients.kp_passport')
 ->leftJoin('case_samplings','ward_admissions.kp_passport','=','case_samplings.kp_passport')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
 $statistic_stage_1_1 =  $covid_stage_1_1 ->where('ward_admissions.date', '<=', $request -> datereporting)
 ->where('ward_admissions.adm_stage', '=', 1)
-->where('case_samplings.first_dose_date','<>', null)                
-->where('case_samplings.second_dose_date','=', null)
+->where('vaccination_statuses.date_first','<>', null)                
+->where('vaccination_statuses.date_second','=', null)
 ->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
 ->orWhere(function($covid_stage_1_1)use ($request) 
@@ -390,9 +391,8 @@ $statistic_stage_1_1 =  $covid_stage_1_1 ->where('ward_admissions.date', '<=', $
       $covid_stage_1_1  
       ->where('ward_admissions.date', '<=', $request -> datereporting)
       ->where('ward_admissions.adm_stage', '=', 1)
-      ->where('case_samplings.first_dose_date','<>', null)
-                
-      ->where('case_samplings.second_dose_date','=', null)
+      ->where('vaccination_statuses.date_first','<>', null)                
+      ->where('vaccination_statuses.date_second','=', null)
       ->where('ward_discharges.reg_number');
 })
 ->get(array(
@@ -401,13 +401,14 @@ DB::raw('COUNT(*) as "count"')
 
 $covid_stage_2_1= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->join('vaccination_statuses','vaccination_statuses.patient_kp_passport','patients.kp_passport')
 ->leftJoin('case_samplings','ward_admissions.kp_passport','=','case_samplings.kp_passport')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
 $statistic_stage_2_1 =  $covid_stage_2_1 ->where('ward_admissions.date', '<=', $request -> datereporting)
 ->where('ward_admissions.adm_stage', '=', 2)
-->where('case_samplings.first_dose_date','<>', null)                
-->where('case_samplings.second_dose_date','=', null)
+->where('vaccination_statuses.date_first','<>', null)                
+->where('vaccination_statuses.date_second','=', null)
 ->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
 ->orWhere(function($covid_stage_2_1)use ($request) 
@@ -415,9 +416,8 @@ $statistic_stage_2_1 =  $covid_stage_2_1 ->where('ward_admissions.date', '<=', $
       $covid_stage_2_1  
       ->where('ward_admissions.date', '<=', $request -> datereporting)
       ->where('ward_admissions.adm_stage', '=', 2)
-      ->where('case_samplings.first_dose_date','<>', null)
-                
-      ->where('case_samplings.second_dose_date','=', null)
+      ->where('vaccination_statuses.date_first','<>', null)                
+      ->where('vaccination_statuses.date_second','=', null)
       ->where('ward_discharges.reg_number');
 })
 ->get(array(
@@ -426,13 +426,14 @@ DB::raw('COUNT(*) as "count"')
 
 $covid_stage_3_1= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->join('vaccination_statuses','vaccination_statuses.patient_kp_passport','patients.kp_passport')
 ->leftJoin('case_samplings','ward_admissions.kp_passport','=','case_samplings.kp_passport')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
 $statistic_stage_3_1 =  $covid_stage_3_1 ->where('ward_admissions.date', '<=', $request -> datereporting)
 ->where('ward_admissions.adm_stage', '=', 3)
-->where('case_samplings.first_dose_date','<>', null)                
-->where('case_samplings.second_dose_date','=', null)
+->where('vaccination_statuses.date_first','<>', null)                
+->where('vaccination_statuses.date_second','=', null)
 ->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
 ->orWhere(function($covid_stage_3_1)use ($request) 
@@ -440,9 +441,8 @@ $statistic_stage_3_1 =  $covid_stage_3_1 ->where('ward_admissions.date', '<=', $
       $covid_stage_3_1  
       ->where('ward_admissions.date', '<=', $request -> datereporting)
       ->where('ward_admissions.adm_stage', '=', 3)
-      ->where('case_samplings.first_dose_date','<>', null)
-                
-      ->where('case_samplings.second_dose_date','=', null)
+      ->where('vaccination_statuses.date_first','<>', null)                
+      ->where('vaccination_statuses.date_second','=', null)
       ->where('ward_discharges.reg_number');
 })
 ->get(array(
@@ -451,13 +451,14 @@ DB::raw('COUNT(*) as "count"')
 
 $covid_stage_4_1= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->join('vaccination_statuses','vaccination_statuses.patient_kp_passport','patients.kp_passport')
 ->leftJoin('case_samplings','ward_admissions.kp_passport','=','case_samplings.kp_passport')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
 $statistic_stage_4_1 =  $covid_stage_4_1 ->where('ward_admissions.date', '<=', $request -> datereporting)
 ->where('ward_admissions.adm_stage', '=', 4)
-->where('case_samplings.first_dose_date','<>', null)                
-->where('case_samplings.second_dose_date','=', null)
+->where('vaccination_statuses.date_first','<>', null)                
+->where('vaccination_statuses.date_second','=', null)
 ->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
 ->orWhere(function($covid_stage_4_1)use ($request) 
@@ -465,9 +466,8 @@ $statistic_stage_4_1 =  $covid_stage_4_1 ->where('ward_admissions.date', '<=', $
       $covid_stage_4_1  
       ->where('ward_admissions.date', '<=', $request -> datereporting)
       ->where('ward_admissions.adm_stage', '=', 4)
-      ->where('case_samplings.first_dose_date','<>', null)
-                	
-      ->where('case_samplings.second_dose_date','=', null)
+      ->where('vaccination_statuses.date_first','<>', null)                
+      ->where('vaccination_statuses.date_second','=', null)
       ->where('ward_discharges.reg_number');
 })
 ->get(array(
@@ -475,13 +475,14 @@ DB::raw('COUNT(*) as "count"')
 ));
 $covid_stage_5_1= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->join('vaccination_statuses','vaccination_statuses.patient_kp_passport','patients.kp_passport')
 ->leftJoin('case_samplings','ward_admissions.kp_passport','=','case_samplings.kp_passport')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
 $statistic_stage_5_1 =  $covid_stage_5_1 ->where('ward_admissions.date', '<=', $request -> datereporting)
 ->where('ward_admissions.adm_stage', '=', 5)
-->where('case_samplings.first_dose_date','<>', null)                
-->where('case_samplings.second_dose_date','=', null)
+->where('vaccination_statuses.date_first','<>', null)                
+->where('vaccination_statuses.date_second','=', null)
 ->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
 ->orWhere(function($covid_stage_5_1)use ($request) 
@@ -489,9 +490,8 @@ $statistic_stage_5_1 =  $covid_stage_5_1 ->where('ward_admissions.date', '<=', $
       $covid_stage_5_1  
       ->where('ward_admissions.date', '<=', $request -> datereporting)
       ->where('ward_admissions.adm_stage', '=', 5)
-      ->where('case_samplings.first_dose_date','<>', null)
-                	
-      ->where('case_samplings.second_dose_date','=', null)
+      ->where('vaccination_statuses.date_first','<>', null)                
+      ->where('vaccination_statuses.date_second','=', null)
       ->where('ward_discharges.reg_number');
 })
 ->get(array(
@@ -500,12 +500,13 @@ DB::raw('COUNT(*) as "count"')
 
 $covid_stage_1_2= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->join('vaccination_statuses','vaccination_statuses.patient_kp_passport','patients.kp_passport')
 ->leftJoin('case_samplings','ward_admissions.kp_passport','=','case_samplings.kp_passport')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
 $statistic_stage_1_2 =  $covid_stage_1_2 ->where('ward_admissions.date', '<=', $request -> datereporting)
-->where('ward_admissions.adm_stage', '=', 1)
-->where('case_samplings.second_dose_date','<>', null)
+->where('ward_admissions.adm_stage', '=', 1)            
+->where('vaccination_statuses.date_second','<>', null)
 ->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
 ->orWhere(function($covid_stage_1_2)use ($request) 
@@ -513,7 +514,7 @@ $statistic_stage_1_2 =  $covid_stage_1_2 ->where('ward_admissions.date', '<=', $
       $covid_stage_1_2  
       ->where('ward_admissions.date', '<=', $request -> datereporting)
       ->where('ward_admissions.adm_stage', '=', 1)                	
-      ->where('case_samplings.second_dose_date','<>', null)
+      ->where('vaccination_statuses.date_second','<>', null)
       ->where('ward_discharges.reg_number');
 })
 ->get(array(
@@ -522,12 +523,13 @@ DB::raw('COUNT(*) as "count"')
 
 $covid_stage_2_2= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->join('vaccination_statuses','vaccination_statuses.patient_kp_passport','patients.kp_passport')
 ->leftJoin('case_samplings','ward_admissions.kp_passport','=','case_samplings.kp_passport')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
 $statistic_stage_2_2 =  $covid_stage_2_2 ->where('ward_admissions.date', '<=', $request -> datereporting)
 ->where('ward_admissions.adm_stage', '=', 2)
-->where('case_samplings.second_dose_date','<>', null)
+->where('vaccination_statuses.date_second','<>', null)
 ->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
 ->orWhere(function($covid_stage_2_2)use ($request) 
@@ -535,7 +537,7 @@ $statistic_stage_2_2 =  $covid_stage_2_2 ->where('ward_admissions.date', '<=', $
       $covid_stage_2_2  
       ->where('ward_admissions.date', '<=', $request -> datereporting)
       ->where('ward_admissions.adm_stage', '=', 2)                	
-      ->where('case_samplings.second_dose_date','<>', null)
+      ->where('vaccination_statuses.date_second','<>', null)
       ->where('ward_discharges.reg_number');
 })
 ->get(array(
@@ -544,12 +546,13 @@ DB::raw('COUNT(*) as "count"')
 
 $covid_stage_3_2= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->join('vaccination_statuses','vaccination_statuses.patient_kp_passport','patients.kp_passport')
 ->leftJoin('case_samplings','ward_admissions.kp_passport','=','case_samplings.kp_passport')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
 $statistic_stage_3_2 =  $covid_stage_3_2 ->where('ward_admissions.date', '<=', $request -> datereporting)
 ->where('ward_admissions.adm_stage', '=', 3)
-->where('case_samplings.second_dose_date','<>', null)
+->where('vaccination_statuses.date_second','<>', null)
 ->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
 ->orWhere(function($covid_stage_3_2)use ($request) 
@@ -557,7 +560,7 @@ $statistic_stage_3_2 =  $covid_stage_3_2 ->where('ward_admissions.date', '<=', $
       $covid_stage_3_2  
       ->where('ward_admissions.date', '<=', $request -> datereporting)
       ->where('ward_admissions.adm_stage', '=', 3)                	
-      ->where('case_samplings.second_dose_date','<>', null)
+      ->where('vaccination_statuses.date_second','<>', null)
       ->where('ward_discharges.reg_number');
 })
 ->get(array(
@@ -567,12 +570,13 @@ DB::raw('COUNT(*) as "count"')
 
 $covid_stage_4_2= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->join('vaccination_statuses','vaccination_statuses.patient_kp_passport','patients.kp_passport')
 ->leftJoin('case_samplings','ward_admissions.kp_passport','=','case_samplings.kp_passport')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
 $statistic_stage_4_2 =  $covid_stage_4_2 ->where('ward_admissions.date', '<=', $request -> datereporting)
 ->where('ward_admissions.adm_stage', '=', 4)
-->where('case_samplings.second_dose_date','<>', null)
+->where('vaccination_statuses.date_second','<>', null)
 ->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
 ->orWhere(function($covid_stage_4_2)use ($request) 
@@ -580,7 +584,7 @@ $statistic_stage_4_2 =  $covid_stage_4_2 ->where('ward_admissions.date', '<=', $
       $covid_stage_4_2  
       ->where('ward_admissions.date', '<=', $request -> datereporting)
       ->where('ward_admissions.adm_stage', '=', 4)                	
-      ->where('case_samplings.second_dose_date','<>', null)
+      ->where('vaccination_statuses.date_second','<>', null)
       ->where('ward_discharges.reg_number');
 })
 ->get(array(
@@ -589,12 +593,13 @@ DB::raw('COUNT(*) as "count"')
 
 $covid_stage_5_2= DB::table('ward_admissions')
 ->join('patients','ward_admissions.kp_passport','patients.kp_passport')
+->join('vaccination_statuses','vaccination_statuses.patient_kp_passport','patients.kp_passport')
 ->leftJoin('case_samplings','ward_admissions.kp_passport','=','case_samplings.kp_passport')
 ->leftjoin('ward_discharges','ward_admissions.reg_number','=','ward_discharges.reg_number');
 
 $statistic_stage_5_2 =  $covid_stage_5_2 ->where('ward_admissions.date', '<=', $request -> datereporting)
 ->where('ward_admissions.adm_stage', '=', 5)
-->where('case_samplings.second_dose_date','<>', null)
+->where('vaccination_statuses.date_second','<>', null)
 ->where('ward_discharges.date_dc', '>', $request -> datereporting)
 
 ->orWhere(function($covid_stage_5_2)use ($request) 
@@ -602,7 +607,7 @@ $statistic_stage_5_2 =  $covid_stage_5_2 ->where('ward_admissions.date', '<=', $
       $covid_stage_5_2  
       ->where('ward_admissions.date', '<=', $request -> datereporting)
       ->where('ward_admissions.adm_stage', '=', 5)                	
-      ->where('case_samplings.second_dose_date','<>', null)
+      ->where('vaccination_statuses.date_second','<>', null)
       ->where('ward_discharges.reg_number');
 })
 ->get(array(
